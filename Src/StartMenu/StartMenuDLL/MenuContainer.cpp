@@ -4124,7 +4124,7 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 				m_SearchBox.SetFont(s_Skin.ItemSettings[MenuSkin::COLUMN2_ITEM].font);
 			else
 				m_SearchBox.SetFont(s_Skin.ItemSettings[MenuSkin::COLUMN1_ITEM].font);
-			m_SearchIcons=(HBITMAP)LoadImage(g_Instance,MAKEINTRESOURCE(IDB_SEARCH_ICONS),IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION);
+			m_SearchIcons = (HBITMAP)LoadImage(g_Instance, MAKEINTRESOURCE(IDB_SEARCH_ICONS), IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION);
 			PremultiplyBitmap(m_SearchIcons,0xFFFFFF);
 		}
 	}
@@ -5131,7 +5131,7 @@ void CMenuContainer::SetActiveWindow( void )
 	if (active!=m_hWnd && active!=m_SearchBox.m_hWnd)
 		::SetActiveWindow(m_hWnd);
 	if (!m_bSubMenu && s_bBehindTaskbar && s_TaskBar)
-		SetWindowPos(s_TaskBar,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE); // make sure the top menu stays behind the taskbar
+		SetWindowPos(HWND_TOPMOST,0,0,0,0,SWP_NOSIZE|SWP_NOMOVE); // make sure the top menu stays behind the taskbar
 }
 
 void CMenuContainer::PostRefreshMessage( void )
@@ -8222,7 +8222,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 		s_UserPicture.Init(pStartMenu);
 	}
 	dummyRc.right++;
-	pStartMenu->SetWindowPos(NULL,&dummyRc,SWP_NOZORDER|SWP_NOACTIVATE);
+	pStartMenu->SetWindowPos(HWND_TOPMOST,&dummyRc,SWP_NOZORDER|SWP_NOACTIVATE);
 
 	memset(&s_StartRect,0,sizeof(s_StartRect));
 
@@ -8551,7 +8551,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 	// reposition start menu
 	if (bTopMost || !s_bBehindTaskbar)
 		animFlags|=AW_TOPMOST;
-	pStartMenu->SetWindowPos((animFlags&AW_TOPMOST)?HWND_TOPMOST:HWND_TOP,corner.x,corner.y,0,0,((initialMonitor!=s_MenuMonitor && !bAllPrograms)?SWP_NOMOVE|SWP_NOSIZE:0)|SWP_NOACTIVATE);
+	pStartMenu->SetWindowPos(HWND_TOPMOST,corner.x,corner.y,0,0,((initialMonitor!=s_MenuMonitor && !bAllPrograms)?SWP_NOMOVE|SWP_NOSIZE:0)|SWP_NOACTIVATE);
 
 	pStartMenu->InitItems();
 	pStartMenu->m_MaxWidth=s_MainMenuLimits.right-s_MainMenuLimits.left;
@@ -8619,7 +8619,7 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 		if (s_StartButton)
 			::SetWindowPos(s_StartButton,bTopMost?HWND_TOPMOST:HWND_TOP,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
 		// position the start menu behind the taskbar
-		pStartMenu->SetWindowPos(s_TaskBar,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
+		pStartMenu->SetWindowPos(HWND_TOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
 	}
 	if (bErr && GetSettingBool(L"ReportSkinErrors") && !*MenuSkin::s_SkinError)
 	{

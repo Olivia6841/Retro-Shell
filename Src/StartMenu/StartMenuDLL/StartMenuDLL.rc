@@ -842,6 +842,7 @@ BEGIN
     IDS_BUTTON_TYPE_TIP     "Select the look of the Start button"
     IDS_CLASSIC_BUTTON      "Classic button"
     IDS_CLASSIC_BUTTON_TIP  "Select the Classic look for Start button"
+	IDS_CLASSIC_BUTTON_XP	"Windows XP style"
     IDS_AERO_BUTTON         "Aero button"
     IDS_AERO_BUTTON_TIP     "Select the Aero look for the Start button"
     IDS_CUSTOM_BUTTON       "Custom button"

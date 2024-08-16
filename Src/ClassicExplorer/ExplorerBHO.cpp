@@ -243,7 +243,7 @@ LRESULT CALLBACK CExplorerBHO::HookExplorer( int nCode, WPARAM wParam, LPARAM lP
 			if (GetClassName(parent,name,_countof(name)) && _wcsicmp(name,L"CabinetWClass")==0)
 			{
 				DWORD_PTR settings=0;
-				if (GetSettingBool(L"FixFolderScroll"))
+				if (GetWinVersion()==WIN_VER_WIN7 && GetSettingBool(L"FixFolderScroll"))
 					settings|=1;
 				SetWindowSubclass(hWnd,SubclassTreeProc,'CLSH',settings);
 				PostMessage(hWnd,TVM_SETEXTENDEDSTYLE,TVS_EX_FADEINOUTEXPANDOS|TVS_EX_AUTOHSCROLL|0x80000000,0);

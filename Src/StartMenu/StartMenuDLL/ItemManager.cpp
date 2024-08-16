@@ -3695,7 +3695,7 @@ const wchar_t *GetDefaultNetworkIcon( TNetworkType networkType )
 		case NETWORK_DRIVE:
 			return L"imageres.dll,33";
 		case NETWORK_FOLDER:
-			return L"imageres.dll,3";
+			return L"imageres.dll,16";
 		default:
 			return L"imageres.dll,2";
 	}

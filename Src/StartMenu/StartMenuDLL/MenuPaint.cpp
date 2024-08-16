@@ -3018,14 +3018,14 @@ void CMenuContainer::AnimateMenu( int flags, int speed, const RECT &rect )
 	{
 		// fade in
 		SetWindowLong(GWL_EXSTYLE,GetWindowLong(GWL_EXSTYLE)|WS_EX_LAYERED);
-		SetWindowPos((flags&AW_TOPMOST)?HWND_TOPMOST:HWND_TOP,&rect,SWP_SHOWWINDOW|((flags&AW_ACTIVATE)?0:SWP_NOACTIVATE));
+		SetWindowPos(HWND_TOPMOST,&rect,SWP_SHOWWINDOW|((flags&AW_ACTIVATE)?0:SWP_NOACTIVATE));
 		if (!m_bSubMenu && s_TaskBar && s_bBehindTaskbar)
 		{
 			// position the start button on top
 			if (s_StartButton)
-				::SetWindowPos(s_StartButton,(flags&AW_TOPMOST)?HWND_TOPMOST:HWND_TOP,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
+				::SetWindowPos(s_StartButton,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
 			// position the start menu behind the taskbar
-			SetWindowPos(s_TaskBar,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
+			SetWindowPos(HWND_TOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE);
 		}
 		if (bUserPic)
 		{
