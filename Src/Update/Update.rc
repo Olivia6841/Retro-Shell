@@ -101,13 +101,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Open-Shell"
-            VALUE "FileDescription", "Checks for a new version of Open-Shell"
+            VALUE "CompanyName", "aubymori"
+            VALUE "FileDescription", "Checks for a new version of Retro-Shell"
             VALUE "FileVersion", _PRODUCT_VERSION_STR
             VALUE "InternalName", "Update.exe"
-            VALUE "LegalCopyright", "Copyright (C) 2017-2018, The Open-Shell Team"
+            VALUE "LegalCopyright", "Copyright (C) 2024, aubymori"
             VALUE "OriginalFilename", "Update.exe"
-            VALUE "ProductName", "Open-Shell"
+            VALUE "ProductName", "Retro-Shell"
             VALUE "ProductVersion", _PRODUCT_VERSION_STR
         END
     END
@@ -125,7 +125,7 @@ END
 
 IDD_UPDATE DIALOGEX 0, 0, 316, 200
 STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
-CAPTION "Open-Shell Update"
+CAPTION "Retro-Shell Update"
 FONT 9, "Segoe UI", 400, 0, 0x0
 BEGIN
     CONTROL         "Automatically check for new versions",IDC_CHECKAUTOCHECK,
@@ -138,7 +138,7 @@ BEGIN
     PUSHBUTTON      "Download",IDC_BUTTONDOWNLOAD,7,161,50,14,NOT WS_VISIBLE
     CONTROL         "Don't remind me again about this version",IDC_CHECKDONT,
                     "Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,61,161,141,14
-    CONTROL         "<a>Open-Shell-Menu</a>",IDC_LINKWEB,"SysLink",WS_TABSTOP,7,181,66,10,WS_EX_TRANSPARENT
+    CONTROL         "<a>Retro-Shell-Menu</a>",IDC_LINKWEB,"SysLink",WS_TABSTOP,7,181,66,10,WS_EX_TRANSPARENT
     DEFPUSHBUTTON   "OK",IDOK,202,177,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,259,177,50,14
 END
@@ -179,9 +179,9 @@ IDI_APPICON             ICON                    "..\\Setup\\OpenShell.ico"
 
 STRINGTABLE 
 BEGIN
-    IDS_UPDATED             "Your version of Open-Shell is up to date"
-    IDS_OUTOFDATE           "There is a new version of Open-Shell"
-    IDS_NEWVERSION          "There is a new version of Open-Shell.\nClick here to see what's new or to change the reminder settings."
+    IDS_UPDATED             "Your version of Retro-Shell is up to date"
+    IDS_OUTOFDATE           "There is a new version of Retro-Shell"
+    IDS_NEWVERSION          "There is a new version of Retro-Shell.\nClick here to see what's new or to change the reminder settings."
     IDS_UPDATE_FAIL         "Failed to check for new version"
 END
 

@@ -6,7 +6,7 @@ LogLevel.supportedOn=never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell 設定
+Title.text = Retro-Shell 設定
 State.text = 狀態:
 State1.text = 鎖定為此數值
 State2.text = 鎖定為預設值
@@ -17,7 +17,7 @@ State3Help.text = 如果設定狀態為「不鎖定」，將變更設定的預�
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Classic IE 群組原則設定
-SUPPORTED_CS404.text = 需要 Open-Shell 4.0.4 或以上。
+SUPPORTED_CS404.text = 需要 Retro-Shell 4.0.4 或以上。
 SUPPORTED_IE9.text = 需要 Internet Explorer 9 或以上。
 
 

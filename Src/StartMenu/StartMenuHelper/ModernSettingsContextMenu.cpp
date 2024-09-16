@@ -1,4 +1,4 @@
-// Context menu handler for Open-Shell Modern Settings shell folder
+// Context menu handler for Retro-Shell Modern Settings shell folder
 
 // Based on Explorer Data Provider Sample (https://docs.microsoft.com/en-us/windows/win32/shell/samples-explorerdataprovider)
 

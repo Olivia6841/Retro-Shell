@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Configuración de Open-Shell
+Title.text = Configuración de Retro-Shell
 State.text = Estado:
 State1.text = Bloqueada en este valor
 State2.text = Bloqueada en valor predeterminado
@@ -98,9 +98,9 @@ State1Help.text = Si establece el estado en 'Bloqueada en este valor', la config
 State2Help.text = Si establece el estado en 'Bloqueada en valor predeterminado', la configuración se bloqueará en el valor predeterminado para todos los usuarios. El valor especificado se ignora.
 State3Help.text = Si establece el estado en 'Desbloqueada', el valor predeterminado de la configuración se cambiará al especificado. Los usuarios pueden reemplazar la configuración.
 
-MenuCat.text = Open-Shell Menu
-MenuCatHelp.text = Configuraciones de directiva de grupo de Open-Shell Menu
-SUPPORTED_CS404.text = Requiere Open-Shell 4.0.4 o posterior.
+MenuCat.text = Retro-Shell Menu
+MenuCatHelp.text = Configuraciones de directiva de grupo de Retro-Shell Menu
+SUPPORTED_CS404.text = Requiere Retro-Shell 4.0.4 o posterior.
 SUPPORTED_CS404_WIN7.text = Requiere Windows 7.
 SUPPORTED_CS404_WIN78.text = Requiere Windows 7 o Windows 8.
 SUPPORTED_CS404_WIN781.text = Requiere Windows 7 o Windows 8.1.
@@ -135,25 +135,25 @@ SkinC1.tipOverride = Seleccione la máscara a usar en el estilo clásico con una
 SkinVariationC1.nameOverride = Variación de máscara para menú clásico con una sola columna
 SkinVariationC1.tipOverride = Seleccione la variación de máscara a usar en el estilo clásico con una sola columna (para máscaras compatibles con múltiples variaciones)
 SkinOptionsC1.nameOverride = Opciones de máscara para menú clásico con una sola columna
-SkinOptionsC1.tipOverride = Seleccione las opciones de máscara a usar en el estilo clásico con una sola columna.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsC1 en HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC1.tipOverride = Seleccione las opciones de máscara a usar en el estilo clásico con una sola columna.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsC1 en HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems1.nameOverride = Elementos de menú para menú clásico con una sola columna
-MenuItems1.tipOverride = Seleccione los elementos de menú a usar en el estilo clásico con una sola columna.\nLa mejor manera de obtener la cadena adecuada es configurar los elementos en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre MenuItems1 en HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems1.tipOverride = Seleccione los elementos de menú a usar en el estilo clásico con una sola columna.\nLa mejor manera de obtener la cadena adecuada es configurar los elementos en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre MenuItems1 en HKCU\Software\OpenShell\StartMenu\Settings
 SkinC2.nameOverride = Máscara para menú clásico con dos columnas
 SkinC2.tipOverride = Seleccione la máscara a usar en el estilo clásico con dos columnas
 SkinVariationC2.nameOverride = Variación de máscara para menú clásico con dos columnas
 SkinVariationC2.tipOverride = Seleccione la variación de máscara a usar en el estilo clásico con dos columnas (para máscaras compatibles con múltiples variaciones)
 SkinOptionsC2.nameOverride = Opciones de máscara para menú clásico con dos columnas
-SkinOptionsC2.tipOverride = Seleccione las opciones de máscara a usar en el estilo clásico con dos columnas.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsC2 en HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC2.tipOverride = Seleccione las opciones de máscara a usar en el estilo clásico con dos columnas.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsC2 en HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems2.nameOverride = Elementos de menú para menú clásico con dos columnas
-MenuItems2.tipOverride = Seleccione los elementos de menú a usar en el estilo clásico con dos columnas.\nLa mejor manera de obtener la cadena adecuada es configurar los elementos en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre MenuItems2 en HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems2.tipOverride = Seleccione los elementos de menú a usar en el estilo clásico con dos columnas.\nLa mejor manera de obtener la cadena adecuada es configurar los elementos en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre MenuItems2 en HKCU\Software\OpenShell\StartMenu\Settings
 SkinW7.nameOverride = Máscara para el estilo Windows 7
 SkinW7.tipOverride = Seleccione la máscara a usar en el estilo Windows 7
 SkinVariationW7.nameOverride = Variación de máscara para el estilo Windows 7
 SkinVariationW7.tipOverride = Seleccione la variación de máscara a usar en el estilo WIndows 7 (para máscaras compatibles con múltiples variaciones)
 SkinOptionsW7.nameOverride = Opciones de máscara para el estilo Windows 7
-SkinOptionsW7.tipOverride = Seleccione las opciones de máscara a usar en el estilo Windows 7.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsW7 en HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsW7.tipOverride = Seleccione las opciones de máscara a usar en el estilo Windows 7.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsW7 en HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems7.nameOverride = Elementos de menú para el estilo Windows 7
-MenuItems7.tipOverride = Seleccione los elementos de menú a usar en el estilo Windows 7.\nLa mejor manera de obtener la cadena adecuada es configurar los elementos en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre MenuItems7 en HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems7.tipOverride = Seleccione los elementos de menú a usar en el estilo Windows 7.\nLa mejor manera de obtener la cadena adecuada es configurar los elementos en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre MenuItems7 en HKCU\Software\OpenShell\StartMenu\Settings
 
 ; windows 7
 SkinA.nameOverride = Máscara para el submenú Todos los Programas en el menú inicio de Windows 7
@@ -161,7 +161,7 @@ SkinA.tipOverride = Seleccione la máscara a usar para el submenú Todos los Pro
 SkinVariationA.nameOverride = Variación de máscara para el submenú Todos los Programas en el menú inicio de Windows 7
 SkinVariationA.tipOverride = Seleccione la variación de máscara a usar para el submenú Todos los Programas en el menú inicio de Windows 7 (para máscaras compatibles con múltiples variaciones)
 SkinOptionsA.nameOverride = Opciones de máscara para el submenú Todos los Programas en el menú inicio de Windows 7
-SkinOptionsA.tipOverride = Seleccione las opciones de máscara a usar para el submenú Todos los Programas en el menú inicio de Windows 7.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsA en HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsA.tipOverride = Seleccione las opciones de máscara a usar para el submenú Todos los Programas en el menú inicio de Windows 7.\nLas opciones son una lista de números en hexadecimal. La mejor manera de obtenerlos es ajustar las opciones en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre SkinOptionsA en HKCU\Software\OpenShell\StartMenu\Settings
 
 ; metro settings
 SkipMetro.tipAddition = Esta configuración no funciona en Windows 8.1. Para arrancar en el Escritorio, tiene que usar la configuración integrada en Windows
@@ -188,5 +188,5 @@ SoundDrop.tipAddition = El valor puede ser el nombre de un evento del sistema o 
 ExpandFolderLinks.tipAddition = Sólo funciona para vínculos simbólicos (como uniones) y no para accesos directos planos
 StartHoverDelay.nameOverride = Retraso al situarse encima (para el botón Inicio)
 AllProgramsDelay.nameOverride = Retraso al situarse encima (para Todos los Programas en Windows 7)
-CSMHotkey.tipAddition = .\n\nEl valor base es el código virtual principal de la tecla. Agregue 256 para Mayús, 512 para Control y 1024 para Alt.\nLa mejor manera de obtener el valor es seleccionar la tecla rápida en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre CSMHotkey en HKCU\Software\OpenShell\StartMenu\Settings
-WSMHotkey.tipAddition = .\n\nEl valor base es el código virtual principal de la tecla. Agregue 256 para Mayús, 512 para Control y 1024 para Alt.\nLa mejor manera de obtener el valor es seleccionar la tecla rápida en el diálogo de configuración de Open-Shell Menu y acto seguido buscar el valor con nombre WSMHotkey en HKCU\Software\OpenShell\StartMenu\Settings
+CSMHotkey.tipAddition = .\n\nEl valor base es el código virtual principal de la tecla. Agregue 256 para Mayús, 512 para Control y 1024 para Alt.\nLa mejor manera de obtener el valor es seleccionar la tecla rápida en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre CSMHotkey en HKCU\Software\OpenShell\StartMenu\Settings
+WSMHotkey.tipAddition = .\n\nEl valor base es el código virtual principal de la tecla. Agregue 256 para Mayús, 512 para Control y 1024 para Alt.\nLa mejor manera de obtener el valor es seleccionar la tecla rápida en el diálogo de configuración de Retro-Shell Menu y acto seguido buscar el valor con nombre WSMHotkey en HKCU\Software\OpenShell\StartMenu\Settings

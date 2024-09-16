@@ -71,13 +71,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Open-Shell"
+            VALUE "CompanyName", "aubymori"
             VALUE "FileDescription", "Customizations for the title bar and status bar of IE"
             VALUE "FileVersion", _PRODUCT_VERSION_STR
             VALUE "InternalName", "ClassicIEDLL.dll"
-            VALUE "LegalCopyright", "Copyright (C) 2017-2018, The Open-Shell Team"
+            VALUE "LegalCopyright", "Copyright (C) 2024, aubymori"
             VALUE "OriginalFilename", "ClassicIEDLL.dll"
-            VALUE "ProductName", "Open-Shell"
+            VALUE "ProductName", "Retro-Shell"
             VALUE "ProductVersion", _PRODUCT_VERSION_STR
         END
     END

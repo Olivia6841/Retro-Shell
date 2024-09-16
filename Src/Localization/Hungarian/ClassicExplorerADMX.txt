@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell beállítások
+Title.text = Retro-Shell beállítások
 State.text = Állapot:
 State1.text = Rögzítve erre az értékre
 State2.text = Rögzítve alapértelmezettre
@@ -40,7 +40,7 @@ State3Help.text = Ha az állapotot 'Feloldva' értékre állítod, a beállítá
 
 ClassicExplorerCat.text = Klasszikus Intéző
 ClassicExplorerCatHelp.text = Klasszikus Intéző csoportházirend beállítások
-SUPPORTED_CS404.text = Open-Shell 4.0.4 vagy újabb szükséges.
+SUPPORTED_CS404.text = Retro-Shell 4.0.4 vagy újabb szükséges.
 SUPPORTED_CS404_WIN7.text = Windows 7 szükséges.
 SUPPORTED_CS404_WIN881.text = Windows 8 vagy 8.1 szükséges.
 

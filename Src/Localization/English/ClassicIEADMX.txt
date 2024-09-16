@@ -6,7 +6,7 @@ LogLevel.supportedOn = never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell settings
+Title.text = Retro-Shell settings
 State.text = State:
 State1.text = Locked to this value
 State2.text = Locked to default
@@ -17,7 +17,7 @@ State3Help.text = If you set the state to 'Unlocked', the default value for the 
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Classic IE group policy settings
-SUPPORTED_CS404.text = Requires Open-Shell 4.0.4 or later.
+SUPPORTED_CS404.text = Requires Retro-Shell 4.0.4 or later.
 SUPPORTED_IE9.text = Requires Internet Explorer 9 or later.
 
 

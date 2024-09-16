@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Open-Shell 設定
+Title.text = Retro-Shell 設定
 State.text = 狀態:
 State1.text = 鎖定為此數值
 State2.text = 鎖定為預設值
@@ -98,9 +98,9 @@ State1Help.text = 如果設定狀態為「鎖定為此數值」，將針對所�
 State2Help.text = 如果設定狀態為「鎖定為預設值」，將針對所有使用者鎖定設定為預設值。 忽略指定的值。
 State3Help.text = 如果設定狀態為「不鎖定」，將變更設定的預設值為指定的值。 個別使用者能覆寫設定。
 
-MenuCat.text = Open-Shell Menu
-MenuCatHelp.text = Open-Shell Menu 群組原則設定
-SUPPORTED_CS404.text = 需要 Open-Shell 4.0.4 或以上。
+MenuCat.text = Retro-Shell Menu
+MenuCatHelp.text = Retro-Shell Menu 群組原則設定
+SUPPORTED_CS404.text = 需要 Retro-Shell 4.0.4 或以上。
 SUPPORTED_CS404_WIN7.text = 需要 Windows 7。
 SUPPORTED_CS404_WIN78.text = 需要 Windows 7 或 Windows 8.1。
 SUPPORTED_CS404_WIN781.text = 需要 Windows 7 或 Windows 8。
@@ -135,25 +135,25 @@ SkinC1.tipOverride = 選取一欄典型樣式所用的面板
 SkinVariationC1.nameOverride = 典型一欄式功能表的面板變數
 SkinVariationC1.tipOverride = 選取一欄典型樣式所用的面板變數 (針對支援多變數的面板)
 SkinOptionsC1.nameOverride = 典型一欄式功能表的面板選項
-SkinOptionsC1.tipOverride = 選取一欄典型樣式所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Open-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsC1 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC1.tipOverride = 選取一欄典型樣式所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Retro-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsC1 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems1.nameOverride = 典型一欄式功能表的功能表項目
-MenuItems1.tipOverride = 選取一欄典型樣式所用的功能表項目。\n取得正確字串的最佳方式，在 Open-Shell Menu 設定對話方塊組態項目，接著在以下位置尋找名稱 MenuItems1 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems1.tipOverride = 選取一欄典型樣式所用的功能表項目。\n取得正確字串的最佳方式，在 Retro-Shell Menu 設定對話方塊組態項目，接著在以下位置尋找名稱 MenuItems1 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 SkinC2.nameOverride = 典型兩欄式功能表的面板
 SkinC2.tipOverride = 選取兩欄典型樣式所用的面板
 SkinVariationC2.nameOverride = 典型兩欄式功能表的面板變數
 SkinVariationC2.tipOverride = 選取兩欄典型樣式所用的面板變數 (針對支援多變數的面板)
 SkinOptionsC2.nameOverride = 典型兩欄式功能表的面板選項
-SkinOptionsC2.tipOverride = 選取兩欄典型樣式所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Open-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsC2 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC2.tipOverride = 選取兩欄典型樣式所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Retro-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsC2 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems2.nameOverride = 典型兩欄式功能表的功能表項目
-MenuItems2.tipOverride = 選取兩欄典型樣式所用的功能表項目。\n取得正確字串的最佳方式，在 Open-Shell Menu 設定對話方塊組態項目，接著在以下位置尋找名稱 MenuItems2 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems2.tipOverride = 選取兩欄典型樣式所用的功能表項目。\n取得正確字串的最佳方式，在 Retro-Shell Menu 設定對話方塊組態項目，接著在以下位置尋找名稱 MenuItems2 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 SkinW7.nameOverride = Windows 7 樣式的面板
 SkinW7.tipOverride = 選取 Windows 7 樣式所用的面板
 SkinVariationW7.nameOverride = Windows 7 樣式的面板變數
 SkinVariationW7.tipOverride = 選取 Windows 7 樣式所用的面板變數 (針對支援多變數的面板)
 SkinOptionsW7.nameOverride = Windows 7 樣式的面板選項
-SkinOptionsW7.tipOverride = 選取 Windows 7 樣式所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Open-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsW7 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsW7.tipOverride = 選取 Windows 7 樣式所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Retro-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsW7 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems7.nameOverride = Windows 7 樣式的功能表項目
-MenuItems7.tipOverride = 選取 Windows 7 樣式所用的功能表項目。\n取得正確字串的最佳方式，在 Open-Shell Menu 設定對話方塊組態項目，接著在以下位置尋找名稱 MenuItems7 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems7.tipOverride = 選取 Windows 7 樣式所用的功能表項目。\n取得正確字串的最佳方式，在 Retro-Shell Menu 設定對話方塊組態項目，接著在以下位置尋找名稱 MenuItems7 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 
 ; windows 7
 SkinA.nameOverride = Windows 7 [開始] 功能表的 [所有程式] 子功能表的面板
@@ -161,7 +161,7 @@ SkinA.tipOverride = 選取 Windows 7 開始功能表的 [所有程式] 子功能
 SkinVariationA.nameOverride = Windows 7 [開始] 功能表的 [所有程式] 子功能表的面板變數
 SkinVariationA.tipOverride = 選取 Windows 7 開始功能表的 [所有程式] 子功能表所用的面板變數 (針對支援多變數的面板)
 SkinOptionsA.nameOverride = Windows 7 [開始] 功能表的 [所有程式] 子功能表的面板選項
-SkinOptionsA.tipOverride = 選取 Windows 7 開始功能表的 [所有程式] 子功能表所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Open-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsA 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsA.tipOverride = 選取 Windows 7 開始功能表的 [所有程式] 子功能表所用的面板選項。\n選項為 16 進位數字的清單。 取得它們的最佳方式，在 Retro-Shell Menu 設定對話方塊調整選項，接著在以下位置尋找名稱 SkinOptionsA 的數值: HKCU\Software\OpenShell\StartMenu\Settings
 
 ; metro settings
 SkipMetro.tipAddition = 此設定不支援 Windows 8.1。 您需要使用內建 Windows 設定以開機到桌面
@@ -188,5 +188,5 @@ SoundDrop.tipAddition = 數值可以是系統事件名稱或 WAV 檔案的路徑
 ExpandFolderLinks.tipAddition = 只能在符號連結動作 (比如聯結) 且不支援純捷徑
 StartHoverDelay.nameOverride = 暫留延遲 (針對 [開始] 按鈕)
 AllProgramsDelay.nameOverride = 暫留延遲 (針對 Windows 7 中 [所有程式])
-CSMHotkey.tipAddition = .\n\n基礎值為主機碼的虛擬碼。 加入 256 為 Shift 鍵，512 為 Ctrl 鍵，1024 為 Alt 鍵。\n取得數值的最佳方式，在 Open-Shell Menu 設定對話方塊選取熱鍵，接著在以下位置尋找名稱 CSMHotkey 的數值: HKCU\Software\OpenShell\StartMenu\Settings
-WSMHotkey.tipAddition = .\n\n基礎值為主機碼的虛擬碼。 加入 256 為 Shift 鍵，512 為 Ctrl 鍵，1024 為 Alt 鍵。\n取得數值的最佳方式，在 Open-Shell Menu 設定對話方塊選取熱鍵，接著在以下位置尋找名稱 WSMHotkey 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+CSMHotkey.tipAddition = .\n\n基礎值為主機碼的虛擬碼。 加入 256 為 Shift 鍵，512 為 Ctrl 鍵，1024 為 Alt 鍵。\n取得數值的最佳方式，在 Retro-Shell Menu 設定對話方塊選取熱鍵，接著在以下位置尋找名稱 CSMHotkey 的數值: HKCU\Software\OpenShell\StartMenu\Settings
+WSMHotkey.tipAddition = .\n\n基礎值為主機碼的虛擬碼。 加入 256 為 Shift 鍵，512 為 Ctrl 鍵，1024 為 Alt 鍵。\n取得數值的最佳方式，在 Retro-Shell Menu 設定對話方塊選取熱鍵，接著在以下位置尋找名稱 WSMHotkey 的數值: HKCU\Software\OpenShell\StartMenu\Settings

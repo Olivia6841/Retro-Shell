@@ -6,7 +6,7 @@ LogLevel.supportedOn=never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell beállítások
+Title.text = Retro-Shell beállítások
 State.text = Állapot:
 State1.text = Rögzítve erre az értékre
 State2.text = Rögzítve alapértelmezettre
@@ -17,7 +17,7 @@ State3Help.text = Ha az állapotot 'Feloldva' értékre állítod, a beállítá
 
 ClassicIECat.text = Klasszikus IE
 ClassicIECatHelp.text = Klasszikus IE csoportházirend beállítások
-SUPPORTED_CS404.text = Open-Shell 4.0.4 vagy újabb szükséges.
+SUPPORTED_CS404.text = Retro-Shell 4.0.4 vagy újabb szükséges.
 SUPPORTED_IE9.text = Internet Explorer 9 vagy újabb szükséges.
 
 

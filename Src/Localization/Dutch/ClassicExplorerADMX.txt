@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell instellingen
+Title.text = Retro-Shell instellingen
 State.text = Status:
 State1.text = Vergrendelen op deze waarde
 State2.text = Vergrendelen op standaard
@@ -41,7 +41,7 @@ State3Help.text = Als u de staat 'Niet vergrendelen' instelt, zal de standaardwa
 
 ClassicExplorerCat.text = Classic Explorer
 ClassicExplorerCatHelp.text = Classic Explorer groep beleidsinstellingen
-SUPPORTED_CS404.text = Nodig Open-Shell 4.0.4 of hoger.
+SUPPORTED_CS404.text = Nodig Retro-Shell 4.0.4 of hoger.
 SUPPORTED_CS404_WIN7.text = Nodig Windows 7.
 SUPPORTED_CS404_WIN881.text = Nodig Windows 8 of Windows 8.1.
 

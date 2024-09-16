@@ -6,7 +6,7 @@ LogLevel.supportedOn=never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell 设置
+Title.text = Retro-Shell 设置
 State.text = 状态:
 State1.text = 锁定为此设置值
 State2.text = 锁定为默认值
@@ -17,7 +17,7 @@ State3Help.text = 如果将状态设置为“未锁定”，用户可自由设�
 
 ClassicIECat.text = 经典 IE
 ClassicIECatHelp.text = 经典 IE 组策略设置
-SUPPORTED_CS404.text = 需要安装 Open-Shell 4.0.4 或更高的版本。
+SUPPORTED_CS404.text = 需要安装 Retro-Shell 4.0.4 或更高的版本。
 SUPPORTED_IE9.text = 仅用于 Internet Explorer 9 或更高的版本。
 
 

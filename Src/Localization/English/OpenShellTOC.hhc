@@ -9,12 +9,12 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell">
+		<param name="Name" value="Retro-Shell">
 		<param name="Local" value="Main.html">
 		<param name="ImageNumber" value="11">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell Menu">
+		<param name="Name" value="Retro-Shell Menu">
 		<param name="Local" value="StartMenu.html">
 		<param name="ImageNumber" value="1">
 		</OBJECT>

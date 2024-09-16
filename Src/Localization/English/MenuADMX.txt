@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Open-Shell settings
+Title.text = Retro-Shell settings
 State.text = State:
 State1.text = Locked to this value
 State2.text = Locked to default
@@ -98,9 +98,9 @@ State1Help.text = If you set the state to 'Locked to this value', the setting wi
 State2Help.text = If you set the state to 'Locked to default', the setting will be locked to the default value for all users. The specified value is ignored.
 State3Help.text = If you set the state to 'Unlocked', the default value for the setting will be changed to the specified value. Individual users can override the setting.
 
-MenuCat.text = Open-Shell Menu
-MenuCatHelp.text = Open-Shell Menu group policy settings
-SUPPORTED_CS404.text = Requires Open-Shell 4.0.4 or later.
+MenuCat.text = Retro-Shell Menu
+MenuCatHelp.text = Retro-Shell Menu group policy settings
+SUPPORTED_CS404.text = Requires Retro-Shell 4.0.4 or later.
 SUPPORTED_CS404_WIN7.text = Requires Windows 7.
 SUPPORTED_CS404_WIN78.text = Requires Windows 7 or Windows 8.
 SUPPORTED_CS404_WIN781.text = Requires Windows 7 or Windows 8.1.
@@ -135,25 +135,25 @@ SkinC1.tipOverride = Select the skin to be used by the classic style with one co
 SkinVariationC1.nameOverride = Skin variation for classic menu with one column
 SkinVariationC1.tipOverride = Select the skin variation to be used by the classic style with one column (for skins that support multiple variations)
 SkinOptionsC1.nameOverride = Skin options for classic menu with one column
-SkinOptionsC1.tipOverride = Select the skin options to be used by the classic style with one column.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Open-Shell Menu settings dialog and then look up the value named SkinOptionsC1 in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC1.tipOverride = Select the skin options to be used by the classic style with one column.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Retro-Shell Menu settings dialog and then look up the value named SkinOptionsC1 in HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems1.nameOverride = Menu items for classic menu with one column
-MenuItems1.tipOverride = Select the menu items to be used by the classic style with one column.\nThe best way to get the right string is to configure the items in the Open-Shell Menu settings dialog and then look up the value named MenuItems1 in HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems1.tipOverride = Select the menu items to be used by the classic style with one column.\nThe best way to get the right string is to configure the items in the Retro-Shell Menu settings dialog and then look up the value named MenuItems1 in HKCU\Software\OpenShell\StartMenu\Settings
 SkinC2.nameOverride = Skin for classic menu with two columns
 SkinC2.tipOverride = Select the skin to be used by the classic style with two columns
 SkinVariationC2.nameOverride = Skin variation for classic menu with two columns
 SkinVariationC2.tipOverride = Select the skin variation to be used by the classic style with two columns (for skins that support multiple variations)
 SkinOptionsC2.nameOverride = Skin options for classic menu with two columns
-SkinOptionsC2.tipOverride = Select the skin options to be used by the classic style with two columns.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Open-Shell Menu settings dialog and then look up the value named SkinOptionsC2 in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC2.tipOverride = Select the skin options to be used by the classic style with two columns.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Retro-Shell Menu settings dialog and then look up the value named SkinOptionsC2 in HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems2.nameOverride = Menu items for classic menu with two columns
-MenuItems2.tipOverride = Select the menu items to be used by the classic style with two columns.\nThe best way to get the right string is to configure the items in the Open-Shell Menu settings dialog and then look up the value named MenuItems2 in HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems2.tipOverride = Select the menu items to be used by the classic style with two columns.\nThe best way to get the right string is to configure the items in the Retro-Shell Menu settings dialog and then look up the value named MenuItems2 in HKCU\Software\OpenShell\StartMenu\Settings
 SkinW7.nameOverride = Skin for the Windows 7 style
 SkinW7.tipOverride = Select the skin to be used by the Windows 7 style
 SkinVariationW7.nameOverride = Skin variation for the Windows 7 style
 SkinVariationW7.tipOverride = Select the skin variation to be used by the Windows 7 style (for skins that support multiple variations)
 SkinOptionsW7.nameOverride = Skin options for the Windows 7 style
-SkinOptionsW7.tipOverride = Select the skin options to be used by the Windows 7 style.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Open-Shell Menu settings dialog and then look up the value named SkinOptionsW7 in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsW7.tipOverride = Select the skin options to be used by the Windows 7 style.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Retro-Shell Menu settings dialog and then look up the value named SkinOptionsW7 in HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems7.nameOverride = Menu items for the Windows 7 style
-MenuItems7.tipOverride = Select the menu items to be used by the Windows 7 style.\nThe best way to get the right string is to configure the items in the Open-Shell Menu settings dialog and then look up the value named MenuItems7 in HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems7.tipOverride = Select the menu items to be used by the Windows 7 style.\nThe best way to get the right string is to configure the items in the Retro-Shell Menu settings dialog and then look up the value named MenuItems7 in HKCU\Software\OpenShell\StartMenu\Settings
 
 ; windows 7
 SkinA.nameOverride = Skin for the All Programs sub-menu for the Windows 7 start menu
@@ -161,7 +161,7 @@ SkinA.tipOverride = Select the skin to be used by the All Programs sub-menu for 
 SkinVariationA.nameOverride = Skin variation for the All Programs sub-menu for the Windows 7 start menu
 SkinVariationA.tipOverride = Select the skin variation to be used by the All Programs sub-menu for the Windows 7 start menu (for skins that support multiple variations)
 SkinOptionsA.nameOverride = Skin options for the All Programs sub-menu for the Windows 7 start menu
-SkinOptionsA.tipOverride = Select the skin options to be used by the All Programs sub-menu for the Windows 7 start menu.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Open-Shell Menu settings dialog and then look up the value named SkinOptionsA in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsA.tipOverride = Select the skin options to be used by the All Programs sub-menu for the Windows 7 start menu.\nThe options are a list of hex numbers. The best way to get them is to adjust the options in the Retro-Shell Menu settings dialog and then look up the value named SkinOptionsA in HKCU\Software\OpenShell\StartMenu\Settings
 
 ; metro settings
 SkipMetro.tipAddition = This setting doesn't work for Windows 8.1. You need to use the built-in Windows setting for booting to Desktop
@@ -188,6 +188,6 @@ SoundDrop.tipAddition = The value can be a name of a system event or a path to a
 ExpandFolderLinks.tipAddition = Only works for symbolic links (like junctions) and not for plain shortcuts
 StartHoverDelay.nameOverride = Hover delay (for Start button)
 AllProgramsDelay.nameOverride = Hover delay (for All Programs in Windows 7)
-CSMHotkey.tipAddition = .\n\nThe base value is the main key's virtual code. Add 256 for Shift, 512 for Control and 1024 for Alt.\nThe best way to get the value is to select the hotkey in the Open-Shell Menu settings dialog and then look up the value named CSMHotkey in HKCU\Software\OpenShell\StartMenu\Settings
-WSMHotkey.tipAddition = .\n\nThe base value is the main key's virtual code. Add 256 for Shift, 512 for Control and 1024 for Alt.\nThe best way to get the value is to select the hotkey in the Open-Shell Menu settings dialog and then look up the value named WSMHotkey in HKCU\Software\OpenShell\StartMenu\Settings
+CSMHotkey.tipAddition = .\n\nThe base value is the main key's virtual code. Add 256 for Shift, 512 for Control and 1024 for Alt.\nThe best way to get the value is to select the hotkey in the Retro-Shell Menu settings dialog and then look up the value named CSMHotkey in HKCU\Software\OpenShell\StartMenu\Settings
+WSMHotkey.tipAddition = .\n\nThe base value is the main key's virtual code. Add 256 for Shift, 512 for Control and 1024 for Alt.\nThe best way to get the value is to select the hotkey in the Retro-Shell Menu settings dialog and then look up the value named WSMHotkey in HKCU\Software\OpenShell\StartMenu\Settings
 SearchFiles.tipOverride = When this is checked, the search results will include files, emails and other items from indexed locations

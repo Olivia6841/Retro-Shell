@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Настройки Open-Shell
+Title.text = Настройки Retro-Shell
 State.text = Состояние:
 State1.text = Блокировать это значение
 State2.text = Блокировано по умолчанию
@@ -100,7 +100,7 @@ State3Help.text = Если установить состояние "Разбло
 
 MenuCat.text = Классическое меню Пуск
 MenuCatHelp.text = Параметры групповой политики классического меню Пуск
-SUPPORTED_CS404.text = Требовать Open-Shell 4.0.4 или выше.
+SUPPORTED_CS404.text = Требовать Retro-Shell 4.0.4 или выше.
 SUPPORTED_CS404_WIN7.text = Требовать Windows 7.
 SUPPORTED_CS404_WIN78.text = Требовать Windows 7 или Windows 8.
 SUPPORTED_CS404_WIN781.text = Требовать Windows 7 или Windows 8.1.

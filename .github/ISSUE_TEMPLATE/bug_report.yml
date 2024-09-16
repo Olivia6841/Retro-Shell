@@ -6,7 +6,7 @@ body:
 - type: markdown
   attributes:
     value: |
-      **Please, make sure you are using [latest](https://github.com/Open-Shell/Open-Shell-Menu/releases) `Open-Shell` build before reporting a bug.**
+      **Please, make sure you are using [latest](https://github.com/aubymori/Retro-Shell/releases) `Retro-Shell` build before reporting a bug.**
       Especially on `Windows 11` you should use 4.4.190 (or newer).
 - type: textarea
   attributes:
@@ -18,7 +18,7 @@ body:
 - type: dropdown
   attributes:
     label: Area of issue
-    description: What component(s) of Open-Shell does this involve? Select all that apply.
+    description: What component(s) of Retro-Shell does this involve? Select all that apply.
     multiple: true
     options:
       - Start menu
@@ -45,7 +45,7 @@ body:
     placeholder: What did you expect to happen?
 - type: input
   attributes:
-    label: Open-Shell version
+    label: Retro-Shell version
     placeholder: e.g. 4.4.170
   validations:
     required: true

@@ -6,7 +6,7 @@ LogLevel.supportedOn = never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Paramètres Open-Shell
+Title.text = Paramètres Retro-Shell
 State.text = Etat:
 State1.text = Verrouillé sur cette valeur
 State2.text = Verrouillé sur le paramètre par défaut
@@ -17,7 +17,7 @@ State3Help.text = Si vous configurez l'état à 'Déverrouillé', la valeur par 
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Paramètres de la stratégie de groupe de Classic IE
-SUPPORTED_CS404.text = Nécessite Open-Shell 4.0.4 ou plus.
+SUPPORTED_CS404.text = Nécessite Retro-Shell 4.0.4 ou plus.
 SUPPORTED_IE9.text = Nécessite Internet Explorer 9 ou plus.
 
 

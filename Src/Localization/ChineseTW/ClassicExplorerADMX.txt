@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell 設定
+Title.text = Retro-Shell 設定
 State.text = 狀態:
 State1.text = 鎖定為此數值
 State2.text = 鎖定為預設值
@@ -40,7 +40,7 @@ State3Help.text = 如果設定狀態為「不鎖定」，將變更設定的預�
 
 ClassicExplorerCat.text = Classic Explorer
 ClassicExplorerCatHelp.text = Classic Explorer 群組原則設定
-SUPPORTED_CS404.text = 需要 Open-Shell 4.0.4 或以上。
+SUPPORTED_CS404.text = 需要 Retro-Shell 4.0.4 或以上。
 SUPPORTED_CS404_WIN7.text = 需要 Windows 7。
 SUPPORTED_CS404_WIN881.text = 需要 Windows 8 或 Windows 8.1。
 
@@ -53,7 +53,7 @@ ProcessWhiteList.tipOverride = 能載入 Classic Explorer 的處理程序清單�
 ProcessBlackList.nameOverride = 處理黑名單
 ProcessBlackList.tipOverride = 不載入 Classic Explorer 的處理程序清單。 只使用處理程序的名稱 (比如「notepad.exe」)，以 , 或 ; 分隔多個名稱。
 ToolbarItems.nameOverride = 工具列按鈕
-ToolbarItems.tipOverride = 選取顯示在工具列的按鈕。\n取得正確字串的最佳方式，在 Open-Shell Menu 設定對話方塊組態按鈕，接著在以下位置尋找名稱 ToolbarItems 的數值 HKCU\Software\OpenShell\ClassicExplorer\Settings
+ToolbarItems.tipOverride = 選取顯示在工具列的按鈕。\n取得正確字串的最佳方式，在 Retro-Shell Menu 設定對話方塊組態按鈕，接著在以下位置尋找名稱 ToolbarItems 的數值 HKCU\Software\OpenShell\ClassicExplorer\Settings
 
 
 ; os-specific

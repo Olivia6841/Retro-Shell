@@ -3,10 +3,10 @@
 <assemblyIdentity
     version="1.0.0.0"
     processorArchitecture="X86"
-    name="Open-Shell.Menu"
+    name="Retro-Shell.Menu"
     type="win32"
 />
-<description>Open-Shell Update</description>
+<description>Retro-Shell Update</description>
 <dependency>
     <dependentAssembly>
         <assemblyIdentity

@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Open-Shell instellingen
+Title.text = Retro-Shell instellingen
 State.text = Status:
 State1.text = Vergrendel deze waarde
 State2.text = Vergrendel naar stndaard
@@ -98,9 +98,9 @@ State1Help.text = Als u de status op 'Vergrendelen op deze waarde' instelt, zull
 State2Help.text = Als u de status op 'Vergrendelen op standaard' instelt, zullen de instellingen op de standaardwaarde voor alle gebruikers worden vergrendeld. De opgegeven waarden worden genegeerd.
 State3Help.text = Als u de staat 'Niet vergrendelen' instelt, zal de standaardwaarde voor de instelling worden gewijzigd naar de opgegeven waarde. Individuele gebruikers kunnen dan de instellingen 
 
-MenuCat.text = Open-Shell Menu
-MenuCatHelp.text = Open-Shell Menu groep beleidsinstellingen
-SUPPORTED_CS404.text = Nodig Open-Shell 4.0.4 of hoger.
+MenuCat.text = Retro-Shell Menu
+MenuCatHelp.text = Retro-Shell Menu groep beleidsinstellingen
+SUPPORTED_CS404.text = Nodig Retro-Shell 4.0.4 of hoger.
 SUPPORTED_CS404_WIN7.text = Nodig Windows 7.
 SUPPORTED_CS404_WIN78.text = Nodig Windows 7 of Windows 8.
 SUPPORTED_CS404_WIN781.text = Nodig Windows 7 of Windows 8.1.
@@ -135,25 +135,25 @@ SkinC1.tipOverride = Selecteer het uiterlijk welke gebruikt dient te worden door
 SkinVariationC1.nameOverride = Uiterlijk variatie voor Classic Menu met een kolom
 SkinVariationC1.tipOverride = Selecteer de uiterlijk variatie welke  gebruikt dient te worden door Classic stijl met een kolom(dit is voor uiterlijken welke meervoudige variaties ondersteunen)
 SkinOptionsC1.nameOverride = Opties uiterlijk voor Classic Menu met een kolom
-SkinOptionsC1.tipOverride = Selecteer de uiterlijk opties welke gebruikt dient te worden door Classic stijl met een kolom.\nDe opties zijn een lijst met hex nummers. De beste manier om deze te krijgen is het aanpassen van de opties in Open-Shell Menu instellings dialoog en zoek vervolgens naar de waarde met de naam SkinOptionsC1 in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC1.tipOverride = Selecteer de uiterlijk opties welke gebruikt dient te worden door Classic stijl met een kolom.\nDe opties zijn een lijst met hex nummers. De beste manier om deze te krijgen is het aanpassen van de opties in Retro-Shell Menu instellings dialoog en zoek vervolgens naar de waarde met de naam SkinOptionsC1 in HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems1.nameOverride = Menu items voor Classic menu met een kolom
-MenuItems1.tipOverride = Selecteer de menu items die gebruikt dienen te worden door de Classic stijl met een kolom.\nDe beste manier om de juiste tekenreeks te krijgen is om de items te configureren in de Open-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam MenuItems1 in HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems1.tipOverride = Selecteer de menu items die gebruikt dienen te worden door de Classic stijl met een kolom.\nDe beste manier om de juiste tekenreeks te krijgen is om de items te configureren in de Retro-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam MenuItems1 in HKCU\Software\OpenShell\StartMenu\Settings
 SkinC2.nameOverride = Uiterlijk voor Classic Menu met twee kolommen
 SkinC2.tipOverride = Selecteer het uiterlijk dat door de Classic Stijl gebruikt dient te worden bij twee kolommen
 SkinVariationC2.nameOverride = Uiterlijk variaties voor Classic Menu met twee kolommen
 SkinVariationC2.tipOverride = Selecteer de uiterlijk variatie die gebruikt dient te worden door de Classic Stijl voor twee kolommen (voor uiterlijk dat meervoudige variaties ondersteund)
 SkinOptionsC2.nameOverride = Uiterlijk opties voor Classic Menu met twee kolommen
-SkinOptionsC2.tipOverride = Selecteer de uiterlijk opties die gebruikt dient te worden door Classic Stijl met twee kolommen.\nDe opties is een lijst met hexadecimale (hex) nummers. De beste manier om deze te krijgen is om deze opties aan te passen in de Open-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam SkinOptionsC2 in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC2.tipOverride = Selecteer de uiterlijk opties die gebruikt dient te worden door Classic Stijl met twee kolommen.\nDe opties is een lijst met hexadecimale (hex) nummers. De beste manier om deze te krijgen is om deze opties aan te passen in de Retro-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam SkinOptionsC2 in HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems2.nameOverride = Menu items voor Classic menu met twee kolommen
-MenuItems2.tipOverride = Selecteer de menu items die wordt gebruikt door Classic Stijl met twee kolommen.\nDe beste manier om de juiste tekenreeks te krijgen is om het item te configureren in Open-Shell Menu instellings dialoogvensterog en dan te kijken naar de waarde met de naam MenuItems2 in HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems2.tipOverride = Selecteer de menu items die wordt gebruikt door Classic Stijl met twee kolommen.\nDe beste manier om de juiste tekenreeks te krijgen is om het item te configureren in Retro-Shell Menu instellings dialoogvensterog en dan te kijken naar de waarde met de naam MenuItems2 in HKCU\Software\OpenShell\StartMenu\Settings
 SkinW7.nameOverride = Uiterlijk voor Windows 7 stijl
 SkinW7.tipOverride = Selecteer het uiterlijk dat gebruikt dient te worden voor de Windows 7 stijl
 SkinVariationW7.nameOverride = Uiterlijke variaties voor de Windows 7 stijl
 SkinVariationW7.tipOverride = Selecteer de uiterlijk variatie dat gebruikt dient te worden voor de Windows 7 stijl (voor uiterlijken welke meervoudige variaties ondersteunen)
 SkinOptionsW7.nameOverride = Uiterlijk opties voor Windows 7 stijl
-SkinOptionsW7.tipOverride = Selecteer de uiterlijk opties welke worden gebruikt door de Windows 7 stijl.\nDe opties zijn een lijst met hexadecimale (hex) nummers. De beste manier is om deze opties aan te passen in de Open-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam SkinOptionsW7 in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsW7.tipOverride = Selecteer de uiterlijk opties welke worden gebruikt door de Windows 7 stijl.\nDe opties zijn een lijst met hexadecimale (hex) nummers. De beste manier is om deze opties aan te passen in de Retro-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam SkinOptionsW7 in HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems7.nameOverride = Menu items voor de Windows 7 stijl
-MenuItems7.tipOverride = Selecteer de menu items de gebruikt worden de Windows 7 stijl.\nDe beste manier om de juist tekenwaarde te configureren is het item te configureren in de Open-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de MenuItems7 in HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems7.tipOverride = Selecteer de menu items de gebruikt worden de Windows 7 stijl.\nDe beste manier om de juist tekenwaarde te configureren is het item te configureren in de Retro-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de MenuItems7 in HKCU\Software\OpenShell\StartMenu\Settings
 
 ; windows 7
 SkinA.nameOverride = Uiterlijken voor alle Programma's sub menu voor het Windows 7 start menu
@@ -161,7 +161,7 @@ SkinA.tipOverride = Selecteer het uiterlijk dat gebruikt dient te worden door Al
 SkinVariationA.nameOverride = Uiterlijk variatie voor Alle Programma's sub-menu voor het Windows 7 start menu
 SkinVariationA.tipOverride = Selecteer de uiterlijk variatie dat gebruikt dienst te worden door Alle Programma's sub-menu voor het Windows 7 start menu (voor uiterlijken die meervoudige variaties ondersteunen)
 SkinOptionsA.nameOverride = Uiterlijk opties voor Alle Programma's sub-menu voor het Windows 7 start menu
-SkinOptionsA.tipOverride = Selecteer de uiterlijk opties die gebruikt dienen te worden door Alle Programma's sub-menu voor het Windows 7 start menu.\nDe opties zijn een lijst met hexadecimale (hex) nummers. De beste manier is om deze opties aan te passen in de Open-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam SkinOptionsA in HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsA.tipOverride = Selecteer de uiterlijk opties die gebruikt dienen te worden door Alle Programma's sub-menu voor het Windows 7 start menu.\nDe opties zijn een lijst met hexadecimale (hex) nummers. De beste manier is om deze opties aan te passen in de Retro-Shell Menu instellings dialoogvenster en dan te kijken naar de waarde met de naam SkinOptionsA in HKCU\Software\OpenShell\StartMenu\Settings
 
 ; metro settings
 SkipMetro.tipAddition = De instellingen werken niet bij Windows 8.1. U moet de ingebouwde Windows-instelling gebruiken voor de opstartconfiguratie naar het bureaublad
@@ -188,5 +188,5 @@ SoundDrop.tipAddition = De waarde kan een naam van een systeem gebeurtenis zijn 
 ExpandFolderLinks.tipAddition = Werkt alleen voor symbolische koppelingen (zoals verbindingen) en niet voor gewone snelkoppelingen
 StartHoverDelay.nameOverride = Aanwijs effect vertraging (voor Startknop)
 AllProgramsDelay.nameOverride = Aanwijs effect vertraging (voor alle Programma's in Windows 7)
-CSMHotkey.tipAddition = .\n\nDe basiswaarde is de belangrijkste virtuele sleutelcode. Voeg 256 toe voor Shift, 512 voor Control en 1024 voor Alt.\nDe beste manier om de waarde te vinden is om de sneltoets te selecteren in de Open-Shell startmenu imstellings dialoogvenster en vervolgens de waarde met de naam CSMHotkey op te zoeken in HKCU\Software\OpenShell\StartMenu\Settings
-WSMHotkey.tipAddition = .\n\nDe basiswaarde is de belangrijkste virtuele sleutelcode. Voeg 256 toe voor Shift, 512 voor Control en 1024 voor Alt.\nDe beste manier om de waarde te vinden is om de sneltoets te selecteren in de Open-Shell startmenu imstellings dialoogvenster en vervolgens de waarde met de naam CSMHotkey op te zoeken in HKCU\Software\OpenShell\StartMenu\Settings
+CSMHotkey.tipAddition = .\n\nDe basiswaarde is de belangrijkste virtuele sleutelcode. Voeg 256 toe voor Shift, 512 voor Control en 1024 voor Alt.\nDe beste manier om de waarde te vinden is om de sneltoets te selecteren in de Retro-Shell startmenu imstellings dialoogvenster en vervolgens de waarde met de naam CSMHotkey op te zoeken in HKCU\Software\OpenShell\StartMenu\Settings
+WSMHotkey.tipAddition = .\n\nDe basiswaarde is de belangrijkste virtuele sleutelcode. Voeg 256 toe voor Shift, 512 voor Control en 1024 voor Alt.\nDe beste manier om de waarde te vinden is om de sneltoets te selecteren in de Retro-Shell startmenu imstellings dialoogvenster en vervolgens de waarde met de naam CSMHotkey op te zoeken in HKCU\Software\OpenShell\StartMenu\Settings

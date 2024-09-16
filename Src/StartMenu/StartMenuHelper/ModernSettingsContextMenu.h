@@ -1,4 +1,4 @@
-// Context menu handler for Open-Shell Modern Settings shell folder
+// Context menu handler for Retro-Shell Modern Settings shell folder
 
 #pragma once
 #include "resource.h"

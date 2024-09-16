@@ -226,13 +226,13 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 	return _AtlModule.DllGetClassObject(rclsid, riid, ppv);
 }
 /*
-const wchar_t *TASK_NAME=L"Open-Shell Start Menu";
+const wchar_t *TASK_NAME=L"Retro-Shell Start Menu";
 const wchar_t *TASK_XML=
 L"<?xml version=\"1.0\" encoding=\"UTF-16\"?>\r\n"
 L"<Task version=\"1.2\" xmlns=\"http://schemas.microsoft.com/windows/2004/02/mit/task\">\r\n"
 L"  <RegistrationInfo>\r\n"
 L"    <Date>2014-11-23T10:00:00</Date>\r\n"
-L"    <Author>Open-Shell</Author>\r\n"
+L"    <Author>Retro-Shell</Author>\r\n"
 L"    <Description>A task that launches the start menu at logon. It also repairs the installation after an upgrade of Windows.</Description>\r\n"
 L"  </RegistrationInfo>\r\n"
 L"  <Triggers>\r\n"

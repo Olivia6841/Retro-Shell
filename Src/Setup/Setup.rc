@@ -78,13 +78,13 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "Open-Shell"
-            VALUE "FileDescription", "Adds classic shell features to Windows 7 and Windows 8"
+            VALUE "CompanyName", "aubymori"
+            VALUE "FileDescription", "Adds classic shell features to Windows 10"
             VALUE "FileVersion", _PRODUCT_VERSION_STR
             VALUE "InternalName", "OpenShellSetup"
-            VALUE "LegalCopyright", "Copyright (C) 2017-2018, The Open-Shell Team"
+            VALUE "LegalCopyright", "Copyright (C) 2024, aubymori"
             VALUE "OriginalFilename", "OpenShellSetup.exe"
-            VALUE "ProductName", "Open-Shell"
+            VALUE "ProductName", "Retro-Shell"
             VALUE "ProductVersion", _PRODUCT_VERSION_STR
         END
     END
@@ -112,7 +112,7 @@ IDR_MSI_CHECKSUM        MSI_FILE                "msichecksum.bin"
 
 STRINGTABLE 
 BEGIN
-    IDS_APP_TITLE           "Open-Shell Setup"
+    IDS_APP_TITLE           "Retro-Shell Setup"
     IDS_ERR_CORRUPTED       "Failed to extract setup file '%s'. The MSI resource is corrupted."
 END
 
@@ -120,13 +120,13 @@ STRINGTABLE
 BEGIN
     IDS_ERR_INTERNAL        "Internal Setup Error"
     IDS_ERR_EXTRACT         "Failed to extract setup file '%s'."
-    IDS_ERR_WIN7            "Open-Shell requires Windows 7 or later."
+    IDS_ERR_WIN7            "Retro-Shell requires Windows 7 or later."
     IDS_ERR_MSIEXEC         "Failed to run msiexec.exe."
 END
 
 STRINGTABLE 
 BEGIN
-    IDS_HELP                "Open-Shell Setup will install Open-Shell on  your computer. Possible command lines:\n    <no command line> - runs the installer normally\n    extract32 - extracts the 32-bit MSI\n    extract64 - extracts the 64-bit MSI\n    help, /? - shows the command line help\n    <some msiexec options> - the options are passed to msiexec\n        * if the options contain %MSI% (all caps) the token is replaced by the name of the extracted MSI file\n        * if %MSI% is not found, the setup runs ""msiexec /i <MSI file> <some msiexec options>""\n        * run msiexec with no parameters to see the full list of msiexec options\n\nExamples:\n    /qn - runs the installer in quiet mode\n    /x %MSI% /qb - uninstalls the product in basic UI level\n    /f %MSI% - repairs the product\n    /l* log.txt - runs the installer and logs the process in the log.txt file\n    /qn ADDLOCAL=ClassicExplorer - installs only Classic Explorer in quiet mode\n    /qn ADDLOCAL=StartMenu APPLICATIONFOLDER=C:\\OpenShell - installs only Open-Shell Start Menu in quiet mode in the folder C:\\OpenShell\n    ADDLOCAL=StartMenu,ClassicIE - runs the installer in full UI mode with Open-Shell Start Menu and Classic IE checked by default"
+    IDS_HELP                "Retro-Shell Setup will install Retro-Shell on  your computer. Possible command lines:\n    <no command line> - runs the installer normally\n    extract32 - extracts the 32-bit MSI\n    extract64 - extracts the 64-bit MSI\n    help, /? - shows the command line help\n    <some msiexec options> - the options are passed to msiexec\n        * if the options contain %MSI% (all caps) the token is replaced by the name of the extracted MSI file\n        * if %MSI% is not found, the setup runs ""msiexec /i <MSI file> <some msiexec options>""\n        * run msiexec with no parameters to see the full list of msiexec options\n\nExamples:\n    /qn - runs the installer in quiet mode\n    /x %MSI% /qb - uninstalls the product in basic UI level\n    /f %MSI% - repairs the product\n    /l* log.txt - runs the installer and logs the process in the log.txt file\n    /qn ADDLOCAL=ClassicExplorer - installs only Classic Explorer in quiet mode\n    /qn ADDLOCAL=StartMenu APPLICATIONFOLDER=C:\\OpenShell - installs only Retro-Shell Start Menu in quiet mode in the folder C:\\OpenShell\n    ADDLOCAL=StartMenu,ClassicIE - runs the installer in full UI mode with Retro-Shell Start Menu and Classic IE checked by default"
 END
 
 #endif    // English (U.S.) resources

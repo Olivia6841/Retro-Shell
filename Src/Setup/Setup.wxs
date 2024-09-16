@@ -18,8 +18,8 @@
 <?define CS_WIN64  = "no"?>
 <?endif ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Open-Shell" Language="1033" Version="$(env.CS_VERSION)" Manufacturer="The Open-Shell Team" UpgradeCode="$(var.CS_UPGRADE)">
-		<Package Description="Open-Shell" Comments="Start Menu Replacement" InstallerVersion="500" Compressed="yes" Platform="$(var.CS_PLATFORM)" />
+	<Product Id="*" Name="Retro-Shell" Language="1033" Version="$(env.CS_VERSION)" Manufacturer="The Retro-Shell Team" UpgradeCode="$(var.CS_UPGRADE)">
+		<Package Description="Retro-Shell" Comments="Start Menu Replacement" InstallerVersion="500" Compressed="yes" Platform="$(var.CS_PLATFORM)" />
 		<Media Id="1" Cabinet="cshell.cab" EmbedCab="yes" CompressionLevel="high" />
 		<Media Id="2" Cabinet="simple.cab" EmbedCab="yes" CompressionLevel="high" />
 		<?if $(var.x64)=0 ?>
@@ -29,12 +29,12 @@
 		<Condition Message="!(loc.ErrorNewVersion)">NOT NEWERPRODUCTFOUND OR Installed</Condition>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="$(var.CS_PROGRAM_FILES)" Name="PFiles">
-				<Directory Id="APPLICATIONFOLDER" Name="Open-Shell">
+				<Directory Id="APPLICATIONFOLDER" Name="Retro-Shell">
 					<Directory Id="Skins" Name="Skins" />
 				</Directory>
 			</Directory>
 			<Directory Id="ProgramMenuFolder" Name="Programs">
-				<Directory Id="StartMenuDir" Name="Open-Shell">
+				<Directory Id="StartMenuDir" Name="Retro-Shell">
 					<Component Id="StartMenuDir" Guid="42AA415A-5E61-4238-96B2-A997D1EE5521">
 						<RemoveFolder Id="StartMenuDir" On="uninstall" />
 						<CreateFolder />
@@ -45,7 +45,7 @@
 			<Directory Id="SystemFolder" />
 			<Directory Id="System64Folder" />
 		</Directory>
-		<Feature Id="OpenShell" Level="1" Title="Open-Shell" ConfigurableDirectory="APPLICATIONFOLDER" AllowAdvertise="no" Absent="disallow" Display="expand"  Description="!(loc.OpenShellDesc)">
+		<Feature Id="OpenShell" Level="1" Title="Retro-Shell" ConfigurableDirectory="APPLICATIONFOLDER" AllowAdvertise="no" Absent="disallow" Display="expand"  Description="!(loc.OpenShellDesc)">
 			<ComponentRef Id="OpenShell.chm" />
 			<ComponentRef Id="OpenShellReadme.rtf" />
 			<ComponentRef Id="OpenShell" />
@@ -391,8 +391,8 @@
 				<Control Type="Icon" Id="Icon1" Width="12" Height="12" X="7" Y="203" Hidden="yes" Text="web.ico">
 					<Condition Action="show">NOT Installed</Condition>
 				</Control>
-				<Control Type="Hyperlink" Id="Link1" Width="131" Height="10" X="22" Y="204" Hidden="yes" ToolTip="https://open-shell.github.io/Open-Shell-Menu">
-					<Text><![CDATA[<a href="https://open-shell.github.io/Open-Shell-Menu">!(loc.WebLink)</a>]]></Text>
+				<Control Type="Hyperlink" Id="Link1" Width="131" Height="10" X="22" Y="204" Hidden="yes" ToolTip="https://Retro-Shell.github.io/Retro-Shell-Menu">
+					<Text><![CDATA[<a href="https://Retro-Shell.github.io/Retro-Shell-Menu">!(loc.WebLink)</a>]]></Text>
 					<Condition Action="show">NOT Installed</Condition>
 				</Control>
 			</Dialog>
@@ -559,7 +559,7 @@
 			</Component>
 			<Component Id="AutoRun" Guid="64987C22-72C7-419D-B5A5-D2E6CB4865B6" Win64="$(var.CS_WIN64)">
 				<RegistryKey Root="HKLM" Key="Software\Microsoft\Windows\CurrentVersion\Run">
-					<RegistryValue Value="&quot;[APPLICATIONFOLDER]StartMenu.exe&quot; -autorun" Type="string" Name="Open-Shell Start Menu" />
+					<RegistryValue Value="&quot;[APPLICATIONFOLDER]StartMenu.exe&quot; -autorun" Type="string" Name="Retro-Shell Start Menu" />
 				</RegistryKey>
 			</Component>
 			<Component Id="TreatAs" Guid="B1E7462A-E1E2-47eb-A42C-7BD272D738AA" Win64="$(var.CS_WIN64)">
@@ -627,12 +627,12 @@
 		</DirectoryRef>
 		<Icon Id="icon.ico" SourceFile="..\Setup\OpenShell.ico" />
 		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
-		<Property Id="ApplicationFolderName" Value="Open-Shell" />
+		<Property Id="ApplicationFolderName" Value="Retro-Shell" />
 		<Property Id="WixAppFolder" Value="WixPerMachineFolder" />
 		<Property Id="ALLUSERS" Value="1" />
-		<Property Id="ARPHELPLINK" Value="https://github.com/Open-Shell/Open-Shell-Menu/issues" />
+		<Property Id="ARPHELPLINK" Value="https://github.com/aubymori/Retro-Shell/issues" />
 		<Property Id="ARPSIZE" Value="9000" />
-		<Property Id="ARPURLINFOABOUT" Value="https://open-shell.github.io/Open-Shell-Menu" />
+		<Property Id="ARPURLINFOABOUT" Value="https://Retro-Shell.github.io/Retro-Shell-Menu" />
 		<Property Id="ARPNOMODIFY" Value="1" />
 		<Property Id="ARPNOREPAIR" Value="1" />
 		<Property Id="START_MENU_FOLDER" Value="1" />

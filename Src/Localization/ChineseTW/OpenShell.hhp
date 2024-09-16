@@ -2,11 +2,11 @@
 Compatibility=1.1 or later
 Compiled file=OpenShell.chm
 Contents file=OpenShellTOC.hhc
-Default Font=·L³n¥¿¶ÂÅé,10,0
+Default Font=ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,10,0
 Default topic=Main.html
 Display compile progress=Yes
-Language=0x404 ¤¤¤å (ÁcÅé¡A¥xÆW)
-Title=Open-Shell Help
+Language=0x404 ï¿½ï¿½ï¿½ï¿½ (ï¿½cï¿½ï¿½Aï¿½xï¿½W)
+Title=Retro-Shell Help
 
 [FILES]
 ClassicExplorer.html

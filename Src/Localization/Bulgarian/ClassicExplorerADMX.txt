@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Настройки за Open-Shell
+Title.text = Настройки за Retro-Shell
 State.text = Състояние:
 State1.text = Зададена стойност
 State2.text = Стойност по подразбиране
@@ -40,7 +40,7 @@ State3Help.text = Ако състоянието е 'Отключено', нас�
 
 ClassicExplorerCat.text = Classic Explorer
 ClassicExplorerCatHelp.text = Групови настройки за Classic Explorer
-SUPPORTED_CS404.text = Изисква Open-Shell 4.0.4 или по-нов.
+SUPPORTED_CS404.text = Изисква Retro-Shell 4.0.4 или по-нов.
 SUPPORTED_CS404_WIN7.text = Изисква Windows 7.
 SUPPORTED_CS404_WIN881.text = Изисква Windows 8 или Windows 8.1.
 

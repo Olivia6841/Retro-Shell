@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #define STRICT_TYPED_ITEMIDS
@@ -300,7 +300,7 @@ LRESULT CUpdateDlg::OnDontRemind( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL
 
 LRESULT CUpdateDlg::OnWeb( int idCtrl, LPNMHDR pnmh, BOOL& bHandled )
 {
-	ShellExecute(m_hWnd,NULL,L"https://open-shell.github.io/Open-Shell-Menu/",NULL,NULL,SW_SHOWNORMAL);
+	ShellExecute(m_hWnd,NULL,L"https://Retro-Shell.github.io/Retro-Shell-Menu/",NULL,NULL,SW_SHOWNORMAL);
 	return 0;
 }
 

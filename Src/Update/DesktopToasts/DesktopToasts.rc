@@ -41,13 +41,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Open-Shell"
+            VALUE "CompanyName", "aubymori"
             VALUE "FileDescription", "Desktop toast notifications support"
             VALUE "FileVersion", _PRODUCT_VERSION_STR
             VALUE "InternalName", "DesktopToasts.dll"
-            VALUE "LegalCopyright", "Copyright (C) 2020, The Open-Shell Team"
+            VALUE "LegalCopyright", "Copyright (C) 2020, The Retro-Shell Team"
             VALUE "OriginalFilename", "DesktopToasts.dll"
-            VALUE "ProductName", "Open-Shell"
+            VALUE "ProductName", "Retro-Shell"
             VALUE "ProductVersion", _PRODUCT_VERSION_STR
         END
     END

@@ -19,7 +19,7 @@ body:
 - type: dropdown
   attributes:
     label: Area of issue
-    description: What component(s) of Open-Shell does this involve? Select all that apply.
+    description: What component(s) of Retro-Shell does this involve? Select all that apply.
     multiple: true
     options:
       - Start menu

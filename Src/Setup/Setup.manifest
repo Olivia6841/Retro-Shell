@@ -3,10 +3,10 @@
 <assemblyIdentity
     version="1.0.0.0"
     processorArchitecture="X86"
-    name="Open-Shell.Setup"
+    name="Retro-Shell.Setup"
     type="win32"
 />
-<description>Open-Shell Setup</description>
+<description>Retro-Shell Setup</description>
 <dependency>
     <dependentAssembly>
         <assemblyIdentity

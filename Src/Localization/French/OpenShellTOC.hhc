@@ -9,12 +9,12 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell">
+		<param name="Name" value="Retro-Shell">
 		<param name="Local" value="Main.html">
 		<param name="ImageNumber" value="11">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Menu Démarrer Classique (Open-Shell Menu)">
+		<param name="Name" value="Menu Dï¿½marrer ClassiqueRetro-Shellll Menu)">
 		<param name="Local" value="StartMenu.html">
 		<param name="ImageNumber" value="1">
 		</OBJECT>
@@ -24,21 +24,21 @@
 			<param name="Local" value="StartMenu.html#styles">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Opération">
+			<param name="Name" value="Opï¿½ration">
 			<param name="Local" value="StartMenu.html#operation">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paramètres">
+			<param name="Name" value="Paramï¿½tres">
 			<param name="Local" value="StartMenu.html#settings">
 			<param name="URL" value="StartMenu.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paramètres Administratifs">
+			<param name="Name" value="Paramï¿½tres Administratifs">
 			<param name="Local" value="StartMenu.html#admin">
 			<param name="URL" value="StartMenu.html#admin">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="En savoir plus à propos des Peaux (Skins)">
+			<param name="Name" value="En savoir plus ï¿½ propos des Peaux (Skins)">
 			<param name="Local" value="StartMenu.html#skins">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -46,7 +46,7 @@
 			<param name="Local" value="StartMenu.html#search">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Bouton Démarrer Personnalisable">
+			<param name="Name" value="Bouton Dï¿½marrer Personnalisable">
 			<param name="Local" value="StartMenu.html#button">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -58,7 +58,7 @@
 			<param name="Local" value="StartMenu.html#command_line">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Accessibilité">
+			<param name="Name" value="Accessibilitï¿½">
 			<param name="Local" value="StartMenu.html#accessibility">
 			</OBJECT>
 	</UL>
@@ -69,35 +69,35 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Nouvelle boîte de dialogue Copie">
+			<param name="Name" value="Nouvelle boï¿½te de dialogue Copie">
 			<param name="Local" value="ClassicExplorer.html#copy">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Alt+Entrée dans le panneau dossier">
+			<param name="Name" value="Alt+Entrï¿½e dans le panneau dossier">
 			<param name="Local" value="ClassicExplorer.html#alt_enter">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Barre d’outils pour l'Explorateur Windows">
+			<param name="Name" value="Barre dï¿½outils pour l'Explorateur Windows">
 			<param name="Local" value="ClassicExplorer.html#toolbar">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Barre d’état">
+			<param name="Name" value="Barre dï¿½ï¿½tat">
 			<param name="Local" value="ClassicExplorer.html#statusbar">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paramètres">
+			<param name="Name" value="Paramï¿½tres">
 			<param name="Local" value="ClassicExplorer.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Exemples de Commandes personnalisées">
+			<param name="Name" value="Exemples de Commandes personnalisï¿½es">
 			<param name="Local" value="ClassicExplorer.html#examples">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paramètres Administratifs">
+			<param name="Name" value="Paramï¿½tres Administratifs">
 			<param name="Local" value="ClassicExplorer.html#admin">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Dépendances en rapport aux paramètres Windows">
+			<param name="Name" value="Dï¿½pendances en rapport aux paramï¿½tres Windows">
 			<param name="Local" value="ClassicExplorer.html#dependencies">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -116,11 +116,11 @@
 			<param name="Local" value="ClassicIE.html#install">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paramètres">
+			<param name="Name" value="Paramï¿½tres">
 			<param name="Local" value="ClassicIE.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Paramètres Administratifs">
+			<param name="Name" value="Paramï¿½tres Administratifs">
 			<param name="Local" value="ClassicIE.html#admin">
 			</OBJECT>
 	</UL>

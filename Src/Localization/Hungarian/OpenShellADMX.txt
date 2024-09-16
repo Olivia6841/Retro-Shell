@@ -1,6 +1,6 @@
 ﻿; TRANSLATE ===================================================================
 
-Title.text = Open-Shell beállítások
+Title.text = Retro-Shell beállítások
 State.text = Állapot:
 State1.text = Rögzítve erre az értékre
 State2.text = Rögzítve alapértelmezettre
@@ -9,11 +9,11 @@ State1Help.text = Ha az állapotot 'Rögzítve erre az értékre' értékre áll
 State2Help.text = Ha az állapotot 'Rögzítve alapértelmezettre' értékre állítod, a beállítás minden felhasználó esetében az alapértelmezett értékre lesz rögzítve. A megadott érték kihagyásra kerül.
 State3Help.text = Ha az állapotot 'Feloldva' értékre állítod, a beállítás alapértelmezett értéke a megadott értékre változik. A felhasználók felülírhatják a beállítást.
 
-OpenShellCat.text = Open-Shell
-OpenShellCatHelp.text = Open-Shell csoportházirend beállítások
-SUPPORTED_CS404.text = Open-Shell 4.0.4 vagy újabb szükséges.
+OpenShellCat.text = Retro-Shell
+OpenShellCatHelp.text = Retro-Shell csoportházirend beállítások
+SUPPORTED_CS404.text = Retro-Shell 4.0.4 vagy újabb szükséges.
 
-Language.nameOverride = Open-Shell komponensek nyelve
-Language.tipOverride = Válaszd ki a Open-Shell által használni kívánt nyelvet (például en-US vagy de-DE). A nyelv hatással van a start menü, eszköztárak, stb. szövegeire. Ha a megfelelő nyelvi DLL fel van telepítve, lehet, hogy a beállítási kezelőfelület is le lesz fordítva
+Language.nameOverride = Retro-Shell komponensek nyelve
+Language.tipOverride = Válaszd ki a Retro-Shell által használni kívánt nyelvet (például en-US vagy de-DE). A nyelv hatással van a start menü, eszköztárak, stb. szövegeire. Ha a megfelelő nyelvi DLL fel van telepítve, lehet, hogy a beállítási kezelőfelület is le lesz fordítva
 Update.nameOverride = Új verziók automatikus keresésének engedélyezése
-Update.tipOverride = Ha ez be van jelölve, a Open-Shell minden héten új verziót keres. Ha a Open-Shell vagy a jelenleg használt nyelv új verziója érhető el, arról értesítést kapsz.
+Update.tipOverride = Ha ez be van jelölve, a Retro-Shell minden héten új verziót keres. Ha a Retro-Shell vagy a jelenleg használt nyelv új verziója érhető el, arról értesítést kapsz.

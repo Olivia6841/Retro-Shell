@@ -84,11 +84,11 @@ END
 
 IDD_UNINSTALL DIALOGEX 0, 0, 315, 201
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Remove Open-Shell"
+CAPTION "Remove Retro-Shell"
 FONT 9, "Segoe UI", 400, 0, 0x0
 BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,67,301,1
-    LTEXT           "The tool has determined that Open-Shell is installed in the following folder. If this is incorrect, use the Browse button to pick another location.",IDC_STATICPATH,7,72,301,19
+    LTEXT           "The tool has determined that Retro-Shell is installed in the following folder. If this is incorrect, use the Browse button to pick another location.",IDC_STATICPATH,7,72,301,19
     EDITTEXT        IDC_EDITPATH,7,93,262,14,ES_AUTOHSCROLL | ES_READONLY
     PUSHBUTTON      "Browse",IDC_BUTTONBROWSEPATH,270,93,38,14
     LTEXT           "Select which settings to remove:\n          (it is safe to keep the settings - they will not affect the operation of your computer)",IDC_STATIC,7,113,277,17
@@ -101,14 +101,14 @@ BEGIN
     LTEXT           "Please, make sure that no other users are currently signed in",IDC_STATICALLUSERS,41,167,203,8,NOT WS_VISIBLE
     DEFPUSHBUTTON   "OK",IDOK,205,180,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,258,180,50,14
-    LTEXT           "Warning: This tool will remove Open-Shell from your system by directly accessing the registry and the file system. A reboot may be required.\nUse it only if you have tried the conventional methods for uinstalling Open-Shell and they were unsuccessful.",IDC_STATICWARNING,7,7,301,35
+    LTEXT           "Warning: This tool will remove Retro-Shell from your system by directly accessing the registry and the file system. A reboot may be required.\nUse it only if you have tried the conventional methods for uinstalling Retro-Shell and they were unsuccessful.",IDC_STATICWARNING,7,7,301,35
     CONTROL         "The preferred method for uninstallation is to use the <a>Programs and Features</a> page in the Control Panel.",IDC_SYSLINK1,
                     "SysLink",WS_TABSTOP,7,44,301,18
 END
 
 IDD_UNINSTALL_RESULTS DIALOGEX 0, 0, 471, 302
 STYLE DS_SETFONT | DS_CENTER | WS_POPUP | WS_CAPTION | WS_THICKFRAME
-CAPTION "Remove Open-Shell"
+CAPTION "Remove Retro-Shell"
 FONT 9, "Segoe UI", 400, 0, 0x0
 BEGIN
     LTEXT           "Static",IDC_STATICRESULT,7,7,457,25
@@ -119,7 +119,7 @@ END
 
 IDD_UNINSTALL_PROGRESS DIALOGEX 0, 0, 240, 75
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
-CAPTION "Removing Open-Shell"
+CAPTION "Removing Retro-Shell"
 FONT 9, "Segoe UI", 400, 0, 0x0
 BEGIN
     CONTROL         "",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,7,27,226,14
@@ -128,10 +128,10 @@ END
 
 IDD_LOGSETTINGS DIALOGEX 0, 0, 201, 245
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Open-Shell Logging"
+CAPTION "Retro-Shell Logging"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "Warning: Turning on the logging options may negatively affect the performance of Open-Shell.",IDC_STATIC,7,7,187,17
+    LTEXT           "Warning: Turning on the logging options may negatively affect the performance of Retro-Shell.",IDC_STATIC,7,7,187,17
     LTEXT           "Log start menu",IDC_STATIC,7,31,52,12,SS_CENTERIMAGE
     CONTROL         "Open/close menus",IDC_CHECKOPEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,44,75,10
     CONTROL         "Menu contents",IDC_CHECKITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,107,44,63,10

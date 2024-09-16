@@ -6,7 +6,7 @@ About=#7106
 ; AboutIcon - the ID of an icon resource to use in the About box
 AboutIcon=1
 
-; Version - version of the required skin engine. Set to 2 if the skin uses any of the new features introduced in Open-Shell 1.9.0 like full glass,
+; Version - version of the required skin engine. Set to 2 if the skin uses any of the new features introduced in Retro-Shell 1.9.0 like full glass,
 ; skinnable sub-menus, skinnable pager buttons, skinnable arrows, etc
 Version=2
 

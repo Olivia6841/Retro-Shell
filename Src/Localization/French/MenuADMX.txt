@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Paramètres Open-Shell
+Title.text = Paramètres Retro-Shell
 State.text = Etat:
 State1.text = Verrouillé sur cette valeur
 State2.text = Verrouillé sur le paramètre par défaut
@@ -100,7 +100,7 @@ State3Help.text = Si vous configurez l'état à 'Déverrouillé', la valeur par 
 
 MenuCat.text = Menu Démarrer Classique
 MenuCatHelp.text = Paramètres de la stratégie de Menu Démarrer Classique
-SUPPORTED_CS404.text = Nécessite Open-Shell 4.0.4 ou plus.
+SUPPORTED_CS404.text = Nécessite Retro-Shell 4.0.4 ou plus.
 SUPPORTED_CS404_WIN7.text = Nécessite Windows 7.
 SUPPORTED_CS404_WIN78.text = Nécessite Windows 7 ou Windows 8.
 SUPPORTED_CS404_WIN781.text = Nécessite Windows 7 ou Windows 8.1.

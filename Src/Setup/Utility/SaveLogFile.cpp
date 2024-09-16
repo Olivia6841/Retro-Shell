@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #define STRICT_TYPED_ITEMIDS
@@ -657,7 +657,7 @@ static void WriteLogFile( FILE *f )
 	for (std::set<CString,CompareStrings>::const_iterator it=programs.begin();it!=programs.end();++it)
 		fwprintf(f,L"\t\t%s\r\n",(const wchar_t*)(*it));
 
-	fwprintf(f,L"\r\nOpen-Shell\r\n");
+	fwprintf(f,L"\r\nRetro-Shell\r\n");
 	wchar_t csPath[_MAX_PATH]=L"";
 	// classic shell version
 	{
@@ -677,13 +677,13 @@ static void WriteLogFile( FILE *f )
 			size=_countof(csPath);
 			if (regKey.QueryStringValue(L"Path",csPath,&size)==ERROR_SUCCESS)
 			{
-				fwprintf(f,L"\tOpen-Shell path: '%s'\r\n",csPath);
+				fwprintf(f,L"\tRetro-Shell path: '%s'\r\n",csPath);
 				PathRemoveBackslash(csPath);
 			}
 
 			DWORD val;
 			if (regKey.QueryDWORDValue(L"Version",val)==ERROR_SUCCESS)
-				fwprintf(f,L"\tOpen-Shell version: %d.%d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
+				fwprintf(f,L"\tRetro-Shell version: %d.%d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
 
 			if (regKey.QueryDWORDValue(L"WinVersion",val)==ERROR_SUCCESS)
 				fwprintf(f,L"\tWin version during installation: %d.%02d.%d\r\n",val>>24,(val>>16)&0xFF,val&0xFFFF);
@@ -722,7 +722,7 @@ static void WriteLogFile( FILE *f )
 	}
 	if (bClassicMenu)
 	{
-		fwprintf(f,L"  Open-Shell Menu\r\n");
+		fwprintf(f,L"  Retro-Shell Menu\r\n");
 		WriteSettings(f,COMPONENT_MENU);
 	}
 	if (bClassicIE)
@@ -732,7 +732,7 @@ static void WriteLogFile( FILE *f )
 	}
 	if (bClassicUpdate)
 	{
-		fwprintf(f,L"  Open-Shell Update\r\n\r\n");
+		fwprintf(f,L"  Retro-Shell Update\r\n\r\n");
 	}
 	fwprintf(f,L"  Shared Settings\r\n");
 	WriteSettings(f,COMPONENT_SHARED);

@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #define STRICT_TYPED_ITEMIDS
@@ -838,7 +838,7 @@ static HRESULT CALLBACK TaskDialogCallback( HWND hwnd, UINT uNotification, WPARA
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// Open-Shell utility - multiple utilities for building and maintaining Open-Shell
+// Retro-Shell utility - multiple utilities for building and maintaining Retro-Shell
 // Usage:
 //   no parameters - saves a troubleshooting log
 //   crcmsi <msi path> // creates a file with checksum of both msi files
@@ -858,19 +858,19 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 
 		TASKDIALOG_BUTTON taskButtons[4]={
 			{101,L"Save system log\nSaves detailed information about your system for troubleshooting purposes."},
-			{102,L"Open-Shell logging options\nEnable or disable various logging options."},
-			{103,L"Remove Open-Shell\nManually removes Open-Shell from your system. Use only if the conventional methods for uninstallation do not work."},
+			{102,L"Retro-Shell logging options\nEnable or disable various logging options."},
+			{103,L"Remove Retro-Shell\nManually removes Retro-Shell from your system. Use only if the conventional methods for uninstallation do not work."},
 			{104,L"Show Metro colors\nSee the color palette that can be used in start menu skins."},
 		};
 		TASKDIALOGCONFIG tasks={sizeof(tasks)};
 		tasks.dwFlags=TDF_USE_HICON_MAIN|TDF_USE_COMMAND_LINKS|TDF_ENABLE_HYPERLINKS;
 		tasks.dwCommonButtons=TDCBF_CANCEL_BUTTON;
-		tasks.pszWindowTitle=L"Open-Shell Utility";
+		tasks.pszWindowTitle=L"Retro-Shell Utility";
 		tasks.hMainIcon=LoadIcon(hInstance,MAKEINTRESOURCE(IDI_ICON1));
 		tasks.pszMainInstruction=L"Select task to perform";
 		tasks.cButtons=HIWORD(winVer)>=0x0602?4:3;
 		tasks.pButtons=taskButtons;
-		tasks.pszFooter=L"<A HREF=\"https://open-shell.github.io/Open-Shell-Menu\">Open-Shell Homepage</A>";
+		tasks.pszFooter=L"<A HREF=\"https://Retro-Shell.github.io/Retro-Shell-Menu\">Retro-Shell Homepage</A>";
 		tasks.pfCallback=TaskDialogCallback;
 
 		int seleciton;

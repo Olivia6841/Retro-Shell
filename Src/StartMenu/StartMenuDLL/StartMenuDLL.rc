@@ -323,13 +323,13 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "Open-Shell"
-            VALUE "FileDescription", "Open-Shell Menu"
+            VALUE "CompanyName", "aubymori"
+            VALUE "FileDescription", "Retro-Shell Menu"
             VALUE "FileVersion", _PRODUCT_VERSION_STR
             VALUE "InternalName", "StartMenuDLL"
-            VALUE "LegalCopyright", "Copyright (C) 2017-2018, The Open-Shell Team"
+            VALUE "LegalCopyright", "Copyright (C) 2024, aubymori"
             VALUE "OriginalFilename", "StartMenuDLL.dll"
-            VALUE "ProductName", "Open-Shell"
+            VALUE "ProductName", "Retro-Shell"
             VALUE "ProductVersion", _PRODUCT_VERSION_STR
         END
     END
@@ -397,9 +397,9 @@ IDB_BUTTON180           IMAGE                   "button180.png"
 
 STRINGTABLE 
 BEGIN
-    IDS_APP_TITLE           "Open-Shell Menu"
-    IDS_SETTINGS_TITLE      "Settings for Open-Shell Menu"
-    IDS_SETTINGS_TITLE_VER  "Settings for Open-Shell Menu %d.%d.%d"
+    IDS_APP_TITLE           "Retro-Shell Menu"
+    IDS_SETTINGS_TITLE      "Settings for Retro-Shell Menu"
+    IDS_SETTINGS_TITLE_VER  "Settings for Retro-Shell Menu %d.%d.%d"
     IDS_NEW_SETTINGS        "You need to restart the menu for the new settings to take effect: Right-click on the start button and select ""Exit"". Then run StartMenu.exe again. It will read the new settings."
     IDS_NO_TEXT             "<No Text>"
 END
@@ -429,12 +429,12 @@ BEGIN
     IDS_SKIN_ERR_LOAD_FILE  "Failed to load the variation skin file %s.\r\n"
     IDS_SKIN_ERR_LOAD       "Error loading %s\n%s"
     IDS_SKIN_ERR_VERSION    "The selected skin is not compatible with this version of the start menu.\r\n"
-    IDS_MENU_TITLE          "Open-Shell Menu %d.%d.%d"
+    IDS_MENU_TITLE          "Retro-Shell Menu %d.%d.%d"
     IDS_DEFAULT_SKIN        "<No Skin>"
     IDS_CONTROLS_SETTINGS   "Controls"
     IDS_OPEN_NOTHING        "Nothing"
     IDS_OPEN_NOTHING_TIP    "The action will do nothing"
-    IDS_OPEN_CSM            "Open-Shell Menu"
+    IDS_OPEN_CSM            "Retro-Shell Menu"
     IDS_OPEN_CSM_TIP        "The action will open the classic start menu"
     IDS_OPEN_WSM            "Windows Start Menu"
     IDS_OPEN_WSM_TIP        "The action will open the default start menu"
@@ -782,7 +782,7 @@ BEGIN
     IDS_SEARCHCO_TIP        "Searches for computers on the network"
     IDS_SEARCHPE_TIP        "Searches for people. May be disabled if Windows Mail is not available"
     IDS_TASKBAR_TIP         "Opens the Taskbar and Start Menu settings"
-    IDS_MENU_TIP            "Opens the Open-Shell Menu settings"
+    IDS_MENU_TIP            "Opens the Retro-Shell Menu settings"
     IDS_RECENT_TIP          "Creates a sub-menu with the recently executed items"
     IDS_SLEEP_TIP           "Suspends the computer in sleep state"
     IDS_HIBERNATE_TIP       "Suspends the computer in hibernate state"
@@ -1078,9 +1078,9 @@ END
 STRINGTABLE 
 BEGIN
     IDS_RIGHT_SHIFT         "Right click opens the Windows context menu"
-    IDS_RIGHT_SHIFT_TIP     "When this is checked, right-click on the start button will open the standard Windows context menu instead of the Open-Shell menu. Otherwise Shift+right-click will open it"
+    IDS_RIGHT_SHIFT_TIP     "When this is checked, right-click on the start button will open the standard Windows context menu instead of the Retro-Shell menu. Otherwise Shift+right-click will open it"
     IDS_RIGHT_SHIFTX        "Right click opens Win+X menu"
-    IDS_RIGHT_SHIFTX_TIP    "When this is checked, right-click on the start button will open the Win+X power menu instead of the Open-Shell menu. Otherwise Shift+right-click will open it"
+    IDS_RIGHT_SHIFTX_TIP    "When this is checked, right-click on the start button will open the Win+X power menu instead of the Retro-Shell menu. Otherwise Shift+right-click will open it"
     IDS_STARTSCREEN_ITEM    "Show Start screen shortcut"
     IDS_STARTSCREEN_ITEM_TIP 
                             "When this is checked, the main menu will contain a shortcut to open the Start screen"
@@ -1173,22 +1173,22 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDS_STRING7100          "This is the default skin when no other skin is selected or if the selected skin fails to load.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7101          "Windows Aero skin\n\nDefault skin to use for the Windows Aero theme.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7102          "Windows Basic skin\n\nDefault skin to use for the Windows Basic theme.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7103          "Classic skin\n\nClassic look with large or small icons.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7100          "This is the default skin when no other skin is selected or if the selected skin fails to load.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7101          "Windows Aero skin\n\nDefault skin to use for the Windows Aero theme.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7102          "Windows Basic skin\n\nDefault skin to use for the Windows Basic theme.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7103          "Classic skin\n\nClassic look with large or small icons.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
 END
 
 STRINGTABLE 
 BEGIN
-    IDS_STRING7104          "Full Glass skin\n\nTransparent menu with large or small icons.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7105          "Smoked Glass skin\n\nSimple transparent menu with dark background.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7106          "Windows XP Luna skin\n\nA start menu similar to the one in Windows XP.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7107          "Windows 8 skin\n\nDefault skin to use for Windows 8.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7108          "Midnight skin\n\nSkin with dark background.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7109          "Metro skin\n\nSkin that uses the start screen colors.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7110          "Metallic skin\n\nA start menu skin with metallic look.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2009-2017, Ivo Beltchev"
-    IDS_STRING7111          "Immersive skin\n\nA skin that uses immersive colors and modern visual elements in the style of Windows 10.\n\nPart of <A HREF=""https://github.com/Open-Shell/Open-Shell-Menu/"">Open-Shell</A> (c) 2023, The Open-Shell Team"
+    IDS_STRING7104          "Full Glass skin\n\nTransparent menu with large or small icons.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7105          "Smoked Glass skin\n\nSimple transparent menu with dark background.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7106          "Windows XP Luna skin\n\nA start menu similar to the one in Windows XP.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7107          "Windows 8 skin\n\nDefault skin to use for Windows 8.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7108          "Midnight skin\n\nSkin with dark background.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7109          "Metro skin\n\nSkin that uses the start screen colors.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7110          "Metallic skin\n\nA start menu skin with metallic look.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2009-2017, Ivo Beltchev"
+    IDS_STRING7111          "Immersive skin\n\nA skin that uses immersive colors and modern visual elements in the style of Windows 10.\n\nPart of <A HREF=""https://github.com/aubymori/Retro-Shell/"">Retro-Shell</A> (c) 2023, The Retro-Shell Team"
 END
 
 STRINGTABLE 
@@ -1200,8 +1200,8 @@ BEGIN
     IDS_HIDE_APPS_TIP       "When this is checked, the shortcuts to Metro apps that are outside of the dedicated Apps folder will be hidden"
     IDS_HYBRID_SHUTDOWN     "Enable hybrid shutdown"
     IDS_HYBRID_SHUTDOWN_TIP "When this is checked, the shutdown button will perform the faster hybrid shutdown. You can still do a full shutdown by holding down Shift"
-    IDS_UPGRADE_WIN         "Open-Shell needs to configure itself for the new operating system."
-    IDS_UPGRADE_ERROR       "There was an error configuring Open-Shell. It is recommended that you uninstall the software, restart, and install it again."
+    IDS_UPGRADE_WIN         "Retro-Shell needs to configure itself for the new operating system."
+    IDS_UPGRADE_ERROR       "There was an error configuring Retro-Shell. It is recommended that you uninstall the software, restart, and install it again."
     IDS_UPGRADE_SUCCESS     "The configuration was successful."
     IDS_INVERT_ICONS        "Invert Metro icon color"
     IDS_INVERT_ICONS_TIP    "When this is checked, the Metro icons will appear as colored symbols on transparent background"
@@ -1216,7 +1216,7 @@ BEGIN
     IDS_JUMP_WIDTH          "Jumplist pane width"
     IDS_JUMP_WIDTH_TIP      "Set the width of the jumplist column in the Windows 7 style in characters."
     IDS_NOPIN               "Disable the Pin shell extension"
-    IDS_NOPIN_TIP           "When this is checked, the shell extension that allows pinning to the Open-Shell start menu will be disabled."
+    IDS_NOPIN_TIP           "When this is checked, the shell extension that allows pinning to the Retro-Shell start menu will be disabled."
     IDS_RECENT_NAME         "Sort by name"
     IDS_RECENT_NAME_TIP     "When this is checked, the recent programs will be sorted by name."
     IDS_DPI_OVERRIDE        "Override system DPI"

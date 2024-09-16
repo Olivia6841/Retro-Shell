@@ -71,7 +71,7 @@ BEGIN
     CONTROL         "Show all settings",IDC_CHECKALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,154,7,79,12
     CONTROL         "<a>Help...</a>",IDC_LINKHELP,"SysLink",WS_TABSTOP,348,9,26,10,WS_EX_TRANSPARENT
     CONTROL         "",IDC_TABSETTINGS,"SysTabControl32",TCS_MULTILINE | TCS_FOCUSNEVER,7,20,367,169
-    CONTROL         "<a>Open-Shell Homepage</a>",IDC_LINKWEB,"SysLink",WS_TABSTOP,7,195,75,10,WS_EX_TRANSPARENT
+    CONTROL         "<a>Retro-Shell Homepage</a>",IDC_LINKWEB,"SysLink",WS_TABSTOP,7,195,75,10,WS_EX_TRANSPARENT
     CONTROL         "Name of translator goes <a href=""http://www.yoursite.com"">here</a>",IDC_SYSLINKLOC,
                     "SysLink",NOT WS_VISIBLE | WS_TABSTOP,80,195,111,10
     PUSHBUTTON      "&Backup",IDC_BUTTONBACKUP,200,192,60,14,WS_GROUP
@@ -275,7 +275,7 @@ BEGIN
     IDS_BMP_TITLE           "Select Image File"
     IDS_SEARCH_PROMPT       "Search Settings"
     IDS_SETTING_SEARCH      "Search Results"
-    IDS_WEBSITE_TIP         "Visit Open-Shell on the web - https://open-shell.github.io/Open-Shell-Menu"
+    IDS_WEBSITE_TIP         "Visit Retro-Shell on the web - https://github.com/aubymori/Retro-Shell "
     IDS_LOCATE_SETTING      "Locate setting"
     IDS_INTERNET_FAIL       "Failed to connect to the Internet."
 END
@@ -283,7 +283,7 @@ END
 STRINGTABLE 
 BEGIN
     IDS_INITIATE_FAIL       "Failed to initiate the download."
-    IDS_UPDATE_TITLE        "Open-Shell Update"
+    IDS_UPDATE_TITLE        "Retro-Shell Update"
     IDS_INST_DOWNLOAD_FAIL  "Failed to download the new version."
     IDS_INST_SAVE_FAIL      "Failed to save file '%s'."
     IDS_PROGRESS_CONNECT    "Connecting..."

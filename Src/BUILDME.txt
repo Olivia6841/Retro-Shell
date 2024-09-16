@@ -1,4 +1,4 @@
-To build Open-Shell, navigate to the Setup folder and run __MakeFinal.bat.
+To build Retro-Shell, navigate to the Setup folder and run __MakeFinal.bat.
 It will compile the binaries, produce installer for English, and create the final archives.
 Then you can run the individual language files like _BuildFrench.bat to create the installers
 for other languages.

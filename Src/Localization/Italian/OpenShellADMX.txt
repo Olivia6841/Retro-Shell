@@ -1,6 +1,6 @@
 ﻿; TRANSLATE ===================================================================
 
-Title.text = Impostazioni Open-Shell
+Title.text = Impostazioni Retro-Shell
 State.text = Stato:
 State1.text = Bloccato a questo valore
 State2.text = Bloccato al valore predefinito
@@ -9,11 +9,11 @@ State1Help.text = Se imposti lo stato a 'Bloccato a questo valore', l'impostazio
 State2Help.text = Se imposti lo stato a 'Bloccato a valore predefinito', l'impostazione verrà bloccata al valore predefinito per tutti gli utenti. Il valore specificato verrà ignorato.
 State3Help.text = Se imposti lo stato a 'Sbloccato', il valore predefinito verrà modificato nel valore specificato. Ogni utente potrà modificare questa impostazione.
 
-OpenShellCat.text = Open-Shell
-OpenShellCatHelp.text = Impostazioni policy di gruppo Open-Shell
-SUPPORTED_CS404.text = Richiede Open-Shell 4.0.4 o superiore.
+OpenShellCat.text = Retro-Shell
+OpenShellCatHelp.text = Impostazioni policy di gruppo Retro-Shell
+SUPPORTED_CS404.text = Richiede Retro-Shell 4.0.4 o superiore.
 
-Language.nameOverride = Lingua per i componenti di Open-Shell
-Language.tipOverride = Seleziona la lingua da usare in Open-Shell (per esempio IT o en-US). La lingua modificherà il testo nel menu Start, delle barre strumenti, ecc. Se è installata la DLL appropriata, le impostazioni della UI verranno tradotte
+Language.nameOverride = Lingua per i componenti di Retro-Shell
+Language.tipOverride = Seleziona la lingua da usare in Retro-Shell (per esempio IT o en-US). La lingua modificherà il testo nel menu Start, delle barre strumenti, ecc. Se è installata la DLL appropriata, le impostazioni della UI verranno tradotte
 Update.nameOverride = Abilita controllo automatico nuove versioni
-Update.tipOverride = Quando questa opzione è selezionata, Open-Shell verificherà ogni settimana la disponibilità di nuove versioni. Ti verrà notificato se è disponibile una nuova versione di Open-Shell o una nuova versione del tuo file lingua
+Update.tipOverride = Quando questa opzione è selezionata, Retro-Shell verificherà ogni settimana la disponibilità di nuove versioni. Ti verrà notificato se è disponibile una nuova versione di Retro-Shell o una nuova versione del tuo file lingua

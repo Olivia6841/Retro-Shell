@@ -3,12 +3,12 @@
 About=#7109
 AboutIcon=1
 
-; Version - version of the required skin engine. Set to 2 if the skin uses any of the new features introduced in Open-Shell 1.9.0:
+; Version - version of the required skin engine. Set to 2 if the skin uses any of the new features introduced in Retro-Shell 1.9.0:
 ;    * full glass
 ;    * skinnable sub-menus
 ;    * skinnable pager buttons
 ;    * skinnable arrows
-; Set to 3 if the skin uses any of the new features introduced in Open-Shell 4.2.1:
+; Set to 3 if the skin uses any of the new features introduced in Retro-Shell 4.2.1:
 ;    * skinnable scrollbars
 ;    * tint colors
 ;    * start screen colors

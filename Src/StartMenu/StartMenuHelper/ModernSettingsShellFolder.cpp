@@ -1,4 +1,4 @@
-// Open-Shell Modern Settings shell folder
+// Retro-Shell Modern Settings shell folder
 // Provides folder that contains all modern settings
 //
 // To open the folder press Win+R and type:

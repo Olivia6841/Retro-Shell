@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell Einstellungen
+Title.text = Retro-Shell Einstellungen
 State.text = Status:
 State1.text = auf diesen Wert gesperrt
 State2.text = auf Standardwert gesperrt
@@ -40,7 +40,7 @@ State3Help.text = Wenn Sie die Einstellung "Entsperrt" aktivieren, wird der Stan
 
 ClassicExplorerCat.text = Classic Explorer
 ClassicExplorerCatHelp.text = Classic Explorer Gruppenrichtlinien Einstellungen
-SUPPORTED_CS404.text = Erfordert Open-Shell 4.0.4 oder neuer.
+SUPPORTED_CS404.text = Erfordert Retro-Shell 4.0.4 oder neuer.
 SUPPORTED_CS404_WIN7.text = Erfordert Windows 7.
 SUPPORTED_CS404_WIN881.text = Erfordert Windows 8 oder Windows 8.1.
 

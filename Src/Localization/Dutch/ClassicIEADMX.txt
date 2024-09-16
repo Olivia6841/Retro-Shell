@@ -6,7 +6,7 @@ LogLevel.supportedOn=never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell instellingen
+Title.text = Retro-Shell instellingen
 State.text = Status:
 State1.text = Vergrendelen op deze waarde
 State2.text = Vergrendelen op standaard
@@ -17,7 +17,7 @@ State3Help.text = Als u de staat 'Niet vergrendelen' instelt, zal de standaardwa
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Classic IE groep beleidsinstellingen
-SUPPORTED_CS404.text = Nodig Open-Shell 4.0.4  of hoger.
+SUPPORTED_CS404.text = Nodig Retro-Shell 4.0.4  of hoger.
 SUPPORTED_IE9.text = Nodig Internet Explorer 9 of hoger.
 
 

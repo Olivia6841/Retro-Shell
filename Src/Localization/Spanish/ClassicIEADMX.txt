@@ -6,7 +6,7 @@ LogLevel.supportedOn = never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Configuración de Open-Shell
+Title.text = Configuración de Retro-Shell
 State.text = Estado:
 State1.text = Bloqueada en este valor
 State2.text = Bloqueada en valor predeterminado
@@ -17,7 +17,7 @@ State3Help.text = Si establece el estado en 'Desbloqueada', el valor predetermin
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Configuraciones de directiva de grupo de Classic IE
-SUPPORTED_CS404.text = Requiere Open-Shell 4.0.4 o posterior.
+SUPPORTED_CS404.text = Requiere Retro-Shell 4.0.4 o posterior.
 SUPPORTED_IE9.text = Requiere Internet Explorer 9 o posterior.
 
 

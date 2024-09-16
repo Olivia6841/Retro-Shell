@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #ifndef _WIN64
@@ -43,7 +43,7 @@
 #define RemoveDirectory2(x) RemoveDirectory(x)
 #endif
 
-// files to delete from the Open-Shell folder
+// files to delete from the Retro-Shell folder
 static const wchar_t *g_InstalledFiles[]=
 {
 	L"ClassicExplorer32.dll",
@@ -77,7 +77,7 @@ static const wchar_t *g_InstalledFiles[]=
 	L"zh-TW.dll",
 };
 
-// skin files to delete from the Open-Shell\Skins folder
+// skin files to delete from the Retro-Shell\Skins folder
 static const wchar_t *g_InstalledSkins[]=
 {
 	L"Classic Skin.skin",
@@ -98,15 +98,15 @@ static const wchar_t *g_InstalledSkins[]=
 	L"Windows XP Luna.skin",
 };
 
-// shortcuts to delete from the Programs\Open-Shell folder
+// shortcuts to delete from the Programs\Retro-Shell folder
 static const wchar_t *g_InstalledShortcuts[]=
 {
 	L"Classic Explorer Settings.lnk",
 	L"Classic IE Settings.lnk",
-	L"Open-Shell Help.lnk",
-	L"Open-Shell Readme.lnk",
-	L"Open-Shell Update.lnk",
-	L"Open-Shell Menu Settings.lnk",
+	L"Retro-Shell Help.lnk",
+	L"Retro-Shell Readme.lnk",
+	L"Retro-Shell Update.lnk",
+	L"Retro-Shell Menu Settings.lnk",
 };
 
 // files to delete from the LOCALAPPDATA folder
@@ -203,7 +203,7 @@ LRESULT CUninstallDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 		if (!IsWow64Process(GetCurrentProcess(),&bWow64))
 			bWow64=FALSE;
 		wchar_t defaultPath[_MAX_PATH];
-		Strcpy(defaultPath,_countof(defaultPath),bWow64?L"%ProgramW6432%\\Open-Shell":L"%ProgramFiles%\\Open-Shell");
+		Strcpy(defaultPath,_countof(defaultPath),bWow64?L"%ProgramW6432%\\Retro-Shell":L"%ProgramFiles%\\Retro-Shell");
 		DoEnvironmentSubst(defaultPath,_countof(defaultPath));
 		wchar_t fname1[_MAX_PATH], fname2[_MAX_PATH], fname3[_MAX_PATH];
 		Sprintf(fname1,_countof(fname1),L"%s\\StartMenu.exe",defaultPath);
@@ -215,7 +215,7 @@ LRESULT CUninstallDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 
 	m_bEmptyPath=path[0]==0;
 	if (m_bEmptyPath)
-		SetDlgItemText(IDC_STATICPATH,L"The tool failed to locate the Open-Shell installation folder. Use the Browse button to locate the correct folder if you want the files in it to be deleted.");
+		SetDlgItemText(IDC_STATICPATH,L"The tool failed to locate the Retro-Shell installation folder. Use the Browse button to locate the correct folder if you want the files in it to be deleted.");
 	else
 	{
 		PathRemoveBackslash(path);
@@ -258,7 +258,7 @@ LRESULT CUninstallDlg::OnBrowse( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL&
 	CComPtr<IFileOpenDialog> pDialog;
 	if (SUCCEEDED(pDialog.CoCreateInstance(CLSID_FileOpenDialog,NULL,CLSCTX_INPROC_SERVER)))
 	{
-		pDialog->SetTitle(L"Locate the Open-Shell install folder");
+		pDialog->SetTitle(L"Locate the Retro-Shell install folder");
 		pDialog->SetOptions(FOS_FILEMUSTEXIST|FOS_DONTADDTORECENT|FOS_DEFAULTNOMINIMODE|FOS_NOCHANGEDIR|FOS_PICKFOLDERS);
 		HRESULT hr=pDialog->Show(m_hWnd);
 		CComPtr<IShellItem> pResult;
@@ -333,17 +333,17 @@ LRESULT CResultsDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 	InitResize(MOVE_MODAL);
 	if (m_bErrors)
 	{
-		SetDlgItemText(IDC_STATICRESULT,L"The Open-Shell removal tool encountered some errors. Please, restart your computer and try again. If the problem is not resolved"
-			L" seek help in the Open-Shell forums: https://github.com/Open-Shell/Open-Shell-Menu/discussions. Copy the following report and post it in the forum. The report is also saved in a file OpenShellReport.txt on your desktop.");
+		SetDlgItemText(IDC_STATICRESULT,L"The Retro-Shell removal tool encountered some errors. Please, restart your computer and try again. If the problem is not resolved"
+			L" seek help in the Retro-Shell forums: https://github.com/aubymori/Retro-Shell/discussions. Copy the following report and post it in the forum. The report is also saved in a file OpenShellReport.txt on your desktop.");
 	}
 	else if (m_bReboot)
 	{
-		SetDlgItemText(IDC_STATICRESULT,L"The Open-Shell removal tool finished. A restart is required to complete the process."
+		SetDlgItemText(IDC_STATICRESULT,L"The Retro-Shell removal tool finished. A restart is required to complete the process."
 			L"Copy the following report for your records. The report is also saved in a file OpenShellReport.txt on your desktop.");
 	}
 	else
 	{
-		SetDlgItemText(IDC_STATICRESULT,L"The Open-Shell removal tool finished."
+		SetDlgItemText(IDC_STATICRESULT,L"The Retro-Shell removal tool finished."
 			L"Copy the following report for your records. The report is also saved in a file OpenShellReport.txt on your desktop.");
 	}
 
@@ -514,7 +514,7 @@ static bool RemoveRegistryKeys( bool bPin )
 				L"You will have to delete it manually using regedit and then run this tool again.\r\n"
 				L"The problem may be related to incorrect permissions or corrupted owner of the registry key or its parent.\r\n\r\n"
 				L"Look at the file %s for more details about the failure.",path);
-			MessageBox(NULL,message,L"Open-Shell Uninstaller",MB_OK|MB_ICONERROR);
+			MessageBox(NULL,message,L"Retro-Shell Uninstaller",MB_OK|MB_ICONERROR);
 			return false;
 		}
 	}
@@ -942,7 +942,7 @@ static void ManualUninstallInternal( void )
 
 	AdjustPrivileges();
 
-	LogMessage(-1,L"Open-Shell Utility - removing Open-Shell from the system\r\n\r\n");
+	LogMessage(-1,L"Retro-Shell Utility - removing Retro-Shell from the system\r\n\r\n");
 
 	// remove TreatAs, app launcher keys
 	WORD winVer=HIWORD(GetVersionEx(GetModuleHandle(L"user32.dll")));
@@ -1015,12 +1015,12 @@ static void ManualUninstallInternal( void )
 	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID",L"{449D0D6E-2412-4E61-B68F-1CB625CD9E52}",bIsWow64);
 	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID",L"{553891B7-A0D5-4526-BE18-D3CE461D6310}",bIsWow64);
 	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Policies\\Ext\\CLSID",L"{EA801577-E6AD-4BD5-8F71-4BE0154331A4}",bIsWow64);
-	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Run",L"Open-Shell Menu",bIsWow64);
-	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Run",L"Open-Shell Start Menu",bIsWow64);
+	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Run",L"Retro-Shell Menu",bIsWow64);
+	DeleteRegValueSOFTWARE(L"Microsoft\\Windows\\CurrentVersion\\Run",L"Retro-Shell Start Menu",bIsWow64);
 
 	DeleteInstallerKey(HKEY_CLASSES_ROOT,L"HKEY_CLASSES_ROOT",L"Installer\\Features",L"OpenShell",L"");
-	DeleteInstallerKey(HKEY_CLASSES_ROOT,L"HKEY_CLASSES_ROOT",L"Installer\\Products",L"ProductName",L"Open-Shell");
-	DeleteInstallerKey(HKEY_LOCAL_MACHINE,L"HKEY_LOCAL_MACHINE",L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall",L"DisplayName",L"Open-Shell");
+	DeleteInstallerKey(HKEY_CLASSES_ROOT,L"HKEY_CLASSES_ROOT",L"Installer\\Products",L"ProductName",L"Retro-Shell");
+	DeleteInstallerKey(HKEY_LOCAL_MACHINE,L"HKEY_LOCAL_MACHINE",L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall",L"DisplayName",L"Retro-Shell");
 
 	if (dlg.GetRemoveUserSettings() || dlg.GetRemoveAllUserSettings())
 	{
@@ -1135,7 +1135,7 @@ static void ManualUninstallInternal( void )
 		if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_CommonPrograms,0,NULL,&pPath)))
 		{
 			wchar_t startMenuPath[_MAX_PATH];
-			Sprintf(startMenuPath,_countof(startMenuPath),L"%s\\Open-Shell",(const wchar_t*)pPath);
+			Sprintf(startMenuPath,_countof(startMenuPath),L"%s\\Retro-Shell",(const wchar_t*)pPath);
 			if (DirectoryExists(startMenuPath))
 			{
 				for (int i=0;i<_countof(g_InstalledShortcuts);i++)
@@ -1196,7 +1196,7 @@ static void ManualUninstallInternal( void )
 	}
 	else if (g_bHasErrors || g_bRebootRequired)
 	{
-		MessageBox(NULL,L"It is important that you restart as soon as possible. If you attempt to install another software before then it may get corrupted.",L"Open-Shell Uninstaller",MB_OK|MB_ICONWARNING);
+		MessageBox(NULL,L"It is important that you restart as soon as possible. If you attempt to install another software before then it may get corrupted.",L"Retro-Shell Uninstaller",MB_OK|MB_ICONWARNING);
 	}
 }
 

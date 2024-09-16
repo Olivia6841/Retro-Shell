@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell 设置
+Title.text = Retro-Shell 设置
 State.text = 状态:
 State1.text = 锁定为此设置值
 State2.text = 锁定为默认值
@@ -40,7 +40,7 @@ State3Help.text = 如果将状态设置为“未锁定”，用户可自由设�
 
 ClassicExplorerCat.text = 经典资源管理器
 ClassicExplorerCatHelp.text = 经典资源管理器组策略设置
-SUPPORTED_CS404.text = 需要安装 Open-Shell 4.0.4 或更高的版本。
+SUPPORTED_CS404.text = 需要安装 Retro-Shell 4.0.4 或更高的版本。
 SUPPORTED_CS404_WIN7.text = 仅用于 Windows 7。
 SUPPORTED_CS404_WIN881.text = 仅用于 Windows 8 或 Windows 8.1。
 

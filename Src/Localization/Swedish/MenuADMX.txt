@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Open-Shell inställningar
+Title.text = Retro-Shell inställningar
 State.text = Läge:
 State1.text = Låst till detta värde
 State2.text = Låst till standard
@@ -100,7 +100,7 @@ State3Help.text = Om du ställer in läget på 'Olåst', kommer standardvärdet 
 
 MenuCat.text = Klassisk Start Meny
 MenuCatHelp.text = Klassisk Start Meny grupp policyinställningar
-SUPPORTED_CS404.text = Kräver Open-Shell 4.0.4 eller senare.
+SUPPORTED_CS404.text = Kräver Retro-Shell 4.0.4 eller senare.
 SUPPORTED_CS404_WIN7.text = Kräver Windows 7.
 SUPPORTED_CS404_WIN78.text = Kräver Windows 7 eller Windows 8.
 SUPPORTED_CS404_WIN781.text = Kräver Windows 7 eller Windows 8.1.

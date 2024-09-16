@@ -29,7 +29,7 @@ ShowZone.supportedOn = win881
 
 ; TRANSLATE ===================================================================
 
-Title.text = Configuración de Open-Shell
+Title.text = Configuración de Retro-Shell
 State.text = Estado:
 State1.text = Bloqueada en este valor
 State2.text = Bloqueada en valor predeterminado
@@ -40,7 +40,7 @@ State3Help.text = Si establece el estado en 'Desbloqueada', el valor predetermin
 
 ClassicExplorerCat.text = Classic Explorer
 ClassicExplorerCatHelp.text = Directiva de grupo de Classic Explorer 
-SUPPORTED_CS404.text = Requiere Open-Shell 4.0.4 o posterior.
+SUPPORTED_CS404.text = Requiere Retro-Shell 4.0.4 o posterior.
 SUPPORTED_CS404_WIN7.text = Requiere Windows 7.
 SUPPORTED_CS404_WIN881.text = Requiere Windows 8 o Windows 8.1.
 

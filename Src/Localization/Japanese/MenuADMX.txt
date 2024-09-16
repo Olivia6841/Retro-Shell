@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Open-Shell 設定
+Title.text = Retro-Shell 設定
 State.text = 状態:
 State1.text = この値にロックする
 State2.text = デフォルトにロックする
@@ -98,9 +98,9 @@ State1Help.text = 「この値にロックする」の状態に設定すると�
 State2Help.text = 「デフォルトにロックする」の状態に設定すると、設定はすべてのユーザーに対してデフォルトにロックされます。また指定された値は無視されます。
 State3Help.text = 「ロックを解除する」の状態に設定すると、設定のデフォルトは指定された値に変更されます。また個々のユーザーが設定を上書きすることもできます。
 
-MenuCat.text = Open-Shell Menu
-MenuCatHelp.text = Open-Shell Menu のグループ ポリシー設定
-SUPPORTED_CS404.text = Open-Shell 4.0.4 以降のバージョンが必要です。
+MenuCat.text = Retro-Shell Menu
+MenuCatHelp.text = Retro-Shell Menu のグループ ポリシー設定
+SUPPORTED_CS404.text = Retro-Shell 4.0.4 以降のバージョンが必要です。
 SUPPORTED_CS404_WIN7.text = Windows 7 が必要です。
 SUPPORTED_CS404_WIN78.text = Windows 7 あるいは Windows 8 が必要です。
 SUPPORTED_CS404_WIN781.text = Windows 7 あるいは Windows 8.1 が必要です。
@@ -135,25 +135,25 @@ SkinC1.tipOverride = 1 列の Classic style で使用するスキンを選択し
 SkinVariationC1.nameOverride = 1 列の Classic style 用スキンのバリエーション
 SkinVariationC1.tipOverride = 1 列の Classic style で使用するスキンのバリエーションを選択します。(複数のバリエーションをサポートしているスキンの場合)
 SkinOptionsC1.nameOverride = 1 列の Classic style 用スキンのオプション
-SkinOptionsC1.tipOverride = 1 列の Classic style で使用するスキンのオプションを選択します。\nオプションは16進数のリストです。それらを取得するための最良の方法は、[Open-Shell Menu の設定]のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsC1 という値を検索することです。
+SkinOptionsC1.tipOverride = 1 列の Classic style で使用するスキンのオプションを選択します。\nオプションは16進数のリストです。それらを取得するための最良の方法は、[Retro-Shell Menu の設定]のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsC1 という値を検索することです。
 MenuItems1.nameOverride = 1 列の Classic style 用のメニュー アイテム
-MenuItems1.tipOverride = 1 列の Classic style で使用するメニュー アイテムを選択します。\n右の文字列を取得する最良の方法は、[Open-Shell Menu の設定] のダイアログボックス内のアイテムを設定してから、[HKCU\Software\OpenShell\StartMenu\Settings] から MenuItems1 という名前の値を検索することです。
+MenuItems1.tipOverride = 1 列の Classic style で使用するメニュー アイテムを選択します。\n右の文字列を取得する最良の方法は、[Retro-Shell Menu の設定] のダイアログボックス内のアイテムを設定してから、[HKCU\Software\OpenShell\StartMenu\Settings] から MenuItems1 という名前の値を検索することです。
 SkinC2.nameOverride = 2 列の Classic style 用スキン
 SkinC2.tipOverride = 2 列の Classic style で使用するスキンを選択します。
 SkinVariationC2.nameOverride = 2 列の Classic style 用スキンのバリエーション
 SkinVariationC2.tipOverride = 2 列の Classic style で使用するスキンのバリエーションを選択します。(複数のバリエーションをサポートしているスキンの場合)
 SkinOptionsC2.nameOverride = 2 列の Classic style 用スキンのオプション
-SkinOptionsC2.tipOverride = 2 列の Classic style で使用するスキンのオプションを選択します。\nオプションは 16 進数のリストです。それらを取得するための最良の方法は、[Open-Shell Menu の設定]のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsC2 という名前の値を検索することです。
+SkinOptionsC2.tipOverride = 2 列の Classic style で使用するスキンのオプションを選択します。\nオプションは 16 進数のリストです。それらを取得するための最良の方法は、[Retro-Shell Menu の設定]のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsC2 という名前の値を検索することです。
 MenuItems2.nameOverride = 2 列の Classic style 用のメニュー アイテム
-MenuItems2.tipOverride = 2 列の Classic style で使用するメニュー アイテムを選択します。\n右の文字列を取得する最良の方法は、[Open-Shell Menu の設定] のダイアログボックス内のアイテムを設定してから、[HKCU\Software\OpenShell\StartMenu\Settings] から MenuItems2 という名前の値を検索することです。
+MenuItems2.tipOverride = 2 列の Classic style で使用するメニュー アイテムを選択します。\n右の文字列を取得する最良の方法は、[Retro-Shell Menu の設定] のダイアログボックス内のアイテムを設定してから、[HKCU\Software\OpenShell\StartMenu\Settings] から MenuItems2 という名前の値を検索することです。
 SkinW7.nameOverride = Windows 7 style 用スキン
 SkinW7.tipOverride = Windows 7 style で使用するスキンを選択します。
 SkinVariationW7.nameOverride = Windows 7 style 用スキンのバリエーション
 SkinVariationW7.tipOverride = Windows 7 style で使用するスキンのバリエーションを選択します。(複数のバリエーションをサポートしているスキンの場合)
 SkinOptionsW7.nameOverride = Windows 7 style 用スキンのオプション
-SkinOptionsW7.tipOverride = Windows 7 style で使用するスキンのオプションを選択します。\nオプションは 16 進数のリストです。それらを取得するための最良の方法は、[Open-Shell Menu の設定]のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsW7 という名前の値を検索することです。
+SkinOptionsW7.tipOverride = Windows 7 style で使用するスキンのオプションを選択します。\nオプションは 16 進数のリストです。それらを取得するための最良の方法は、[Retro-Shell Menu の設定]のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsW7 という名前の値を検索することです。
 MenuItems7.nameOverride = Windows 7 style 用のメニュー アイテム
-MenuItems7.tipOverride = Windows 7 style で使用するメニュー アイテムを選択します。\n右の文字列を取得する最良の方法は、[Open-Shell Menu の設定] のダイアログボックス内のアイテムを設定してから、[HKCU\Software\OpenShell\StartMenu\Settings] から MenuItems7 という名前の値を検索することです。
+MenuItems7.tipOverride = Windows 7 style で使用するメニュー アイテムを選択します。\n右の文字列を取得する最良の方法は、[Retro-Shell Menu の設定] のダイアログボックス内のアイテムを設定してから、[HKCU\Software\OpenShell\StartMenu\Settings] から MenuItems7 という名前の値を検索することです。
 
 ; windows 7
 SkinA.nameOverride = Windows 7 style のすべてのプログラム サブメニュー用スキン
@@ -161,7 +161,7 @@ SkinA.tipOverride = Windows 7 style のすべてのプログラム サブメニ�
 SkinVariationA.nameOverride = Windows 7 style のすべてのプログラム サブメニュー用スキンのバリエーション
 SkinVariationA.tipOverride = Windows 7 style のすべてのプログラム サブメニューで使用するスキンのバリエーションを選択します。(複数のバリエーションをサポートしているスキンの場合)
 SkinOptionsA.nameOverride = Windows 7 style のすべてのプログラム サブメニュー用スキンのオプション
-SkinOptionsA.tipOverride = Windows 7 style のすべてのプログラム サブメニューで使用するスキンのオプションを選択します。\nオプションは 16 進数のリストです。それらを取得するための最良の方法は、[Open-Shell Menu の設定] のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsA という名前の値を検索することです。
+SkinOptionsA.tipOverride = Windows 7 style のすべてのプログラム サブメニューで使用するスキンのオプションを選択します。\nオプションは 16 進数のリストです。それらを取得するための最良の方法は、[Retro-Shell Menu の設定] のダイアログでオプションを調整し、[HKCU\Software\OpenShell\StartMenu\Settings] から SkinOptionsA という名前の値を検索することです。
 
 ; metro settings
 SkipMetro.tipAddition = この設定は Windows8.1 で動作しません。デスクトップを起動するために、内蔵の Windows の設定を使用する必要があります。
@@ -176,7 +176,7 @@ FolderCommonStartMenu.tipOverride = 共通のスタート メニュー フォル
 FolderCommonPrograms.nameOverride = 共通のプログラム フォルダー
 FolderCommonPrograms.tipOverride = 一般的なプログラム フォルダーの上書きを入力してください。\nパスは環境変数を含めることができます。\n注意: この設定は [設定] ダイアログからは編集できません
 AutoStartDelay.nameOverride = 自動起動の遅延経過時間
-AutoStartDelay.tipOverride = ログイン時に自動的に Open-Shell Menu を起動する際の遅延経過時間 (ミリ秒) を入力してください。(StartMenu.exe を実行してメニューを手動で起動する場合は適用されません)\n注意: この設定は [設定] ダイアログからは編集できません
+AutoStartDelay.tipOverride = ログイン時に自動的に Retro-Shell Menu を起動する際の遅延経過時間 (ミリ秒) を入力してください。(StartMenu.exe を実行してメニューを手動で起動する場合は適用されません)\n注意: この設定は [設定] ダイアログからは編集できません
 
 ; other
 StartButtonIcon.tipAddition = 値は、ICO ファイルへのパスまたは EXE/DLL とアイコンの ID へのパスを指定できます。
@@ -188,5 +188,5 @@ SoundDrop.tipAddition = 値は、システム イベントの名前や WAV フ�
 ExpandFolderLinks.tipAddition = シンボリックリンク (ジャンクションなど) でのみ動作し、一般的なショートカットでは動作しません。
 StartHoverDelay.nameOverride = マウスを重ねた際の遅延経過時間 ([スタート] ボタン用)
 AllProgramsDelay.nameOverride = マウスを重ねた際の遅延経過時間 (Windows 7 のすべてのプログラム用)
-CSMHotkey.tipAddition = .\n\n基本値は、メインキーの仮想コードです。Alt キーのための 1024 及び Ctrl キーのための 512、Shift キーのための 256 を追加します。\n値を取得する最良の方法は、[Open-Shell Menu の設定]のダイアログで設定したホットキーを選択し、[HKCU\Software\OpenShell\StartMenu\Settings] から CSMHotkey という名前の値を検索することです。
-WSMHotkey.tipAddition = .\n\n基本値は、メインキーの仮想コードです。Alt キーのための 1024 及び Ctrl キーのための 512、Shift キーのための 256 を追加します。\n値を取得する最良の方法は、[Open-Shell Menu の設定]のダイアログで設定したホットキーを選択し、[HKCU\Software\OpenShell\StartMenu\Settings] から WSMHotkey という名前の値を検索することです。
+CSMHotkey.tipAddition = .\n\n基本値は、メインキーの仮想コードです。Alt キーのための 1024 及び Ctrl キーのための 512、Shift キーのための 256 を追加します。\n値を取得する最良の方法は、[Retro-Shell Menu の設定]のダイアログで設定したホットキーを選択し、[HKCU\Software\OpenShell\StartMenu\Settings] から CSMHotkey という名前の値を検索することです。
+WSMHotkey.tipAddition = .\n\n基本値は、メインキーの仮想コードです。Alt キーのための 1024 及び Ctrl キーのための 512、Shift キーのための 256 を追加します。\n値を取得する最良の方法は、[Retro-Shell Menu の設定]のダイアログで設定したホットキーを選択し、[HKCU\Software\OpenShell\StartMenu\Settings] から WSMHotkey という名前の値を検索することです。

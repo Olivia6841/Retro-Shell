@@ -6,7 +6,7 @@ LogLevel.supportedOn=never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Настройки Open-Shell
+Title.text = Настройки Retro-Shell
 State.text = Состояние:
 State1.text = Блокировать это значение
 State2.text = Блокировано по умолчанию
@@ -17,7 +17,7 @@ State3Help.text = Если установить состояние "Разбло
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Параметры групповой политики Classic IE
-SUPPORTED_CS404.text = Требовать Open-Shell 4.0.4 или выше.
+SUPPORTED_CS404.text = Требовать Retro-Shell 4.0.4 или выше.
 SUPPORTED_IE9.text = Требовать Internet Explorer 9 или выше.
 
 

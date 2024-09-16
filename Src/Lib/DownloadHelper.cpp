@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #include <stdafx.h>
@@ -157,13 +157,13 @@ enum TDownloadResult
 // filename - returns the name of the downloaded file
 static TDownloadResult DownloadFile( const wchar_t *url, std::vector<char> &buf, CString *pFilename, bool bAcceptCached, CProgressDlg *pProgress, TSettingsComponent component )
 {
-	const wchar_t *compName=L"Open-Shell";
+	const wchar_t *compName=L"Retro-Shell";
 	switch (component)
 	{
 		case COMPONENT_EXPLORER: compName=L"Classic Explorer"; break;
-		case COMPONENT_MENU: compName=L"Open-Shell Menu"; break;
+		case COMPONENT_MENU: compName=L"Retro-Shell Menu"; break;
 		case COMPONENT_IE: compName=L"Classic IE"; break;
-		case COMPONENT_UPDATE: compName=L"Open-Shell Update"; break;
+		case COMPONENT_UPDATE: compName=L"Retro-Shell Update"; break;
 	}
 
 	DWORD compVersion=GetVersionEx(g_Instance);
@@ -626,7 +626,7 @@ void VersionData::Clear( void )
 	downloadUrl.Empty();
 	downloadSigner.Empty();
 	news.Empty();
-	updateLink="https://github.com/Open-Shell/Open-Shell-Menu/releases";
+	updateLink="https://github.com/aubymori/Retro-Shell/releases";
 	bNewVersion=bIgnoreVersion=false;
 }
 
@@ -667,7 +667,7 @@ VersionData::TLoadResult VersionData::Load(bool official)
 {
 	Clear();
 
-	std::wstring baseUrl = L"https://api.github.com/repos/Open-Shell/Open-Shell-Menu/releases";
+	std::wstring baseUrl = L"https://api.github.com/repos/Retro-Shell/Retro-Shell-Menu/releases";
 	if (official)
 		baseUrl += L"/latest";
 

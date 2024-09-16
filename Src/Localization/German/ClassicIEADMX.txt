@@ -6,7 +6,7 @@ LogLevel.supportedOn=never
 
 ; TRANSLATE ===================================================================
 
-Title.text = Open-Shell Einstellungen
+Title.text = Retro-Shell Einstellungen
 State.text = Status:
 State1.text = Auf diesen Wert gesperrt
 State2.text = Auf Standardwert gesperrt
@@ -17,7 +17,7 @@ State3Help.text = Wenn Sie die Einstellung "Entsperrt" aktivieren, wird der Stan
 
 ClassicIECat.text = Classic IE
 ClassicIECatHelp.text = Classic IE Gruppenrichtlinien Einstellungen
-SUPPORTED_CS404.text = Erfordert Open-Shell 4.0.4 oder neuer.
+SUPPORTED_CS404.text = Erfordert Retro-Shell 4.0.4 oder neuer.
 SUPPORTED_IE9.text = Erfordert Internet Explorer 9 oder neuer.
 
 

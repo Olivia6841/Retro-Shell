@@ -9,12 +9,12 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell">
+		<param name="Name" value="Retro-Shell">
 		<param name="Local" value="Main.html">
 		<param name="ImageNumber" value="11">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell Menu">
+		<param name="Name" value="Retro-Shell Menu">
 		<param name="Local" value="StartMenu.html">
 		<param name="ImageNumber" value="1">
 		</OBJECT>
@@ -50,7 +50,7 @@
 			<param name="Local" value="StartMenu.html#button">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Lokalizacja jêzykowa programu">
+			<param name="Name" value="Lokalizacja jï¿½zykowa programu">
 			<param name="Local" value="StartMenu.html#localization">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -58,7 +58,7 @@
 			<param name="Local" value="StartMenu.html#command_line">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="U³atwienia dostêpu">
+			<param name="Name" value="Uï¿½atwienia dostï¿½pu">
 			<param name="Local" value="StartMenu.html#accessibility">
 			</OBJECT>
 	</UL>
@@ -73,11 +73,11 @@
 			<param name="Local" value="ClassicExplorer.html#copy">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Alt+Enter w panelu folderów">
+			<param name="Name" value="Alt+Enter w panelu folderï¿½w">
 			<param name="Local" value="ClassicExplorer.html#alt_enter">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Pasek narzêdzi Eksploratora Windows">
+			<param name="Name" value="Pasek narzï¿½dzi Eksploratora Windows">
 			<param name="Local" value="ClassicExplorer.html#toolbar">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -89,7 +89,7 @@
 			<param name="Local" value="ClassicExplorer.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Przyk³ady poleceñ niestandardowych">
+			<param name="Name" value="Przykï¿½ady poleceï¿½ niestandardowych">
 			<param name="Local" value="ClassicExplorer.html#examples">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
@@ -97,11 +97,11 @@
 			<param name="Local" value="ClassicExplorer.html#admin">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Zale¿noœci od ustawieñ Windows">
+			<param name="Name" value="Zaleï¿½noï¿½ci od ustawieï¿½ Windows">
 			<param name="Local" value="ClassicExplorer.html#dependencies">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Lokalizacja jêzykowa programu">
+			<param name="Name" value="Lokalizacja jï¿½zykowa programu">
 			<param name="Local" value="ClassicExplorer.html#localization">
 			</OBJECT>
 	</UL>
@@ -130,7 +130,7 @@
 		<param name="ImageNumber" value="11">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="£¹cza">
+		<param name="Name" value="ï¿½ï¿½cza">
 		<param name="Local" value="Links.html">
 		<param name="ImageNumber" value="13">
 		</OBJECT>

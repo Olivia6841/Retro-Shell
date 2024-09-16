@@ -9,56 +9,56 @@
 </OBJECT>
 <UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell">
+		<param name="Name" value="Retro-Shell">
 		<param name="Local" value="Main.html">
 		<param name="ImageNumber" value="11">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Open-Shell Menu">
+		<param name="Name" value="Retro-Shell Menu">
 		<param name="Local" value="StartMenu.html">
 		<param name="ImageNumber" value="1">
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¼Ë¦¡">
+			<param name="Name" value="ï¿½Ë¦ï¿½">
 			<param name="Local" value="StartMenu.html#styles">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¾Þ§@">
+			<param name="Name" value="ï¿½Þ§@">
 			<param name="Local" value="StartMenu.html#operation">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="³]©w">
+			<param name="Name" value="ï¿½]ï¿½w">
 			<param name="Local" value="StartMenu.html#settings">
 			<param name="URL" value="StartMenu.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¨t²ÎºÞ²z³]©w">
+			<param name="Name" value="ï¿½tï¿½ÎºÞ²zï¿½]ï¿½w">
 			<param name="Local" value="StartMenu.html#admin">
 			<param name="URL" value="StartMenu.html#admin">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="§ó¦h¬ÛÃö­±ªO">
+			<param name="Name" value="ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O">
 			<param name="Local" value="StartMenu.html#skins">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="·j´M">
+			<param name="Name" value="ï¿½jï¿½M">
 			<param name="Local" value="StartMenu.html#search">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¦Û­q [¶}©l] «ö¶s">
+			<param name="Name" value="ï¿½Û­q [ï¿½}ï¿½l] ï¿½ï¿½ï¿½s">
 			<param name="Local" value="StartMenu.html#button">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¥»¦a¤Æ">
+			<param name="Name" value="ï¿½ï¿½ï¿½aï¿½ï¿½">
 			<param name="Local" value="StartMenu.html#localization">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="©R¥O¦C">
+			<param name="Name" value="ï¿½Rï¿½Oï¿½C">
 			<param name="Local" value="StartMenu.html#command_line">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¨ó§U¤u¨ã">
+			<param name="Name" value="ï¿½ï¿½Uï¿½uï¿½ï¿½">
 			<param name="Local" value="StartMenu.html#accessibility">
 			</OBJECT>
 	</UL>
@@ -69,39 +69,39 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="·sªº½Æ»s UI">
+			<param name="Name" value="ï¿½sï¿½ï¿½ï¿½Æ»s UI">
 			<param name="Local" value="ClassicExplorer.html#copy">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Alt+Enter Áä¦b¸ê®Æ§¨­±ªO">
+			<param name="Name" value="Alt+Enter ï¿½ï¿½bï¿½ï¿½Æ§ï¿½ï¿½ï¿½ï¿½O">
 			<param name="Local" value="ClassicExplorer.html#alt_enter">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Windows ÀÉ®×Á`ºÞªº¤u¨ã¦C">
+			<param name="Name" value="Windows ï¿½É®ï¿½ï¿½`ï¿½Þªï¿½ï¿½uï¿½ï¿½C">
 			<param name="Local" value="ClassicExplorer.html#toolbar">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="ª¬ºA¦C">
+			<param name="Name" value="ï¿½ï¿½ï¿½Aï¿½C">
 			<param name="Local" value="ClassicExplorer.html#statusbar">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="³]©w">
+			<param name="Name" value="ï¿½]ï¿½w">
 			<param name="Local" value="ClassicExplorer.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¦Û­q©R¥O½d¨Ò">
+			<param name="Name" value="ï¿½Û­qï¿½Rï¿½Oï¿½dï¿½ï¿½">
 			<param name="Local" value="ClassicExplorer.html#examples">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¨t²ÎºÞ²z³]©w">
+			<param name="Name" value="ï¿½tï¿½ÎºÞ²zï¿½]ï¿½w">
 			<param name="Local" value="ClassicExplorer.html#admin">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="Windows ³]©wªº¬Û¨Ì©Ê">
+			<param name="Name" value="Windows ï¿½]ï¿½wï¿½ï¿½ï¿½Û¨Ì©ï¿½">
 			<param name="Local" value="ClassicExplorer.html#dependencies">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¥»¦a¤Æ">
+			<param name="Name" value="ï¿½ï¿½ï¿½aï¿½ï¿½">
 			<param name="Local" value="ClassicExplorer.html#localization">
 			</OBJECT>
 	</UL>
@@ -112,25 +112,25 @@
 		</OBJECT>
 	<UL>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¦w¸Ë">
+			<param name="Name" value="ï¿½wï¿½ï¿½">
 			<param name="Local" value="ClassicIE.html#install">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="³]©w">
+			<param name="Name" value="ï¿½]ï¿½w">
 			<param name="Local" value="ClassicIE.html#settings">
 			</OBJECT>
 		<LI> <OBJECT type="text/sitemap">
-			<param name="Name" value="¨t²ÎºÞ²z³]©w">
+			<param name="Name" value="ï¿½tï¿½ÎºÞ²zï¿½]ï¿½w">
 			<param name="Local" value="ClassicIE.html#admin">
 			</OBJECT>
 	</UL>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="±ÂÅv¨óÄ³">
+		<param name="Name" value="ï¿½ï¿½ï¿½vï¿½ï¿½Ä³">
 		<param name="Local" value="License.html">
 		<param name="ImageNumber" value="11">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="¦³¥Î³sµ²">
+		<param name="Name" value="ï¿½ï¿½ï¿½Î³sï¿½ï¿½">
 		<param name="Local" value="Links.html">
 		<param name="ImageNumber" value="13">
 		</OBJECT>

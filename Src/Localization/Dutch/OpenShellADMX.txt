@@ -1,6 +1,6 @@
 ﻿; TRANSLATE ===================================================================
 
-Title.text = Open-Shell instellingen
+Title.text = Retro-Shell instellingen
 State.text = Status:
 State1.text = Vergrendelen op deze waarde
 State2.text = Vergrendelen op standaard
@@ -9,11 +9,11 @@ State1Help.text = Als u de status op 'Vergrendelen op deze waarde' instelt, zull
 State2Help.text = Als u de status op 'Vergrendelen op standaard' instelt, zullen de instellingen op de standaardwaarde voor alle gebruikers worden vergrendeld. De opgegeven waarden worden genegeerd.
 State3Help.text = Als u de staat 'Niet vergrendelen' instelt, zal de standaardwaarde voor de instelling worden gewijzigd naar de opgegeven waarde. Individuele gebruikers kunnen dan de instellingen overschrijven.
 
-OpenShellCat.text = Open-Shell
-OpenShellCatHelp.text = Open-Shell groepsbeleids instellingen
-SUPPORTED_CS404.text = Nodig Open-Shell 4.0.4  of hoger.
+OpenShellCat.text = Retro-Shell
+OpenShellCatHelp.text = Retro-Shell groepsbeleids instellingen
+SUPPORTED_CS404.text = Nodig Retro-Shell 4.0.4  of hoger.
 
-Language.nameOverride = Taal voor Open-Shell componenten
-Language.tipOverride = Selecteer de taal welke gebruikt dient te worden door Open-Shell (bij voorbeeld en-US of nl-NL). De taal zal invloed hebben op de tekst in het startmenu, werkbalken, enz. Als de gewenste taal dll-bestand is geïnstalleerd, mag de instellingen UI ook worden vertaald
+Language.nameOverride = Taal voor Retro-Shell componenten
+Language.tipOverride = Selecteer de taal welke gebruikt dient te worden door Retro-Shell (bij voorbeeld en-US of nl-NL). De taal zal invloed hebben op de tekst in het startmenu, werkbalken, enz. Als de gewenste taal dll-bestand is geïnstalleerd, mag de instellingen UI ook worden vertaald
 Update.nameOverride = Inschakelen automatische controle op nieuwe versies
-Update.tipOverride = Wanneer dit is aangevinkt, zal Open-Shell elke week controleren of er nieuwe versies zijn. U zult er dan op geattendeerd worden dat er een nieuwe versie van Open-Shell software is of een nieuwe update van de huidige taal
+Update.tipOverride = Wanneer dit is aangevinkt, zal Retro-Shell elke week controleren of er nieuwe versies zijn. U zult er dan op geattendeerd worden dat er een nieuwe versie van Retro-Shell software is of een nieuwe update van de huidige taal

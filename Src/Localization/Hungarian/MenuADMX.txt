@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Open-Shell beállítások
+Title.text = Retro-Shell beállítások
 State.text = Állapot:
 State1.text = Rögzítve erre az értékre
 State2.text = Rögzítve alapértelmezettre
@@ -98,9 +98,9 @@ State1Help.text = Ha az állapotot 'Rögzítve erre az értékre' értékre áll
 State2Help.text = Ha az állapotot 'Rögzítve alapértelmezettre' értékre állítod, a beállítás minden felhasználó esetében az alapértelmezett értékre lesz rögzítve. A megadott érték kihagyásra kerül.
 State3Help.text = Ha az állapotot 'Feloldva' értékre állítod, a beállítás alapértelmezett értéke a megadott értékre változik. A felhasználók felülírhatják a beállítást.
 
-MenuCat.text = Open-Shell menü
-MenuCatHelp.text = Open-Shell menü csoportházirend beállítások
-SUPPORTED_CS404.text = Open-Shell 4.0.4 vagy újabb szükséges.
+MenuCat.text = Retro-Shell menü
+MenuCatHelp.text = Retro-Shell menü csoportházirend beállítások
+SUPPORTED_CS404.text = Retro-Shell 4.0.4 vagy újabb szükséges.
 SUPPORTED_CS404_WIN7.text = Windows 7 szükséges.
 SUPPORTED_CS404_WIN78.text = Windows 7 szükséges vagy Windows 8.
 SUPPORTED_CS404_WIN781.text = Windows 7 szükséges vagy Windows 8.1.

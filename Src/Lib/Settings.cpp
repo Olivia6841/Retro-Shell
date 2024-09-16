@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #include <stdafx.h>
@@ -1811,7 +1811,7 @@ LRESULT CSettingsDlg::OnHelp( int idCtrl, LPNMHDR pnmh, BOOL& bHandled )
 
 LRESULT CSettingsDlg::OnWeb( int idCtrl, LPNMHDR pnmh, BOOL& bHandled )
 {
-	ShellExecute(m_hWnd,NULL,L"https://open-shell.github.io/Open-Shell-Menu",NULL,NULL,SW_SHOWNORMAL);
+	ShellExecute(m_hWnd,NULL,L"https://Retro-Shell.github.io/Retro-Shell-Menu",NULL,NULL,SW_SHOWNORMAL);
 	return 0;
 }
 
@@ -2393,7 +2393,7 @@ static const char *g_AdmxText1a=
 "\t<policyNamespaces>\r\n";
 
 static const char *g_AdmxText1cs=
-"\t\t<target prefix=\"classic_shell\" namespace=\"Open-Shell.Policies.OpenShell\" />\r\n"
+"\t\t<target prefix=\"classic_shell\" namespace=\"Retro-Shell.Policies.OpenShell\" />\r\n"
 "\t</policyNamespaces>\r\n"
 "\t<supersededAdm fileName=\"\" />\r\n"
 "\t<resources minRequiredRevision=\"1.0\"/>\r\n"
@@ -2406,8 +2406,8 @@ static const char *g_AdmxText1cs=
 "\t\t<category name=\"OpenShell\" displayName=\"$(string.OpenShellCat)\" explainText=\"$(string.OpenShellCatHelp)\"/>\r\n";
 
 static const char *g_AdmxText1csm=
-"\t\t<target prefix=\"classic_start_menu\" namespace=\"Open-Shell.Policies.Menu\" />\r\n"
-"\t\t<using prefix=\"classic_shell\" namespace=\"Open-Shell.Policies.OpenShell\" />\r\n"
+"\t\t<target prefix=\"classic_start_menu\" namespace=\"Retro-Shell.Policies.Menu\" />\r\n"
+"\t\t<using prefix=\"classic_shell\" namespace=\"Retro-Shell.Policies.OpenShell\" />\r\n"
 "\t</policyNamespaces>\r\n"
 "\t<supersededAdm fileName=\"\" />\r\n"
 "\t<resources minRequiredRevision=\"1.0\"/>\r\n"
@@ -2431,8 +2431,8 @@ static const char *g_AdmxText1csm=
 "\t\t</category>\r\n";
 
 static const char *g_AdmxText1ce=
-"\t\t<target prefix=\"classic_explorer\" namespace=\"Open-Shell.Policies.ClassicExplorer\" />\r\n"
-"\t\t<using prefix=\"classic_shell\" namespace=\"Open-Shell.Policies.OpenShell\" />\r\n"
+"\t\t<target prefix=\"classic_explorer\" namespace=\"Retro-Shell.Policies.ClassicExplorer\" />\r\n"
+"\t\t<using prefix=\"classic_shell\" namespace=\"Retro-Shell.Policies.OpenShell\" />\r\n"
 "\t</policyNamespaces>\r\n"
 "\t<supersededAdm fileName=\"\" />\r\n"
 "\t<resources minRequiredRevision=\"1.0\"/>\r\n"
@@ -2448,8 +2448,8 @@ static const char *g_AdmxText1ce=
 "\t\t</category>\r\n";
 
 static const char *g_AdmxText1cie=
-"\t\t<target prefix=\"classic_ie\" namespace=\"Open-Shell.Policies.ClassicIE\" />\r\n"
-"\t\t<using prefix=\"classic_shell\" namespace=\"Open-Shell.Policies.OpenShell\" />\r\n"
+"\t\t<target prefix=\"classic_ie\" namespace=\"Retro-Shell.Policies.ClassicIE\" />\r\n"
+"\t\t<using prefix=\"classic_shell\" namespace=\"Retro-Shell.Policies.OpenShell\" />\r\n"
 "\t</policyNamespaces>\r\n"
 "\t<supersededAdm fileName=\"\" />\r\n"
 "\t<resources minRequiredRevision=\"1.0\"/>\r\n"

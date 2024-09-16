@@ -89,7 +89,7 @@ SkipMetro.supportedOn = win8
 ; TRANSLATE ===================================================================
 
 
-Title.text = Ustawienia Open-Shell
+Title.text = Ustawienia Retro-Shell
 State.text = Stan:
 State1.text = Zablokowano na tej wartości
 State2.text = Zablokowano na domyślnej
@@ -98,9 +98,9 @@ State1Help.text = Jeśli ustawisz stan na 'Zablokowano na tej wartości', ustawi
 State2Help.text = Jeśli ustawisz stan na 'Zablokowano na domyślnej', ustawienie zostanie zablokowane na wartości domyślnej dla wszystkich użytkowników. Określona wartość jest ignorowana.
 State3Help.text = Jeśli ustawisz stan na 'Odblokowano', domyślna wartość ustawienia zostanie zmieniona na określoną wartość. Poszczególni użytkownicy będą mogli zmienić to ustawienie.
 
-MenuCat.text = Open-Shell Menu
-MenuCatHelp.text = Open-Shell Menu ustawienia zasad grupy
-SUPPORTED_CS404.text = Wymaga Open-Shell 4.0.4 lub nowszego.
+MenuCat.text = Retro-Shell Menu
+MenuCatHelp.text = Retro-Shell Menu ustawienia zasad grupy
+SUPPORTED_CS404.text = Wymaga Retro-Shell 4.0.4 lub nowszego.
 SUPPORTED_CS404_WIN7.text = Wymaga Windows 7.
 SUPPORTED_CS404_WIN78.text = Wymaga Windows 7 lub Windows 8.
 SUPPORTED_CS404_WIN781.text = Wymaga Windows 7 lub Windows 8.1.
@@ -135,25 +135,25 @@ SkinC1.tipOverride = Wybierz karnację, która będzie używana w stylu klasyczn
 SkinVariationC1.nameOverride = Odmiany karnacji dla klasycznego menu z jedną kolumną
 SkinVariationC1.tipOverride = Wybierz odmianę karnacji, która będzie używana w stylu klasycznym z jedną kolumną (dla karnacji, które obsługują wiele odmian)
 SkinOptionsC1.nameOverride = Opcje karnacji klasycznego menu z jedną kolumną
-SkinOptionsC1.tipOverride = Wybierz opcje karnacji, która będzie używana w stylu klasycznym z jedną kolumną.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie SkinOptionsC1 w HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC1.tipOverride = Wybierz opcje karnacji, która będzie używana w stylu klasycznym z jedną kolumną.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie SkinOptionsC1 w HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems1.nameOverride = Pozycje menu w klasycznym menu z jedną kolumną
-MenuItems1.tipOverride = Wybierz pozycje menu, które będą używane w stylu klasycznym z jedną kolumną.\nNajlepszym sposobem, aby uzyskać prawidłowy ciąg jest skonfigurowanie elementów w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie MenuItems1 w HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems1.tipOverride = Wybierz pozycje menu, które będą używane w stylu klasycznym z jedną kolumną.\nNajlepszym sposobem, aby uzyskać prawidłowy ciąg jest skonfigurowanie elementów w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie MenuItems1 w HKCU\Software\OpenShell\StartMenu\Settings
 SkinC2.nameOverride = Karnacja dla klasycznego menu z dwiema kolumnami
 SkinC2.tipOverride = Wybierz karnację, która będzie używana w stylu klasycznym z dwiema kolumnami
 SkinVariationC2.nameOverride = Odmiany karnacji dla klasycznego menu z dwiema kolumnami
 SkinVariationC2.tipOverride = Wybierz odmianę karnacji, która będzie używana w stylu klasycznym z dwiema kolumnami (dla karnacji, które obsługują wiele odmian)
 SkinOptionsC2.nameOverride = Opcje karnacji klasycznego menu z dwiema kolumnami
-SkinOptionsC2.tipOverride = Wybierz opcje karnacji, która będzie używana w stylu klasycznym z dwiema kolumnami.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie  SkinOptionsC2 w HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsC2.tipOverride = Wybierz opcje karnacji, która będzie używana w stylu klasycznym z dwiema kolumnami.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie  SkinOptionsC2 w HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems2.nameOverride = Pozycje menu w klasycznym menu z dwiema kolumnami
-MenuItems2.tipOverride = Wybierz pozycje menu, które będą używane w stylu klasycznym z dwiema kolumnami.\nNajlepszym sposobem, aby uzyskać prawidłowy ciąg jest skonfigurowanie elementów w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie MenuItems2 w HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems2.tipOverride = Wybierz pozycje menu, które będą używane w stylu klasycznym z dwiema kolumnami.\nNajlepszym sposobem, aby uzyskać prawidłowy ciąg jest skonfigurowanie elementów w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie MenuItems2 w HKCU\Software\OpenShell\StartMenu\Settings
 SkinW7.nameOverride = Karnacja dla stylu Windows 7
 SkinW7.tipOverride = Wybierz karnację, która będzie używana w stylu Windows 7
 SkinVariationW7.nameOverride = Odmiany karnacji dla stylu Windows 7
 SkinVariationW7.tipOverride = Wybierz odmianę karnacji, która będzie używana w stylu Windows 7 (dla karnacji, które obsługują wiele odmian)
 SkinOptionsW7.nameOverride = Opcje karnacji stlu Windows 7
-SkinOptionsW7.tipOverride = Wybierz opcje karnacji, która będzie używana w stylu Windows 7.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie SkinOptionsW7 w HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsW7.tipOverride = Wybierz opcje karnacji, która będzie używana w stylu Windows 7.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie SkinOptionsW7 w HKCU\Software\OpenShell\StartMenu\Settings
 MenuItems7.nameOverride = Pozycje menu w stylu Windows 7
-MenuItems7.tipOverride = Wybierz pozycje menu, które będą używane w stylu Windows 7.\nNajlepszym sposobem, aby uzyskać prawidłowy ciąg jest skonfigurowanie elementów w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie MenuItems7 w HKCU\Software\OpenShell\StartMenu\Settings
+MenuItems7.tipOverride = Wybierz pozycje menu, które będą używane w stylu Windows 7.\nNajlepszym sposobem, aby uzyskać prawidłowy ciąg jest skonfigurowanie elementów w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie MenuItems7 w HKCU\Software\OpenShell\StartMenu\Settings
 
 ; windows 7
 SkinA.nameOverride = Karnacja podmenu Wszystkie programy dla menu Start Windows 7
@@ -161,7 +161,7 @@ SkinA.tipOverride = Wybierz karnację, która będzie używana przez podmenu Wsz
 SkinVariationA.nameOverride = Odmiany karnacji podmenu Wszystkie programy dla menu Start Windows 7
 SkinVariationA.tipOverride = Wybierz odmianę karnacji, która będzie używana przez podmenu Wszystkie programy w menu Start Windows 7 (dla karnacji, które obsługują wiele odmian)
 SkinOptionsA.nameOverride = Opcje karnacji podmenu Wszystkie programy dla menu Start Windows 7
-SkinOptionsA.tipOverride = Wybierz opcje karnacji, która będzie używana przez podmenu Wszystkie programy w menu Start Windows 7.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie SkinOptionsA w HKCU\Software\OpenShell\StartMenu\Settings
+SkinOptionsA.tipOverride = Wybierz opcje karnacji, która będzie używana przez podmenu Wszystkie programy w menu Start Windows 7.\nOpcje są listą liczb szesnastkowych. Najlepszym sposobem jest dostosowanie tych opcji w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie SkinOptionsA w HKCU\Software\OpenShell\StartMenu\Settings
 
 ; metro settings
 SkipMetro.tipAddition = To ustawienie nie działa w Windows 8.1. Należy użyć wbudowanego ustawienia systemu Windows, aby podczas uruchamiania przechodzić do Pulpitu
@@ -188,5 +188,5 @@ SoundDrop.tipAddition = Wartością może być nazwa zdarzenia systemowego lub �
 ExpandFolderLinks.tipAddition = Działa tylko dla łączy symbolicznych (takich jak połączenia), a nie dla zwykłych skrótów
 StartHoverDelay.nameOverride = Opóźnienie aktywowania (przycisku Start)
 AllProgramsDelay.nameOverride = Opóźnienie aktywowania (Wszystkie programy w Windows 7)
-CSMHotkey.tipAddition = .\n\nWartością bazową jest wirtualny kod klawiszy głównych . Dodaj 256 dla Shift, 512 dla Control i 1024 dla Alt.\nNajlepszym sposobem, aby uzyskać wartość jest wybranie klawisza skrótu w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie CSMHotkey w HKCU\Software\OpenShell\StartMenu\Settings
-WSMHotkey.tipAddition = .\n\nWartością bazową jest wirtualny kod klawiszy głównych. Dodaj 256 dla Shift, 512 dla Control i 1024 dla Alt.\nNajlepszym sposobem, aby uzyskać wartość jest wybranie klawisza skrótu w oknie dialogowym Ustawienia Open-Shell Menu, a następnie sprawdzenie wartości o nazwie WSMHotkey w HKCU\Software\OpenShell\StartMenu\Settings
+CSMHotkey.tipAddition = .\n\nWartością bazową jest wirtualny kod klawiszy głównych . Dodaj 256 dla Shift, 512 dla Control i 1024 dla Alt.\nNajlepszym sposobem, aby uzyskać wartość jest wybranie klawisza skrótu w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie CSMHotkey w HKCU\Software\OpenShell\StartMenu\Settings
+WSMHotkey.tipAddition = .\n\nWartością bazową jest wirtualny kod klawiszy głównych. Dodaj 256 dla Shift, 512 dla Control i 1024 dla Alt.\nNajlepszym sposobem, aby uzyskać wartość jest wybranie klawisza skrótu w oknie dialogowym Ustawienia Retro-Shell Menu, a następnie sprawdzenie wartości o nazwie WSMHotkey w HKCU\Software\OpenShell\StartMenu\Settings

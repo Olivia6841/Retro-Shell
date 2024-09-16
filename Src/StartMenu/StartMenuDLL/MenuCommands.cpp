@@ -1,6 +1,6 @@
 // ## MenuContainer.h
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 // MenuCommands.cpp - handles the commands and actions of CMenuContainer
@@ -885,7 +885,7 @@ static bool ProceedWithShutdown(DWORD flags)
 	WCHAR message[MAX_PATH]{};
 	LoadString(GetModuleHandle(L"user32.dll"), msgId, message, _countof(message));
 
-	return MessageBox(NULL, message, L"Open-Shell", MB_YESNO | MB_ICONEXCLAMATION | MB_DEFBUTTON1 | MB_SYSTEMMODAL | MB_SETFOREGROUND | MB_SERVICE_NOTIFICATION) != IDNO;
+	return MessageBox(NULL, message, L"Retro-Shell", MB_YESNO | MB_ICONEXCLAMATION | MB_DEFBUTTON1 | MB_SYSTEMMODAL | MB_SETFOREGROUND | MB_SERVICE_NOTIFICATION) != IDNO;
 }
 
 static bool ExecuteShutdownCommand(TMenuID menuCommand)
@@ -2048,7 +2048,7 @@ void CMenuContainer::ActivateItem( int index, TActivateType type, const POINT *p
 					if (n>0)
 						InsertMenu(menu,insertBefore++,MF_BYPOSITION|MF_SEPARATOR,0,0);
 					if (bPin)
-						InsertMenu(menu,insertBefore++,MF_BYPOSITION|MF_STRING,CMD_PINSETTING,FindTranslation(L"Menu.PinStartCs",L"Pin to Start menu (Open-Shell)"));
+						InsertMenu(menu,insertBefore++,MF_BYPOSITION|MF_STRING,CMD_PINSETTING,FindTranslation(L"Menu.PinStartCs",L"Pin to Start menu (Retro-Shell)"));
 					if (bExplore)
 						InsertMenu(menu,insertBefore++,MF_BYPOSITION|MF_STRING,CMD_EXPLORE,FindTranslation(L"Menu.Explore",L"&Explore"));
 					if (!last)

@@ -187,13 +187,13 @@ STDMETHODIMP CStartMenuExt::QueryContextMenu( HMENU menu, UINT uMenuIndex, UINT 
 		{
 			if (!bFakeDirectory && _wcsicmp(ext,L".lnk")!=0)
 				return MAKE_HRESULT(SEVERITY_SUCCESS,FACILITY_NULL,0); // can only unpin fake folders and links
-			InsertMenu(menu,uMenuIndex,MF_BYPOSITION,uidFirstCmd,FindTranslation(L"Menu.UnpinStartCs",L"Unpin from Start menu (Open-Shell)"));
+			InsertMenu(menu,uMenuIndex,MF_BYPOSITION,uidFirstCmd,FindTranslation(L"Menu.UnpinStartCs",L"Unpin from Start menu (Retro-Shell)"));
 		}
 		else
 		{
 			if (bFakeDirectory)
 				return MAKE_HRESULT(SEVERITY_SUCCESS,FACILITY_NULL,0); // can't pin fake folders
-			InsertMenu(menu,uMenuIndex,MF_BYPOSITION,uidFirstCmd,FindTranslation(L"Menu.PinStartCs",L"Pin to Start menu (Open-Shell)"));
+			InsertMenu(menu,uMenuIndex,MF_BYPOSITION,uidFirstCmd,FindTranslation(L"Menu.PinStartCs",L"Pin to Start menu (Retro-Shell)"));
 		}
 		return MAKE_HRESULT(SEVERITY_SUCCESS,FACILITY_NULL,1);
 	}

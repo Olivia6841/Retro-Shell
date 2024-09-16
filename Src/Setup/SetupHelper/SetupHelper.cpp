@@ -1,5 +1,5 @@
 // Classic Shell (c) 2009-2017, Ivo Beltchev
-// Open-Shell (c) 2017-2018, The Open-Shell Team
+// Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
 #define STRICT_TYPED_ITEMIDS
@@ -47,7 +47,7 @@ int ExitStartMenu(const wchar_t* regPath, const wchar_t* exeName, const wchar_t*
 
 int ExitStartMenu()
 {
-	// terminate Open-Shell Start Menu in clean way
+	// terminate Retro-Shell Start Menu in clean way
 	ExitStartMenu(L"SOFTWARE\\OpenShell\\OpenShell", L"StartMenu.exe", L"OpenShellUpdate.COwnerWindow");
 
 	// try to terminate also ClassicShell Start Menu (to make upgrade a bit easier)
@@ -70,7 +70,7 @@ int FixVersion( void )
 
 ///////////////////////////////////////////////////////////////////////////////
 
-// Setup Helper - performs custom actions during Open-Shell install/uninstall
+// Setup Helper - performs custom actions during Retro-Shell install/uninstall
 // Usage:
 //   exitSM // exits the start menu if it is running
 //   fixVersion // sets the correct OS version

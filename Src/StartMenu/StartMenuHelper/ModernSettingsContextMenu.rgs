@@ -2,7 +2,7 @@ HKCR
 {
 	NoRemove CLSID
 	{
-		ForceRemove {5ab14324-c087-42c1-b905-a0bfdb4e9532} = s 'Open-Shell Modern Settings Context Menu'
+		ForceRemove {5ab14324-c087-42c1-b905-a0bfdb4e9532} = s 'Retro-Shell Modern Settings Context Menu'
 		{
 			InprocServer32 = s '%MODULE%'
 			{
