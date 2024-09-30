@@ -49,6 +49,7 @@ Caption_padding=3,3,3,12,100%
 
 ; Main_large_icons - 0 - use small icons in the main menu, 1 - use large icons. Default is 0
 ; The small icons are 16x16 if the DPI is 96, 20x20 for DPI 120 and 24x24 for DPI 144
+; The medium icons are 24x24 if the DPI is 96, 30x30 for DPI 120 and 36x36 for DPI 144 or simply 1.5x the size of the small icons
 ; The large icons are twice the size of the small icons
 ; The sub-menus always use small icons
 Main_large_icons=1
