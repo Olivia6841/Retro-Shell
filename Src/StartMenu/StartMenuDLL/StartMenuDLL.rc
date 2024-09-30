@@ -658,6 +658,8 @@ BEGIN
     IDS_VERT_OFFSET_TIP     "Offset the start menu vertically by the amount of pixels specified"
     IDS_SMALL_SIZE_SM       "Small icon size"
     IDS_SMALL_SIZE_SM_TIP   "Set the small icon size. The default is 16 for DPI<=96, 20 for 96<DPI<=120 and 24 for DPI>120"
+	IDS_MEDIUM_SIZE_SM		"Medium icon size"
+	IDS_MEDIUM_SIZE_SM_TIP	"Set the medium icon size. The default is 24 for DPI<=96, 30 for 96<DPI<=120 and 36 for DPI>120"
     IDS_LARGE_SIZE_SM       "Large icon size"
     IDS_LARGE_SIZE_SM_TIP   "Set the large icon size. The default is 32 for DPI<=96, 40 for 96<DPI<=120 and 48 for DPI>120"
     IDS_NUMERIC_SORT        "Use numeric sorting"

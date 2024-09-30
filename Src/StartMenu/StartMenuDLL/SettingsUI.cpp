@@ -4389,6 +4389,7 @@ CSetting g_Settings[]={
 
 {L"Look",CSetting::TYPE_GROUP,IDS_LOOK_SETTINGS},
 	{L"SmallIconSize",CSetting::TYPE_INT,IDS_SMALL_SIZE_SM,IDS_SMALL_SIZE_SM_TIP,-1,CSetting::FLAG_COLD}, // 16 for DPI<=96, 20 for DPI<=120, 24 otherwise
+	{L"MediumIconSize", CSetting::TYPE_INT, IDS_MEDIUM_SIZE_SM,IDS_MEDIUM_SIZE_SM_TIP,-1,CSetting::FLAG_COLD},
 	{L"LargeIconSize",CSetting::TYPE_INT,IDS_LARGE_SIZE_SM,IDS_LARGE_SIZE_SM_TIP,-1,CSetting::FLAG_COLD}, // 32 for DPI<=96, 40 for DPI<=120, 48 otherwise
 	{L"InvertMetroIcons",CSetting::TYPE_BOOL,IDS_INVERT_ICONS,IDS_INVERT_ICONS_TIP,0},
 	{L"MaxMainMenuWidth",CSetting::TYPE_INT,IDS_MENU_WIDTH,IDS_MENU_WIDTH_TIP,60,CSetting::FLAG_MENU_CLASSIC_BOTH},
@@ -4761,6 +4762,7 @@ void UpdateSettings( void )
 	else if (dpi>=120)
 		iconSize=20;	// for 125% scaling
 	UpdateSetting(L"SmallIconSize",CComVariant(iconSize),false);
+	UpdateSetting(L"MediumIconSize", CComVariant((int)(iconSize*1.5)), false);
 	UpdateSetting(L"LargeIconSize",CComVariant(iconSize*2),false);
 
 	DWORD time;

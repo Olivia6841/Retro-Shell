@@ -20,9 +20,11 @@
 #include <dwmapi.h>
 
 static int START_ICON_SIZE = 0;
-const int START_BUTTON_PADDING = 3;
+//const int START_BUTTON_PADDING = 3;
+static int START_BUTTON_PADDING = 0;
 const int START_BUTTON_OFFSET = 0;
-const int START_TEXT_PADDING = 1;
+//const int START_TEXT_PADDING = 1;
+static int START_TEXT_PADDING = 0;
 const int BLEND_PRECISION = 1000;
 
 bool g_bAllowMoveButton;
