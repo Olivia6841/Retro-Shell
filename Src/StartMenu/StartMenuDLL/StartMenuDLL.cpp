@@ -1329,9 +1329,23 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 		else
 			x = taskBar->oldButton ? rcOldButton.left : rcTask.left;
 		if (GetSettingInt(L"StartButtonType") != START_BUTTON_CUSTOM || !GetSettingBool(L"StartButtonAlign"))
-			y = rcTask.top + 4;
+		{
+			if (IsAppThemed())
+			{
+				y = rcTask.top;
+			}
+			else
+			{
+				if (uEdge == ABE_TOP || ABE_BOTTOM)
+				{
+					y = rcTask.top + 4;
+				}
+			}
+		}
 		else if (uEdge == ABE_TOP)
+		{
 			y = rcTask.top;
+		}
 		else
 			y = rcTask.bottom - taskBar->startButtonSize.cy;
 
