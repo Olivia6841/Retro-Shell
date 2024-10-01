@@ -20,10 +20,8 @@
 #include <dwmapi.h>
 
 static int START_ICON_SIZE = 0;
-//const int START_BUTTON_PADDING = 3;
 static int START_BUTTON_PADDING = 0;
 const int START_BUTTON_OFFSET = 0;
-//const int START_TEXT_PADDING = 1;
 static int START_TEXT_PADDING = 0;
 const int BLEND_PRECISION = 1000;
 
@@ -60,6 +58,7 @@ public:
 	bool GetSmallIcons(void) const { return m_bSmallIcons; }
 
 protected:
+	VOID InitializeFont();
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) { return 0; }
@@ -122,6 +121,33 @@ CStartButton::CStartButton(void)
 	m_Theme = NULL;
 }
 
+void CStartButton::InitializeFont()
+
+{
+	if (m_Font) DeleteObject(m_Font);
+
+	m_Font = NULL; // destroy the old font if it exists
+
+	NONCLIENTMETRICS ncm;
+	ncm.cbSize = sizeof(NONCLIENTMETRICS);
+	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(ncm), &ncm, FALSE))
+	{
+		WORD wLang = GetUserDefaultLangID();
+
+		// Select normal weight font for chinese language.
+		if (PRIMARYLANGID(wLang) == LANG_CHINESE &&
+			((SUBLANGID(wLang) == SUBLANG_CHINESE_TRADITIONAL) ||
+				(SUBLANGID(wLang) == SUBLANG_CHINESE_SIMPLIFIED)))
+			ncm.lfCaptionFont.lfWeight = FW_NORMAL;
+		else
+			ncm.lfCaptionFont.lfWeight = FW_BOLD;
+	}
+
+	LOGFONT captionFont = ncm.lfCaptionFont;
+
+	m_Font = CreateFontIndirect(&captionFont);
+}
+
 LRESULT CStartButton::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	size_t params = (intptr_t)(((CREATESTRUCT*)lParam)->lpCreateParams);
@@ -146,9 +172,7 @@ LRESULT CStartButton::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 			m_Icon = (HICON)LoadImage(g_Instance, MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON, START_ICON_SIZE, START_ICON_SIZE, LR_DEFAULTCOLOR);
 	}
 	int dpi = CItemManager::GetDPI(false);
-	NONCLIENTMETRICS ncm = { sizeof(NONCLIENTMETRICS) };
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, 0, &ncm, 0);
-	m_Font = CreateFontIndirect(&ncm.lfCaptionFont);
+	InitializeFont();
 	int val = 1;
 	DwmSetWindowAttribute(m_hWnd, DWMWA_EXCLUDED_FROM_PEEK, &val, sizeof(val));
 	val = DWMFLIP3D_EXCLUDEABOVE;
@@ -189,31 +213,46 @@ void CStartButton::UpdateButton(void)
 		if (m_bRTL)
 			SetLayout(hSrc, LAYOUT_RTL);
 		HGDIOBJ bmp0 = SelectObject(hSrc, m_Blendmap);
+
 		RECT rc = { 0,0,m_Size.cx - 5,m_Size.cy };
-		if (GetSettingBool(L"XPButton")) rc.right = m_Size.cx;
+
+		if (GetSettingBool(L"XPButton"))
+			rc.right = m_Size.cx;
+
 		HBRUSH btnface = GetSysColorBrush(COLOR_BTNFACE);
 		FillRect(hSrc, &rc, btnface);
 		InflateRect(&rc, -START_BUTTON_OFFSET, -START_BUTTON_OFFSET);
 		int offset = 0;
-		if (m_Theme)
+		if (m_Theme) // MSSTYLES
 		{
 			int state = m_bPressed ? PBS_PRESSED : (m_bHot ? PBS_HOT : PBS_NORMAL);
+			DrawThemeParentBackgroundEx(m_hWnd, hSrc, DTPB_USEERASEBKGND, NULL); // Transparent
 			DrawThemeBackground(m_Theme, hSrc, BP_PUSHBUTTON, state, &rc, NULL);
 		}
-		else
+		else // Classic Theme
 		{
 			DrawFrameControl(hSrc, &rc, DFC_BUTTON, DFCS_BUTTONPUSH | (m_bPressed ? DFCS_PUSHED : 0));
 			offset = m_bPressed ? 1 : 0;
 		}
 		if (m_Icon)
 		{
-			if (!GetSettingBool(L"XPButton"))
+			if (GetSettingBool(L"XPButton")) //XP Style
 			{
-				DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+				if (m_Theme) // MSSTYLES themed XP style
+				{
+					START_BUTTON_PADDING = 6;
+					START_TEXT_PADDING = 4;
+					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 4, (m_Size.cy - START_ICON_SIZE) / 2, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+				}
+				else // Classic theme XP style
+					START_BUTTON_PADDING = 3;
+					START_TEXT_PADDING = 1;
+						DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET - 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
 			}
-			else
+			else // Windows 2000 and earlier style classic theme
 			{
-				DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET - 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+				START_BUTTON_PADDING = 3;
+				DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
 			}
 		}
 
@@ -246,22 +285,36 @@ void CStartButton::UpdateButton(void)
 			);
 		}
 
-		if (!GetSettingBool(L"XPButton"))
+		if (GetSettingBool(L"XPButton"))
 		{
-			rc.left += START_BUTTON_PADDING + START_ICON_SIZE + START_TEXT_PADDING + 2 + offset;
+			if (m_Theme) // XP MSSTYLES
+			{
+				START_BUTTON_PADDING = 6;
+				START_TEXT_PADDING = 4;
+				rc.left += START_BUTTON_PADDING + START_ICON_SIZE + START_TEXT_PADDING + 4;
+			}
+			else
+			{
+				START_BUTTON_PADDING = 3;
+				START_TEXT_PADDING = 1;
+				rc.left += START_BUTTON_PADDING + START_ICON_SIZE + START_TEXT_PADDING + offset;
+			}
 		}
 		else
 		{
-			rc.left += START_BUTTON_PADDING + START_ICON_SIZE + START_TEXT_PADDING + offset;
+			START_BUTTON_PADDING = 3;
+			START_TEXT_PADDING = 1;
+			rc.left += START_BUTTON_PADDING + START_ICON_SIZE + START_TEXT_PADDING + 2 + offset;
 		}
+
 		rc.top += START_BUTTON_PADDING + offset;
 		rc.right -= +START_TEXT_PADDING - offset;
 		rc.bottom -= START_BUTTON_PADDING - offset;
-		DeleteObject(m_Font);
-		NONCLIENTMETRICSW ncm = { sizeof(NONCLIENTMETRICSW) };
-		SystemParametersInfoW(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICSW), &ncm, NULL);
-		m_Font = CreateFontIndirectW(&ncm.lfCaptionFont);
+
+		InitializeFont();
+
 		HFONT font0 = (HFONT)SelectObject(hSrc, m_Font);
+
 		COLORREF color = GetSysColor(COLOR_BTNTEXT);
 		if (m_Theme)
 		{
@@ -279,7 +332,14 @@ void CStartButton::UpdateButton(void)
 		const wchar_t* startText = startStr;
 		if (startText[0] == '$')
 			startText = FindTranslation(startText + 1, L"Start");
-		DrawText(hSrc, startText, -1, &rc, DT_NOPREFIX | DT_SINGLELINE | DT_VCENTER);
+		if (m_Theme)
+		{
+			DrawThemeText(m_Theme, hSrc, 0, 0, startText, -1, DT_NOPREFIX | DT_SINGLELINE | DT_VCENTER, 0, &rc);
+		}
+		else
+			DrawText(hSrc, startText, -1, &rc, DT_NOPREFIX | DT_SINGLELINE | DT_VCENTER);
+
+
 		SelectObject(hSrc, bmp0);
 		// mark the button pixels as opaque
 		for (int y = START_BUTTON_OFFSET; y < m_Size.cy - START_BUTTON_OFFSET; y++)
@@ -582,15 +642,31 @@ void CStartButton::LoadBitmap(void)
 		if (startText[0] == '$')
 			startText = FindTranslation(startText + 1, L"Start");
 		DrawText(hdc, startText, -1, &rc, DT_NOPREFIX | DT_SINGLELINE | DT_CALCRECT);
-		if (!GetSettingBool(L"XPButton"))
+
+		if (GetSettingBool(L"XPButton"))
 		{
+
+			if (m_Theme) // Theming is enabled with xp button
+			{
+
+				START_BUTTON_PADDING = 6;
+				START_TEXT_PADDING = 4;
+				m_Size.cx = rc.right + START_ICON_SIZE + 2 * START_TEXT_PADDING + 2 * START_BUTTON_PADDING + 2 * START_BUTTON_OFFSET + 30;
+
+			}
+			else
+			{
+				m_Size.cx = rc.right + START_ICON_SIZE + 4 * START_TEXT_PADDING + 3;
+			}
+		}
+		else // Windows 2000 and earlier
+		{
+			START_TEXT_PADDING = 3;
 			m_Size.cx = rc.right + START_ICON_SIZE + 4 * START_TEXT_PADDING + 11;
 		}
-		else
-		{
-			m_Size.cx = rc.right + START_ICON_SIZE + 4 * START_TEXT_PADDING + 3;
-		}
+
 		m_Size.cy = rc.bottom;
+
 		if (m_Size.cy < START_ICON_SIZE) m_Size.cy = START_ICON_SIZE;
 		m_Size.cy += 2 * START_BUTTON_PADDING + 2 * START_BUTTON_OFFSET;
 		DeleteDC(hdc);

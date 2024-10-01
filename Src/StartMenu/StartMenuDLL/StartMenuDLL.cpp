@@ -1243,12 +1243,21 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 	}
 	if (uEdge == ABE_TOP || uEdge == ABE_BOTTOM)
 	{
-		if (rcTask.left < info.rcMonitor.left) rcTask.left = info.rcMonitor.left;
-		if (rcTask.right > info.rcMonitor.right) rcTask.right = info.rcMonitor.right;
+		if (rcTask.left < info.rcMonitor.left)
+		{
+			rcTask.left = info.rcMonitor.left;
+		}
+		if (rcTask.right > info.rcMonitor.right)
+		{
+			rcTask.right = info.rcMonitor.right;
+		}
 	}
 	else
 	{
-		if (rcTask.top < info.rcMonitor.top) rcTask.top = info.rcMonitor.top;
+		if (rcTask.top < info.rcMonitor.top)
+		{
+			rcTask.top = info.rcMonitor.top;
+		}
 	}
 
 	HWND zPos = NULL;
@@ -1294,7 +1303,19 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 	if (uEdge == ABE_LEFT || uEdge == ABE_RIGHT)
 	{
 		if (GetSettingInt(L"StartButtonType") != START_BUTTON_CUSTOM || !GetSettingBool(L"StartButtonAlign"))
-			x = (rcTask.left + rcTask.right - taskBar->startButtonSize.cx) / 2;
+		{
+			if (uEdge == ABE_LEFT || ABE_RIGHT)
+			{
+				if (IsAppThemed())
+				{
+					x = rcTask.left;
+				}
+				else
+				{
+					x = rcTask.left + 4;
+				}
+			}
+		}
 		else if (uEdge == ABE_LEFT)
 			x = rcTask.left;
 		else
