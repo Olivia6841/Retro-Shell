@@ -2184,8 +2184,12 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 
 		bool bNoIcon=!item.bInline && settings.iconSize==MenuSkin::ICON_SIZE_NONE;
 		SIZE iconSize;
-		if (settings.iconSize==MenuSkin::ICON_SIZE_SMALL)
-			iconSize.cx=iconSize.cy=g_ItemManager.SMALL_ICON_SIZE;
+		if (settings.iconSize == MenuSkin::ICON_SIZE_SMALL)
+			iconSize.cx = iconSize.cy = g_ItemManager.SMALL_ICON_SIZE;
+
+		else if (settings.iconSize == MenuSkin::ICON_SIZE_MEDIUM)
+			iconSize.cx = iconSize.cy = g_ItemManager.MEDIUM_ICON_SIZE;
+
 		else if (settings.iconSize==MenuSkin::ICON_SIZE_LARGE)
 			iconSize.cx=iconSize.cy=g_ItemManager.LARGE_ICON_SIZE;
 		else if (settings.iconSize==MenuSkin::ICON_SIZE_PROGRAMS)
@@ -2269,7 +2273,21 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 				MarginsBlit(hdc2,hdc,rSrc,rDst,rMargins,settings.bmpIconFrame.bIs32);
 				SelectObject(hdc2,bmp0);
 			}
-			const CItemManager::IconInfo *pIcon=(settings.iconSize==MenuSkin::ICON_SIZE_LARGE)?item.pItemInfo->largeIcon:item.pItemInfo->smallIcon;
+			//No switch case smh...
+			//const CItemManager::IconInfo *pIcon=(settings.iconSize==MenuSkin::ICON_SIZE_LARGE)?item.pItemInfo->largeIcon:item.pItemInfo->smallIcon;
+
+			const CItemManager::IconInfo* pIcon = nullptr;
+			switch (settings.iconSize) {
+			case MenuSkin::ICON_SIZE_LARGE:
+				pIcon = item.pItemInfo->largeIcon;
+				break;
+			case MenuSkin::ICON_SIZE_MEDIUM:
+				pIcon = item.pItemInfo->mediumIcon;
+				break;
+			case MenuSkin::ICON_SIZE_SMALL:
+				pIcon = item.pItemInfo->smallIcon;
+				break;
+			}
 			if (pIcon && pIcon->bitmap)
 			{
 				HBITMAP temp = ColorizeMonochromeImage(pIcon->bitmap, color);

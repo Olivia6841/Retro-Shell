@@ -1292,6 +1292,11 @@ void CMenuContainer::AddStandardItems( void )
 				iconSizeType=CItemManager::ICON_SIZE_TYPE_LARGE;
 				refreshFlags=CItemManager::INFO_LARGE_ICON;
 			}
+			else if (mainIconSize == MenuSkin::ICON_SIZE_MEDIUM)
+			{
+				iconSizeType = CItemManager::ICON_SIZE_TYPE_MEDIUM;
+				refreshFlags = CItemManager::INFO_MEDIUM_ICON;
+			}
 			else if (mainIconSize==MenuSkin::ICON_SIZE_SMALL)
 			{
 				iconSizeType=CItemManager::ICON_SIZE_TYPE_SMALL;
