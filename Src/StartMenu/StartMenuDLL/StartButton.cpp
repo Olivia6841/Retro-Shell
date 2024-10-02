@@ -258,6 +258,7 @@ void CStartButton::UpdateButton(void)
 
 		RECT rcLine;
 		CopyRect(&rcLine, &rc);
+		::GetClientRect(m_hWnd, &rc);
 
 		if (!GetSettingBool(L"XPButton"))
 		{
@@ -656,12 +657,14 @@ void CStartButton::LoadBitmap(void)
 			}
 			else
 			{
+				START_BUTTON_PADDING = 3;
+				START_TEXT_PADDING = 1;
 				m_Size.cx = rc.right + START_ICON_SIZE + 4 * START_TEXT_PADDING + 3;
 			}
 		}
 		else // Windows 2000 and earlier
 		{
-			START_TEXT_PADDING = 3;
+			START_TEXT_PADDING = 1;
 			m_Size.cx = rc.right + START_ICON_SIZE + 4 * START_TEXT_PADDING + 11;
 		}
 

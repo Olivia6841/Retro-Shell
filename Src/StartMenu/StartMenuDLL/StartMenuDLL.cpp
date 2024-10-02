@@ -1940,7 +1940,7 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 				WINCOMPATTRDATA attrData = { 0x13,&data,sizeof(data) };
 				SetWindowCompositionAttribute(hWnd, &attrData);
 			}
-			if (g_TaskbarTexture)// && IsAppThemed())
+			if (g_TaskbarTexture && (!IsAppThemed() || GetSettingBool(L"ForceClassicTaskbar")))
 			{
 				// draw taskbar background (behind start button and separators)
 				PAINTSTRUCT ps;
@@ -2357,6 +2357,7 @@ void UpdateTaskBars(TUpdateTaskbar update)
 			g_TaskbarMargins.left = g_TaskbarMargins.right = g_TaskbarMargins.top = g_TaskbarMargins.bottom = 0;
 			TTaskbarLook look = (TTaskbarLook)GetSettingInt(L"TaskbarLook");
 			bool bDefOpacity;
+			bool bForceClassicTaskbar = GetSettingBool(L"ForceClassicTaskbar");
 			int opacity = GetSettingInt(L"TaskbarOpacity", bDefOpacity);
 			if (look == TASKBAR_OPAQUE)
 				opacity = 100, bDefOpacity = true;
@@ -2399,14 +2400,20 @@ void UpdateTaskBars(TUpdateTaskbar update)
 					}
 				}
 			}
-			else //if (GetWinVersion()<WIN_VER_WIN10 && (!bDefColor || !bDefOpacity))
+			else
 			{
-				//if (bDefColor && GetWinVersion()>WIN_VER_WIN7)
+				if (bForceClassicTaskbar == true || !IsAppThemed())
 				{
-					//color=GetSystemGlassColor8();
 					color = GetSysColor(COLOR_BTNFACE);
-					//color=((color&0xFF)<<16)|(color&0xFF00)|((color>>16)&0xFF);
 				}
+				else if (GetWinVersion() < WIN_VER_WIN10 && (!bDefColor || !bDefOpacity))
+				{
+					if (bDefColor && GetWinVersion() > WIN_VER_WIN7) {
+						color = GetSystemGlassColor8();
+						color = ((color & 0xFF) << 16) | (color & 0xFF00) | ((color >> 16) & 0xFF);
+					}
+				}
+
 				BITMAPINFO bi = { 0 };
 				bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 				bi.bmiHeader.biWidth = bi.bmiHeader.biHeight = 32;
