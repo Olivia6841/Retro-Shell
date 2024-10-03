@@ -244,10 +244,12 @@ void CStartButton::UpdateButton(void)
 					START_TEXT_PADDING = 4;
 					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 4, (m_Size.cy - START_ICON_SIZE) / 2, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
 				}
-				else // Classic theme XP style
+				else // XP with classic theme
+				{
 					START_BUTTON_PADDING = 3;
 					START_TEXT_PADDING = 1;
-						DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET - 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET - 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+				}
 			}
 			else // Windows 2000 and earlier style classic theme
 			{
