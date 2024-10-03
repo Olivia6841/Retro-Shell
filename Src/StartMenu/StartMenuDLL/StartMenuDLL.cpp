@@ -2404,7 +2404,7 @@ void UpdateTaskBars(TUpdateTaskbar update)
 			{
 				if (bForceClassicTaskbar == true || !IsAppThemed())
 				{
-					color = GetSysColor(COLOR_BTNFACE);
+					color = GetSysColor(COLOR_3DFACE);
 				}
 				else if (GetWinVersion() < WIN_VER_WIN10 && (!bDefColor || !bDefOpacity))
 				{
