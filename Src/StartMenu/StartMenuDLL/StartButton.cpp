@@ -258,9 +258,8 @@ void CStartButton::UpdateButton(void)
 
 		RECT rcLine;
 		CopyRect(&rcLine, &rc);
-		::GetClientRect(m_hWnd, &rc);
 
-		if (!GetSettingBool(L"XPButton"))
+		if (!GetSettingBool(L"XPButton")) //2000
 		{
 			rcLine.left = rcLine.right + 3;
 
@@ -285,6 +284,8 @@ void CStartButton::UpdateButton(void)
 				(HBRUSH)(COLOR_3DSHADOW + 1)
 			);
 		}
+
+
 
 		if (GetSettingBool(L"XPButton"))
 		{
