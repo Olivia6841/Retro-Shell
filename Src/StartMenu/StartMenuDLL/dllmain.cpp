@@ -9,15 +9,11 @@
 #include "Settings.h"
 #include "Translations.h"
 #include "ResourceHelper.h"
-#include "StringSet.h"
 #include "resource.h"
-#include "..\Lib\resource.h"
+#include "../Lib/resource.h"
 #include "SettingsUI.h"
-#include "SkinManager.h"
 #include "uxtheme.h"
-#include "FNVHash.h"
 #include "MenuContainer.h"
-#include "SearchManager.h"
 #include "LogManager.h"
 #include <dwmapi.h>
 
