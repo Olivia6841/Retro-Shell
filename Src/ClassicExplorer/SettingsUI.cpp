@@ -460,7 +460,7 @@ protected:
 void CCustomToolbarDlg::ParseTreeItemExtra( CTreeItem *pItem, CSettingsParser &parser )
 {
 	wchar_t text[256];
-	Sprintf(text, _countof(text), L"%s.IconHover", pItem->name);
+	Sprintf(text, _countof(text), L"%s.IconHover",pItem->name);
 	pItem->iconH = parser.FindSetting(text, L"");
 	Sprintf(text,_countof(text),L"%s.IconDisabled",pItem->name);
 	pItem->iconD=parser.FindSetting(text,L"");
