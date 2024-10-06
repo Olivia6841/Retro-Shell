@@ -7,6 +7,8 @@
 
 #include "stdafx.h"
 #include "StringUtils.h"
+
+#include <assert.h>
 #include <stdio.h>
 #include <assert.h>
 
