@@ -84,8 +84,10 @@ int Strcat( wchar_t *dst, int size, const wchar_t *src );
 // Returns the number of characters written, excluding the terminating 0.
 // The return value is <=size-1. If size is 0, returns 0 and does nothing.
 // The result in dst is always 0 terminated.
+
 int _cdecl Sprintf( char *dst, int size, const char *format, ... );
 int _cdecl Sprintf( wchar_t *dst, int size, const wchar_t *format, ... );
+
 int _cdecl Vsprintf( char *dst, int size, const char *format, va_list args );
 int _cdecl Vsprintf( wchar_t *dst, int size, const wchar_t *format, va_list args );
 

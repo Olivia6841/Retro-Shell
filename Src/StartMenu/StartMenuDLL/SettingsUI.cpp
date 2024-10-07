@@ -1029,6 +1029,7 @@ static const CStdCommand g_StdCommands[]={
 	{L"shutdown_box",IDS_SHUTDOWN_SHUTDOWN_BOX,IDS_SHUTDOWNBOX_TIP,L"ShutdownBoxItem",L"$Menu.ShutdownBox",NULL,L"shell32.dll,329",NULL,StdMenuItem::MENU_SPLIT_BUTTON},
 	{L"user_files",IDS_SHOW_USERFILES,IDS_USERFILES_TIP,L"UserFilesItem",NULL,L"$Menu.UserFilesTip",L"",&FOLDERID_UsersFiles},
 	{L"user_documents",IDS_SHOW_USERDOCS,IDS_USERDOCS_TIP,L"UserDocumentsItem",NULL,L"$Menu.UserDocumentsTip",L"",&FOLDERID_Documents},
+	{L"user_music", IDS_SHOW_USERMUSIC, IDS_USERMUSIC_TIP, L"UserMusicItem",NULL,L"$Menu.UserMusicTip",L"",&FOLDERID_Music},
 	{L"user_pictures",IDS_SHOW_USERPICS,IDS_USERPICS_TIP,L"UserPicturesItem",NULL,L"$Menu.UserPicturesTip",L"",&FOLDERID_Pictures},
 	{L"control_panel",IDS_SHOW_CP,IDS_CONTROLPANEL_TIP,L"ControlPanelItem",L"$Menu.ControlPanel",L"$Menu.ControlPanelTip",L"shell32.dll,137",&FOLDERID_ControlPanelFolder,StdMenuItem::MENU_TRACK},
 	{L"pc_settings",IDS_PCSETTINGS,IDS_PCSETTINGS_TIP,L"PCSettingsItem",L"$Menu.PCSettings",L"",L"%windir%\\ImmersiveControlPanel\\SystemSettings.exe,10",NULL,StdMenuItem::MENU_TRACK},
@@ -1200,7 +1201,7 @@ L"ShutdownItem.Icon=none\n"
 ;
 
 const wchar_t *g_DefaultStartMenu2=
-L"Items=COLUMN_PADDING, ProgramsMenu, AppsMenu, SearchBoxItem, COLUMN_BREAK, FavoritesItem, UserFilesItem, UserDocumentsItem, UserPicturesItem, ComputerItem, RecentDocumentsItem, SEPARATOR, PCSettingsItem, ControlPanelItem, SecurityItem, NetworkItem, PrintersItem, SEPARATOR, SearchMenu, HelpItem, RunItem, COLUMN_PADDING, SEPARATOR, ShutdownBoxItem\n"
+L"Items=COLUMN_PADDING, ProgramsMenu, AppsMenu, SearchBoxItem, COLUMN_BREAK, FavoritesItem, UserFilesItem, UserDocumentsItem, RecentDocumentsItem, UserPicturesItem, UserMusicItem, ComputerItem, SEPARATOR, PCSettingsItem, ControlPanelItem, SecurityItem, NetworkItem, PrintersItem, SEPARATOR, SearchMenu, HelpItem, RunItem, COLUMN_PADDING, SEPARATOR, ShutdownBoxItem\n"
 L"ProgramsMenu.Command=programs\n"
 L"ProgramsMenu.Label=$Menu.Programs\n"
 L"ProgramsMenu.Icon=shell32.dll,326\n"
@@ -1240,6 +1241,8 @@ L"UserDocumentsItem.Command=user_documents\n"
 L"UserDocumentsItem.Tip=$Menu.UserDocumentsTip\n"
 L"UserPicturesItem.Command=user_pictures\n"
 L"UserPicturesItem.Tip=$Menu.UserPicturesTip\n"
+L"UserMusicItem.Command=user_music\n"
+L"UserMusicItem.Tip=$Menu.UserMusicTip\n"
 L"ControlPanelItem.Command=control_panel\n"
 L"ControlPanelItem.Icon=shell32.dll,137\n"
 L"ControlPanelItem.Label=$Menu.ControlPanel\n"
@@ -1913,6 +1916,9 @@ void CCustomMenuDlg::UpdateWarnings( TMenuStyle menuStyle )
 
 	bWarning=!wcsstr(items,L".command=user_documents\n");
 	UpdateSettingText(L"UserDocuments",-1,bWarning?IDS_SHOW_USERDOCS_TIP2:IDS_SHOW_USERDOCS_TIP,bWarning);
+
+	bWarning = !wcsstr(items, L".command=user_music\n");
+	UpdateSettingText(L"UserMusic", -1, bWarning ? IDS_SHOW_USERMUSIC_TIP2 : IDS_SHOW_USERMUSIC_TIP, bWarning);
 
 	bWarning=!wcsstr(items,L".command=user_pictures\n");
 	UpdateSettingText(L"UserPictures",-1,bWarning?IDS_SHOW_USERPICS_TIP2:IDS_SHOW_USERPICS_TIP,bWarning);
@@ -4232,18 +4238,27 @@ CSetting g_Settings[]={
 		{L"Name",CSetting::TYPE_RADIO,IDS_SORT_NAME,IDS_SORT_NAME_TIP},
 		{L"Extension",CSetting::TYPE_RADIO,IDS_SORT_EXT,IDS_SORT_EXT_TIP},
 		{L"Date",CSetting::TYPE_RADIO,IDS_SORT_DATE,IDS_SORT_DATE_TIP},
+
 	{L"UserFiles",CSetting::TYPE_INT,IDS_SHOW_USERFILES,IDS_SHOW_USERFILES_TIP,1,CSetting::FLAG_MENU_CLASSIC_BOTH},
 		{L"Hide",CSetting::TYPE_RADIO,IDS_ITEM_HIDE,IDS_ITEM_HIDE_TIP},
 		{L"Show",CSetting::TYPE_RADIO,IDS_ITEM_SHOW,IDS_ITEM_SHOW_TIP},
 		{L"Menu",CSetting::TYPE_RADIO,IDS_ITEM_MENU,IDS_ITEM_MENU_TIP},
+
 	{L"UserDocuments",CSetting::TYPE_INT,IDS_SHOW_USERDOCS,IDS_SHOW_USERDOCS_TIP,1,CSetting::FLAG_MENU_CLASSIC_BOTH},
 		{L"Hide",CSetting::TYPE_RADIO,IDS_ITEM_HIDE,IDS_ITEM_HIDE_TIP},
 		{L"Show",CSetting::TYPE_RADIO,IDS_ITEM_SHOW,IDS_ITEM_SHOW_TIP},
 		{L"Menu",CSetting::TYPE_RADIO,IDS_ITEM_MENU,IDS_ITEM_MENU_TIP},
+
+	{L"UserMusic",CSetting::TYPE_INT,IDS_SHOW_USERMUSIC,IDS_SHOW_USERMUSIC_TIP,1,CSetting::FLAG_MENU_CLASSIC_BOTH},
+		{L"Hide",CSetting::TYPE_RADIO,IDS_ITEM_HIDE,IDS_ITEM_HIDE_TIP},
+		{L"Show",CSetting::TYPE_RADIO, IDS_ITEM_SHOW, IDS_ITEM_SHOW_TIP},
+		{L"Menu", CSetting::TYPE_RADIO, IDS_ITEM_MENU, IDS_ITEM_MENU_TIP},
+
 	{L"UserPictures",CSetting::TYPE_INT,IDS_SHOW_USERPICS,IDS_SHOW_USERPICS_TIP,1,CSetting::FLAG_MENU_CLASSIC_BOTH},
 		{L"Hide",CSetting::TYPE_RADIO,IDS_ITEM_HIDE,IDS_ITEM_HIDE_TIP},
 		{L"Show",CSetting::TYPE_RADIO,IDS_ITEM_SHOW,IDS_ITEM_SHOW_TIP},
 		{L"Menu",CSetting::TYPE_RADIO,IDS_ITEM_MENU,IDS_ITEM_MENU_TIP},
+
 	{L"ControlPanel",CSetting::TYPE_INT,IDS_SHOW_CP,IDS_SHOW_CP_TIP,2,CSetting::FLAG_BASIC|CSetting::FLAG_MENU_CLASSIC_BOTH},
 		{L"Hide",CSetting::TYPE_RADIO,IDS_ITEM_HIDE,IDS_ITEM_HIDE_TIP},
 		{L"Show",CSetting::TYPE_RADIO,IDS_ITEM_SHOW,IDS_ITEM_SHOW_TIP},
@@ -4826,6 +4841,7 @@ void UpdateSettings( void )
 	bool bNoDocs=SHRestricted(REST_NOSMMYDOCS)!=0;
 	UpdateSetting(L"UserFiles",CComVariant(bNoDocs?0:1),bNoDocs);
 	UpdateSetting(L"UserDocuments",CComVariant(bNoDocs?0:1),bNoDocs);
+	UpdateSetting(L"UserMusic", CComVariant(bNoDocs?0:1), bNoDocs);
 	UpdateSetting(L"UserPictures",CComVariant(bNoDocs?0:1),bNoDocs);
 	
 	bool bNoEdit=SHRestricted(REST_NOCHANGESTARMENU)!=0;

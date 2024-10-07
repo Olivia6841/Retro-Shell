@@ -2,11 +2,11 @@
 // Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
-#include <windows.h>
+#include "..\Lib\StringUtils.h"
 #include <commctrl.h>
-#include <shlwapi.h>
 #include <Psapi.h>
-#include "StringUtils.h"
+#include <shlwapi.h>
+#include <windows.h>
 
 // Find and activate the Settings window
 static BOOL CALLBACK FindSettingsEnum( HWND hwnd, LPARAM lParam )
@@ -55,7 +55,10 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrC
 		if (pXml)
 		{
 			wchar_t xml[_MAX_PATH];
-			GetToken(pXml+5,xml,_countof(xml),L" ");
+
+			//GetToken(const wchar_t* text, wchar_t* token, int size, const wchar_t* separators)
+			GetToken(pXml+5, xml, _countof(xml), L" ");
+
 			HMODULE dll=LoadClassicExplorerDll();
 			if (!dll) return 1;
 			typedef bool (*tImportSettingsXml)( const wchar_t *fname );

@@ -848,6 +848,11 @@
 // Olive6841 Additions
 #define IDS_MEDIUM_SIZE_SM               10000
 #define IDS_MEDIUM_SIZE_SM_TIP           10001
+#define IDS_SHOW_USERMUSIC				 10002
+#define IDS_SHOW_USERMUSIC_TIP			 10003
+#define IDS_USERMUSIC_TIP				 10004
+#define IDS_SHOW_USERMUSIC_TIP2			 10005
+
 
 // Next default values for new objects
 // 

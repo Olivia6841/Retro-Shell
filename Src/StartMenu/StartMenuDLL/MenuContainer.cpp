@@ -50,7 +50,7 @@ enum
 	MENU_EXPANDED = 2, // the item is expanded
 };
 
-static StdMenuOption g_StdOptions[]=
+static StdMenuOption g_StdOptions[] =
 {
 	{MENU_COMPUTER,MENU_NONE}, // MENU_ENABLED|MENU_EXPANDED from settings
 	{MENU_FAVORITES,MENU_NONE}, // MENU_ENABLED|MENU_EXPANDED from settings, check policy
@@ -62,11 +62,11 @@ static StdMenuOption g_StdOptions[]=
 	{MENU_RESTART_NOUPDATE,MENU_ENABLED}, // only available when there are updates
 	{MENU_DISCONNECT,MENU_NONE}, // MENU_ENABLED if in a remote session, check policy
 	{MENU_SHUTDOWN_BOX,MENU_ENABLED}, // MENU_NONE if in a remote session, check policy
-	{MENU_SHUTDOWN_BUTTON,MENU_ENABLED|MENU_EXPANDED}, // MENU_ENABLED|MENU_EXPANDED from the settings
+	{MENU_SHUTDOWN_BUTTON,MENU_ENABLED | MENU_EXPANDED}, // MENU_ENABLED|MENU_EXPANDED from the settings
 	{MENU_SHUTDOWN,MENU_ENABLED}, // MENU_NONE if in a remote session, check policy
 	{MENU_SHUTDOWN_NOUPDATE,MENU_ENABLED}, // only available when there are updates
 	{MENU_UNDOCK,MENU_ENABLED}, // from settings, check policy
-	{MENU_CONTROLPANEL,MENU_ENABLED|MENU_EXPANDED}, // MENU_EXPANDED from settings, check policy
+	{MENU_CONTROLPANEL,MENU_ENABLED | MENU_EXPANDED}, // MENU_EXPANDED from settings, check policy
 	{MENU_NETWORK,MENU_ENABLED}, // MENU_EXPANDED from settings, check policy
 	{MENU_SECURITY,MENU_ENABLED}, // MENU_ENABLED if in a remote session
 	{MENU_PRINTERS,MENU_ENABLED}, // MENU_EXPANDED from settings, check policy
@@ -81,6 +81,7 @@ static StdMenuOption g_StdOptions[]=
 	{MENU_USERFILES,MENU_ENABLED}, // check policy
 	{MENU_USERDOCUMENTS,MENU_ENABLED}, // check policy
 	{MENU_USERPICTURES,MENU_ENABLED}, // check policy
+	{MENU_USERMUSIC, MENU_ENABLED}, // check policy
 	{MENU_SLEEP,MENU_ENABLED}, // check power caps
 	{MENU_HIBERNATE,MENU_ENABLED}, // check power caps
 	{MENU_LOCK,MENU_ENABLED}, // check power settings
@@ -8025,6 +8026,19 @@ HWND CMenuContainer::ToggleStartMenu( int taskbarId, bool bKeyboard, bool bAllPr
 						g_StdOptions[i].options=MENU_ENABLED;
 					else if (show==2)
 						g_StdOptions[i].options=MENU_ENABLED|MENU_EXPANDED;
+				}
+				break;
+			case MENU_USERMUSIC:
+				if (s_bWin7Style)
+					g_StdOptions[i].options = MENU_ENABLED | MENU_EXPANDED;
+				else
+				{
+					g_StdOptions[i].options = 0;
+					int show = GetSettingInt(L"UserMusic");
+					if (show == 1)
+						g_StdOptions[i].options = MENU_ENABLED;
+					else if (show == 2)
+						g_StdOptions[i].options = MENU_ENABLED | MENU_EXPANDED;
 				}
 				break;
 			case MENU_LOCK:

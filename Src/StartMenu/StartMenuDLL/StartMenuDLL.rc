@@ -485,6 +485,8 @@ END
 STRINGTABLE 
 BEGIN
     IDS_SHOW_USERDOCS_TIP   "Select how to display the user's documents in the start menu"
+	IDS_SHOW_USERMUSIC		"User music"
+	IDS_SHOW_USERMUSIC_TIP	"Select how to display the user's music in the start menu"
     IDS_SHOW_USERPICS       "User pictures"
     IDS_SHOW_USERPICS_TIP   "Select how to display the user's pictures in the start menu"
     IDS_SHOW_CP             "Control Panel"
@@ -763,6 +765,7 @@ BEGIN
     IDS_DOCUMENTS_TIP       "Shows the recent documents"
     IDS_USERFILES_TIP       "Shows the user files folder"
     IDS_USERDOCS_TIP        "Shows the user documents folder"
+	IDS_USERMUSIC_TIP		"Shows the user music folder" //added by Olive6841
     IDS_USERPICS_TIP        "Shows the user pictures folder"
     IDS_CONTROLPANEL_TIP    "Shows the contents of the Control Panel"
     IDS_CONTROLPANEL2_TIP   "Shows the contents of the Control Panel. When double-clicked, will show the Control Panel in Categories view"
@@ -800,6 +803,7 @@ BEGIN
     IDS_SHOW_DOCUMENTS_TIP2 "Select how to display the recent documents in the start menu\nWarning: You don't have a Documents item in your custom menu, so this setting will be ignored"
     IDS_SHOW_USERFILES_TIP2 "Select how to display the user's files in the start menu\nWarning: You don't have a User Files item in your custom menu, so this setting will be ignored"
     IDS_SHOW_USERDOCS_TIP2  "Select how to display the user's documents in the start menu\nWarning: You don't have a User Documents item in your custom menu, so this setting will be ignored"
+	IDS_SHOW_USERMUSIC_TIP2 "Select how to display the user's music in the start menu\nWarning: You don't have a User Music item in your custom menu, so this setting will be ignored"
     IDS_SHOW_USERPICS_TIP2  "Select how to display the user's pictures in the start menu\nWarning: You don't have a User Pictures item in your custom menu, so this setting will be ignored"
     IDS_SHOW_CP_TIP2        "Select how to display the Control Panel in the start menu\nWarning: You don't have a Control Panel item in your custom menu, so this setting will be ignored"
     IDS_SHOW_NETWORK_TIP2   "Select how to display Network in the start menu\nWarning: You don't have a Network Connections item in your custom menu, so this setting will be ignored"

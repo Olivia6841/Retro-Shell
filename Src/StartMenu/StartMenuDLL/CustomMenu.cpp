@@ -34,6 +34,7 @@ static StdMenuItem g_StdMenu[]=
 	{L"*user_files",MENU_USERFILES,&FOLDERID_UsersFiles},
 	{L"*user_documents",MENU_USERDOCUMENTS,&FOLDERID_Documents},
 	{L"*user_pictures",MENU_USERPICTURES,&FOLDERID_Pictures},
+	{L"*user_music",MENU_USERMUSIC,&FOLDERID_Music},
 	{L"*control_panel",MENU_CONTROLPANEL,&FOLDERID_ControlPanelFolder},
 	{L"pc_settings",MENU_PCSETTINGS},
 	{L"windows_security",MENU_SECURITY},

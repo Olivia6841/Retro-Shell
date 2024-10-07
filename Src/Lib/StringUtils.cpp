@@ -5,8 +5,10 @@
 // StringUtils is also available under the CPOL license as part of the FormatString article
 // on CodeProject: http://www.codeproject.com/KB/string/FormatString.aspx
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "StringUtils.h"
+
+#include <assert.h>
 #include <stdio.h>
 #include <assert.h>
 
@@ -192,6 +194,8 @@ int Strcat( wchar_t *dst, int size, const wchar_t *src )
 // Returns the number of characters written, excluding the terminating 0.
 // The return value is <=size-1. If size is 0, returns 0 and does nothing.
 // The result in dst is always 0 terminated.
+
+// _cdecl Sprintf( char *dst, int size, const char *format, ... );
 int Sprintf( char *dst, int size, const char *format, ... )
 {
 	va_list args;
@@ -201,7 +205,8 @@ int Sprintf( char *dst, int size, const char *format, ... )
 	return len;
 }
 
-int Sprintf( wchar_t *dst, int size, const wchar_t *format, ... )
+//_cdecl Sprintf(wchar_t* dst, int size, const wchar_t* format, ...);
+int Sprintf( wchar_t* dst, int size, const wchar_t *format, ... )
 {
 	va_list args;
 	va_start(args,format);
