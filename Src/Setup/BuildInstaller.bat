@@ -22,8 +22,8 @@ echo -- Building Installer (%CS_LANG_NAME_SHORT%)
 @if _%CS_LANG_NAME%==_ echo Unrecognized language '%CS_LANG_FOLDER%'
 @if _%CS_LANG_NAME%==_ exit /b 1
 
-SET CS_INSTALLER_NAME=OpenShellSetup_%CS_VERSION_STR%-%CS_LANG_NAME_SHORT%
-if %CS_LANG_NAME_SHORT%==en SET CS_INSTALLER_NAME=OpenShellSetup_%CS_VERSION_STR%
+SET CS_INSTALLER_NAME=RetroShellSetup_%CS_VERSION_STR%-%CS_LANG_NAME_SHORT%
+if %CS_LANG_NAME_SHORT%==en SET CS_INSTALLER_NAME=RetroShellSetup_%CS_VERSION_STR%
 
 if exist Temp rd /Q /S Temp
 md Temp

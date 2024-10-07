@@ -3,6 +3,6 @@
 
 # Retro-Shell
 
-Retro-Shell but not ass.
+Open-Shell but not ass.
 
-*Originally* **[Retro-Shell](https://github.com/Retro-Shell/Retro-Shell-Menu)**
+*Originally* **[Retro-Shell](https://github.com/Open-Shell/Open-Shell-Menu)**
