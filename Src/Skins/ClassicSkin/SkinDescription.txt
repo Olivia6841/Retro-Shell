@@ -24,19 +24,19 @@ Main_bitmap=1
 ; number 5 is the width of the image to stretch and use as the background for the menu
 ; number 6 is the width of the image to use for the right edge
 ; If the first 3 numbers are missing there is no caption
-Main_bitmap_slices_X=2,1,2,0,1,0
+;Main_bitmap_slices_X=2,1,2,0,1,0
+ Main_bitmap_slices_X=0,1,0
 
 ; Main_bitmap_slices_Y - must contain 3 numbers. The sum of the numbers must be equal to the height of the Main_bitmap image
 ; number 1 is the height of the image to use for the top edge
 ; number 2 is the height of the image to stretch and use as the background
 ; number 3 is the height of the image to use for the bottom edge
-Main_bitmap_slices_Y=2,96,2
-
+ Main_bitmap_slices_Y=2,96,2
 
 ;CAPTION SECTION - describes the caption portion of the main menu
 
 ; Caption_font - font to use for the caption. The format is "font name",[normal/bold],point size. Defaults to "Segoe UI",normal,18
-Caption_font="Segoe UI",normal,18
+Caption_font="Tahoma",normal,18
 
 ; Caption_text_color - RRGGBB color of the caption text. Defaults to white
 Caption_text_color=#FFFFFF
@@ -102,7 +102,7 @@ Main_padding=2,2,2,2
 
 [SMALL_ICONS]
 Main_large_icons=0
-Caption_font="Segoe UI",normal,15
+Caption_font="Tahoma",normal,15
 
 [THICK_BORDER]
 Main_thin_frame=0
@@ -150,8 +150,10 @@ Submenu_separator_split_icon_padding=6,3,3,3,100%
 
 
 [TWO_COLUMNS]
+;Main_bitmap = 0
 Main_bitmap=0
-Main_bitmap_slices_X=0,0,0,0,0,0
+;Main_bitmap_slices_X=0,0,0,0,0
+Main_bitmap_slices_X=2,1,2,0,1,0
 Main_bitmap_slices_Y=0,0,0
 Main_padding=2,2,3,2
 Main2_padding=4,2,2,2
@@ -172,12 +174,13 @@ User_image_size=32
 
 [USER_NAME]
 User_name_position=10,10,-75,50
-User_name_align=right
-User_font="Segoe UI",bold,18
+User_name_align=left
+User_font="Franklin Gothic Medium",italic,24
+User_text_color=#FFFFFF
 User_glow_size=0
 
 [SMALL_ICONS]
-User_font="Segoe UI",bold,16
+User_font="Tahoma",bold,16
 
 [USER_NAME AND TWO_COLUMNS]
 User_name_align=right2

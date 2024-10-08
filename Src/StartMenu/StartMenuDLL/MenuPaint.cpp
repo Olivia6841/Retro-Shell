@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <math.h>
 #include <chrono>
+#include <vssym32.h>
 
 static BLENDFUNCTION g_AlphaFunc={AC_SRC_OVER,0,255,AC_SRC_ALPHA};
 
@@ -425,7 +426,8 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 {
 	// get the text from the ini file or from the registry
 	wchar_t caption[256];
-	Strcpy(caption,_countof(caption),GetSettingString(L"MenuCaption"));
+	//Strcpy(caption,_countof(caption),GetSettingString(L"MenuCaption"));
+	Strcpy(caption, _countof(caption), L"This is a hardcoded caption for testing :3");
 	DoEnvironmentSubst(caption,_countof(caption));
 
 	MenuBitmap bmpSkin;
@@ -470,9 +472,10 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 	if (bCaption)
 	{
 		if (s_Theme)
-			DrawThemeTextEx(s_Theme,hdcTemp,0,0,caption,-1,DT_NOPREFIX|DT_SINGLELINE|DT_CALCRECT,&rc,&opts);
+			DrawThemeTextEx(s_Theme, hdcTemp, 0, 0, caption, -1, DT_NOPREFIX | DT_SINGLELINE | DT_CALCRECT, &rc, &opts);
 		else
 			DrawText(hdcTemp,caption,-1,&rc,DT_NOPREFIX|DT_SINGLELINE|DT_CALCRECT);
+			//DrawCaption(m_hWnd, hdcTemp, &rc, DC_GRADIENT);
 	}
 	int textWidth=rc.right+s_Skin.Caption_padding.top+s_Skin.Caption_padding.bottom;
 	int textHeight=rc.bottom+s_Skin.Caption_padding.left+s_Skin.Caption_padding.right;
@@ -1083,7 +1086,9 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 		{
 			// draw white text on black background
 			SetTextColor(hdcTemp,0xFFFFFF);
-			SetBkMode(hdcTemp,TRANSPARENT);
+			//SetBkMode(hdcTemp, OPAQUE);
+			//DrawCaption(m_hWnd, hdcTemp, &rc, DC_GRADIENT);
+			SetBkMode(hdcTemp, TRANSPARENT);
 			DrawText(hdcTemp,caption,-1,&rc,DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE);
 			SelectObject(hdcTemp,bmp02);
 

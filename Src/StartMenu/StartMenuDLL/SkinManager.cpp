@@ -2139,7 +2139,7 @@ bool MenuSkin::LoadSkin( HMODULE hMod, const wchar_t *variation, const wchar_t *
 			Main2_icon_size = ICON_SIZE_MEDIUM;
 		else if
 			(skinType == SKIN_TYPE_WIN7 && !FindSetting(L"Main2_icon_size"))
-			Main2_icon_size = ICON_SIZE_MEDIUM;
+			Main2_icon_size = ICON_SIZE_NONE;
 
 		else
 		{
