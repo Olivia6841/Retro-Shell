@@ -21,9 +21,9 @@
 
 static int START_ICON_SIZE = 0;
 static int START_BUTTON_PADDING = 0;
-const int START_BUTTON_OFFSET = 0;
+constexpr int START_BUTTON_OFFSET = 0;
 static int START_TEXT_PADDING = 0;
-const int BLEND_PRECISION = 1000;
+constexpr int BLEND_PRECISION = 1000;
 
 bool g_bAllowMoveButton;
 
@@ -98,7 +98,7 @@ private:
 		int duration; // in ms
 		bool bBlend;
 	};
-	Animation m_Animations[2];
+	Animation m_Animations[2]; // Array size of 2
 
 	void ParseAnimation(Animation& animation, const std::vector<unsigned int>& pixels, int& index, int totalFrames);
 	void LoadBitmap(void);
@@ -178,7 +178,21 @@ LRESULT CStartButton::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 	val = DWMFLIP3D_EXCLUDEABOVE;
 	DwmSetWindowAttribute(m_hWnd, DWMWA_FLIP3D_POLICY, &val, sizeof(val));
 	LoadBitmap();
-	m_Tooltip = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | (m_bRTL ? WS_EX_LAYOUTRTL : 0), TOOLTIPS_CLASS, NULL, WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP, 0, 0, 0, 0, NULL, NULL, g_Instance, NULL);
+
+	m_Tooltip = CreateWindowEx
+	(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | (m_bRTL ? WS_EX_LAYOUTRTL : 0),
+		TOOLTIPS_CLASS,
+		NULL,
+		WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP,
+		0,
+		0,
+		0,
+		0,
+		NULL,
+		NULL,
+		g_Instance,
+		NULL); // Create the tooltip
+
 	OnThemeChanged(WM_THEMECHANGED, 0, 0, bHandled);
 	m_bPressed = true;
 	SetPressed(false);

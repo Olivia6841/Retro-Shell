@@ -167,13 +167,21 @@ BEGIN
     CONTROL         "Replace Start button",IDC_CHECKENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,170,77,10
     CONTROL         "<a>Advanced button options...</a>",IDC_LINKADVANCED,
                     "SysLink",WS_TABSTOP,114,170,157,10
-    CONTROL         "Aero",IDC_RADIOAERO,"Button",BS_AUTORADIOBUTTON,25,185,30,10
-    CONTROL         "Classic",IDC_RADIOCLASSIC,"Button",BS_AUTORADIOBUTTON,80,185,37,10
-    CONTROL         "Custom",IDC_RADIOCUSTOM,"Button",BS_AUTORADIOBUTTON,145,185,40,10
-    ICON            IDI_BTN_CLASSIC,IDC_STATICAERO,30,198,18,17,SS_NOTIFY | SS_REALSIZEIMAGE
-    CONTROL         124,IDC_STATICCLASSIC,"Static",SS_BITMAP | SS_NOTIFY | SS_REALSIZEIMAGE,85,203,33,13
-    ICON            "",IDC_STATICCUSTOM,150,198,18,17,SS_NOTIFY
-    PUSHBUTTON      "Pick image...",IDC_BUTTONPICK,188,201,50,14
+
+
+	CONTROL         "Aero", IDC_RADIOAERO, "Button", BS_AUTORADIOBUTTON, 25, 185, 30, 10
+	CONTROL         "Metro", IDC_RADIOMETRO, "Button", BS_AUTORADIOBUTTON, 80, 185, 40, 10
+	CONTROL         "Classic", IDC_RADIOCLASSIC, "Button", BS_AUTORADIOBUTTON, 145, 185, 37, 10
+	CONTROL         "Custom", IDC_RADIOCUSTOM, "Button", BS_AUTORADIOBUTTON, 205, 185, 40, 10
+
+	ICON            IDI_BTN_CLASSIC, IDC_STATICAERO, 30, 198, 18, 17, SS_NOTIFY | SS_REALSIZEIMAGE
+	ICON            IDI_BTN_METRO, IDC_STATICMETRO, 65, 198, 18, 17, SS_NOTIFY | SS_REALSIZEIMAGE
+	CONTROL         125, IDC_STATICMETRO, "Static", SS_BITMAP | SS_NOTIFY | SS_REALSIZEIMAGE, 90, 203, 33, 13
+	CONTROL         124, IDC_STATICCLASSIC, "Static", SS_BITMAP | SS_NOTIFY | SS_REALSIZEIMAGE, 150, 203, 33, 13
+	ICON            "", IDC_STATICCUSTOM, 210, 198, 18, 17, SS_NOTIFY
+	PUSHBUTTON      "Pick image...", IDC_BUTTONPICK, 248, 201, 50, 14
+
+
 END
 
 IDD_CUSTOMMENU7 DIALOGEX 0, 0, 249, 210
@@ -352,6 +360,7 @@ IDI_APPSICON            ICON                    "apps.ico"
 IDI_APPSICON10          ICON                    "apps10.ico"
 IDI_APPSICON11          ICON                    "apps11.ico"
 IDI_BTN_CLASSIC         ICON                    "btn_aero.ico"
+IDI_BTN_METRO			ICON					"btn_metro.ico"
 IDI_START               ICON                    "start.ico"
 IDI_START10             ICON                    "start10.ico"
 
@@ -851,6 +860,8 @@ BEGIN
 	IDS_CLASSIC_BUTTON_XP	"Windows XP style"
     IDS_AERO_BUTTON         "Aero button"
     IDS_AERO_BUTTON_TIP     "Select the Aero look for the Start button"
+	IDS_METRO_BUTTON		"Metro button"
+	IDS_METRO_BUTTON_TIP	"Select the Metro 8.1 look for the Start button"
     IDS_CUSTOM_BUTTON       "Custom button"
     IDS_CUSTOM_BUTTON_TIP   "Select a custom bitmap for the Start button"
     IDS_BUTTON_IMAGE        "Button image"

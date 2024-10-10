@@ -7,9 +7,9 @@
 enum TStartButtonType
 {
 	START_BUTTON_AERO,
+	START_BUTTON_METRO, //8.1 Button :3
 	START_BUTTON_CLASSIC,
 	START_BUTTON_CUSTOM,
-//	START_BUTTON_METRO,
 };
 
 HWND CreateStartButton( int taskbarId, HWND taskBar, HWND rebar );

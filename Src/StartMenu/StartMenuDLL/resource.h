@@ -455,8 +455,10 @@
 #define IDS_BUTTON_TYPE_TIP             3349
 #define IDS_CLASSIC_BUTTON              3350
 #define IDS_CLASSIC_BUTTON_TIP          3351
+
 #define IDS_AERO_BUTTON                 3352
 #define IDS_AERO_BUTTON_TIP             3353
+
 #define IDS_CUSTOM_BUTTON               3356
 #define IDS_CUSTOM_BUTTON_TIP           3357
 #define IDS_BUTTON_IMAGE                3358
@@ -852,6 +854,12 @@
 #define IDS_SHOW_USERMUSIC_TIP			 10003
 #define IDS_USERMUSIC_TIP				 10004
 #define IDS_SHOW_USERMUSIC_TIP2			 10005
+
+#define IDC_RADIOMETRO					 10006
+#define IDC_STATICMETRO					 10007
+#define IDS_METRO_BUTTON				 10008
+#define IDS_METRO_BUTTON_TIP			 10009
+#define IDI_BTN_METRO					 10010
 
 
 // Next default values for new objects

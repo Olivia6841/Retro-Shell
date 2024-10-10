@@ -21,6 +21,7 @@
 #include <dwmapi.h>
 #include <htmlhelp.h>
 #define SECURITY_WIN32
+#include <PowrProf.h>
 #include <Security.h>
 
 const int DEFAULT_GLASS_OPACITY=50; // 50%
@@ -3747,7 +3748,7 @@ protected:
 protected:
 	CWindow m_ImageClassic1, m_ImageClassic2, m_ImageWin7;
 	CWindow m_Tooltip;
-	CWindow m_ButtonAero, m_ButtonClassic, m_ButtonCustom;
+	CWindow m_ButtonAero, m_ButtonMetro, m_ButtonClassic, m_ButtonCustom;
 	HICON m_hIcon;
 	CString m_IconPath;
 
@@ -3924,6 +3925,7 @@ LRESULT CMenuStyleDlg::OnButtonStyle( WORD wNotifyCode, WORD wID, HWND hWndCtl, 
 	}
 
 	CheckDlgButton(IDC_RADIOAERO,style==START_BUTTON_AERO?BST_CHECKED:BST_UNCHECKED);
+	CheckDlgButton(IDC_RADIOMETRO, style == START_BUTTON_METRO ? BST_CHECKED : BST_UNCHECKED);
 	CheckDlgButton(IDC_RADIOCLASSIC,style==START_BUTTON_CLASSIC?BST_CHECKED:BST_UNCHECKED);
 	CheckDlgButton(IDC_RADIOCUSTOM,style==START_BUTTON_CUSTOM?BST_CHECKED:BST_UNCHECKED);
 
@@ -4078,13 +4080,16 @@ void CMenuStyleDlg::Update( bool bForce )
 	GetDlgItem(IDC_CHECKENABLED).EnableWindow(!IsSettingLocked(L"EnableStartButton"));
 
 	CheckDlgButton(IDC_RADIOAERO,buttonType==START_BUTTON_AERO?BST_CHECKED:BST_UNCHECKED);
+	CheckDlgButton(IDC_RADIOMETRO, buttonType == START_BUTTON_METRO ? BST_CHECKED : BST_UNCHECKED);
 	CheckDlgButton(IDC_RADIOCLASSIC,buttonType==START_BUTTON_CLASSIC?BST_CHECKED:BST_UNCHECKED);
 	CheckDlgButton(IDC_RADIOCUSTOM,buttonType==START_BUTTON_CUSTOM?BST_CHECKED:BST_UNCHECKED);
 	BOOL bEnabled2=bEnabled && !IsSettingLocked(L"StartButtonType");
 	GetDlgItem(IDC_RADIOAERO).EnableWindow(bEnabled2);
+	GetDlgItem(IDC_RADIOMETRO).EnableWindow(bEnabled2);
 	GetDlgItem(IDC_RADIOCLASSIC).EnableWindow(bEnabled2);
 	GetDlgItem(IDC_RADIOCUSTOM).EnableWindow(bEnabled2);
 	m_ButtonAero.EnableWindow(bEnabled2);
+	m_ButtonMetro.EnableWindow(bEnabled2);
 	m_ButtonClassic.EnableWindow(bEnabled2);
 	m_ButtonCustom.EnableWindow(bEnabled2);
 
@@ -4468,15 +4473,16 @@ CSetting g_Settings[]={
 	{L"StartButtonTip",CSetting::TYPE_STRING,IDS_BUTTON_TIP,IDS_BUTTON_TIP_TIP,L"$Menu.Start",0,L"EnableStartButton"},
 	{L"StartButtonType",CSetting::TYPE_INT,IDS_BUTTON_TYPE,IDS_BUTTON_TYPE_TIP,0,0,L"EnableStartButton"},
 		{L"AeroButton",CSetting::TYPE_RADIO,IDS_AERO_BUTTON,IDS_AERO_BUTTON_TIP},
-		{L"ClasicButton",CSetting::TYPE_RADIO,IDS_CLASSIC_BUTTON,IDS_CLASSIC_BUTTON_TIP},
+	{L"MetroButton", CSetting::TYPE_RADIO, IDS_METRO_BUTTON,IDS_METRO_BUTTON_TIP},
+		{L"ClassicButton",CSetting::TYPE_RADIO,IDS_CLASSIC_BUTTON,IDS_CLASSIC_BUTTON_TIP},
 		{L"CustomButton",CSetting::TYPE_RADIO,IDS_CUSTOM_BUTTON,IDS_CUSTOM_BUTTON_TIP},
-	{L"StartButtonPath",CSetting::TYPE_BITMAP,IDS_BUTTON_IMAGE,IDS_BUTTON_IMAGE_TIP,L"",0,L"#StartButtonType=2",L"CustomButton"},
-	{L"StartButtonSize",CSetting::TYPE_INT,IDS_BUTTON_SIZE,IDS_BUTTON_SIZE_TIP2,0,0,L"#StartButtonType=2",L"CustomButton"},
+	{L"StartButtonPath",CSetting::TYPE_BITMAP,IDS_BUTTON_IMAGE,IDS_BUTTON_IMAGE_TIP,L"",0,L"#StartButtonType=3",L"CustomButton"},
+	{L"StartButtonSize",CSetting::TYPE_INT,IDS_BUTTON_SIZE,IDS_BUTTON_SIZE_TIP2,0,0,L"#StartButtonType=3",L"CustomButton"},
 	{L"StartButtonAlign",CSetting::TYPE_BOOL,IDS_BUTTON_ALIGN,IDS_BUTTON_ALIGN_TIP,0,0,L"#StartButtonType=2",L"CustomButton"},
-	{L"StartButtonIcon",CSetting::TYPE_ICON,IDS_BUTTON_ICON,IDS_BUTTON_ICON_TIP,L",1",0,L"#StartButtonType=1",L"ClasicButton"},
-	{L"StartButtonIconSize",CSetting::TYPE_INT,IDS_BUTTON_ICON_SIZE,IDS_BUTTON_ICON_SIZE_TIP,0,0,L"#StartButtonType=1",L"ClasicButton"},
-	{L"StartButtonText",CSetting::TYPE_STRING,IDS_BUTTON_TEXT,IDS_BUTTON_TEXT_TIP,L"$Menu.Start",0,L"#StartButtonType=1",L"ClasicButton"},
-	{L"XPButton",CSetting::TYPE_BOOL,IDS_CLASSIC_BUTTON_XP,IDS_CLASSIC_BUTTON_TIP,L"$Menu.StartXP",0,L"#StartButtonType=1",L"ClasicButton"},
+	{L"StartButtonIcon",CSetting::TYPE_ICON,IDS_BUTTON_ICON,IDS_BUTTON_ICON_TIP,L",1",0,L"#StartButtonType=2",L"ClassicButton"},
+	{L"StartButtonIconSize",CSetting::TYPE_INT,IDS_BUTTON_ICON_SIZE,IDS_BUTTON_ICON_SIZE_TIP,0,0,L"#StartButtonType=2",L"ClassicButton"},
+	{L"StartButtonText",CSetting::TYPE_STRING,IDS_BUTTON_TEXT,IDS_BUTTON_TEXT_TIP,L"$Menu.Start",0,L"#StartButtonType=2",L"ClassicButton"},
+	{L"XPButton",CSetting::TYPE_BOOL,IDS_CLASSIC_BUTTON_XP,IDS_CLASSIC_BUTTON_TIP,L"$Menu.StartXP",0,L"#StartButtonType=2",L"ClassicButton"},
 
 {L"Taskbar",CSetting::TYPE_GROUP,IDS_TASKBAR_SETTINGS,0,0,CSetting::FLAG_BASIC},
 	{L"CustomTaskbar",CSetting::TYPE_BOOL,IDS_TASK_CUSTOM,IDS_TASK_CUSTOM_TIP,0,CSetting::FLAG_CALLBACK},
@@ -5190,6 +5196,10 @@ static void StoreButtonSettings( void )
 	{
 		g_ButtonIcon=CalcFNVHash(GetSettingString(L"StartButtonIcon"));
 		g_ButtonText=CalcFNVHash(GetSettingString(L"StartButtonText"));
+	}
+	if (g_ButtonPath==START_BUTTON_METRO)
+	{
+
 	}
 	if (g_ButtonPath==START_BUTTON_CUSTOM)
 		g_ButtonPath=CalcFNVHash(GetSettingString(L"StartButtonPath"));
