@@ -213,12 +213,7 @@ void CStartButton::UpdateButton(void)
 		if (m_bRTL)
 			SetLayout(hSrc, LAYOUT_RTL);
 		HGDIOBJ bmp0 = SelectObject(hSrc, m_Blendmap);
-
-		//RECT rc = { 0,0,m_Size.cx - 5,m_Size.cy };
 		RECT rc = { 0,0,m_Size.cx,m_Size.cy };
-
-		//if (GetSettingBool(L"XPButton"))
-		//	rc.right = m_Size.cx;
 
 		HBRUSH btnface = (HBRUSH)(COLOR_3DFACE + 1);
 		FillRect(hSrc, &rc, btnface);
@@ -269,7 +264,6 @@ void CStartButton::UpdateButton(void)
 		if (!GetSettingBool(L"XPButton")) //2000
 		{
 			rcLine.left = rcLine.right;
-
 			// Draw dog ass separator next to the start button like on Windows 2000
 			DrawEdge(hSrc, &rcLine, EDGE_ETCHED, BF_RIGHT);
 		}
