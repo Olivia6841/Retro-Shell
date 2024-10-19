@@ -214,12 +214,13 @@ void CStartButton::UpdateButton(void)
 			SetLayout(hSrc, LAYOUT_RTL);
 		HGDIOBJ bmp0 = SelectObject(hSrc, m_Blendmap);
 
-		RECT rc = { 0,0,m_Size.cx - 5,m_Size.cy };
+		//RECT rc = { 0,0,m_Size.cx - 5,m_Size.cy };
+		RECT rc = { 0,0,m_Size.cx,m_Size.cy };
 
-		if (GetSettingBool(L"XPButton"))
-			rc.right = m_Size.cx;
+		//if (GetSettingBool(L"XPButton"))
+		//	rc.right = m_Size.cx;
 
-		HBRUSH btnface = GetSysColorBrush(COLOR_BTNFACE);
+		HBRUSH btnface = (HBRUSH)(COLOR_3DFACE + 1);
 		FillRect(hSrc, &rc, btnface);
 		InflateRect(&rc, -START_BUTTON_OFFSET, -START_BUTTON_OFFSET);
 		int offset = 0;
@@ -231,7 +232,11 @@ void CStartButton::UpdateButton(void)
 		}
 		else // Classic Theme
 		{
-			DrawFrameControl(hSrc, &rc, DFC_BUTTON, DFCS_BUTTONPUSH | (m_bPressed ? DFCS_PUSHED : 0));
+			RECT rcButton;
+			CopyRect(&rcButton, &rc);
+			if (!GetSettingBool(L"XPButton"))
+				rcButton.right = m_Size.cx - 5;
+			DrawFrameControl(hSrc, &rcButton, DFC_BUTTON, DFCS_BUTTONPUSH | (m_bPressed ? DFCS_PUSHED : 0));
 			offset = m_bPressed ? 1 : 0;
 		}
 		if (m_Icon)
@@ -263,28 +268,10 @@ void CStartButton::UpdateButton(void)
 
 		if (!GetSettingBool(L"XPButton")) //2000
 		{
-			rcLine.left = rcLine.right + 3;
+			rcLine.left = rcLine.right;
 
-			rcLine.right = rcLine.left - 3;
-			FillRect(
-				hSrc,
-				&rcLine,
-				(HBRUSH)(COLOR_3DFACE + 1)
-			);
-
-			rcLine.right = rcLine.left + 2;
-			FillRect(
-				hSrc,
-				&rcLine,
-				(HBRUSH)(COLOR_3DHIGHLIGHT + 1)
-			);
-
-			rcLine.right = rcLine.left + 1;
-			FillRect(
-				hSrc,
-				&rcLine,
-				(HBRUSH)(COLOR_3DSHADOW + 1)
-			);
+			// Draw dog ass separator next to the start button like on Windows 2000
+			DrawEdge(hSrc, &rcLine, EDGE_ETCHED, BF_RIGHT);
 		}
 
 
