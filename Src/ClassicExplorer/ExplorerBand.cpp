@@ -337,11 +337,13 @@ LRESULT CBandWindow::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 					hIcon2=CreateDisabledIcon(hIcon,iconSize);
 				int idx=ImageList_AddIcon(m_ImgDisabled,hIcon2);
 				Assert(button.iBitmap==idx);
+
 				HICON hIcon3 = item.iconPathH ? LoadIcon(iconSize, item.iconPathH, modules) : NULL;
 				if (!hIcon3)
 					hIcon3=hIcon;
 				int idy = ImageList_AddIcon(m_ImgHover, hIcon3);
 				Assert(button.iBitmap == idy);
+
 				DestroyIcon(hIcon);
 				DestroyIcon(hIcon2);
 				if (hIcon3 != hIcon)
@@ -1277,19 +1279,26 @@ LRESULT CBandWindow::OnCommand( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 
 	if (id==ID_VIEW_TILES)
 		SendShellTabCommand(28748);
+
 	if (id==ID_VIEW_DETAILS)
 		SendShellTabCommand(28747);
+
 	if (id==ID_VIEW_LIST)
 		SendShellTabCommand(28753);
+
 	if (id==ID_VIEW_CONTENT)
 		SendShellTabCommand(28754);
-	if (id==ID_VIEW_ICONS1)
+
+	if (id==ID_VIEW_ICONS1) // Small icons
 		SendShellTabCommand(28752);
-	if (id==ID_VIEW_ICONS2)
+
+	if (id==ID_VIEW_ICONS2) // Medium icons
 		SendShellTabCommand(28750);
-	if (id==ID_VIEW_ICONS3)
+
+	if (id==ID_VIEW_ICONS3) // Large icons
 		SendShellTabCommand(28751);
-	if (id==ID_VIEW_ICONS4)
+
+	if (id==ID_VIEW_ICONS4) // Extra Large icons
 		SendShellTabCommand(28749);
 
 	if (id==ID_SELECTALL || id==ID_INVERT || id==ID_DESELECT)

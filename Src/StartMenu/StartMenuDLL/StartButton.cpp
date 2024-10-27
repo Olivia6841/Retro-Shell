@@ -264,6 +264,7 @@ void CStartButton::UpdateButton(void)
 		if (!GetSettingBool(L"XPButton")) //2000
 		{
 			rcLine.left = rcLine.right;
+
 			// Draw dog ass separator next to the start button like on Windows 2000
 			DrawEdge(hSrc, &rcLine, EDGE_ETCHED, BF_RIGHT);
 		}
