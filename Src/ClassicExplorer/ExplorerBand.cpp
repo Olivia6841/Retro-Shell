@@ -333,8 +333,11 @@ LRESULT CBandWindow::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 			{
 				button.iBitmap=ImageList_AddIcon(m_ImgEnabled,hIcon);
 				HICON hIcon2=item.iconPathD?LoadIcon(iconSize,item.iconPathD,modules):NULL;
+
+				float brightnessFactor = 0.0f;
 				if (!hIcon2)
-					hIcon2=CreateDisabledIcon(hIcon,iconSize);
+					hIcon2=CreateMonoIcon(hIcon,iconSize);
+
 				int idx=ImageList_AddIcon(m_ImgDisabled,hIcon2);
 				Assert(button.iBitmap==idx);
 
@@ -395,9 +398,9 @@ LRESULT CBandWindow::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 	// add buttons
 	HIMAGELIST old=(HIMAGELIST)m_Toolbar.SendMessage(TB_SETIMAGELIST,0,(LPARAM)m_ImgEnabled);
 	if (old) ImageList_Destroy(old);
-	old=(HIMAGELIST)m_Toolbar.SendMessage(TB_SETDISABLEDIMAGELIST,0,(LPARAM)m_ImgDisabled);
+		old=(HIMAGELIST)m_Toolbar.SendMessage(TB_SETDISABLEDIMAGELIST,0,(LPARAM)m_ImgDisabled);
 	if (old) ImageList_Destroy(old);
-	old=(HIMAGELIST)m_Toolbar.SendMessage(TB_SETHOTIMAGELIST,0,(LPARAM)m_ImgHover);
+		old=(HIMAGELIST)m_Toolbar.SendMessage(TB_SETHOTIMAGELIST,0,(LPARAM)m_ImgHover);
 	if (old) ImageList_Destroy(old);
 	if (!m_Buttons.empty())
 		m_Toolbar.SendMessage(TB_ADDBUTTONS,(WPARAM)m_Buttons.size(),(LPARAM)&m_Buttons[0]);

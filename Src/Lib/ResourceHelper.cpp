@@ -354,33 +354,43 @@ void PremultiplyBitmap( HBITMAP hBitmap, COLORREF rgb )
 	}
 }
 
-// Creates a grayscale version of an icon
-HICON CreateDisabledIcon( HICON hIcon, int iconSize )
+HICON CreateMonoIcon(HICON hIcon, int iconSize)
 {
-	// convert normal icon to grayscale
+	// Convert normal icon to grayscale
 	ICONINFO info;
-	GetIconInfo(hIcon,&info);
+	GetIconInfo(hIcon, &info);
 
-	unsigned int *bits;
-	HBITMAP bmp=BitmapFromIcon(hIcon,iconSize,&bits,false);
+	unsigned int* bits;
+	HBITMAP bmp = BitmapFromIcon(hIcon, iconSize, &bits, false);
 
-	int n=iconSize*iconSize;
-	for (int i=0;i<n;i++)
+	int n = iconSize * iconSize;
+	for (int i = 0; i < n; i++)
 	{
-		unsigned int &pixel=bits[i];
-		int r=(pixel&255);
-		int g=((pixel>>8)&255);
-		int b=((pixel>>16)&255);
-		int l=(77*r+151*g+28*b)/256;
-		pixel=(pixel&0xFF000000)|(l*0x010101);
-	}
+		unsigned int& pixel = bits[i];
+		int r = (pixel & 255);
+		int g = ((pixel >> 8) & 255);
+		int b = ((pixel >> 16) & 255);
 
-	if (info.hbmColor) DeleteObject(info.hbmColor);
-	info.hbmColor=bmp;
-	hIcon=CreateIconIndirect(&info);
+		int l = (77 * r + 151 * g + 28 * b) / 256;
+		l = (l + 200) / 2;
+		l = min(max(l, 0), 255);
+		pixel = (pixel & 0xFF000000) | (l * 0x010101);
+	}
+	if (info.hbmColor)
+		DeleteObject(info.hbmColor);
+	info.hbmColor = bmp;
+	hIcon = CreateIconIndirect(&info);
 	DeleteObject(bmp);
-	if (info.hbmMask) DeleteObject(info.hbmMask);
+	if (info.hbmMask)
+		DeleteObject(info.hbmMask);
+
 	return hIcon;
+}
+
+// Commctl32 v5 style
+HICON Create9MonoIcon(HICON hIcon, int iconSize)
+{
+
 }
 
 // Loads an image file into a bitmap and optionally resizes it

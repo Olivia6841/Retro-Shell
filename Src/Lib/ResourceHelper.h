@@ -43,8 +43,12 @@ HBITMAP LoadImageResource( HMODULE hModule, const wchar_t *name, bool bTopDown, 
 // Premultiplies a DIB section by the alpha channel and a given color
 void PremultiplyBitmap( HBITMAP hBitmap, COLORREF rgb );
 
-// Creates a grayscale version of an icon
-HICON CreateDisabledIcon( HICON hIcon, int iconSize );
+
+// Create Commctl32 v5 style disabled
+HICON Create9xMonoIcon(HICON hIcon, int iconSize);
+
+//Create Commctl32 v6 style disabled
+HICON CreateMonoIcon(HICON hIcon, int iconSize);
 
 // Returns the version of a given module
 DWORD GetVersionEx( HINSTANCE hInstance, DWORD *pBuild=NULL );
