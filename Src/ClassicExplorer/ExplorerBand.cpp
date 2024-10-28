@@ -333,8 +333,6 @@ LRESULT CBandWindow::OnCreate( UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 			{
 				button.iBitmap=ImageList_AddIcon(m_ImgEnabled,hIcon);
 				HICON hIcon2=item.iconPathD?LoadIcon(iconSize,item.iconPathD,modules):NULL;
-
-				float brightnessFactor = 0.0f;
 				if (!hIcon2)
 					hIcon2=CreateMonoIcon(hIcon,iconSize);
 
