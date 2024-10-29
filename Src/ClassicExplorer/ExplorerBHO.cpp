@@ -1177,7 +1177,7 @@ HRESULT STDMETHODCALLTYPE CExplorerBHO::SetSite( IUnknown *pUnkSite )
 						str=GetSettingString(L"UpIconDisabled");
 						m_IconDisabled=LoadIcon(size,str,modules);
 						if (!m_IconDisabled)
-							m_IconDisabled=CreateDisabledIcon(m_IconNormal,size);
+							m_IconDisabled=CreateMonoIcon(m_IconNormal,size);
 					}
 					else
 					{

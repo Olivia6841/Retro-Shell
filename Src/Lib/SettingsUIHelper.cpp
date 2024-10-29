@@ -2,7 +2,7 @@
 // Retro-Shell (c) 2024, aubymori
 // Confidential information of Ivo Beltchev. Not for disclosure or distribution without prior written consent from the author
 
-#include <stdafx.h>
+#include "stdafx.h"
 #include "resource.h"
 #include "Settings.h"
 #include "SettingsUIHelper.h"
@@ -143,7 +143,7 @@ HICON CTreeItem::LoadIconD( HICON hIcon, std::vector<HMODULE> &modules ) const
 		return ::LoadIcon(GetSystemMetrics(SM_CXICON),iconD,modules);
 	}
 	else if (hIcon)
-		return CreateDisabledIcon(hIcon,GetSystemMetrics(SM_CXICON));
+		return CreateMonoIcon(hIcon,GetSystemMetrics(SM_CXICON));
 	else
 		return NULL;
 }

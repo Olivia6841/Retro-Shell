@@ -1675,7 +1675,7 @@ HMENU CBandWindow::CreateDropMenuRec( const StdToolbarItem *pItem, std::vector<H
 						{
 							HICON hIcon2=pItem->iconPathD?LoadIcon(m_MenuIconSize,pItem->iconPathD,modules):NULL;
 							if (!hIcon2)
-								hIcon2=CreateDisabledIcon(hIcon,m_MenuIconSize);
+								hIcon2=CreateMonoIcon(hIcon,m_MenuIconSize);
 							pItem->menuIcon=BitmapFromIcon(hIcon,m_MenuIconSize,NULL,true);
 							pItem->menuIconD=BitmapFromIcon(hIcon2,m_MenuIconSize,NULL,true);
 						}
@@ -1704,7 +1704,7 @@ HMENU CBandWindow::CreateDropMenuRec( const StdToolbarItem *pItem, std::vector<H
 					{
 						HICON hIcon2=pItem->iconPathD?LoadIcon(m_MenuIconSize,pItem->iconPathD,modules):NULL;
 						if (!hIcon2)
-							hIcon2=CreateDisabledIcon(hIcon,m_MenuIconSize);
+							hIcon2=CreateMonoIcon(hIcon,m_MenuIconSize);
 						pItem->menuIcon=BitmapFromIcon(hIcon,m_MenuIconSize,NULL,true);
 						pItem->menuIconD=BitmapFromIcon(hIcon2,m_MenuIconSize,NULL,true);
 					}
