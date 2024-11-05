@@ -2372,6 +2372,12 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 
 		if (s_Theme)
 		{
+			SelectObject(hdc, settings.font);
+			if (item.isBold == true)
+			{
+				SelectObject(hdc, settings.boldFont);
+			}
+
 			DTTOPTS opts={sizeof(opts),DTT_TEXTCOLOR};
 			if (glowSize || settings.opacity==MenuSkin::OPACITY_FULLALPHA || settings.opacity==MenuSkin::OPACITY_FULLGLASS)
 				opts.dwFlags|=DTT_COMPOSITED;
@@ -2392,6 +2398,11 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 		}
 		else
 		{
+			SelectObject(hdc, settings.font);
+			if (item.isBold == true)
+			{
+				SelectObject(hdc, settings.boldFont);
+			}
 			if (shadowColor!=0xFFFFFFFF)
 			{
 				RECT rc2=rc;
@@ -2401,7 +2412,7 @@ void CMenuContainer::DrawBackground( HDC hdc, const RECT &drawRect )
 			}
 
 			SetTextColor(hdc,color);
-			DrawText(hdc,name,name.GetLength(),&rc,flags);
+			DrawText(hdc,item.name,item.name.GetLength(),&rc,flags);
 		}
 
 		if (item.bFolder && drawType!=MenuSkin::PROGRAMS_BUTTON && drawType!=MenuSkin::PROGRAMS_BUTTON_NEW)

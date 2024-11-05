@@ -31,10 +31,12 @@
 #include <PowrProf.h>
 #include <dwmapi.h>
 #include <propkey.h>
+#include <string>
 #define SECURITY_WIN32
 #include <Security.h>
 #include <algorithm>
 #include <wuapi.h>
+using namespace std;
 
 struct StdMenuOption
 {
@@ -1054,6 +1056,7 @@ void CMenuContainer::AddInternetSearch( size_t index )
 
 void CMenuContainer::AddStandardItems( void )
 {
+	
 	if (m_pStdItem && m_pStdItem->id!=MENU_NO)
 	{
 		bool bItemsFirst=(m_Options&(CONTAINER_ITEMS_FIRST|CONTAINER_SEARCH))==CONTAINER_ITEMS_FIRST;
@@ -1449,7 +1452,24 @@ void CMenuContainer::AddStandardItems( void )
 				else if (s_bHasUpdates && m_bSubMenu && item.id==MENU_RESTART && GetWinVersion()>=WIN_VER_WIN8)
 					item.name=FindTranslation(L"Menu.RestartUpdate",L"Update and restart");
 				else
-					item.name=pStdItem->label;
+				{
+					CString labelText = pStdItem->label;
+
+					// Check for `bold` markers at the start and end of the label text
+					int startPos = labelText.Find(L"bold");
+					
+					if (startPos != -1)
+					{
+						labelText.Delete(startPos, 4);  // Remove opening `bold`
+						item.name = labelText;
+						item.isBold = true;
+					}
+					else
+					{
+						item.isBold = false;
+						item.name = pStdItem->label;
+					}
+				}
 			}
 			else if (item.pItem1)
 			{
@@ -3363,7 +3383,6 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 			}
 			const MenuSkin::ItemDrawSettings &settings=s_Skin.ItemSettings[item.drawType];
 
-			SelectObject(hdc,settings.font);
 			int w=0, h=0;
 			int iconSize=0;
 			if (settings.iconSize==MenuSkin::ICON_SIZE_SMALL)
@@ -3383,6 +3402,7 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 			{
 				if (!item.name.IsEmpty())
 				{
+					SelectObject(hdc, settings.font);
 					h=settings.itemHeight;
 					RECT rcText={0,0,0,0};
 					DrawText(hdc,item.name,-1,&rcText,DT_CALCRECT|DT_SINGLELINE|DT_HIDEPREFIX);
@@ -3440,13 +3460,15 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 			}
 			else
 			{
-				h=settings.itemHeight;
-				RECT rcText={0,0,0,0};
-				DrawText(hdc,item.name,-1,&rcText,DT_CALCRECT|DT_SINGLELINE|(item.id==MENU_NO?DT_NOPREFIX:DT_HIDEPREFIX));
-				w=rcText.right;
-				if (w>maxItemWidth[index]) w=maxItemWidth[index];
-				w+=settings.iconPadding.left+settings.iconPadding.right+settings.textPadding.left+settings.textPadding.right+arrowSize[index]+iconSize;
+				SelectObject(hdc, settings.font);
+				h = settings.itemHeight;
+				RECT rcText = { 0,0,0,0 };
+				DrawText(hdc, item.name, -1, &rcText, DT_CALCRECT | DT_SINGLELINE | (item.id == MENU_NO ? DT_NOPREFIX : DT_HIDEPREFIX));
+				w = rcText.right;
+				if (w > maxItemWidth[index]) w = maxItemWidth[index];
+				w += settings.iconPadding.left + settings.iconPadding.right + settings.textPadding.left + settings.textPadding.right + arrowSize[index] + iconSize;
 			}
+
 			if (bMultiColumn && y>0 && y+h>maxHeight[0])
 			{
 				if (item.id==MENU_SEPARATOR && !item.bBlankSeparator && !item.bInline)
