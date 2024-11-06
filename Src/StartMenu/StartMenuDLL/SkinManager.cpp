@@ -1306,21 +1306,30 @@ bool MenuSkin::LoadSkinItem( HMODULE hMod, CSkinParser &parser, const wchar_t *n
 {
 	wchar_t name2[256];
 	const wchar_t *str;
+	const wchar_t* str2;
 	Sprintf(name2,_countof(name2),L"%s_font",name);
 	str=parser.FindSetting(name2);
+	str2 = L"\"Tahoma\",bold,-8.5";
 	if (str)
 	{
-		settings.font=LoadSkinFont(str,NULL,0,0,true);
+		/*MessageBox(NULL, str, L"1", 0);
+		MessageBox(NULL, str2, L"2", 0);
+		MessageBox(NULL, name, L"3", 0);
+		MessageBox(NULL, name2, L"4", 0);*/
+		settings.font=LoadSkinFont(str, NULL, 0, 0, true);
+		settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
 		settings.bOwnFont=true;
 	}
 	else if (pDefaults)
 	{
 		settings.font=pDefaults->font;
+		settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
 		settings.bOwnFont=false;
 	}
 	else
 	{
 		settings.font=LoadSkinFont(NULL,NULL,0,0,true);
+		settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
 		settings.bOwnFont=true;
 	}
 
