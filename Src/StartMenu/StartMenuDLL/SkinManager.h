@@ -187,7 +187,9 @@ struct MenuSkin
 	{
 		// text
 		HFONT font;
+		HFONT boldFont;
 		bool bOwnFont;
+		bool isBold;
 		int glowSize;
 		COLORREF textColors[4]; // normal, selected, disabled, disabled+selected
 		COLORREF textShadowColors[4];

@@ -470,6 +470,7 @@ private:
 		TMenuID id; // if pStdItem!=NULL, this is pStdItem->id. otherwise it can only be MENU_NO, MENU_SEPARATOR, MENU_EMPTY or MENU_EMPTY_TOP
 		const StdMenuItem *pStdItem; // NULL if not a standard menu item
 		CString name;
+		bool isBold= false;
 		unsigned int nameHash;
 		const CItemManager::ItemInfo *pItemInfo;
 		MenuSkin::TItemDrawType drawType;
