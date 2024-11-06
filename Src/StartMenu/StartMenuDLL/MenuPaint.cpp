@@ -20,8 +20,169 @@
 #include <algorithm>
 #include <math.h>
 #include <chrono>
+#include <windows.h>
+#include <gdiplus.h>
+#include <memory>
+#include <vector>
+#include <cmath>
+#pragma comment(lib, "gdiplus.lib")
+
+using namespace Gdiplus;
+
 
 static BLENDFUNCTION g_AlphaFunc={AC_SRC_OVER,0,255,AC_SRC_ALPHA};
+
+/*void DrawTextWithCustomGlow(HDC hdc, LPCWSTR text, RECT rect, HFONT font, COLORREF glowColor, int glowThickness) {
+	HFONT oldFont = (HFONT)SelectObject(hdc, font);
+	SetBkMode(hdc, TRANSPARENT);
+
+	// Use a semi-transparent color for the glow
+	int alpha = 100; // Adjust transparency (0 to 255)
+	//COLORREF glowColor2 = (alpha << 24) | (0xFF0000); // Embed alpha into COLORREF if the environment supports it
+
+	// Draw glow in a circular pattern
+	for (int radius = 1; radius <= glowThickness; ++radius) {
+		for (int angle = 0; angle < 360; angle += 30) {  // Adjust the angle step for smoothness
+			int xOffset = (int)(radius * cos(angle * 3.14159 / 180.0));
+			int yOffset = (int)(radius * sin(angle * 3.14159 / 180.0) + 1);
+
+			RECT glowRect = rect;
+			OffsetRect(&glowRect, xOffset, yOffset);
+			SetTextColor(hdc, glowColor);
+			DrawText(hdc, text, -1, &glowRect, DT_SINGLELINE | DT_VCENTER | DT_NOPREFIX);
+		}
+	}
+
+	// Draw main text over the glow
+	//SetTextColor(hdc, RGB(255, 255, 255));  // Main text color
+	//DrawText(hdc, text, -1, &rect, DT_SINGLELINE | DT_VCENTER | DT_NOPREFIX);
+
+	// Restore the original font
+	SelectObject(hdc, oldFont);
+}*/
+
+std::vector<std::vector<float>> CreateGaussianKernel(int radius, float sigma) {
+	int size = 2 * radius + 1;
+	std::vector<std::vector<float>> kernel(size, std::vector<float>(size));
+	float sum = 0.0f;
+
+	for (int y = -radius; y <= radius; ++y) {
+		for (int x = -radius; x <= radius; ++x) {
+			float value = exp(-(x * x + y * y) / (2 * sigma * sigma)) / (2 * 3.14159 * sigma * sigma);
+			kernel[y + radius][x + radius] = value;
+			sum += value;
+		}
+	}
+
+	// Normalize the kernel
+	for (int y = 0; y < size; ++y) {
+		for (int x = 0; x < size; ++x) {
+			kernel[y][x] /= sum;
+		}
+	}
+
+	return kernel;
+}
+
+
+
+
+void InitializeGDIPlus() {
+	GdiplusStartupInput gdiplusStartupInput;
+	ULONG_PTR gdiplusToken;
+	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
+}
+
+void ShutdownGDIPlus(ULONG_PTR gdiplusToken) {
+	GdiplusShutdown(gdiplusToken);
+}
+
+void ApplyGaussianBlur(Bitmap* bitmap, int radius) {
+	int width = bitmap->GetWidth();
+	int height = bitmap->GetHeight();
+	BitmapData bitmapData;
+	Rect rect(0, 0, width, height);
+
+	bitmap->LockBits(&rect, ImageLockModeRead | ImageLockModeWrite, PixelFormat32bppARGB, &bitmapData);
+
+	UINT* pixels = (UINT*)bitmapData.Scan0;
+	std::vector<UINT> originalPixels(pixels, pixels + width * height);
+
+	auto kernel = CreateGaussianKernel(radius, radius / 2.0f);
+
+	for (int y = 0; y < height; ++y) {
+		for (int x = 0; x < width; ++x) {
+			float r = 0, g = 0, b = 0, a = 0;
+			for (int ky = -radius; ky <= radius; ++ky) {
+				for (int kx = -radius; kx <= radius; ++kx) {
+					int ix = std::clamp(x + kx, 0, width - 1);
+					int iy = std::clamp(y + ky, 0, height - 1);
+					UINT pixel = originalPixels[iy * width + ix];
+					float weight = kernel[ky + radius][kx + radius];
+
+					a += weight * ((pixel >> 24) & 0xFF);
+					r += weight * ((pixel >> 16) & 0xFF);
+					g += weight * ((pixel >> 8) & 0xFF);
+					b += weight * (pixel & 0xFF);
+				}
+			}
+
+			pixels[y * width + x] = ((UINT)a << 24) | ((UINT)r << 16) | ((UINT)g << 8) | (UINT)b;
+		}
+	}
+
+	bitmap->UnlockBits(&bitmapData);
+}
+
+void DrawTextWithCustomGlow(HTHEME theme, HDC hdc, LPCWSTR text, RECT rect, HFONT font, COLORREF glowColor, int glowSize)
+{
+	// Initialize GDI+ if not already initialized
+	static bool gdiPlusInitialized = false;
+	static ULONG_PTR gdiplusToken;
+	if (!gdiPlusInitialized) {
+		InitializeGDIPlus();
+		gdiPlusInitialized = true;
+	}
+		
+	// Create a temporary bitmap
+	int width = rect.right - rect.left;
+	int height = rect.bottom - rect.top;
+	std::unique_ptr<Bitmap> bitmap(new Bitmap(width, height, PixelFormat32bppARGB));
+	Graphics graphics(bitmap.get());
+
+	//MessageBox(NULL, buffer1, buffer2, NULL);
+
+	// Create a GDI+ font from the HFONT
+	Font gdiFont(hdc, font);
+
+	// Create a GDI+ brush for the glow color
+	Color glowColorGdi(GetRValue(glowColor), GetGValue(glowColor), GetBValue(glowColor));
+	SolidBrush glowBrush(glowColorGdi);
+
+	// Create a GDI+ string format
+	StringFormat stringFormat;
+	stringFormat.SetAlignment(StringAlignmentNear);
+	stringFormat.SetLineAlignment(StringAlignmentNear);
+
+	// Create a GDI+ rectangle from the RECT
+	RectF gdiRect(0, 10, static_cast<REAL>(width), static_cast<REAL>(height));
+
+	// Draw the text onto the bitmap
+	graphics.DrawString(text, -1, &gdiFont, gdiRect, &stringFormat, &glowBrush);
+
+	// Apply Gaussian blur to the bitmap
+	ApplyGaussianBlur(bitmap.get(), glowSize);
+
+	// Draw the blurred bitmap onto the original HDC
+	Graphics hdcGraphics(hdc);
+	hdcGraphics.DrawImage(bitmap.get(), rect.left+1, rect.top+1, width, height);
+	hdcGraphics.DrawImage(bitmap.get(), rect.left-1, rect.top+1, width, height);
+
+	// Draw the main text over the glow
+	SolidBrush textBrush(Color(255, 255, 255, 255)); // White color
+	hdcGraphics.DrawString(text, -1, &gdiFont, gdiRect, &stringFormat, &textBrush);
+
+}
 
 MIDL_INTERFACE("4BEDE6E0-A125-46A7-A3BF-4187165E09A5")
 IUserTileStore8 : public IUnknown
@@ -1011,9 +1172,15 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 			FillRect(hdcTemp,&rc,(HBRUSH)GetStockObject(BLACK_BRUSH));
 		}
 
-		RECT rc={s_Skin.Caption_padding.bottom,s_bRTL?s_Skin.Caption_padding.right:s_Skin.Caption_padding.left,textWidth-s_Skin.Caption_padding.top,textHeight-(s_bRTL?s_Skin.Caption_padding.left:s_Skin.Caption_padding.right)};
+		RECT rc = { s_Skin.Caption_padding.bottom, s_bRTL ? s_Skin.Caption_padding.right : s_Skin.Caption_padding.left,
+				   textWidth - s_Skin.Caption_padding.top, textHeight - (s_bRTL ? s_Skin.Caption_padding.left : s_Skin.Caption_padding.right) };
+
 		if (s_Theme && s_Skin.Caption_glow_size>0)
 		{
+			COLORREF glowColor = RGB((s_Skin.Caption_glow_color >> 16) & 0xFF, (s_Skin.Caption_glow_color >> 8) & 0xFF, s_Skin.Caption_glow_color & 0xFF);
+			int glowSize = s_Skin.Caption_glow_size;
+			DrawTextWithCustomGlow(s_Theme, hdcTemp, caption, rc, s_Skin.Caption_font, glowColor, glowSize);
+			/*
 			// draw the glow
 			opts.dwFlags=DTT_COMPOSITED|DTT_TEXTCOLOR|DTT_GLOWSIZE;
 			opts.crText=0xFFFFFF;
@@ -1040,6 +1207,7 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 				}
 
 			SelectObject(hdcTemp,bmpText);
+			*/
 		}
 
 		// draw the text
@@ -1051,7 +1219,7 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 		{
 			opts.dwFlags=DTT_COMPOSITED|DTT_TEXTCOLOR;
 			opts.crText=s_Skin.Caption_text_color;
-			DrawThemeTextEx(s_Theme,hdcTemp,0,0,caption,-1,DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE,&rc,&opts);
+			//DrawThemeTextEx(s_Theme,hdcTemp,0,0,caption,-1,DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE,&rc,&opts);
 			SelectObject(hdcTemp,bmp02);
 
 			// rotate and copy the text onto the final bitmap. Combine the alpha channels
@@ -1272,7 +1440,12 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 				align=s_bRTL?DT_LEFT:DT_RIGHT;
 			if (s_Theme && s_Skin.User_glow_size>0)
 			{
-				InflateRect(&rc,-s_Skin.User_glow_size,-s_Skin.User_glow_size);
+				COLORREF glowColor = RGB((s_Skin.User_glow_color >> 16) & 0xFF, (s_Skin.User_glow_color >> 8) & 0xFF, s_Skin.User_glow_color & 0xFF);
+				int glowSize = s_Skin.User_glow_size;
+
+				DrawTextWithCustomGlow(s_Theme, hdcTemp, name, rc, s_Skin.User_font, glowColor, glowSize);
+
+				/*InflateRect(&rc,-s_Skin.User_glow_size,-s_Skin.User_glow_size);
 				// draw the glow
 				opts.dwFlags=DTT_COMPOSITED|DTT_TEXTCOLOR|DTT_GLOWSIZE;
 				opts.crText=0xFFFFFF;
@@ -1298,7 +1471,7 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 						pixel=(a1<<24)|(r1<<16)|(g1<<8)|b1;
 					}
 
-					SelectObject(hdcTemp,bmpText);
+					SelectObject(hdcTemp,bmpText);*/
 			}
 
 			// draw the text
@@ -1310,7 +1483,8 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 			{
 				opts.dwFlags=DTT_COMPOSITED|DTT_TEXTCOLOR;
 				opts.crText=s_Skin.User_text_color;
-				DrawThemeTextEx(s_Theme,hdcTemp,0,0,name,-1,align|DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE|DT_END_ELLIPSIS|DT_NOCLIP,&rc,&opts);
+				if (s_Skin.User_glow_size == 0)
+					DrawThemeTextEx(s_Theme,hdcTemp,0,0,name,-1,align|DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE|DT_END_ELLIPSIS|DT_NOCLIP,&rc,&opts);
 				SelectObject(hdcTemp,bmp02);
 
 				// copy the text onto the final bitmap. Combine the alpha channels
@@ -1343,7 +1517,8 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 				// draw white text on black background
 				SetTextColor(hdcTemp,0xFFFFFF);
 				SetBkMode(hdcTemp,TRANSPARENT);
-				DrawText(hdcTemp,name,-1,&rc,align|DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE|DT_END_ELLIPSIS|DT_NOCLIP);
+				if (s_Skin.User_glow_size == 0)
+					DrawText(hdcTemp,name,-1,&rc,align|DT_VCENTER|DT_NOPREFIX|DT_SINGLELINE|DT_END_ELLIPSIS|DT_NOCLIP);
 				SelectObject(hdcTemp,bmp02);
 
 				// copy the text onto the final bitmap
