@@ -3448,12 +3448,12 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 			}
 			else
 			{
-				SelectObject(hdc, settings.font);
 				h = settings.itemHeight;
 				RECT rcText = { 0,0,0,0 };
 				DrawText(hdc, item.name, -1, &rcText, DT_CALCRECT | DT_SINGLELINE | (item.id == MENU_NO ? DT_NOPREFIX : DT_HIDEPREFIX));
 				w = rcText.right;
-				if (w > maxItemWidth[index]) w = maxItemWidth[index];
+				if (w > maxItemWidth[index])
+					w = maxItemWidth[index];
 				w += settings.iconPadding.left + settings.iconPadding.right + settings.textPadding.left + settings.textPadding.right + arrowSize[index] + iconSize;
 			}
 
