@@ -484,7 +484,8 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 	int textHeight=rc.bottom+s_Skin.Caption_padding.left+s_Skin.Caption_padding.right;
 
 	int total=slicesX[0]+slicesX[2];
-	if (textHeight<total) textHeight=total;
+	if (textHeight<total)
+		textHeight=total;
 
 	RECT menuPadding[2];
 	if (s_MenuMode==MODE_SEARCH)
@@ -505,7 +506,8 @@ void CMenuContainer::CreateBackground( int width1, int width2, int height1, int 
 
 	int totalWidth1=textHeight+width1;
 	totalWidth1+=menuPadding[0].left+menuPadding[0].right;
-	if (totalWidth1<total) totalWidth1=total;
+	if (totalWidth1<total)
+		totalWidth1=total;
 	int totalWidth2=0;
 	if (m_bTwoColumns)
 		totalWidth2=width2+menuPadding[1].left+menuPadding[1].right;

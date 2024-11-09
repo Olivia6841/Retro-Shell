@@ -1448,21 +1448,22 @@ class CEditMenuDlg: public CEditCustomItemDlg
 public:
 	CEditMenuDlg( CTreeItem *pItem, std::vector<HMODULE> &modules, int style, int mask ): CEditCustomItemDlg(pItem,modules) { m_Style=style; m_StyleMask=mask; }
 
-	BEGIN_MSG_MAP( CEditMenuDlg )
-		MESSAGE_HANDLER( WM_INITDIALOG, OnInitDialog )
-		COMMAND_ID_HANDLER( IDOK, OnOK )
-		COMMAND_ID_HANDLER( IDCANCEL, OnCancel )
-		COMMAND_HANDLER( IDC_COMBOCOMMAND, CBN_KILLFOCUS, OnCommandChanged )
-		COMMAND_HANDLER( IDC_COMBOCOMMAND, CBN_SELENDOK, OnCommandChanged )
-		COMMAND_HANDLER( IDC_BUTTONCOMMAND, BN_CLICKED, OnBrowseCommand )
-		COMMAND_HANDLER( IDC_BUTTONLINK, BN_CLICKED, OnBrowseLink )
-		COMMAND_HANDLER( IDC_BUTTONICON, BN_CLICKED, OnBrowseIcon )
-		COMMAND_HANDLER( IDC_COMBOLINK, CBN_KILLFOCUS, OnLinkChanged )
-		COMMAND_HANDLER( IDC_COMBOLINK, CBN_SELENDOK, OnLinkChanged )
-		COMMAND_HANDLER( IDC_EDITICON, EN_KILLFOCUS, OnIconChanged )
-		COMMAND_HANDLER( IDC_CHECKTRACK, BN_CLICKED, OnCheckTrack )
-		COMMAND_HANDLER( IDC_CHECKNOTRACK, BN_CLICKED, OnCheckTrack )
-		COMMAND_HANDLER( IDC_CHECKMULTICOLUMN, BN_CLICKED, OnCheckMulti )
+	BEGIN_MSG_MAP(CEditMenuDlg)
+		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
+		COMMAND_ID_HANDLER(IDOK, OnOK)
+		COMMAND_ID_HANDLER(IDCANCEL, OnCancel)
+		COMMAND_HANDLER(IDC_COMBOCOMMAND, CBN_KILLFOCUS, OnCommandChanged)
+		COMMAND_HANDLER(IDC_COMBOCOMMAND, CBN_SELENDOK, OnCommandChanged)
+		COMMAND_HANDLER(IDC_BUTTONCOMMAND, BN_CLICKED, OnBrowseCommand)
+		COMMAND_HANDLER(IDC_BUTTONLINK, BN_CLICKED, OnBrowseLink)
+		COMMAND_HANDLER(IDC_BUTTONICON, BN_CLICKED, OnBrowseIcon)
+		COMMAND_HANDLER(IDC_COMBOLINK, CBN_KILLFOCUS, OnLinkChanged)
+		COMMAND_HANDLER(IDC_COMBOLINK, CBN_SELENDOK, OnLinkChanged)
+		COMMAND_HANDLER(IDC_EDITICON, EN_KILLFOCUS, OnIconChanged)
+		COMMAND_HANDLER(IDC_CHECKTRACK, BN_CLICKED, OnCheckTrack)
+		COMMAND_HANDLER(IDC_CHECKNOTRACK, BN_CLICKED, OnCheckTrack)
+		COMMAND_HANDLER(IDC_CHECKMULTICOLUMN, BN_CLICKED, OnCheckMulti)
+		COMMAND_HANDLER(IDC_CHECKBOLDTEXT, BN_CLICKED, OnCheckBoldText)
 		COMMAND_HANDLER( IDC_BUTTONRESET, BN_CLICKED, OnReset )
 		CHAIN_MSG_MAP( CEditCustomItemDlg )
 	END_MSG_MAP()
@@ -1492,6 +1493,7 @@ protected:
 	LRESULT OnIconChanged( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnCheckTrack( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnCheckMulti( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
+	LRESULT OnCheckBoldText(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled);
 	LRESULT OnBrowseCommand( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnBrowseLink( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
 	LRESULT OnBrowseIcon( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled );
@@ -1528,6 +1530,7 @@ LRESULT CEditMenuDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 	CheckDlgButton(IDC_CHECKINLINE,(m_pItem->settings&StdMenuItem::MENU_INLINE)?BST_CHECKED:BST_UNCHECKED);
 	CheckDlgButton(IDC_CHECKSPLIT,(m_pItem->settings&StdMenuItem::MENU_SPLIT_BUTTON)?BST_CHECKED:BST_UNCHECKED);
 	CheckDlgButton(IDC_CHECKNOEXT,(m_pItem->settings&StdMenuItem::MENU_NOEXTENSIONS)?BST_CHECKED:BST_UNCHECKED);
+	CheckDlgButton(IDC_CHECKBOLDTEXT, (m_pItem->settings & StdMenuItem::MENU_BOLDTEXT) ? BST_CHECKED : BST_UNCHECKED);
 	if (m_pItem->pStdCommand && (wcscmp(m_pItem->pStdCommand->name,L"programs")==0 || wcscmp(m_pItem->pStdCommand->name,L"apps")==0))
 	{
 		CheckDlgButton(IDC_CHECKMULTICOLUMN,BST_CHECKED);
@@ -1749,6 +1752,17 @@ LRESULT CEditMenuDlg::OnCheckMulti( WORD wNotifyCode, WORD wID, HWND hWndCtl, BO
 		m_pItem->settings|=StdMenuItem::MENU_MULTICOLUMN;
 	else
 		m_pItem->settings&=~StdMenuItem::MENU_MULTICOLUMN;
+	return 0;
+}
+
+LRESULT CEditMenuDlg::OnCheckBoldText(WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled)
+{
+	if (IsDlgButtonChecked(wID) == BST_CHECKED)
+	{
+		m_pItem->settings |= StdMenuItem::MENU_BOLDTEXT;
+	}
+	else
+		m_pItem->settings &= ~StdMenuItem::MENU_BOLDTEXT;
 	return 0;
 }
 
