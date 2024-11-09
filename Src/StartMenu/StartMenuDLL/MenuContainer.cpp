@@ -3371,6 +3371,7 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 			}
 			const MenuSkin::ItemDrawSettings &settings=s_Skin.ItemSettings[item.drawType];
 
+			SelectObject(hdc, settings.font);
 			int w=0, h=0;
 			int iconSize=0;
 			if (settings.iconSize==MenuSkin::ICON_SIZE_SMALL)
@@ -3390,7 +3391,6 @@ void CMenuContainer::InitWindowInternal( bool bDontShrink, const POINT &corner, 
 			{
 				if (!item.name.IsEmpty())
 				{
-					SelectObject(hdc, settings.font);
 					h=settings.itemHeight;
 					RECT rcText={0,0,0,0};
 					DrawText(hdc,item.name,-1,&rcText,DT_CALCRECT|DT_SINGLELINE|DT_HIDEPREFIX);
