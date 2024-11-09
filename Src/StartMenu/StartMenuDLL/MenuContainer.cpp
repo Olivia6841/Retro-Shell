@@ -36,7 +36,6 @@
 #include <Security.h>
 #include <algorithm>
 #include <wuapi.h>
-using namespace std;
 
 struct StdMenuOption
 {
@@ -1447,29 +1446,17 @@ void CMenuContainer::AddStandardItems( void )
 						s_ShutdownCommand=MENU_SWITCHUSER;
 					}
 				}
-				else if (s_bHasUpdates && m_bSubMenu && item.id==MENU_SHUTDOWN)
-					item.name=FindTranslation(L"Menu.ShutdownUpdate",L"Update and shut down");
-				else if (s_bHasUpdates && m_bSubMenu && item.id==MENU_RESTART && GetWinVersion()>=WIN_VER_WIN8)
-					item.name=FindTranslation(L"Menu.RestartUpdate",L"Update and restart");
+				else if (s_bHasUpdates && m_bSubMenu && item.id == MENU_SHUTDOWN)
+				{
+					item.name = FindTranslation(L"Menu.ShutdownUpdate", L"Update and shut down");
+				}
+				else if (s_bHasUpdates && m_bSubMenu && item.id == MENU_RESTART && GetWinVersion() >= WIN_VER_WIN8)
+				{
+					item.name = FindTranslation(L"Menu.RestartUpdate", L"Update and restart");
+				}
 				else
 				{
 					item.name = pStdItem->label;
-				//	CString labelText = pStdItem->label;
-
-				//	// Check for `bold` markers at the start and end of the label text
-				//	int startPos = labelText.Find(L"bold");
-				//	
-				//	if (startPos != -1)
-				//	{
-				//		labelText.Delete(startPos, 4);  // Remove opening `bold`
-				//		item.name = labelText;
-				//		item.isBold = true;
-				//	}
-				//	else
-				//	{
-				//		item.isBold = false;
-				//		item.name = pStdItem->label;
-				//	}
 				}
 			}
 			else if (item.pItem1)
