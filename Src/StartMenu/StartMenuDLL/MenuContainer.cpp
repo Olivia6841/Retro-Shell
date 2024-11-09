@@ -1453,22 +1453,23 @@ void CMenuContainer::AddStandardItems( void )
 					item.name=FindTranslation(L"Menu.RestartUpdate",L"Update and restart");
 				else
 				{
-					CString labelText = pStdItem->label;
+					item.name = pStdItem->label;
+				//	CString labelText = pStdItem->label;
 
-					// Check for `bold` markers at the start and end of the label text
-					int startPos = labelText.Find(L"bold");
-					
-					if (startPos != -1)
-					{
-						labelText.Delete(startPos, 4);  // Remove opening `bold`
-						item.name = labelText;
-						item.isBold = true;
-					}
-					else
-					{
-						item.isBold = false;
-						item.name = pStdItem->label;
-					}
+				//	// Check for `bold` markers at the start and end of the label text
+				//	int startPos = labelText.Find(L"bold");
+				//	
+				//	if (startPos != -1)
+				//	{
+				//		labelText.Delete(startPos, 4);  // Remove opening `bold`
+				//		item.name = labelText;
+				//		item.isBold = true;
+				//	}
+				//	else
+				//	{
+				//		item.isBold = false;
+				//		item.name = pStdItem->label;
+				//	}
 				}
 			}
 			else if (item.pItem1)

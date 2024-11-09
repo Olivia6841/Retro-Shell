@@ -852,7 +852,8 @@
 #define IDS_SHOW_USERMUSIC_TIP			 10003
 #define IDS_USERMUSIC_TIP				 10004
 #define IDS_SHOW_USERMUSIC_TIP2			 10005
-
+#define IDC_CHECKBOLDTEXT				 10006
+#define IDS_BOLDTEXT_TIP				 10007
 
 // Next default values for new objects
 // 

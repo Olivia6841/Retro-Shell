@@ -136,6 +136,7 @@ struct StdMenuItem
 		MENU_SPLIT_BUTTON   = 0x002000, // the item is drawn as a split button
 		MENU_ITEM_DISABLED  = 0x004000, // the item is disabled
 		MENU_NORECENT       = 0x008000, // don't show recent items in the root menu (because a sub-menu uses MENU_RECENT_ITEMS)
+		MENU_BOLDTEXT		= 0x010000, // make the entry have bold text
 
 		// style
 		MENU_STYLE_CLASSIC1 = 0x100000,
@@ -470,7 +471,7 @@ private:
 		TMenuID id; // if pStdItem!=NULL, this is pStdItem->id. otherwise it can only be MENU_NO, MENU_SEPARATOR, MENU_EMPTY or MENU_EMPTY_TOP
 		const StdMenuItem *pStdItem; // NULL if not a standard menu item
 		CString name;
-		bool isBold= false;
+		bool isBold = false;
 		unsigned int nameHash;
 		const CItemManager::ItemInfo *pItemInfo;
 		MenuSkin::TItemDrawType drawType;

@@ -32,35 +32,6 @@ using namespace Gdiplus;
 
 static BLENDFUNCTION g_AlphaFunc={AC_SRC_OVER,0,255,AC_SRC_ALPHA};
 
-/*void DrawTextWithCustomGlow(HDC hdc, LPCWSTR text, RECT rect, HFONT font, COLORREF glowColor, int glowThickness) {
-	HFONT oldFont = (HFONT)SelectObject(hdc, font);
-	SetBkMode(hdc, TRANSPARENT);
-
-	// Use a semi-transparent color for the glow
-	int alpha = 100; // Adjust transparency (0 to 255)
-	//COLORREF glowColor2 = (alpha << 24) | (0xFF0000); // Embed alpha into COLORREF if the environment supports it
-
-	// Draw glow in a circular pattern
-	for (int radius = 1; radius <= glowThickness; ++radius) {
-		for (int angle = 0; angle < 360; angle += 30) {  // Adjust the angle step for smoothness
-			int xOffset = (int)(radius * cos(angle * 3.14159 / 180.0));
-			int yOffset = (int)(radius * sin(angle * 3.14159 / 180.0) + 1);
-
-			RECT glowRect = rect;
-			OffsetRect(&glowRect, xOffset, yOffset);
-			SetTextColor(hdc, glowColor);
-			DrawText(hdc, text, -1, &glowRect, DT_SINGLELINE | DT_VCENTER | DT_NOPREFIX);
-		}
-	}
-
-	// Draw main text over the glow
-	//SetTextColor(hdc, RGB(255, 255, 255));  // Main text color
-	//DrawText(hdc, text, -1, &rect, DT_SINGLELINE | DT_VCENTER | DT_NOPREFIX);
-
-	// Restore the original font
-	SelectObject(hdc, oldFont);
-}*/
-
 std::vector<std::vector<float>> CreateGaussianKernel(int radius, float sigma) {
 	int size = 2 * radius + 1;
 	std::vector<std::vector<float>> kernel(size, std::vector<float>(size));
@@ -84,16 +55,15 @@ std::vector<std::vector<float>> CreateGaussianKernel(int radius, float sigma) {
 	return kernel;
 }
 
-
-
-
-void InitializeGDIPlus() {
+void InitializeGDIPlus()
+{
 	GdiplusStartupInput gdiplusStartupInput;
 	ULONG_PTR gdiplusToken;
 	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 }
 
-void ShutdownGDIPlus(ULONG_PTR gdiplusToken) {
+void ShutdownGDIPlus(ULONG_PTR gdiplusToken)
+{
 	GdiplusShutdown(gdiplusToken);
 }
 

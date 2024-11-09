@@ -1316,20 +1316,21 @@ bool MenuSkin::LoadSkinItem( HMODULE hMod, CSkinParser &parser, const wchar_t *n
 		MessageBox(NULL, str2, L"2", 0);
 		MessageBox(NULL, name, L"3", 0);
 		MessageBox(NULL, name2, L"4", 0);*/
-		settings.font=LoadSkinFont(str, NULL, 0, 0, true);
-		settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
+		//settings.font=LoadSkinFont(str, NULL, 0, 0, true);
+		//settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
+		settings.font = LoadSkinFont(str, NULL, 0, 0, true);
 		settings.bOwnFont=true;
 	}
 	else if (pDefaults)
 	{
 		settings.font=pDefaults->font;
-		settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
+		//settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
 		settings.bOwnFont=false;
 	}
 	else
 	{
 		settings.font=LoadSkinFont(NULL,NULL,0,0,true);
-		settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
+		//settings.boldFont=LoadSkinFont(str2, NULL, 0, 0, true);
 		settings.bOwnFont=true;
 	}
 

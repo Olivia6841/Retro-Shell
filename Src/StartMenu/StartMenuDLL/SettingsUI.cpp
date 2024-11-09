@@ -1640,6 +1640,11 @@ LRESULT CEditMenuDlg::OnInitDialog( UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 	tool.uId=(UINT_PTR)(HWND)GetDlgItem(IDC_CHECKNOEXT);
 	tooltip.SendMessage(TTM_ADDTOOL,0,(LPARAM)&tool);
 
+	str = LoadStringEx(IDS_BOLDTEXT_TIP);
+	tool.lpszText = (LPWSTR)(LPCWSTR)str;
+	tool.uId = (UINT_PTR)(HWND)GetDlgItem(IDC_CHECKBOLDTEXT);
+	tooltip.SendMessage(TTM_ADDTOOL, 0, (LPARAM)&tool);
+
 	str=LoadStringEx(IDS_RESTORE_TIP);
 	tool.lpszText=(LPWSTR)(LPCWSTR)str;
 	tool.uId=(UINT_PTR)(HWND)GetDlgItem(IDC_BUTTONRESET);
@@ -1670,6 +1675,7 @@ LRESULT CEditMenuDlg::OnOK( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHan
 	if (IsDlgButtonChecked(IDC_CHECKINLINE)==BST_CHECKED) m_pItem->settings|=StdMenuItem::MENU_INLINE;
 	if (IsDlgButtonChecked(IDC_CHECKSPLIT)==BST_CHECKED) m_pItem->settings|=StdMenuItem::MENU_SPLIT_BUTTON;
 	if (IsDlgButtonChecked(IDC_CHECKNOEXT)==BST_CHECKED) m_pItem->settings|=StdMenuItem::MENU_NOEXTENSIONS;
+	if (IsDlgButtonChecked(IDC_CHECKBOLDTEXT) == BST_CHECKED) m_pItem->settings |= StdMenuItem::MENU_BOLDTEXT;
 	if (bForceMultiColumn)
 	{
 		// special handling of the Programs menu
@@ -1758,6 +1764,8 @@ LRESULT CEditMenuDlg::OnBrowseCommand( WORD wNotifyCode, WORD wID, HWND hWndCtl,
 	return 0;
 }
 
+
+
 LRESULT CEditMenuDlg::OnBrowseLink( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& bHandled )
 {
 	wchar_t text[_MAX_PATH];
@@ -1809,6 +1817,7 @@ LRESULT CEditMenuDlg::OnReset( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& b
 	CheckDlgButton(IDC_CHECKINLINE,(m_pItem->settings&StdMenuItem::MENU_INLINE)?BST_CHECKED:BST_UNCHECKED);
 	CheckDlgButton(IDC_CHECKSPLIT,(m_pItem->settings&StdMenuItem::MENU_SPLIT_BUTTON)?BST_CHECKED:BST_UNCHECKED);
 	CheckDlgButton(IDC_CHECKNOEXT,(m_pItem->settings&StdMenuItem::MENU_NOEXTENSIONS)?BST_CHECKED:BST_UNCHECKED);
+	CheckDlgButton(IDC_CHECKBOLDTEXT, (m_pItem->settings & StdMenuItem::MENU_BOLDTEXT) ? BST_CHECKED : BST_UNCHECKED);
 	if (m_pItem->pStdCommand && (wcscmp(m_pItem->pStdCommand->name,L"programs")==0 || wcscmp(m_pItem->pStdCommand->name,L"apps")==0))
 	{
 		CheckDlgButton(IDC_CHECKMULTICOLUMN,BST_CHECKED);
@@ -1863,6 +1872,7 @@ void CCustomMenuDlg::ParseTreeItemExtra( CTreeItem *pItem, CSettingsParser &pars
 		if (_wcsicmp(token,L"INLINE")==0) pItem->settings|=StdMenuItem::MENU_INLINE;
 		if (_wcsicmp(token,L"SPLIT")==0) pItem->settings|=StdMenuItem::MENU_SPLIT_BUTTON;
 		if (_wcsicmp(token,L"NOEXTENSIONS")==0) pItem->settings|=StdMenuItem::MENU_NOEXTENSIONS;
+		if (_wcsicmp(token, L"BOLDTEXT") == 0) pItem->settings |= StdMenuItem::MENU_BOLDTEXT;
 	}
 }
 
@@ -1885,6 +1895,7 @@ void CCustomMenuDlg::SerializeItemExtra( CTreeItem *pItem, std::vector<wchar_t> 
 	if (pItem->settings&StdMenuItem::MENU_INLINE) AppendString(stringBuilder,L"INLINE|");
 	if (pItem->settings&StdMenuItem::MENU_SPLIT_BUTTON) AppendString(stringBuilder,L"SPLIT|");
 	if (pItem->settings&StdMenuItem::MENU_NOEXTENSIONS) AppendString(stringBuilder,L"NOEXTENSIONS|");
+	if (pItem->settings & StdMenuItem::MENU_BOLDTEXT) AppendString(stringBuilder, L"BOLDTEXT|");
 	stringBuilder[stringBuilder.size()-1]='\n';
 }
 
@@ -2501,6 +2512,7 @@ LRESULT CEditMenuDlg7::OnReset( WORD wNotifyCode, WORD wID, HWND hWndCtl, BOOL& 
 		CheckDlgButton(IDC_CHECKOPENUP,(m_pItem->settings&StdMenuItem::MENU_OPENUP)?BST_CHECKED:BST_UNCHECKED);
 		CheckDlgButton(IDC_CHECKOPENUPREC,(m_pItem->settings&StdMenuItem::MENU_OPENUP_REC)?BST_CHECKED:BST_UNCHECKED);
 		CheckDlgButton(IDC_CHECKNOEXT,(m_pItem->settings&StdMenuItem::MENU_NOEXTENSIONS)?BST_CHECKED:BST_UNCHECKED);
+		CheckDlgButton(IDC_CHECKBOLDTEXT, (m_pItem->settings & StdMenuItem::MENU_BOLDTEXT) ? BST_CHECKED : BST_UNCHECKED);
 		CheckDlgButton(IDC_CHECKTRACK,(m_pItem->settings&StdMenuItem::MENU_TRACK)?BST_CHECKED:BST_UNCHECKED);
 		CheckDlgButton(IDC_CHECKMULTICOLUMN,(m_pItem->settings&StdMenuItem::MENU_MULTICOLUMN)?BST_CHECKED:BST_UNCHECKED);
 		UpdateIcon();
