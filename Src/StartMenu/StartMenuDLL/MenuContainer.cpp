@@ -1457,12 +1457,12 @@ void CMenuContainer::AddStandardItems( void )
 				else
 				{
 					item.bIsBold = (item.pStdItem->settings & StdMenuItem::MENU_BOLDTEXT) != 0;
-					if (item.bIsBold)
-					{
+					//if (item.bIsBold)
+					//{
+					//	item.name = pStdItem->label;
+					//}
+					//else
 						item.name = pStdItem->label;
-					}
-					else
-						item.name.Empty();
 				}
 			}
 			else if (item.pItem1)
