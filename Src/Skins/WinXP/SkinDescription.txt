@@ -25,7 +25,9 @@ Main_bitmap_slices_Y=15,1,8
 
 ;MAIN MENU SECTION - describes the menu portion of the main menu
 
-Main_large_icons=1
+;Main_medium_icons=1
+Main_icon_size = large
+Main2_icon_size = medium
 Main_font="Segoe UI",normal,-10
 Main_background=#FFFFFF
 Main_text_color=#000000,#FFFFFF,#7F7F7F,#7F7F7F

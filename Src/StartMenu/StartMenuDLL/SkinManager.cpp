@@ -1277,7 +1277,6 @@ MenuSkin::TIconSize MenuSkin::ParseIconSize( const wchar_t *str )
 			return ICON_SIZE_SMALL;
 		else if (_wcsicmp(str, L"medium") == 0)
 			return ICON_SIZE_MEDIUM;
-
 		else if (_wcsicmp(str,L"large")==0)
 			return ICON_SIZE_LARGE;
 		else if (_wcsicmp(str,L"none")==0)
@@ -2121,26 +2120,18 @@ bool MenuSkin::LoadSkin( HMODULE hMod, const wchar_t *variation, const wchar_t *
 		if (!LoadSkinBackground(hMod,parser,L"Main_pattern_mask",Main_pattern_mask,0,NULL,0,NULL,0,false,true,false))
 			return false;
 
-		Main_icon_size = ParseIconSize(parser.FindSetting(L"Main_icon_size")); // 1st Column (MFU/Recent Programs/Pinned etc..)
-		Main2_icon_size = ParseIconSize(parser.FindSetting(L"Main2_icon_size")); // 2nd Column (PlacesList)
+
+		// ICON_SIZE_SMALL, ICON_SIZE_MEDIUM, ICON_SIZE_LARGE, ICON_SIZE_NONE, 
+		Main_icon_size = ParseIconSize(parser.FindSetting(L"Main_icon_size"));
+		Main2_icon_size = ParseIconSize(parser.FindSetting(L"Main2_icon_size"));
 
 		str = parser.FindSetting(L"Main_large_icons");
-		bool Main_large_icons2 = (str && _wtol(str));
+		BOOL Main_large_icons2 = (str && _wtol(str));
 		if (Main_large_icons2)
 			Main_icon_size = ICON_SIZE_LARGE;
 
-		if (skinType == SKIN_TYPE_CLASSIC2 && !FindSetting(L"Main_icon_size")) // 1st column uses 32px
-			Main_icon_size = ICON_SIZE_LARGE;
-		if (skinType == SKIN_TYPE_CLASSIC1 && !FindSetting(L"Main_icon_size"))
-			Main_icon_size = ICON_SIZE_LARGE;
-
-
-		if (skinType == SKIN_TYPE_CLASSIC2 && !FindSetting(L"Main2_icon_size")) // 2nd column uses 24px icons now :3
-			Main2_icon_size = ICON_SIZE_MEDIUM;
-		else if
-			(skinType == SKIN_TYPE_WIN7 && !FindSetting(L"Main2_icon_size"))
-			Main2_icon_size = ICON_SIZE_MEDIUM;
-
+		if (skinType == SKIN_TYPE_WIN7)
+			Main2_icon_size = ICON_SIZE_NONE;
 		else
 		{
 			str = parser.FindSetting(L"Main_no_icons2");
@@ -2148,9 +2139,9 @@ bool MenuSkin::LoadSkin( HMODULE hMod, const wchar_t *variation, const wchar_t *
 				Main2_icon_size = ICON_SIZE_NONE;
 		}
 
-		if (Main_icon_size == ICON_SIZE_UNDEFINED) // Main_icon_size is undefined, use ICON_SIZE_SMALL
+		if (Main_icon_size == ICON_SIZE_UNDEFINED)
 			Main_icon_size = ICON_SIZE_SMALL;
-		if (Main2_icon_size == ICON_SIZE_UNDEFINED) // Main2_icon_size is undefined, use the Main_icon_size
+		if (Main2_icon_size == ICON_SIZE_UNDEFINED)
 			Main2_icon_size = Main_icon_size;
 
 
