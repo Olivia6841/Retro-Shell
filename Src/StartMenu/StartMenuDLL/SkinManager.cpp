@@ -1277,7 +1277,7 @@ MenuSkin::TIconSize MenuSkin::ParseIconSize( const wchar_t *str )
 			return ICON_SIZE_SMALL;
 		else if (_wcsicmp(str, L"medium") == 0)
 			return ICON_SIZE_MEDIUM;
-		else if (_wcsicmp(str,L"large")==0)
+		else if (_wcsicmp(str, L"large") == 0)
 			return ICON_SIZE_LARGE;
 		else if (_wcsicmp(str,L"none")==0)
 			return ICON_SIZE_NONE;
