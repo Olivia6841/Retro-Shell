@@ -121,11 +121,11 @@ typedef enum tagINPUT_MESSAGE_ORIGIN_ID {
 
 #endif
 
-void InitTouchHelper( void );
+void InitTouchHelper(void);
 
-BOOL GetPointerType2( UINT32 pointerId, POINTER_INPUT_TYPE *pointerType );
-BOOL GetPointerCursorId2( UINT32 pointerId, UINT32 *cursorId );
-BOOL GetPointerInfo2( UINT32 pointerId, POINTER_INFO *pointerInfo );
+BOOL GetPointerType2(UINT32 pointerId, POINTER_INPUT_TYPE* pointerType);
+BOOL GetPointerCursorId2(UINT32 pointerId, UINT32* cursorId);
+BOOL GetPointerInfo2(UINT32 pointerId, POINTER_INFO* pointerInfo);
 
-BOOL GetCurrentInputMessageSource2( INPUT_MESSAGE_SOURCE *inputMessageSource );
-BOOL GetCIMSSM2( INPUT_MESSAGE_SOURCE *inputMessageSource );
+BOOL GetCurrentInputMessageSource2(INPUT_MESSAGE_SOURCE* inputMessageSource);
+BOOL GetCIMSSM2(INPUT_MESSAGE_SOURCE* inputMessageSource);

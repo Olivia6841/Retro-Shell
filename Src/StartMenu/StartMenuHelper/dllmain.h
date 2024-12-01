@@ -1,6 +1,6 @@
 // dllmain.h : Declaration of module class.
 
-class CStartMenuHelperModule : public CAtlDllModuleT< CStartMenuHelperModule >
+class CStartMenuHelperModule : public CAtlDllModuleT<CStartMenuHelperModule>
 {
 public :
 	DECLARE_LIBID(LIBID_StartMenuHelperLib)
@@ -9,4 +9,4 @@ public :
 
 extern CStartMenuHelperModule _AtlModule;
 
-void WaitDllInitThread( void );
+void WaitDllInitThread(void);

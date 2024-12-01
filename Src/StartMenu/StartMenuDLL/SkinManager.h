@@ -7,7 +7,7 @@
 #include <vector>
 #include <map>
 
-const int MAX_SKIN_VERSION=3;
+const int MAX_SKIN_VERSION = 3;
 
 class CSkinParser;
 enum TSkinOptionType;
@@ -18,15 +18,29 @@ struct MenuBitmap
 	bool bIsOwned; // only valid if bIsBitmap and bitmap
 	bool bIs32; // only valid if bIsBitmap and bitmap
 
-	MenuBitmap( void ) { bIsBitmap=bIsOwned=bIs32=false; bitmap=NULL; }
-	void Init( bool bIsColor=false );
-	void Reset( bool bIsColor=false );
+	MenuBitmap(void)
+	{
+		bIsBitmap = bIsOwned = bIs32 = false;
+		bitmap = NULL;
+	}
 
-	HBITMAP GetBitmap( void ) const { return bIsBitmap?bitmap:NULL; }
-	COLORREF GetColor( void ) const { return bIsBitmap?0:color; }
+	void Init(bool bIsColor = false);
+	void Reset(bool bIsColor = false);
 
-	void operator=( HBITMAP bmp ) { bIsBitmap=true; bitmap=bmp; }
-	void operator=( COLORREF col ) { bIsBitmap=false; color=col; }
+	HBITMAP GetBitmap(void) const { return bIsBitmap ? bitmap : NULL; }
+	COLORREF GetColor(void) const { return bIsBitmap ? 0 : color; }
+
+	void operator=(HBITMAP bmp)
+	{
+		bIsBitmap = true;
+		bitmap = bmp;
+	}
+
+	void operator=(COLORREF col)
+	{
+		bIsBitmap = false;
+		color = col;
+	}
 
 private:
 	union
@@ -68,7 +82,9 @@ struct MenuSkin
 		CString labelEn;
 		CString tip;
 	};
-	std::vector<std::pair<int,Variation>> Variations;
+
+	std::vector<std::pair<int, Variation>> Variations;
+
 	struct Option
 	{
 		// from skin
@@ -86,6 +102,7 @@ struct MenuSkin
 		mutable bool bValue;
 		mutable CString sValue;
 	};
+
 	std::vector<Option> Options;
 
 	enum TOpacity
@@ -107,9 +124,9 @@ struct MenuSkin
 
 	enum
 	{
-		USER_CENTER=10000,
-		USER_CENTER1=10001,
-		USER_CENTER2=10002,
+		USER_CENTER = 10000,
+		USER_CENTER1 = 10001,
+		USER_CENTER2 = 10002,
 	};
 
 	enum THAlign
@@ -175,7 +192,7 @@ struct MenuSkin
 
 	enum TIconSize
 	{
-		ICON_SIZE_UNDEFINED=-1,
+		ICON_SIZE_UNDEFINED = -1,
 		ICON_SIZE_NONE,
 		ICON_SIZE_SMALL,
 		ICON_SIZE_MEDIUM,
@@ -224,8 +241,8 @@ struct MenuSkin
 		TIconSize iconSize;
 		TEXTMETRIC textMetrics;
 
-		void Init( void );
-		void Reset( void );
+		void Init(void);
+		void Reset(void);
 	};
 
 	ItemDrawSettings ItemSettings[ITEM_TYPE_COUNT];
@@ -403,19 +420,22 @@ struct MenuSkin
 	mutable RECT Main_jump_padding;
 	mutable RECT Submenu_padding;
 
-	MenuSkin( void );
-	~MenuSkin( void );
-	void Reset( void );
+	MenuSkin(void);
+	~MenuSkin(void);
+	void Reset(void);
 
 	static wchar_t s_SkinError[1024]; // parsing error. must end on \r\n
 
-	bool LoadMenuSkin( const wchar_t *fname, const wchar_t *variation, const wchar_t *optionsStr, TSkinType skinType, unsigned int flags, int dpi );
-	void LoadDefaultMenuSkin( TSkinType skinType, unsigned int flags, int dpi );
-	const POINT *GetArrowsBitmapSizes( void ) const; // insert left, middle size, insert right, right arrow, left arrow, down arrow, total size
-	void PretilePatterns( int width );
-	void ParseOptionsString( const wchar_t *optionsStr, std::map<CString,CString> &options ) const;
-	bool ComputeOptionStates( const std::map<CString,CString> &options, std::vector<const wchar_t*> &values, bool bTranslateValues ) const;
-	void SerializeOptionStates( std::vector<wchar_t> &buffer ) const;
+	bool LoadMenuSkin(const wchar_t* fname, const wchar_t* variation, const wchar_t* optionsStr, TSkinType skinType,
+	                  unsigned int flags, int dpi);
+	void LoadDefaultMenuSkin(TSkinType skinType, unsigned int flags, int dpi);
+	const POINT* GetArrowsBitmapSizes(void) const;
+	// insert left, middle size, insert right, right arrow, left arrow, down arrow, total size
+	void PretilePatterns(int width);
+	void ParseOptionsString(const wchar_t* optionsStr, std::map<CString, CString>& options) const;
+	bool ComputeOptionStates(const std::map<CString, CString>& options, std::vector<const wchar_t*>& values,
+	                         bool bTranslateValues) const;
+	void SerializeOptionStates(std::vector<wchar_t>& buffer) const;
 
 private:
 	enum TSkinNumberType
@@ -442,47 +462,55 @@ private:
 		FILETIME timestamp;
 	};
 
-	mutable std::map<unsigned int,MetroColor> MetroColors;
+	mutable std::map<unsigned int, MetroColor> MetroColors;
 	mutable std::vector<CustomBitmap> CustomBitmaps;
 
-	COLORREF GetMetroColor( const wchar_t *name ) const;
-	unsigned int CalcMetroColorHash( int set=-1 ) const;
-	int LoadSkinNumbers( const wchar_t *str, int *numbers, int count, TSkinNumberType type ) const;
-	HFONT LoadSkinFont( const wchar_t *str, const wchar_t *name, int weight, float size, bool bScale ) const;
-	void LoadSkinTintColors( CSkinParser &parser, const wchar_t *name, COLORREF &tintColor1, COLORREF &tintColor2, COLORREF &tintColor3, COLORREF backgroundColor ) const;
-	bool LoadSkinColors( CSkinParser &parser, const wchar_t *name, COLORREF *colors, int count, COLORREF backgroundColor, TSkinNumberType type=NUMBERS_COLORS ) const;
-	bool LoadSkinBackground( HMODULE hMod, CSkinParser &parser, const wchar_t *name, MenuBitmap &bitmap, COLORREF bkColor, int *slicesX, int countX, int *slicesY, int countY, bool bMirror, bool bAllowColor=false, bool bPremultiply=true ) const;
-	MenuBitmap LoadSkinBitmap( HMODULE hMod, int index, int maskIndex, COLORREF tintColor1, COLORREF tintColor2, COLORREF tintColor3, bool bPremultiply=true ) const;
-	bool LoadSkinBitmap( HMODULE hMod, CSkinParser &parser, const wchar_t *name, MenuBitmap &bitmap, SIZE *size, bool bMirror, bool bPremultiply=true ) const;
-	bool LoadSkinItem( HMODULE hMod, CSkinParser &parser, const wchar_t *name, MenuSkin::ItemDrawSettings &settings, MenuSkin::ItemDrawSettings *pDefaults, COLORREF background, bool bRTL ) const;
-	bool LoadSkin( HMODULE hMod, const wchar_t *variation, const wchar_t *optionsStr, TSkinType skinType, unsigned int flags, int dpi );
-	int ScaleSkinElement( int num, int scale=100 ) const;
-	RECT ScaleSkinElement( const RECT &rect ) const;
-	POINT ScaleSkinElement( const POINT &point ) const;
-	SIZE ScaleSkinElement( const SIZE &size ) const;
-	static THAlign ParseHAlign( const wchar_t *str );
-	static TVAlign ParseVAlign( const wchar_t *str );
-	static TIconSize ParseIconSize( const wchar_t *str );
+	COLORREF GetMetroColor(const wchar_t* name) const;
+	unsigned int CalcMetroColorHash(int set = -1) const;
+	int LoadSkinNumbers(const wchar_t* str, int* numbers, int count, TSkinNumberType type) const;
+	HFONT LoadSkinFont(const wchar_t* str, const wchar_t* name, int weight, float size, bool bScale) const;
+	void LoadSkinTintColors(CSkinParser& parser, const wchar_t* name, COLORREF& tintColor1, COLORREF& tintColor2,
+	                        COLORREF& tintColor3, COLORREF backgroundColor) const;
+	bool LoadSkinColors(CSkinParser& parser, const wchar_t* name, COLORREF* colors, int count, COLORREF backgroundColor,
+	                    TSkinNumberType type = NUMBERS_COLORS) const;
+	bool LoadSkinBackground(HMODULE hMod, CSkinParser& parser, const wchar_t* name, MenuBitmap& bitmap,
+	                        COLORREF bkColor, int* slicesX, int countX, int* slicesY, int countY, bool bMirror,
+	                        bool bAllowColor = false, bool bPremultiply = true) const;
+	MenuBitmap LoadSkinBitmap(HMODULE hMod, int index, int maskIndex, COLORREF tintColor1, COLORREF tintColor2,
+	                          COLORREF tintColor3, bool bPremultiply = true) const;
+	bool LoadSkinBitmap(HMODULE hMod, CSkinParser& parser, const wchar_t* name, MenuBitmap& bitmap, SIZE* size,
+	                    bool bMirror, bool bPremultiply = true) const;
+	bool LoadSkinItem(HMODULE hMod, CSkinParser& parser, const wchar_t* name, MenuSkin::ItemDrawSettings& settings,
+	                  MenuSkin::ItemDrawSettings* pDefaults, COLORREF background, bool bRTL) const;
+	bool LoadSkin(HMODULE hMod, const wchar_t* variation, const wchar_t* optionsStr, TSkinType skinType,
+	              unsigned int flags, int dpi);
+	int ScaleSkinElement(int num, int scale = 100) const;
+	RECT ScaleSkinElement(const RECT& rect) const;
+	POINT ScaleSkinElement(const POINT& point) const;
+	SIZE ScaleSkinElement(const SIZE& size) const;
+	static THAlign ParseHAlign(const wchar_t* str);
+	static TVAlign ParseVAlign(const wchar_t* str);
+	static TIconSize ParseIconSize(const wchar_t* str);
 };
 
 enum
 {
-	LOADMENU_RESOURCES=1,
+	LOADMENU_RESOURCES = 1,
 };
 
 // Returns the path to the skin files. path must be _MAX_PATH characters
-void GetSkinsPath( wchar_t *path );
+void GetSkinsPath(wchar_t* path);
 
 // Returns the system glass color
-void GetSystemGlassColor( int &dr, int &dg, int &db, int &da, int &dc );
-void GetMetroGlassColor( int &dr, int &dg, int &db );
+void GetSystemGlassColor(int& dr, int& dg, int& db, int& da, int& dc);
+void GetMetroGlassColor(int& dr, int& dg, int& db);
 
-COLORREF GetMetroTaskbarColor( bool &bTransparent );
-COLORREF GetSystemGlassColor8( void );
-COLORREF GetSystemAccentColor( void );
+COLORREF GetMetroTaskbarColor(bool& bTransparent);
+COLORREF GetSystemGlassColor8(void);
+COLORREF GetSystemAccentColor(void);
 
 extern DWORD g_CustomScrollbarThread;
 extern HTHEME g_CustomScrollbarTheme;
 
-void InitializeSkinManager( bool bInitIat );
-void CloseSkinManager( bool bCloseIat );
+void InitializeSkinManager(bool bInitIat);
+void CloseSkinManager(bool bCloseIat);

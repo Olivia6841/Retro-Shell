@@ -6,18 +6,18 @@
 
 #include <map>
 
-class CStringSet: public std::map<int,CString>
+class CStringSet : public std::map<int, CString>
 {
 public:
-	CStringSet( void ) { m_hInstance=NULL; }
+	CStringSet(void) { m_hInstance = NULL; }
 	// Initializes the string database
-	void Init( HINSTANCE hInstance );
+	void Init(HINSTANCE hInstance);
 
 	// Returns a string by ID (returns "" if the string is missing)
-	CString GetString( UINT uID );
+	CString GetString(UINT uID);
 
 private:
 	HINSTANCE m_hInstance;
 
-	static BOOL CALLBACK EnumResNameProc( HMODULE hModule, LPCTSTR lpszType, LPTSTR lpszName, LONG_PTR lParam );
+	static BOOL CALLBACK EnumResNameProc(HMODULE hModule, LPCTSTR lpszType, LPTSTR lpszName, LONG_PTR lParam);
 };

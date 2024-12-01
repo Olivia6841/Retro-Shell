@@ -5,25 +5,25 @@
 #include "stdafx.h"
 #include "StringUtils.h"
 
-static DWORD _stdcall AssertThreadProc( void *param )
+static DWORD _stdcall AssertThreadProc(void* param)
 {
-	return MessageBoxA(NULL,(const char *)param,"Assertion Failed",MB_ABORTRETRYIGNORE|MB_TASKMODAL|MB_ICONERROR);
+	return MessageBoxA(NULL, (const char*)param, "Assertion Failed",MB_ABORTRETRYIGNORE | MB_TASKMODAL | MB_ICONERROR);
 }
 
 // debug assert
-bool dbg_assert( const char *exp, const char *file, unsigned line )
+bool dbg_assert(const char* exp, const char* file, unsigned line)
 {
 	char buf[2048];
-	Sprintf(buf,_countof(buf),"Expression: %s\r\nFile: %s\r\nLine: %d\n",exp,file,line);
-	HANDLE h=CreateThread(NULL,0,AssertThreadProc,buf,0,NULL);
+	Sprintf(buf,_countof(buf), "Expression: %s\r\nFile: %s\r\nLine: %d\n", exp, file, line);
+	HANDLE h = CreateThread(NULL, 0, AssertThreadProc, buf, 0,NULL);
 	if (h)
 	{
 		WaitForSingleObject(h,INFINITE);
-		DWORD res=IDRETRY;
-		GetExitCodeThread(h,&res);
-		if (res==IDABORT)
-			TerminateProcess(GetCurrentProcess(),1);
-		return (res==IDIGNORE); // true will continue, false will cause _CrtDbgBreak
+		DWORD res = IDRETRY;
+		GetExitCodeThread(h, &res);
+		if (res == IDABORT)
+			TerminateProcess(GetCurrentProcess(), 1);
+		return (res == IDIGNORE); // true will continue, false will cause _CrtDbgBreak
 	}
 	return true;
 }

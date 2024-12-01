@@ -8,7 +8,7 @@
 #include "ClassicExplorer_h.h"
 #include <vector>
 
-class CClassicExplorerModule : public CAtlDllModuleT< CClassicExplorerModule >
+class CClassicExplorerModule : public CAtlDllModuleT<CClassicExplorerModule>
 {
 public :
 	DECLARE_LIBID(LIBID_ClassicExplorerLib)
@@ -18,16 +18,16 @@ public :
 extern class CClassicExplorerModule _AtlModule;
 
 // Some utility functions used by various modules
-HWND FindChildWindow( HWND hwnd, const wchar_t *className );
-INT_PTR RunSettingsDialog( HWND hWndParent, DLGPROC lpDialogFunc );
+HWND FindChildWindow(HWND hwnd, const wchar_t* className);
+INT_PTR RunSettingsDialog(HWND hWndParent, DLGPROC lpDialogFunc);
 
 struct TlsData
 {
 	// the bho instance that runs on this thread
-	class CExplorerBHO *bho;
+	class CExplorerBHO* bho;
 
 	// the band instance that runs on this thread
-	class CExplorerBand *band;
+	class CExplorerBand* band;
 
 	// one hook for each copy thread
 	HHOOK copyHook;
@@ -37,8 +37,8 @@ struct TlsData
 	bool bCopyMultiFile;
 };
 
-TlsData *GetTlsData( void );
+TlsData* GetTlsData(void);
 extern LPCWSTR g_LoadedSettingsAtom;
 extern bool g_bLogLevel;
 
-void WaitDllInitThread( void );
+void WaitDllInitThread(void);

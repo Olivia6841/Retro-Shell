@@ -17,7 +17,7 @@
 struct ColumnDescription
 {
 	const wchar_t* name;
-	PROPERTYKEY    key;
+	PROPERTYKEY key;
 };
 
 static const ColumnDescription g_columnDescriptions[] =
@@ -32,9 +32,9 @@ static const ColumnDescription g_columnDescriptions[] =
 #pragma pack(1)
 struct FVITEMID
 {
-	USHORT  cb;
-	DWORD   magic;
-	WORD    size;
+	USHORT cb;
+	DWORD magic;
+	WORD size;
 	wchar_t data[1];
 };
 #pragma pack()
@@ -58,7 +58,7 @@ ModernSettings::Setting GetModernSetting(LPCITEMIDLIST pidl)
 	{
 		auto settings = GetModernSettings();
 		if (settings)
-			return settings->get({ item->data, item->size / sizeof(wchar_t) });
+			return settings->get({item->data, item->size / sizeof(wchar_t)});
 	}
 
 	return {};
@@ -108,16 +108,19 @@ public:
 
 		return (celtFetched == celt) ? S_OK : S_FALSE;
 	}
+
 	IFACEMETHODIMP Skip(DWORD celt)
 	{
 		m_item += celt;
 		return S_OK;
 	}
+
 	IFACEMETHODIMP Reset()
 	{
 		m_item = 0;
 		return S_OK;
 	}
+
 	IFACEMETHODIMP Clone(IEnumIDList** ppenum)
 	{
 		// this method is rarely used and it's acceptable to not implement it.
@@ -182,7 +185,8 @@ HICON IconFromGlyph(UINT glyph, UINT size)
 	HDC dc = CreateCompatibleDC(nullptr);
 	SelectObject(dc, info.hbmColor);
 
-	HFONT font = CreateFontW(size, 0, 0, 0, 400, 0, 0, 0, 1, 0, 0, 0, 0, IsWin11() ? L"Segoe Fluent Icons" : L"Segoe MDL2 Assets");
+	HFONT font = CreateFontW(size, 0, 0, 0, 400, 0, 0, 0, 1, 0, 0, 0, 0,
+	                         IsWin11() ? L"Segoe Fluent Icons" : L"Segoe MDL2 Assets");
 	SelectObject(dc, font);
 
 	RECT rc{};
@@ -215,7 +219,6 @@ class ATL_NO_VTABLE GlyphExtractIcon :
 	public IExtractIconW
 {
 public:
-
 	BEGIN_COM_MAP(GlyphExtractIcon)
 		COM_INTERFACE_ENTRY(IExtractIconW)
 	END_COM_MAP()
@@ -226,14 +229,17 @@ public:
 	}
 
 	// IExtractIconW methods
-	IFACEMETHODIMP GetIconLocation(UINT uFlags, _Out_writes_(cchMax) PWSTR pszIconFile, UINT cchMax, _Out_ int* piIndex, _Out_ UINT* pwFlags)
+	IFACEMETHODIMP GetIconLocation(UINT uFlags, _Out_writes_(cchMax) PWSTR pszIconFile, UINT cchMax, _Out_ int* piIndex,
+	                               _Out_ UINT* pwFlags)
 	{
 		StringCchCopy(pszIconFile, cchMax, L"OpenShell-ModernSettingIcon");
 		*piIndex = m_glyph;
 		*pwFlags = GIL_NOTFILENAME;
 		return S_OK;
 	}
-	IFACEMETHODIMP Extract(_In_ PCWSTR pszFile, UINT nIconIndex, _Out_opt_ HICON* phiconLarge, _Out_opt_ HICON* phiconSmall, UINT nIconSize)
+
+	IFACEMETHODIMP Extract(_In_ PCWSTR pszFile, UINT nIconIndex, _Out_opt_ HICON* phiconLarge,
+	                       _Out_opt_ HICON* phiconSmall, UINT nIconSize)
 	{
 		if (phiconLarge)
 			*phiconLarge = IconFromGlyph(nIconIndex, LOWORD(nIconSize));
@@ -252,7 +258,8 @@ private:
 // IShellFolder methods
 
 // Translates a display name into an item identifier list.
-HRESULT CModernSettingsShellFolder::ParseDisplayName(HWND hwnd, IBindCtx* pbc, PWSTR pszName, ULONG* pchEaten, PIDLIST_RELATIVE* ppidl, ULONG* pdwAttributes)
+HRESULT CModernSettingsShellFolder::ParseDisplayName(HWND hwnd, IBindCtx* pbc, PWSTR pszName, ULONG* pchEaten,
+                                                     PIDLIST_RELATIVE* ppidl, ULONG* pdwAttributes)
 {
 	return E_INVALIDARG;
 }
@@ -289,7 +296,9 @@ HRESULT CModernSettingsShellFolder::BindToStorage(PCUIDLIST_RELATIVE pidl, IBind
 HRESULT CModernSettingsShellFolder::CompareIDs(LPARAM lParam, PCUIDLIST_RELATIVE pidl1, PCUIDLIST_RELATIVE pidl2)
 {
 	UINT column = LOWORD(lParam);
-	return MAKE_HRESULT(SEVERITY_SUCCESS, 0, (USHORT)(StrCmp(GetColumnDisplayName(pidl1, column).data(), GetColumnDisplayName(pidl2, column).data())));
+	return MAKE_HRESULT(SEVERITY_SUCCESS, 0,
+	                    (USHORT)(StrCmp(GetColumnDisplayName(pidl1, column).data(), GetColumnDisplayName(pidl2, column).
+		                    data())));
 }
 
 // Called by the Shell to create the View Object and return it.
@@ -300,7 +309,7 @@ HRESULT CModernSettingsShellFolder::CreateViewObject(HWND hwnd, REFIID riid, voi
 
 	if (riid == IID_IShellView)
 	{
-		SFV_CREATE csfv = { sizeof(csfv), 0 };
+		SFV_CREATE csfv = {sizeof(csfv), 0};
 		hr = QueryInterface(IID_PPV_ARGS(&csfv.pshf));
 		if (SUCCEEDED(hr))
 		{
@@ -321,7 +330,8 @@ HRESULT CModernSettingsShellFolder::GetAttributesOf(UINT cidl, PCUITEMID_CHILD_A
 
 // Retrieves an OLE interface that can be used to carry out
 // actions on the specified file objects or folders.
-HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMID_CHILD_ARRAY apidl, REFIID riid, UINT* /* prgfInOut */, void** ppv)
+HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMID_CHILD_ARRAY apidl, REFIID riid,
+                                                  UINT* /* prgfInOut */, void** ppv)
 {
 	HRESULT hr = E_NOINTERFACE;
 	*ppv = nullptr;
@@ -330,7 +340,9 @@ HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMI
 	{
 		// The default context menu will call back for IQueryAssociations to determine the
 		// file associations with which to populate the menu.
-		const DEFCONTEXTMENU dcm = { hwnd, nullptr, m_pidl, static_cast<IShellFolder2*>(this), cidl, apidl, nullptr, 0, nullptr };
+		const DEFCONTEXTMENU dcm = {
+			hwnd, nullptr, m_pidl, static_cast<IShellFolder2*>(this), cidl, apidl, nullptr, 0, nullptr
+		};
 		hr = SHCreateDefaultContextMenu(&dcm, riid, ppv);
 	}
 	else if (riid == IID_IExtractIconW)
@@ -377,10 +389,11 @@ HRESULT CModernSettingsShellFolder::GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMI
 	else if (riid == IID_IQueryAssociations)
 	{
 		WCHAR szFolderViewImplClassID[64];
-		hr = StringFromGUID2(CLSID_ModernSettingsShellFolder, szFolderViewImplClassID, ARRAYSIZE(szFolderViewImplClassID));
+		hr = StringFromGUID2(CLSID_ModernSettingsShellFolder, szFolderViewImplClassID,
+		                     ARRAYSIZE(szFolderViewImplClassID));
 		if (SUCCEEDED(hr))
 		{
-			const ASSOCIATIONELEMENT assocItem = { ASSOCCLASS_CLSID_STR, nullptr, szFolderViewImplClassID };
+			const ASSOCIATIONELEMENT assocItem = {ASSOCCLASS_CLSID_STR, nullptr, szFolderViewImplClassID};
 			hr = AssocCreateForClasses(&assocItem, 1, riid, ppv);
 		}
 	}
@@ -408,7 +421,9 @@ HRESULT CModernSettingsShellFolder::GetDisplayNameOf(PCUITEMID_CHILD pidl, SHGDN
 		{
 			WCHAR szDisplayName[MAX_PATH];
 			CComString pszThisFolder;
-			hr = SHGetNameFromIDList(m_pidl, (shgdnFlags & SHGDN_FORADDRESSBAR) ? SIGDN_DESKTOPABSOLUTEEDITING : SIGDN_DESKTOPABSOLUTEPARSING, &pszThisFolder);
+			hr = SHGetNameFromIDList(m_pidl, (shgdnFlags & SHGDN_FORADDRESSBAR)
+				                                 ? SIGDN_DESKTOPABSOLUTEEDITING
+				                                 : SIGDN_DESKTOPABSOLUTEPARSING, &pszThisFolder);
 			if (SUCCEEDED(hr))
 			{
 				StringCchCopy(szDisplayName, ARRAYSIZE(szDisplayName), pszThisFolder);
@@ -428,7 +443,8 @@ HRESULT CModernSettingsShellFolder::GetDisplayNameOf(PCUITEMID_CHILD pidl, SHGDN
 }
 
 // Sets the display name of a file object or subfolder, changing the item identifier in the process.
-HRESULT CModernSettingsShellFolder::SetNameOf(HWND /* hwnd */, PCUITEMID_CHILD /* pidl */,	PCWSTR /* pszName */, DWORD /* uFlags */, PITEMID_CHILD* ppidlOut)
+HRESULT CModernSettingsShellFolder::SetNameOf(HWND /* hwnd */, PCUITEMID_CHILD /* pidl */, PCWSTR /* pszName */,
+                                              DWORD /* uFlags */, PITEMID_CHILD* ppidlOut)
 {
 	*ppidlOut = NULL;
 	return E_NOTIMPL;

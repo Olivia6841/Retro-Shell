@@ -9,4 +9,4 @@ class ISettingsPanel;
 extern int g_LanguageIDs[];
 extern int g_LanguageIDCount;
 
-ISettingsPanel *GetLanguageSettings( TSettingsComponent component );
+ISettingsPanel* GetLanguageSettings(TSettingsComponent component);

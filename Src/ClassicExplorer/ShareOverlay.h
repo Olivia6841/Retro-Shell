@@ -18,38 +18,37 @@ class ATL_NO_VTABLE CShareOverlay :
 	public IShellIconOverlayIdentifier
 {
 public:
-	CShareOverlay( void );
+	CShareOverlay(void);
 
 	DECLARE_REGISTRY_RESOURCEID_V2_WITHOUT_MODULE(IDR_SHAREOVERLAY, CShareOverlay)
 
 	DECLARE_PROTECT_FINAL_CONSTRUCT()
 
-	HRESULT FinalConstruct( void )
+	HRESULT FinalConstruct(void)
 	{
 		return S_OK;
 	}
 
-	void FinalRelease( void );
+	void FinalRelease(void);
 
 public:
-
-	HRESULT _InternalQueryInterface( REFIID iid, void** ppvObject );
+	HRESULT _InternalQueryInterface(REFIID iid, void** ppvObject);
 
 	// IShellIconOverlayIdentifier
-	STDMETHOD (IsMemberOf)( LPCWSTR pwszPath, DWORD dwAttrib );
-	STDMETHOD (GetOverlayInfo)( LPWSTR pwszIconFile, int cchMax, int * pIndex, DWORD * pdwFlags );
-	STDMETHOD (GetPriority)( int * pIPriority );
+	STDMETHOD(IsMemberOf)(LPCWSTR pwszPath, DWORD dwAttrib);
+	STDMETHOD(GetOverlayInfo)(LPWSTR pwszIconFile, int cchMax, int* pIndex, DWORD* pdwFlags);
+	STDMETHOD(GetPriority)(int* pIPriority);
 
-	static void InitOverlay( const wchar_t *icon, bool showHidden );
+	static void InitOverlay(const wchar_t* icon, bool showHidden);
 
 private:
 	CComPtr<IShellFolder> m_pDesktop;
 	CRITICAL_SECTION m_Section;
-	SHARE_INFO_502 *m_pShareInfo;
+	SHARE_INFO_502* m_pShareInfo;
 	DWORD m_ShareCount;
 	int m_UpdateTime;
 
-	void UpdateShareInfo( void );
+	void UpdateShareInfo(void);
 
 	static bool s_bEnabled;
 	static bool s_bShowHidden;

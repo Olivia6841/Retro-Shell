@@ -4,6 +4,6 @@
 
 #pragma once
 
-void InitSettings( void );
-void EditSettings( void );
-void ShowSettingsMenu( HWND parent, int x, int y );
+void InitSettings(void);
+void EditSettings(void);
+void ShowSettingsMenu(HWND parent, int x, int y);

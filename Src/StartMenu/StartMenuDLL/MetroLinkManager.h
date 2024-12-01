@@ -25,34 +25,34 @@ struct MetroLink
 };
 
 // Returns a list of links for all metro apps
-void GetMetroLinks( std::vector<MetroLink> &links, bool bLog, std::vector<CString> *pNonApps10=NULL );
+void GetMetroLinks(std::vector<MetroLink>& links, bool bLog, std::vector<CString>* pNonApps10 = NULL);
 
 // Executes the metro link of the given item info
-void ExecuteMetroLink( const CItemManager::ItemInfo *pInfo );
+void ExecuteMetroLink(const CItemManager::ItemInfo* pInfo);
 
 // Returns true if the app is still valid
-bool IsValidApp( const wchar_t *appid );
+bool IsValidApp(const wchar_t* appid);
 
 // Returns true if the app should not be uninstalled
-bool IsProtectedApp( const wchar_t *appid );
+bool IsProtectedApp(const wchar_t* appid);
 
 // Returns true if uninstalling is allowed by the policy
-bool GetUninstallPolicy( void );
+bool GetUninstallPolicy(void);
 
 // Checks if the app can be uninstalled
-bool CanUninstallMetroApp( const wchar_t *appid );
+bool CanUninstallMetroApp(const wchar_t* appid);
 
 // Uninstalls the app with the given id
-void UninstallMetroApp( const wchar_t *appid );
+void UninstallMetroApp(const wchar_t* appid);
 
 // Asks for confirmation to uninstall the specified app
-void UninstallMetroApp( HWND parent, const wchar_t *name, const wchar_t *appid );
+void UninstallMetroApp(HWND parent, const wchar_t* name, const wchar_t* appid);
 
 // Creates a context menu to pin/unpin the metro app to the taskbar
-CComPtr<IContextMenu> GetMetroPinMenu( const wchar_t *appid );
+CComPtr<IContextMenu> GetMetroPinMenu(const wchar_t* appid);
 
 // Determines if Edge is the default browser
-bool IsEdgeDefaultBrowser( void );
+bool IsEdgeDefaultBrowser(void);
 
 // Returns full package name for given App ID
 CString GetPackageFullName(const wchar_t* appId);

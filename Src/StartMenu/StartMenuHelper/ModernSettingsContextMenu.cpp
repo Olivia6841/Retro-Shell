@@ -11,14 +11,14 @@
 
 struct ICIVERBTOIDMAP
 {
-	LPCWSTR pszCmd;         // verbW
-	LPCSTR  pszCmdA;        // verbA
-	UINT    idCmd;          // hmenu id
+	LPCWSTR pszCmd; // verbW
+	LPCSTR pszCmdA; // verbA
+	UINT idCmd; // hmenu id
 };
 
 static const ICIVERBTOIDMAP g_ContextMenuIDMap[] =
 {
-	{ L"open",       "open",      MENUVERB_OPEN },
+	{L"open", "open", MENUVERB_OPEN},
 };
 
 HRESULT _MapICIVerbToCmdID(LPCMINVOKECOMMANDINFO pici, UINT* pid)
@@ -62,7 +62,10 @@ static bool ActivateModernSettingPage(const WCHAR* page)
 	if (mgr)
 	{
 		DWORD pid = 0;
-		return SUCCEEDED(mgr->ActivateApplication(L"windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel", page, AO_NONE, &pid));
+		return SUCCEEDED(
+			mgr->ActivateApplication(
+				L"windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel", page, AO_NONE, &
+				pid));
 	}
 
 	return false;
@@ -118,10 +121,11 @@ static HRESULT OpenItemByPidl(LPCITEMIDLIST pidl)
 		cmd.resize(MAX_PATH);
 		DoEnvironmentSubst(cmd.data(), (UINT)cmd.size());
 
-		STARTUPINFO startupInfo = { sizeof(startupInfo) };
+		STARTUPINFO startupInfo = {sizeof(startupInfo)};
 		PROCESS_INFORMATION processInfo{};
 
-		if (!CreateProcess(nullptr, cmd.data(), nullptr, nullptr, FALSE, 0, nullptr, nullptr, &startupInfo, &processInfo))
+		if (!CreateProcess(nullptr, cmd.data(), nullptr, nullptr, FALSE, 0, nullptr, nullptr, &startupInfo,
+		                   &processInfo))
 			return E_FAIL;
 
 		CloseHandle(processInfo.hThread);
@@ -159,7 +163,8 @@ static HRESULT OpenItemByPidl(LPCITEMIDLIST pidl)
 
 // CModernSettingsContextMenu
 
-HRESULT CModernSettingsContextMenu::QueryContextMenu(HMENU hmenu, UINT indexMenu, UINT idCmdFirst, UINT /* idCmdLast */, UINT /* uFlags */)
+HRESULT CModernSettingsContextMenu::QueryContextMenu(HMENU hmenu, UINT indexMenu, UINT idCmdFirst, UINT /* idCmdLast */,
+                                                     UINT /* uFlags */)
 {
 	InsertMenu(hmenu, indexMenu++, MF_BYPOSITION, idCmdFirst + MENUVERB_OPEN, L"Open");
 	// other verbs could go here...
@@ -187,12 +192,14 @@ HRESULT CModernSettingsContextMenu::InvokeCommand(LPCMINVOKECOMMANDINFO pici)
 	return hr;
 }
 
-HRESULT CModernSettingsContextMenu::GetCommandString(UINT_PTR /* idCmd */, UINT /* uType */, UINT* /* pRes */, LPSTR /* pszName */, UINT /* cchMax */)
+HRESULT CModernSettingsContextMenu::GetCommandString(UINT_PTR /* idCmd */, UINT /* uType */, UINT* /* pRes */,
+                                                     LPSTR /* pszName */, UINT /* cchMax */)
 {
 	return E_NOTIMPL;
 }
 
-HRESULT CModernSettingsContextMenu::Initialize(PCIDLIST_ABSOLUTE /* pidlFolder */, IDataObject* pdtobj, HKEY /* hkeyProgID */)
+HRESULT CModernSettingsContextMenu::Initialize(PCIDLIST_ABSOLUTE /* pidlFolder */, IDataObject* pdtobj,
+                                               HKEY /* hkeyProgID */)
 {
 	m_pdtobj = pdtobj;
 	return S_OK;

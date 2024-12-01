@@ -22,17 +22,17 @@ class DECLSPEC_UUID("E407B70A-1FBD-4D5E-8822-231C69102472") NotificationActivato
 	: public RuntimeClass<RuntimeClassFlags<ClassicCom>, INotificationActivationCallback>
 {
 public:
-   virtual HRESULT STDMETHODCALLTYPE Activate(
-	   _In_ LPCWSTR appUserModelId,
-	   _In_ LPCWSTR invokedArgs,
-	   _In_reads_(dataCount) const NOTIFICATION_USER_INPUT_DATA * data,
-	   ULONG dataCount) override
-   {
-	   if (g_handler)
-		   g_handler(g_handlerContext, invokedArgs);
+	virtual HRESULT STDMETHODCALLTYPE Activate(
+		_In_ LPCWSTR appUserModelId,
+		_In_ LPCWSTR invokedArgs,
+		_In_reads_(dataCount) const NOTIFICATION_USER_INPUT_DATA* data,
+		ULONG dataCount) override
+	{
+		if (g_handler)
+			g_handler(g_handlerContext, invokedArgs);
 
-	   return S_OK;
-   }
+		return S_OK;
+	}
 };
 
 // Flag class as COM creatable
@@ -40,7 +40,8 @@ CoCreatableClass(NotificationActivator);
 
 HRESULT Initialize(LPCWSTR appUserModelId, DesktopToastActivateHandler handler, void* handlerContext)
 {
-	RETURN_IF_FAILED(DesktopNotificationManagerCompat::RegisterAumidAndComServer(appUserModelId, __uuidof(NotificationActivator)));
+	RETURN_IF_FAILED(
+		DesktopNotificationManagerCompat::RegisterAumidAndComServer(appUserModelId, __uuidof(NotificationActivator)));
 	RETURN_IF_FAILED(DesktopNotificationManagerCompat::RegisterActivator());
 	g_handler = handler;
 	g_handlerContext = handlerContext;
@@ -61,6 +62,7 @@ HRESULT SetNodeValueString(HSTRING inputString, IXmlNode* node, IXmlDocument* xm
 }
 
 _Use_decl_annotations_
+
 HRESULT SetTextValues(const PCWSTR* textValues, UINT32 textValuesCount, IXmlDocument* toastXml)
 {
 	ComPtr<IXmlNodeList> nodeList;
@@ -88,10 +90,11 @@ HRESULT DisplaySimpleToast(LPCWSTR title, LPCWSTR text)
 {
 	// Construct XML
 	ComPtr<IXmlDocument> doc;
-	HRESULT hr = DesktopNotificationManagerCompat::CreateXmlDocumentFromString(L"<toast><visual><binding template='ToastGeneric'><text></text><text></text></binding></visual></toast>", &doc);
+	HRESULT hr = DesktopNotificationManagerCompat::CreateXmlDocumentFromString(
+		L"<toast><visual><binding template='ToastGeneric'><text></text><text></text></binding></visual></toast>", &doc);
 	if (SUCCEEDED(hr))
 	{
-		PCWSTR textValues[] = { title, text };
+		PCWSTR textValues[] = {title, text};
 		SetTextValues(textValues, ARRAYSIZE(textValues), doc.Get());
 
 		// Create the notifier
@@ -114,18 +117,18 @@ HRESULT DisplaySimpleToast(LPCWSTR title, LPCWSTR text)
 	return hr;
 }
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-                     )
+BOOL APIENTRY DllMain(HMODULE hModule,
+                      DWORD ul_reason_for_call,
+                      LPVOID lpReserved
+)
 {
-    switch (ul_reason_for_call)
-    {
-    case DLL_PROCESS_ATTACH:
-    case DLL_THREAD_ATTACH:
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
-    }
-    return TRUE;
+	switch (ul_reason_for_call)
+	{
+	case DLL_PROCESS_ATTACH:
+	case DLL_THREAD_ATTACH:
+	case DLL_THREAD_DETACH:
+	case DLL_PROCESS_DETACH:
+		break;
+	}
+	return TRUE;
 }

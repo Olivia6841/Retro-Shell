@@ -44,7 +44,9 @@ public:
 	}
 
 private:
-	virtual void OnToastActivate(LPCWSTR invokedArgs) {}
+	virtual void OnToastActivate(LPCWSTR invokedArgs)
+	{
+	}
 
 	static void __cdecl ToastActivate(void* context, LPCWSTR invokedArgs)
 	{

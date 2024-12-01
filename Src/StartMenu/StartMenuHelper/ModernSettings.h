@@ -17,9 +17,11 @@ struct Blob
 class File
 {
 public:
-	File(const WCHAR* fileName, DWORD desiredAccess, DWORD shareMode, DWORD creationDisposition = OPEN_EXISTING, DWORD flagsAndAttributes = FILE_ATTRIBUTE_NORMAL)
+	File(const WCHAR* fileName, DWORD desiredAccess, DWORD shareMode, DWORD creationDisposition = OPEN_EXISTING,
+	     DWORD flagsAndAttributes = FILE_ATTRIBUTE_NORMAL)
 	{
-		m_handle = ::CreateFile(fileName, desiredAccess, shareMode, nullptr, creationDisposition, flagsAndAttributes, nullptr);
+		m_handle = ::CreateFile(fileName, desiredAccess, shareMode, nullptr, creationDisposition, flagsAndAttributes,
+		                        nullptr);
 	}
 
 	~File()
@@ -54,7 +56,7 @@ private:
 class MappedFile
 {
 public:
-	MappedFile(const WCHAR* fileName) : m_file(fileName, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_DELETE)
+	MappedFile(const WCHAR* fileName) : m_file(fileName, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_DELETE)
 	{
 		if (m_file)
 		{
@@ -121,7 +123,10 @@ public:
 
 		Setting() = default;
 		Setting(const Blob& blob);
-		Setting(const std::vector<uint8_t>& blob) : Setting(Blob{ blob.data(), blob.size() }) {}
+
+		Setting(const std::vector<uint8_t>& blob) : Setting(Blob{blob.data(), blob.size()})
+		{
+		}
 
 		explicit operator bool() const
 		{

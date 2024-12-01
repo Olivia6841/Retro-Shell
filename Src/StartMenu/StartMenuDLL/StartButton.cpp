@@ -76,7 +76,7 @@ private:
 	size_t m_TaskbarId;
 	SIZE m_Size;
 	HBITMAP m_Bitmap, m_Blendmap;
-	unsigned int* m_Bits, * m_BlendBits;
+	unsigned int *m_Bits, *m_BlendBits;
 	HICON m_Icon;
 	HFONT m_Font;
 	bool m_bHot, m_bPressed;
@@ -98,6 +98,7 @@ private:
 		int duration; // in ms
 		bool bBlend;
 	};
+
 	Animation m_Animations[2];
 
 	void ParseAnimation(Animation& animation, const std::vector<unsigned int>& pixels, int& index, int totalFrames);
@@ -169,7 +170,8 @@ LRESULT CStartButton::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 		for (std::vector<HMODULE>::const_iterator it = modules.begin(); it != modules.end(); ++it)
 			FreeLibrary(*it);
 		if (!m_Icon)
-			m_Icon = (HICON)LoadImage(g_Instance, MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON, START_ICON_SIZE, START_ICON_SIZE, LR_DEFAULTCOLOR);
+			m_Icon = (HICON)LoadImage(g_Instance, MAKEINTRESOURCE(IDI_APPICON), IMAGE_ICON, START_ICON_SIZE,
+			                          START_ICON_SIZE, LR_DEFAULTCOLOR);
 	}
 	int dpi = CItemManager::GetDPI(false);
 	InitializeFont();
@@ -178,7 +180,9 @@ LRESULT CStartButton::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bH
 	val = DWMFLIP3D_EXCLUDEABOVE;
 	DwmSetWindowAttribute(m_hWnd, DWMWA_FLIP3D_POLICY, &val, sizeof(val));
 	LoadBitmap();
-	m_Tooltip = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | (m_bRTL ? WS_EX_LAYOUTRTL : 0), TOOLTIPS_CLASS, NULL, WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP, 0, 0, 0, 0, NULL, NULL, g_Instance, NULL);
+	m_Tooltip = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | (m_bRTL ? WS_EX_LAYOUTRTL : 0),
+	                           TOOLTIPS_CLASS, NULL, WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP, 0, 0, 0, 0, NULL, NULL,
+	                           g_Instance, NULL);
 	OnThemeChanged(WM_THEMECHANGED, 0, 0, bHandled);
 	m_bPressed = true;
 	SetPressed(false);
@@ -202,18 +206,18 @@ LRESULT CStartButton::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 
 void CStartButton::UpdateButton(void)
 {
-	BLENDFUNCTION func = { AC_SRC_OVER,0,255,AC_SRC_ALPHA };
+	BLENDFUNCTION func = {AC_SRC_OVER, 0, 255,AC_SRC_ALPHA};
 
 	HDC hSrc = CreateCompatibleDC(NULL);
 	RECT rc;
 	GetWindowRect(&rc);
-	SIZE size = { rc.right - rc.left,rc.bottom - rc.top };
+	SIZE size = {rc.right - rc.left, rc.bottom - rc.top};
 	if (m_bClassic)
 	{
 		if (m_bRTL)
 			SetLayout(hSrc, LAYOUT_RTL);
 		HGDIOBJ bmp0 = SelectObject(hSrc, m_Blendmap);
-		RECT rc = { 0,0,m_Size.cx,m_Size.cy };
+		RECT rc = {0, 0, m_Size.cx, m_Size.cy};
 
 		HBRUSH btnface = (HBRUSH)(COLOR_3DFACE + 1);
 		FillRect(hSrc, &rc, btnface);
@@ -242,19 +246,23 @@ void CStartButton::UpdateButton(void)
 				{
 					START_BUTTON_PADDING = 6;
 					START_TEXT_PADDING = 4;
-					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 4, (m_Size.cy - START_ICON_SIZE) / 2, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 4, (m_Size.cy - START_ICON_SIZE) / 2,
+					           m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
 				}
 				else // XP with classic theme
 				{
 					START_BUTTON_PADDING = 3;
 					START_TEXT_PADDING = 1;
-					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET - 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+					DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET - 1 + offset,
+					           (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL,
+					           DI_NORMAL | DI_NOMIRROR);
 				}
 			}
 			else // Windows 2000 and earlier style classic theme
 			{
 				START_BUTTON_PADDING = 3;
-				DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 1 + offset, (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
+				DrawIconEx(hSrc, START_BUTTON_PADDING + START_BUTTON_OFFSET + 1 + offset,
+				           (m_Size.cy - START_ICON_SIZE) / 2 + offset, m_Icon, 0, 0, 0, NULL, DI_NORMAL | DI_NOMIRROR);
 			}
 		}
 
@@ -268,7 +276,6 @@ void CStartButton::UpdateButton(void)
 			// Draw dog ass separator next to the start button like on Windows 2000
 			DrawEdge(hSrc, &rcLine, EDGE_ETCHED, BF_RIGHT);
 		}
-
 
 
 		if (GetSettingBool(L"XPButton"))
@@ -333,7 +340,7 @@ void CStartButton::UpdateButton(void)
 				m_BlendBits[y * m_Size.cx + x] |= 0xFF000000;
 		SelectObject(hSrc, m_Blendmap);
 
-		POINT pos = { 0,0 };
+		POINT pos = {0, 0};
 		UpdateLayeredWindow(m_hWnd, NULL, NULL, &size, hSrc, &pos, 0, &func, ULW_ALPHA);
 		SelectObject(hSrc, font0);
 		SelectObject(hSrc, bmp0);
@@ -374,7 +381,7 @@ void CStartButton::UpdateButton(void)
 		if (image != -1)
 		{
 			HGDIOBJ bmp0 = SelectObject(hSrc, m_Bitmap);
-			POINT pos = { 0,image * m_Size.cy + m_YOffset };
+			POINT pos = {0, image * m_Size.cy + m_YOffset};
 			UpdateLayeredWindow(m_hWnd, NULL, NULL, &size, hSrc, &pos, 0, &func, ULW_ALPHA);
 			SelectObject(hSrc, bmp0);
 		}
@@ -403,7 +410,7 @@ void CStartButton::UpdateButton(void)
 				m_BlendBits[i] = (a << 24) | (r << 16) | (g << 8) | b;
 			}
 			HGDIOBJ bmp0 = SelectObject(hSrc, m_Blendmap);
-			POINT pos = { 0,0 };
+			POINT pos = {0, 0};
 			UpdateLayeredWindow(m_hWnd, NULL, NULL, &size, hSrc, &pos, 0, &func, ULW_ALPHA);
 			SelectObject(hSrc, bmp0);
 		}
@@ -489,8 +496,9 @@ LRESULT CStartButton::OnThemeChanged(UINT uMsg, WPARAM wParam, LPARAM lParam, BO
 {
 	if (m_Theme) CloseThemeData(m_Theme);
 	m_Theme = OpenThemeData(m_hWnd, L"Start::Button");
-	HIGHCONTRAST contrast = { sizeof(contrast) };
-	if (GetWinVersion() >= WIN_VER_WIN8 && SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(contrast), &contrast, 0) && (contrast.dwFlags & HCF_HIGHCONTRASTON))
+	HIGHCONTRAST contrast = {sizeof(contrast)};
+	if (GetWinVersion() >= WIN_VER_WIN8 && SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(contrast), &contrast, 0) &&
+		(contrast.dwFlags & HCF_HIGHCONTRASTON))
 	{
 		// only use themes on Win8 with high contrast
 		m_Theme = OpenThemeData(m_hWnd, L"button");
@@ -517,7 +525,10 @@ void CStartButton::SetPressed(bool bPressed)
 		m_bPressed = bPressed;
 		m_HotBlend = m_bHot ? BLEND_PRECISION : 0;
 		KillTimer(TIMER_BLEND);
-		TOOLINFO tool = { sizeof(tool),TTF_CENTERTIP | TTF_SUBCLASS | TTF_IDISHWND | TTF_TRANSPARENT | (m_bRTL ? TTF_RTLREADING : 0U),m_hWnd };
+		TOOLINFO tool = {
+			sizeof(tool),TTF_CENTERTIP | TTF_SUBCLASS | TTF_IDISHWND | TTF_TRANSPARENT | (m_bRTL ? TTF_RTLREADING : 0U),
+			m_hWnd
+		};
 		tool.uId = (UINT_PTR)m_hWnd;
 		CString startStr = GetSettingString(L"StartButtonTip");
 		const wchar_t* startText = startStr;
@@ -543,15 +554,17 @@ TStartButtonType GetStartButtonType(void)
 			bClassic = !IsAppThemed();
 		else
 		{
-			HIGHCONTRAST contrast = { sizeof(contrast) };
-			bClassic = (SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(contrast), &contrast, 0) && (contrast.dwFlags & HCF_HIGHCONTRASTON));
+			HIGHCONTRAST contrast = {sizeof(contrast)};
+			bClassic = (SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(contrast), &contrast, 0) && (contrast.dwFlags &
+				HCF_HIGHCONTRASTON));
 		}
 		buttonType = bClassic ? START_BUTTON_CLASSIC : START_BUTTON_AERO;
 	}
 	return buttonType;
 }
 
-void CStartButton::ParseAnimation(Animation& animation, const std::vector<unsigned int>& pixels, int& index, int totalFrames)
+void CStartButton::ParseAnimation(Animation& animation, const std::vector<unsigned int>& pixels, int& index,
+                                  int totalFrames)
 {
 	animation.duration = 0;
 	animation.bBlend = true;
@@ -602,7 +615,7 @@ void CStartButton::LoadBitmap(void)
 	TStartButtonType buttonType = GetStartButtonType();
 	m_bClassic = (buttonType == START_BUTTON_CLASSIC);
 	wchar_t path[_MAX_PATH];
-	SIZE size = { 0,0 };
+	SIZE size = {0, 0};
 	if (buttonType == START_BUTTON_CUSTOM)
 	{
 		Strcpy(path, _countof(path), GetSettingString(L"StartButtonPath"));
@@ -614,15 +627,23 @@ void CStartButton::LoadBitmap(void)
 	m_Frames[0] = 0; // Normal
 	m_Frames[1] = 1; // Hot
 	m_Frames[2] = 2; // Pressed
-	m_Animations[0].frames.resize(2); m_Animations[0].frames[0] = 0; m_Animations[0].frames[1] = 1; m_Animations[0].duration = 300; m_Animations[0].bBlend = true; // NH
-	m_Animations[1].frames.resize(2); m_Animations[1].frames[0] = 1; m_Animations[1].frames[1] = 0; m_Animations[1].duration = 300; m_Animations[1].bBlend = true; // HN
+	m_Animations[0].frames.resize(2);
+	m_Animations[0].frames[0] = 0;
+	m_Animations[0].frames[1] = 1;
+	m_Animations[0].duration = 300;
+	m_Animations[0].bBlend = true; // NH
+	m_Animations[1].frames.resize(2);
+	m_Animations[1].frames[0] = 1;
+	m_Animations[1].frames[1] = 0;
+	m_Animations[1].duration = 300;
+	m_Animations[1].bBlend = true; // HN
 
 	if (m_bClassic)
 	{
 		// classic theme
 		HDC hdc = CreateCompatibleDC(NULL);
 		HFONT font0 = (HFONT)SelectObject(hdc, m_Font);
-		RECT rc = { 0,0,0,0 };
+		RECT rc = {0, 0, 0, 0};
 		CString startStr = GetSettingString(L"StartButtonText");
 		const wchar_t* startText = startStr;
 		if (startText[0] == '$')
@@ -631,14 +652,12 @@ void CStartButton::LoadBitmap(void)
 
 		if (GetSettingBool(L"XPButton"))
 		{
-
 			if (m_Theme) // Theming is enabled with xp button
 			{
-
 				START_BUTTON_PADDING = 6;
 				START_TEXT_PADDING = 4;
-				m_Size.cx = rc.right + START_ICON_SIZE + 2 * START_TEXT_PADDING + 2 * START_BUTTON_PADDING + 2 * START_BUTTON_OFFSET + 30;
-
+				m_Size.cx = rc.right + START_ICON_SIZE + 2 * START_TEXT_PADDING + 2 * START_BUTTON_PADDING + 2 *
+					START_BUTTON_OFFSET + 30;
 			}
 			else
 			{
@@ -687,7 +706,8 @@ void CStartButton::LoadBitmap(void)
 		m_Size.cx = info.bmWidth;
 		m_Size.cy = info.bmHeight;
 		m_Bits = (unsigned int*)info.bmBits;
-		if (buttonAnim.empty() && info.bmWidth >= 10 && (m_Bits[0] & 0xFFFFFF) == ANIM_BUTTON_TAG1 && (m_Bits[1] & 0xFFFFFF) == ANIM_BUTTON_TAG2)
+		if (buttonAnim.empty() && info.bmWidth >= 10 && (m_Bits[0] & 0xFFFFFF) == ANIM_BUTTON_TAG1 && (m_Bits[1] &
+			0xFFFFFF) == ANIM_BUTTON_TAG2)
 		{
 			m_YOffset = (m_Bits[2] >> 16) & 255;
 			if (m_YOffset > info.bmHeight) m_YOffset = info.bmHeight;
@@ -726,7 +746,7 @@ void CStartButton::LoadBitmap(void)
 	}
 	if (m_Size.cx > 0)
 	{
-		BITMAPINFO bi = { 0 };
+		BITMAPINFO bi = {0};
 		bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 		bi.bmiHeader.biWidth = m_Size.cx;
 		bi.bmiHeader.biHeight = -m_Size.cy;
@@ -745,7 +765,8 @@ HWND CreateStartButton(int taskbarId, HWND taskBar, HWND rebar)
 	bool bRTL = (GetWindowLongPtr(rebar, GWL_EXSTYLE) & WS_EX_LAYOUTRTL) != 0;
 	DWORD styleTopmost = GetWindowLongPtr(taskBar, GWL_EXSTYLE) & WS_EX_TOPMOST;
 	CStartButton& button = g_StartButtons[taskbarId];
-	button.Create(taskBar, NULL, NULL, WS_POPUP, styleTopmost | WS_EX_TOOLWINDOW | WS_EX_LAYERED, 0U, (void*)(intptr_t)(taskbarId * 2 + (bRTL ? 1 : 0)));
+	button.Create(taskBar, NULL, NULL, WS_POPUP, styleTopmost | WS_EX_TOOLWINDOW | WS_EX_LAYERED, 0U,
+	              (void*)(intptr_t)(taskbarId * 2 + (bRTL ? 1 : 0)));
 	return button.m_hWnd;
 }
 
@@ -779,7 +800,7 @@ SIZE GetStartButtonSize(int taskbarId)
 	std::map<int, CStartButton>::iterator it = g_StartButtons.find(taskbarId);
 	if (it != g_StartButtons.end())
 		return it->second.GetSize();
-	SIZE size = { 0,0 };
+	SIZE size = {0, 0};
 	return size;
 }
 
@@ -794,7 +815,8 @@ bool IsStartButtonSmallIcons(int taskbarId)
 bool IsTaskbarSmallIcons(void)
 {
 	CRegKey regKey;
-	if (regKey.Open(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced") != ERROR_SUCCESS)
+	if (regKey.Open(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced") !=
+		ERROR_SUCCESS)
 		return true;
 	DWORD val;
 	return regKey.QueryDWORDValue(L"TaskbarSmallIcons", val) != ERROR_SUCCESS || val;

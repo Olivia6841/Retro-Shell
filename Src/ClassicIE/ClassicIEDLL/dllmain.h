@@ -6,7 +6,7 @@
 
 #include "ClassicIEDLL_h.h"
 
-class CClassicIEDLLModule : public CAtlDllModuleT< CClassicIEDLLModule >
+class CClassicIEDLLModule : public CAtlDllModuleT<CClassicIEDLLModule>
 {
 public :
 	DECLARE_LIBID(LIBID_ClassicIEDLLLib)

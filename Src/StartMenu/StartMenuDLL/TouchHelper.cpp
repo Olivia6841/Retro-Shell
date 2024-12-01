@@ -5,11 +5,11 @@
 #include "stdafx.h"
 #include "TouchHelper.h"
 
-typedef BOOL (WINAPI *tGetPointerType)( UINT32 pointerId, POINTER_INPUT_TYPE *pointerType );
-typedef BOOL (WINAPI *tGetPointerCursorId)( UINT32 pointerId, UINT32 *cursorId );
-typedef BOOL (WINAPI *tGetPointerInfo)( UINT32 pointerId, POINTER_INFO *pointerInfo );
-typedef BOOL (WINAPI *tGetCurrentInputMessageSource)( INPUT_MESSAGE_SOURCE *inputMessageSource );
-typedef BOOL (WINAPI *tGetCIMSSM)( INPUT_MESSAGE_SOURCE *inputMessageSource );
+typedef BOOL (WINAPI *tGetPointerType)(UINT32 pointerId, POINTER_INPUT_TYPE* pointerType);
+typedef BOOL (WINAPI *tGetPointerCursorId)(UINT32 pointerId, UINT32* cursorId);
+typedef BOOL (WINAPI *tGetPointerInfo)(UINT32 pointerId, POINTER_INFO* pointerInfo);
+typedef BOOL (WINAPI *tGetCurrentInputMessageSource)(INPUT_MESSAGE_SOURCE* inputMessageSource);
+typedef BOOL (WINAPI *tGetCIMSSM)(INPUT_MESSAGE_SOURCE* inputMessageSource);
 
 static tGetPointerType fGetPointerType;
 static tGetPointerCursorId fGetPointerCursorId;
@@ -17,37 +17,38 @@ static tGetPointerInfo fGetPointerInfo;
 static tGetCurrentInputMessageSource fGetCurrentInputMessageSource;
 static tGetCIMSSM fGetCIMSSM;
 
-void InitTouchHelper( void )
+void InitTouchHelper(void)
 {
-	HMODULE user32=GetModuleHandle(L"user32.dll");
-	fGetPointerType=(tGetPointerType)GetProcAddress(user32,"GetPointerType");
-	fGetPointerCursorId=(tGetPointerCursorId)GetProcAddress(user32,"GetPointerCursorId");
-	fGetPointerInfo=(tGetPointerInfo)GetProcAddress(user32,"GetPointerInfo");
-	fGetCurrentInputMessageSource=(tGetCurrentInputMessageSource)GetProcAddress(user32,"GetCurrentInputMessageSource");
-	fGetCIMSSM=(tGetCIMSSM)GetProcAddress(user32,"GetCIMSSM");
+	HMODULE user32 = GetModuleHandle(L"user32.dll");
+	fGetPointerType = (tGetPointerType)GetProcAddress(user32, "GetPointerType");
+	fGetPointerCursorId = (tGetPointerCursorId)GetProcAddress(user32, "GetPointerCursorId");
+	fGetPointerInfo = (tGetPointerInfo)GetProcAddress(user32, "GetPointerInfo");
+	fGetCurrentInputMessageSource = (tGetCurrentInputMessageSource)GetProcAddress(
+		user32, "GetCurrentInputMessageSource");
+	fGetCIMSSM = (tGetCIMSSM)GetProcAddress(user32, "GetCIMSSM");
 }
 
-BOOL GetPointerType2( UINT32 pointerId, POINTER_INPUT_TYPE *pointerType )
+BOOL GetPointerType2(UINT32 pointerId, POINTER_INPUT_TYPE* pointerType)
 {
-	return fGetPointerType && fGetPointerType(pointerId,pointerType);
+	return fGetPointerType && fGetPointerType(pointerId, pointerType);
 }
 
-BOOL GetPointerCursorId2( UINT32 pointerId, UINT32 *cursorId )
+BOOL GetPointerCursorId2(UINT32 pointerId, UINT32* cursorId)
 {
-	return fGetPointerCursorId && fGetPointerCursorId(pointerId,cursorId);
+	return fGetPointerCursorId && fGetPointerCursorId(pointerId, cursorId);
 }
 
-BOOL GetPointerInfo2( UINT32 pointerId, POINTER_INFO *pointerInfo )
+BOOL GetPointerInfo2(UINT32 pointerId, POINTER_INFO* pointerInfo)
 {
-	return fGetPointerInfo && fGetPointerInfo(pointerId,pointerInfo);
+	return fGetPointerInfo && fGetPointerInfo(pointerId, pointerInfo);
 }
 
-BOOL GetCurrentInputMessageSource2( INPUT_MESSAGE_SOURCE *inputMessageSource )
+BOOL GetCurrentInputMessageSource2(INPUT_MESSAGE_SOURCE* inputMessageSource)
 {
 	return fGetCurrentInputMessageSource && fGetCurrentInputMessageSource(inputMessageSource);
 }
 
-BOOL GetCIMSSM2( INPUT_MESSAGE_SOURCE *inputMessageSource )
+BOOL GetCIMSSM2(INPUT_MESSAGE_SOURCE* inputMessageSource)
 {
 	return fGetCIMSSM && fGetCIMSSM(inputMessageSource);
 }

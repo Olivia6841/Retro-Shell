@@ -6,31 +6,32 @@
 
 struct StdMenuItem;
 
-const StdMenuItem *ParseCustomMenu( unsigned int &rootSettings );
+const StdMenuItem* ParseCustomMenu(unsigned int& rootSettings);
 
 struct CStdCommand7
 {
 	enum
 	{
-		ITEM_SINGLE=1, // this item never has sub-menu
-		ITEM_FOLDER=2, // this item always has sub-menu
-		ITEM_COMPUTER=4, // this item can be expanded only one level
-		ITEM_NODRIVES=8, // this item can never be expanded only one level
+		ITEM_SINGLE = 1, // this item never has sub-menu
+		ITEM_FOLDER = 2, // this item always has sub-menu
+		ITEM_COMPUTER = 4, // this item can be expanded only one level
+		ITEM_NODRIVES = 8, // this item can never be expanded only one level
 	};
-	const wchar_t *command;
+
+	const wchar_t* command;
 	int nameID;
-	const wchar_t *label;
-	const wchar_t *tip;
-	const wchar_t *icon;
-	const KNOWNFOLDERID *knownFolder;
-	const wchar_t *knownLink;
+	const wchar_t* label;
+	const wchar_t* tip;
+	const wchar_t* icon;
+	const KNOWNFOLDERID* knownFolder;
+	const wchar_t* knownLink;
 	unsigned int settings;
 	unsigned int flags;
 	CString displayName; // for the settings UI
 
-	bool operator<( const CStdCommand7 &command ) { return displayName<command.displayName; }
+	bool operator<(const CStdCommand7& command) { return displayName < command.displayName; }
 };
 
 extern CStdCommand7 g_StdCommands7[];
 extern const int g_StdCommands7Count;
-void InitStdCommands7( void );
+void InitStdCommands7(void);

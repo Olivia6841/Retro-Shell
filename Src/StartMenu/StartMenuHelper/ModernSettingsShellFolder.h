@@ -21,17 +21,17 @@ public:
 	{
 	}
 
-DECLARE_REGISTRY_RESOURCEID_V2_WITHOUT_MODULE(IDR_MODERNSETTINGSSHELLFOLDER, CModernSettingsShellFolder)
+	DECLARE_REGISTRY_RESOURCEID_V2_WITHOUT_MODULE(IDR_MODERNSETTINGSSHELLFOLDER, CModernSettingsShellFolder)
 
-DECLARE_NOT_AGGREGATABLE(CModernSettingsShellFolder)
+	DECLARE_NOT_AGGREGATABLE(CModernSettingsShellFolder)
 
-BEGIN_COM_MAP(CModernSettingsShellFolder)
-	COM_INTERFACE_ENTRY(IShellFolder)
-	COM_INTERFACE_ENTRY(IShellFolder2)
-	COM_INTERFACE_ENTRY(IPersist)
-	COM_INTERFACE_ENTRY(IPersistFolder)
-	COM_INTERFACE_ENTRY(IPersistFolder2)
-END_COM_MAP()
+	BEGIN_COM_MAP(CModernSettingsShellFolder)
+		COM_INTERFACE_ENTRY(IShellFolder)
+		COM_INTERFACE_ENTRY(IShellFolder2)
+		COM_INTERFACE_ENTRY(IPersist)
+		COM_INTERFACE_ENTRY(IPersistFolder)
+		COM_INTERFACE_ENTRY(IPersistFolder2)
+	END_COM_MAP()
 
 	DECLARE_PROTECT_FINAL_CONSTRUCT()
 
@@ -45,14 +45,16 @@ END_COM_MAP()
 	}
 
 	// IShellFolder
-	IFACEMETHODIMP ParseDisplayName(HWND hwnd, IBindCtx* pbc, PWSTR pszName, ULONG* pchEaten, PIDLIST_RELATIVE* ppidl, ULONG* pdwAttributes);
+	IFACEMETHODIMP ParseDisplayName(HWND hwnd, IBindCtx* pbc, PWSTR pszName, ULONG* pchEaten, PIDLIST_RELATIVE* ppidl,
+	                                ULONG* pdwAttributes);
 	IFACEMETHODIMP EnumObjects(HWND hwnd, DWORD grfFlags, IEnumIDList** ppenumIDList);
 	IFACEMETHODIMP BindToObject(PCUIDLIST_RELATIVE pidl, IBindCtx* pbc, REFIID riid, void** ppv);
 	IFACEMETHODIMP BindToStorage(PCUIDLIST_RELATIVE pidl, IBindCtx* pbc, REFIID riid, void** ppv);
 	IFACEMETHODIMP CompareIDs(LPARAM lParam, PCUIDLIST_RELATIVE pidl1, PCUIDLIST_RELATIVE pidl2);
 	IFACEMETHODIMP CreateViewObject(HWND hwnd, REFIID riid, void** ppv);
 	IFACEMETHODIMP GetAttributesOf(UINT cidl, PCUITEMID_CHILD_ARRAY apidl, ULONG* rgfInOut);
-	IFACEMETHODIMP GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMID_CHILD_ARRAY apidl, REFIID riid, UINT* prgfInOut, void** ppv);
+	IFACEMETHODIMP GetUIObjectOf(HWND hwnd, UINT cidl, PCUITEMID_CHILD_ARRAY apidl, REFIID riid, UINT* prgfInOut,
+	                             void** ppv);
 	IFACEMETHODIMP GetDisplayNameOf(PCUITEMID_CHILD pidl, SHGDNF shgdnFlags, STRRET* pName);
 	IFACEMETHODIMP SetNameOf(HWND hwnd, PCUITEMID_CHILD pidl, PCWSTR pszName, DWORD uFlags, PITEMID_CHILD* ppidlOut);
 
@@ -79,7 +81,7 @@ END_COM_MAP()
 private:
 	std::wstring_view GetColumnDisplayName(PCUITEMID_CHILD pidl, UINT iColumn);
 
-	CAbsolutePidl m_pidl;             // where this folder is in the name space
+	CAbsolutePidl m_pidl; // where this folder is in the name space
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(ModernSettingsShellFolder), CModernSettingsShellFolder)

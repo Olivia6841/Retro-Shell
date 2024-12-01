@@ -12,45 +12,48 @@
 #include <chrono>
 
 int g_LogCategories;
-static FILE *g_LogFile;
+static FILE* g_LogFile;
 static std::chrono::time_point<std::chrono::steady_clock> g_LogTime;
 
-void InitLog( int categories, const wchar_t *fname )
+void InitLog(int categories, const wchar_t* fname)
 {
 	CloseLog();
-	if (categories==0) return;
-	if (_wfopen_s(&g_LogFile,fname,L"wb")==0)
+	if (categories == 0) return;
+	if (_wfopen_s(&g_LogFile, fname, L"wb") == 0)
 	{
-		wchar_t bom=0xFEFF;
-		fwrite(&bom,2,1,g_LogFile);
-		g_LogCategories=categories;
-		g_LogTime=std::chrono::steady_clock::now();
-		LogMessage(L"version=%x, PID=%d, TID=%d, Categories=%08x\r\n",GetWinVersion(),GetCurrentProcessId(),GetCurrentThreadId(),categories);
+		wchar_t bom = 0xFEFF;
+		fwrite(&bom, 2, 1, g_LogFile);
+		g_LogCategories = categories;
+		g_LogTime = std::chrono::steady_clock::now();
+		LogMessage(L"version=%x, PID=%d, TID=%d, Categories=%08x\r\n", GetWinVersion(), GetCurrentProcessId(),
+		           GetCurrentThreadId(), categories);
 	}
 }
 
-void CloseLog( void )
+void CloseLog(void)
 {
 	if (g_LogFile) fclose(g_LogFile);
-	g_LogFile=NULL;
-	g_LogCategories=0;
+	g_LogFile = NULL;
+	g_LogCategories = 0;
 }
 
-void LogMessage( const wchar_t *text, ... )
+void LogMessage(const wchar_t* text, ...)
 {
 	if (!g_LogFile) return;
 
 	wchar_t buf[2048];
-	int len=Sprintf(buf,_countof(buf),L"%8d: ",std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now()-g_LogTime).count());
-	fwrite(buf,2,len,g_LogFile);
+	int len = Sprintf(buf,_countof(buf), L"%8d: ",
+	                  std::chrono::duration_cast<std::chrono::milliseconds>(
+		                  std::chrono::steady_clock::now() - g_LogTime).count());
+	fwrite(buf, 2, len, g_LogFile);
 
 	va_list args;
-	va_start(args,text);
-	len=Vsprintf(buf,_countof(buf),text,args);
+	va_start(args, text);
+	len = Vsprintf(buf,_countof(buf), text, args);
 	va_end(args);
-	fwrite(buf,2,len,g_LogFile);
+	fwrite(buf, 2, len, g_LogFile);
 
-	fwrite(L"\r\n",2,2,g_LogFile);
+	fwrite(L"\r\n", 2, 2, g_LogFile);
 
 	fflush(g_LogFile);
 }
