@@ -369,7 +369,12 @@ DWORD PerformOsUpgradeTask(bool silent)
 	return error;
 }
 
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCmdLine, int nCmdShow)
+int WINAPI wWinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR lpCmdLine,
+	_In_ int nShowCmd
+)
 {
 	/*	CoInitialize(NULL);
 		{
@@ -434,9 +439,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 	// one-time import from Classic Shell
 	ImportLegacyData();
 
-	DllLogToFile(STARTUP_LOG, L"StartMenu: start '%s'", lpstrCmdLine);
+	DllLogToFile(STARTUP_LOG, L"StartMenu: start '%s'", lpCmdLine);
 
-	if (wcsstr(lpstrCmdLine, L"-startup") || (wcsstr(lpstrCmdLine, L"-autorun") && HIWORD(g_winVer) < WIN_VER_WIN8))
+	if (wcsstr(lpCmdLine, L"-startup") || (wcsstr(lpCmdLine, L"-autorun") && HIWORD(g_winVer) < WIN_VER_WIN8))
 	{
 		WaitDllInitThread();
 		if (!DllGetSettingBool(L"AutoStart"))
@@ -452,7 +457,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 		if (sleep > 0)
 			Sleep(sleep);
 	}
-	else if (wcsstr(lpstrCmdLine, L"-autorun")) // on Win8+
+	else if (wcsstr(lpCmdLine, L"-autorun")) // on Win8+
 	{
 		WaitDllInitThread();
 		if (WasOsUpgrade())
@@ -471,20 +476,20 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 			Sleep(sleep);
 	}
 
-	if (wcsstr(lpstrCmdLine, L"-upgrade"))
+	if (wcsstr(lpCmdLine, L"-upgrade"))
 	{
 		WaitDllInitThread();
 
 		if (WasOsUpgrade())
 		{
-			const bool silent = wcsstr(lpstrCmdLine, L"-silent") != nullptr;
+			const bool silent = wcsstr(lpCmdLine, L"-silent") != nullptr;
 			return PerformOsUpgradeTask(silent);
 		}
 
 		return 0;
 	}
 
-	const wchar_t* pCmd = wcsstr(lpstrCmdLine, L"-cmd ");
+	const wchar_t* pCmd = wcsstr(lpCmdLine, L"-cmd ");
 	if (pCmd)
 	{
 		WaitDllInitThread();
@@ -533,7 +538,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 	GetModuleFileName(NULL, path,_countof(path));
 	*PathFindFileName(path) = 0;
 	SetCurrentDirectory(path);
-	const wchar_t* pRunAs = wcsstr(lpstrCmdLine, L"-runas");
+	const wchar_t* pRunAs = wcsstr(lpCmdLine, L"-runas");
 	if (pRunAs)
 	{
 		pRunAs += 7;
@@ -561,15 +566,15 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 
 	WaitDllInitThread();
 	int open = CMD_NONE;
-	if (wcsstr(lpstrCmdLine, L"-togglenew") != NULL) open = CMD_TOGGLE_NEW;
-	else if (wcsstr(lpstrCmdLine, L"-toggle") != NULL) open = MSG_TOGGLE;
-	else if (wcsstr(lpstrCmdLine, L"-open") != NULL) open = MSG_OPEN;
-	else if (wcsstr(lpstrCmdLine, L"-settings") != NULL) open = MSG_SETTINGS;
-	else if (wcsstr(lpstrCmdLine, L"-reloadsettings") != NULL) open = MSG_RELOADSETTINGS;
-	else if (wcsstr(lpstrCmdLine, L"-exit") != NULL) open = MSG_EXIT;
+	if (wcsstr(lpCmdLine, L"-togglenew") != NULL) open = CMD_TOGGLE_NEW;
+	else if (wcsstr(lpCmdLine, L"-toggle") != NULL) open = MSG_TOGGLE;
+	else if (wcsstr(lpCmdLine, L"-open") != NULL) open = MSG_OPEN;
+	else if (wcsstr(lpCmdLine, L"-settings") != NULL) open = MSG_SETTINGS;
+	else if (wcsstr(lpCmdLine, L"-reloadsettings") != NULL) open = MSG_RELOADSETTINGS;
+	else if (wcsstr(lpCmdLine, L"-exit") != NULL) open = MSG_EXIT;
 
 	{
-		const wchar_t* pXml = wcsstr(lpstrCmdLine, L"-xml ");
+		const wchar_t* pXml = wcsstr(lpCmdLine, L"-xml ");
 		if (pXml)
 		{
 			wchar_t xml[_MAX_PATH];
@@ -585,7 +590,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 	}
 
 	{
-		const wchar_t* pBackup = wcsstr(lpstrCmdLine, L"-backup ");
+		const wchar_t* pBackup = wcsstr(lpCmdLine, L"-backup ");
 		if (pBackup)
 		{
 			wchar_t xml[_MAX_PATH];
@@ -597,7 +602,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 		}
 	}
 
-	const wchar_t* pNoHook = wcsstr(lpstrCmdLine, L"-nohook");
+	const wchar_t* pNoHook = wcsstr(lpCmdLine, L"-nohook");
 	bool bHookExplorer = !pNoHook;
 	if (pNoHook)
 	{
@@ -611,7 +616,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpstrCm
 		SetUnhandledExceptionFilter(TopLevelFilter);
 
 #ifndef BUILD_SETUP
-	if (wcsstr(lpstrCmdLine, L"-testsettings") != NULL || GetKeyState(VK_SHIFT) < 0)
+	if (wcsstr(lpCmdLine, L"-testsettings") != NULL || GetKeyState(VK_SHIFT) < 0)
 	{
 		CoInitialize(NULL);
 		InitManagers(true);

@@ -4347,7 +4347,9 @@ void CMenuContainer::InitWindowInternal(bool bDontShrink, const POINT& corner, R
 			m_Scrollbar.Create(WC_SCROLLBAR, m_hWnd,NULL,NULL,WS_CHILD | SBS_VERT);
 			SetWindowSubclass(m_Scrollbar, SubclassScrollbar, (UINT_PTR)this, 0);
 			if (s_Skin.BHasScrollbar)
+			{
 				m_ScrollTheme = OpenThemeData(m_Scrollbar, L"scrollbar");
+			}
 		}
 		RECT rcScroll = m_rContent;
 		rcScroll.bottom = rcScroll.top + m_SearchScrollHeight * s_Skin.ItemSettings[MenuSkin::LIST_ITEM].itemHeight;

@@ -398,6 +398,7 @@ HICON CreateMonoIcon(HICON hIcon, int iconSize)
 // Commctl32 v5 style
 HICON Create9MonoIcon(HICON hIcon, int iconSize)
 {
+	return 0;
 }
 
 // Loads an image file into a bitmap and optionally resizes it
