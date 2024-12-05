@@ -16,7 +16,7 @@ class ATL_NO_VTABLE CClassicCopyExt :
 	public CComObjectRootEx<CComSingleThreadModel>,
 	public CComCoClass<CClassicCopyExt, &CLSID_ClassicCopyExt>,
 	public IShellExtInit,
-	public IContextMenu 
+	public IContextMenu
 
 {
 public:
@@ -24,15 +24,14 @@ public:
 	{
 	}
 
-	static HRESULT WINAPI UpdateRegistry( BOOL bRegister );
+	static HRESULT WINAPI UpdateRegistry(BOOL bRegister);
 
-DECLARE_NOT_AGGREGATABLE(CClassicCopyExt)
+	DECLARE_NOT_AGGREGATABLE(CClassicCopyExt)
 
-BEGIN_COM_MAP(CClassicCopyExt)
-	COM_INTERFACE_ENTRY(IShellExtInit)
-	COM_INTERFACE_ENTRY(IContextMenu)
-END_COM_MAP()
-
+	BEGIN_COM_MAP(CClassicCopyExt)
+		COM_INTERFACE_ENTRY(IShellExtInit)
+		COM_INTERFACE_ENTRY(IContextMenu)
+	END_COM_MAP()
 
 
 	DECLARE_PROTECT_FINAL_CONSTRUCT()

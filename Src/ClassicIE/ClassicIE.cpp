@@ -23,24 +23,24 @@
 	"language='*'\"")
 
 // Find and activate the Settings window
-static BOOL CALLBACK FindSettingsEnum( HWND hwnd, LPARAM lParam )
+static BOOL CALLBACK FindSettingsEnum(HWND hwnd, LPARAM lParam)
 {
 	wchar_t className[256];
-	if (!GetClassName(hwnd,className,_countof(className)) || _wcsicmp(className,L"#32770")!=0)
+	if (!GetClassName(hwnd, className,_countof(className)) || _wcsicmp(className, L"#32770") != 0)
 		return TRUE;
-	DWORD process=0;
-	GetWindowThreadProcessId(hwnd,&process);
-	HANDLE hProcess=OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ,FALSE,process);
-	bool bFound=false;
-	if (hProcess!=INVALID_HANDLE_VALUE)
+	DWORD process = 0;
+	GetWindowThreadProcessId(hwnd, &process);
+	HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,FALSE, process);
+	bool bFound = false;
+	if (hProcess != INVALID_HANDLE_VALUE)
 	{
 		wchar_t path[_MAX_PATH];
-		if (GetModuleFileNameEx(hProcess,NULL,path,_countof(path)))
+		if (GetModuleFileNameEx(hProcess,NULL, path,_countof(path)))
 		{
-			if (_wcsicmp(PathFindFileName(path),L"ClassicIE_32.exe")==0)
+			if (_wcsicmp(PathFindFileName(path), L"ClassicIE_32.exe") == 0)
 			{
 				SetForegroundWindow(hwnd);
-				bFound=true;
+				bFound = true;
 			}
 		}
 		CloseHandle(hProcess);
@@ -48,55 +48,55 @@ static BOOL CALLBACK FindSettingsEnum( HWND hwnd, LPARAM lParam )
 	return !bFound;
 }
 
-void ZoneConfigure( HWND hWnd, const wchar_t *url )
+void ZoneConfigure(HWND hWnd, const wchar_t* url)
 {
 	// use undocumented function 383 from shlwapi
-	typedef void (WINAPI* FZoneConfigureW)(HWND,LPCWSTR);
+	typedef void (WINAPI*FZoneConfigureW)(HWND, LPCWSTR);
 	FZoneConfigureW ZoneConfigureW;
 
-	HMODULE	hShlwapi=LoadLibrary(L"shlwapi.dll");
-	if(hShlwapi)
+	HMODULE hShlwapi = LoadLibrary(L"shlwapi.dll");
+	if (hShlwapi)
 	{
-		ZoneConfigureW=(FZoneConfigureW)GetProcAddress(hShlwapi,MAKEINTRESOURCEA(383));
-		if(ZoneConfigureW)
-			ZoneConfigureW(hWnd,url);
+		ZoneConfigureW = (FZoneConfigureW)GetProcAddress(hShlwapi,MAKEINTRESOURCEA(383));
+		if (ZoneConfigureW)
+			ZoneConfigureW(hWnd, url);
 		FreeLibrary(hShlwapi);
 	}
 }
 
-int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow )
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
-	if (wcsncmp(lpCmdLine,L"zone ",5)==0)
+	if (wcsncmp(lpCmdLine, L"zone ", 5) == 0)
 	{
 		wchar_t token[100];
-		const wchar_t *url=GetToken(lpCmdLine+5,token,_countof(token),L" ");
-		ZoneConfigure((HWND)(uintptr_t)_wtol(token),url);
+		const wchar_t* url = GetToken(lpCmdLine + 5, token,_countof(token), L" ");
+		ZoneConfigure((HWND)(uintptr_t)_wtol(token), url);
 		return 0;
 	}
 
 	{
-		const wchar_t *pXml=wcsstr(lpCmdLine,L"-xml ");
+		const wchar_t* pXml = wcsstr(lpCmdLine, L"-xml ");
 		if (pXml)
 		{
 			wchar_t xml[_MAX_PATH];
-			GetToken(pXml+5,xml,_countof(xml),L" ");
+			GetToken(pXml + 5, xml,_countof(xml), L" ");
 			CoInitialize(NULL);
-			bool res=DllImportSettingsXml(xml);
+			bool res = DllImportSettingsXml(xml);
 			CoUninitialize();
-			return res?0:1;
+			return res ? 0 : 1;
 		}
 	}
 
 	{
-		const wchar_t *pBackup=wcsstr(lpCmdLine,L"-backup ");
+		const wchar_t* pBackup = wcsstr(lpCmdLine, L"-backup ");
 		if (pBackup)
 		{
 			wchar_t xml[_MAX_PATH];
-			GetToken(pBackup+8,xml,_countof(xml),L" ");
+			GetToken(pBackup + 8, xml,_countof(xml), L" ");
 			CoInitialize(NULL);
-			bool res=DllExportSettingsXml(xml);
+			bool res = DllExportSettingsXml(xml);
 			CoUninitialize();
-			return res?0:1;
+			return res ? 0 : 1;
 		}
 	}
 
@@ -114,23 +114,24 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 
 	WaitDllInitThread();
 
-	DWORD settings=GetIESettings();
+	DWORD settings = GetIESettings();
 
-	HWND topWindow=(HWND)(uintptr_t)_wtol(lpCmdLine);
+	HWND topWindow = (HWND)(uintptr_t)_wtol(lpCmdLine);
 	if (topWindow)
 	{
 		DWORD processId;
-		DWORD threadId=GetWindowThreadProcessId(topWindow,&processId);
-		bool bWrongBitness=false;
-		
+		DWORD threadId = GetWindowThreadProcessId(topWindow, &processId);
+		bool bWrongBitness = false;
+
 		{
-			HANDLE hProcess=OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,processId);
+			HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION,FALSE, processId);
 
 			if (hProcess)
 			{
 				BOOL bWow64;
 #ifdef _WIN64
-				bWrongBitness=(IsWow64Process(hProcess,&bWow64) && bWow64); // the current process is 64-bit, but the target is wow64 (32-bit)
+				bWrongBitness = (IsWow64Process(hProcess, &bWow64) && bWow64);
+				// the current process is 64-bit, but the target is wow64 (32-bit)
 #else
 				if (IsWow64Process(GetCurrentProcess(),&bWow64) && bWow64)
 				{
@@ -144,19 +145,19 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 		if (bWrongBitness)
 		{
 			wchar_t path[_MAX_PATH];
-			GetModuleFileName(hInstance,path,_countof(path));
+			GetModuleFileName(hInstance, path,_countof(path));
 			PathRemoveFileSpec(path);
 #ifdef _WIN64
-			PathAppend(path,L"ClassicIE_32.exe");
+			PathAppend(path, L"ClassicIE_32.exe");
 #else
 			PathAppend(path,L"ClassicIE_64.exe");
 #endif
 			wchar_t cmdLine[1024];
-			Sprintf(cmdLine,_countof(cmdLine),L"%s %s",path,lpCmdLine);
-			STARTUPINFO startupInfo={sizeof(startupInfo)};
+			Sprintf(cmdLine,_countof(cmdLine), L"%s %s", path, lpCmdLine);
+			STARTUPINFO startupInfo = {sizeof(startupInfo)};
 			PROCESS_INFORMATION processInfo;
-			memset(&processInfo,0,sizeof(processInfo));
-			if (CreateProcess(path,cmdLine,NULL,NULL,TRUE,0,NULL,NULL,&startupInfo,&processInfo))
+			memset(&processInfo, 0, sizeof(processInfo));
+			if (CreateProcess(path, cmdLine,NULL,NULL,TRUE, 0,NULL,NULL, &startupInfo, &processInfo))
 			{
 				CloseHandle(processInfo.hThread);
 				CloseHandle(processInfo.hProcess);
@@ -166,53 +167,56 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 
 		CheckForNewVersionIE();
 
-		if (!(settings&IE_SETTING_CAPTION))
+		if (!(settings & IE_SETTING_CAPTION))
 			return settings;
 
-		HWND caption=FindWindowEx(topWindow,NULL,L"Client Caption",NULL);
-		DllLogToFile(CIE_LOG,L"exe: topWindow=%p, caption=%p",topWindow,caption);
-		UINT message=RegisterWindowMessage(L"ClassicIE.Injected");
+		HWND caption = FindWindowEx(topWindow,NULL, L"Client Caption",NULL);
+		DllLogToFile(CIE_LOG, L"exe: topWindow=%p, caption=%p", topWindow, caption);
+		UINT message = RegisterWindowMessage(L"ClassicIE.Injected");
 		if (caption)
 		{
-			if (SendMessage(caption,message,0,0)!=0)
+			if (SendMessage(caption, message, 0, 0) != 0)
 				return settings;
 
 			{
 				HANDLE hToken;
-				if (OpenProcessToken(GetCurrentProcess(),TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY,&hToken))
+				if (OpenProcessToken(GetCurrentProcess(),TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
 				{
-					TOKEN_PRIVILEGES tp={1};
-					if (LookupPrivilegeValue(NULL,L"SeDebugPrivilege",&tp.Privileges[0].Luid))
-						tp.Privileges[0].Attributes=SE_PRIVILEGE_ENABLED;
-					AdjustTokenPrivileges(hToken,FALSE,&tp,sizeof(TOKEN_PRIVILEGES),NULL,NULL); 
+					TOKEN_PRIVILEGES tp = {1};
+					if (LookupPrivilegeValue(NULL, L"SeDebugPrivilege", &tp.Privileges[0].Luid))
+						tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+					AdjustTokenPrivileges(hToken,FALSE, &tp, sizeof(TOKEN_PRIVILEGES),NULL,NULL);
 					CloseHandle(hToken);
 				}
 			}
 
 #ifdef _WIN64
-			HMODULE hHookModule=GetModuleHandle(L"ClassicIEDLL_64.dll");
+			HMODULE hHookModule = GetModuleHandle(L"ClassicIEDLL_64.dll");
 #else
 			HMODULE hHookModule=GetModuleHandle(L"ClassicIEDLL_32.dll");
 #endif
 
-			HANDLE hProcess=OpenProcess(PROCESS_ALL_ACCESS,FALSE,processId);
+			HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS,FALSE, processId);
 			if (hProcess)
 			{
 				wchar_t path[_MAX_PATH];
-				GetModuleFileName(hHookModule,path,_countof(path));
-				void *remotePath=VirtualAllocEx(hProcess,NULL,sizeof(path),MEM_COMMIT,PAGE_READWRITE);
+				GetModuleFileName(hHookModule, path,_countof(path));
+				void* remotePath = VirtualAllocEx(hProcess,NULL, sizeof(path),MEM_COMMIT,PAGE_READWRITE);
 				if (remotePath)
 				{
-					if (WriteProcessMemory(hProcess,remotePath,path,sizeof(path),NULL))
+					if (WriteProcessMemory(hProcess, remotePath, path, sizeof(path),NULL))
 					{
-						HANDLE hThread=CreateRemoteThread(hProcess,NULL,0,(LPTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandle(L"kernel32.dll"),"LoadLibraryW"),remotePath,0,NULL);
+						HANDLE hThread = CreateRemoteThread(hProcess,NULL, 0,
+						                                    (LPTHREAD_START_ROUTINE)GetProcAddress(
+							                                    GetModuleHandle(L"kernel32.dll"), "LoadLibraryW"),
+						                                    remotePath, 0,NULL);
 						if (hThread)
 						{
 							WaitForSingleObject(hThread,INFINITE);
 							CloseHandle(hThread);
 						}
 					}
-					VirtualFreeEx(hProcess,remotePath,sizeof(path),MEM_RELEASE);
+					VirtualFreeEx(hProcess, remotePath, sizeof(path),MEM_RELEASE);
 				}
 				CloseHandle(hProcess);
 			}
@@ -223,32 +227,32 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 #ifndef _WIN64
 	if (*lpCmdLine)
 #endif
-		return settings;
+	return settings;
 
 	// if 32-bit exe is called with no arguments, show the settings
 
-	INITCOMMONCONTROLSEX init={sizeof(init),ICC_STANDARD_CLASSES};
+	INITCOMMONCONTROLSEX init = {sizeof(init),ICC_STANDARD_CLASSES};
 	InitCommonControlsEx(&init);
 
 	// prevent multiple instances from running on the same desktop
 	// the assumption is that multiple desktops for the same user will have different name (but may repeat across users)
 	wchar_t userName[256];
-	DWORD len=_countof(userName);
-	GetUserName(userName,&len);
-	len=0;
-	HANDLE desktop=GetThreadDesktop(GetCurrentThreadId());
-	GetUserObjectInformation(desktop,UOI_NAME,NULL,0,&len);
-	wchar_t *deskName=(wchar_t*)malloc(len);
-	GetUserObjectInformation(desktop,UOI_NAME,deskName,len,&len);
+	DWORD len = _countof(userName);
+	GetUserName(userName, &len);
+	len = 0;
+	HANDLE desktop = GetThreadDesktop(GetCurrentThreadId());
+	GetUserObjectInformation(desktop,UOI_NAME,NULL, 0, &len);
+	wchar_t* deskName = (wchar_t*)malloc(len);
+	GetUserObjectInformation(desktop,UOI_NAME, deskName, len, &len);
 
 	wchar_t mutexName[1024];
-	Sprintf(mutexName,_countof(mutexName),L"ClassicIESettings.Mutex.%s.%s",userName,deskName);
+	Sprintf(mutexName,_countof(mutexName), L"ClassicIESettings.Mutex.%s.%s", userName, deskName);
 	free(deskName);
 
-	HANDLE hMutex=CreateMutex(NULL,TRUE,mutexName);
-	if (GetLastError()==ERROR_ALREADY_EXISTS || GetLastError()==ERROR_ACCESS_DENIED)
+	HANDLE hMutex = CreateMutex(NULL,TRUE, mutexName);
+	if (GetLastError() == ERROR_ALREADY_EXISTS || GetLastError() == ERROR_ACCESS_DENIED)
 	{
-		EnumWindows(FindSettingsEnum,0);
+		EnumWindows(FindSettingsEnum, 0);
 		return 0;
 	}
 

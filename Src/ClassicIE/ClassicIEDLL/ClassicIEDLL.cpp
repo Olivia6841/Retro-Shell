@@ -29,7 +29,7 @@ STDAPI DllRegisterServer(void)
 {
 	WaitDllInitThread();
 	// registers object, typelib and all interfaces in typelib
-	HRESULT res=_AtlModule.DllRegisterServer();
+	HRESULT res = _AtlModule.DllRegisterServer();
 	if (SUCCEEDED(res))
 	{
 		// mark the extension as compatible with the enhanced protected mode of IE10
@@ -37,8 +37,10 @@ STDAPI DllRegisterServer(void)
 		catRegister.CoCreateInstance(CLSID_StdComponentCategoriesMgr);
 		if (catRegister)
 		{
-			CATID CATID_AppContainerCompatible={0x59fb2056,0xd625,0x48d0,{0xa9,0x44,0x1a,0x85,0xb5,0xab,0x26,0x40}};
-			catRegister->RegisterClassImplCategories(CLSID_ClassicIEBHO,1,&CATID_AppContainerCompatible);
+			CATID CATID_AppContainerCompatible = {
+				0x59fb2056, 0xd625, 0x48d0, {0xa9, 0x44, 0x1a, 0x85, 0xb5, 0xab, 0x26, 0x40}
+			};
+			catRegister->RegisterClassImplCategories(CLSID_ClassicIEBHO, 1, &CATID_AppContainerCompatible);
 		}
 	}
 	return res;
@@ -69,10 +71,10 @@ STDAPI DllInstall(BOOL bInstall, LPCWSTR pszCmdLine)
 	}
 
 	if (bInstall)
-	{	
+	{
 		hr = DllRegisterServer();
 		if (FAILED(hr))
-		{	
+		{
 			DllUnregisterServer();
 		}
 	}

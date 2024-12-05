@@ -79,17 +79,18 @@ enum TTaskbarTile
 
 enum
 {
-	COMPATIBILITY_ENUM_SHELLITEM= 1, // use IEnumShellItems to enumerate items
-	COMPATIBILITY_ENUM_FIX_PIDLS= 2, // regenerate child pidls when enumerating folders (requres COMPATIBILITY_ENUM_SHELLITEM)
-	COMPATIBILITY_SKIP_DESKTOP=   4, // don't collect items from desktop
-	COMPATIBILITY_TRIM_HOOKS=     8, // less hooking for Win7
-	COMPATIBILITY_UPDATE_ITEMS=  16, // update the shell items for all search results
-	COMPATIBILITY_NO_TOUCH_KBD=  32, // disable the touch keyboard support
+	COMPATIBILITY_ENUM_SHELLITEM = 1, // use IEnumShellItems to enumerate items
+	COMPATIBILITY_ENUM_FIX_PIDLS = 2,
+	// regenerate child pidls when enumerating folders (requres COMPATIBILITY_ENUM_SHELLITEM)
+	COMPATIBILITY_SKIP_DESKTOP = 4, // don't collect items from desktop
+	COMPATIBILITY_TRIM_HOOKS = 8, // less hooking for Win7
+	COMPATIBILITY_UPDATE_ITEMS = 16, // update the shell items for all search results
+	COMPATIBILITY_NO_TOUCH_KBD = 32, // disable the touch keyboard support
 
-	COMPATIBILITY_CRASH_TEST=     0x80000000
+	COMPATIBILITY_CRASH_TEST = 0x80000000
 };
 
-void InitSettings( void );
-STARTMENUAPI void EditSettings( bool bModal, int tab );
-STARTMENUAPI bool DllImportSettingsXml( const wchar_t *fname );
-STARTMENUAPI bool DllExportSettingsXml( const wchar_t *fname );
+void InitSettings(void);
+STARTMENUAPI void EditSettings(bool bModal, int tab);
+STARTMENUAPI bool DllImportSettingsXml(const wchar_t* fname);
+STARTMENUAPI bool DllExportSettingsXml(const wchar_t* fname);

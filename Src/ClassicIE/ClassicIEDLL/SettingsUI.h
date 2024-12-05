@@ -4,4 +4,4 @@
 
 #pragma once
 
-void InitSettings( void );
+void InitSettings(void);

@@ -26,9 +26,9 @@ struct VersionData
 	bool bNewVersion = false;
 	bool bIgnoreVersion = false;
 
-	~VersionData( void ) { Clear(); }
-	void Clear( void );
-	void Swap( VersionData &data );
+	~VersionData(void) { Clear(); }
+	void Clear(void);
+	void Swap(VersionData& data);
 
 	enum TLoadResult
 	{
@@ -39,12 +39,14 @@ struct VersionData
 	};
 
 	TLoadResult Load(bool official);
+
 private:
-	void operator=( const VersionData& );
+	void operator=(const VersionData&);
 };
 
-typedef void (*tNewVersionCallback)( VersionData &data );
+typedef void (*tNewVersionCallback)(VersionData& data);
 
 // 0 - fail, 1 - success, 2 - cancel
-DWORD CheckForNewVersion( HWND owner, TSettingsComponent component, TVersionCheck check, tNewVersionCallback callback );
-DWORD DownloadNewVersion( HWND owner, TSettingsComponent component, const wchar_t *url, const wchar_t *signer, CString &fname, CString &error );
+DWORD CheckForNewVersion(HWND owner, TSettingsComponent component, TVersionCheck check, tNewVersionCallback callback);
+DWORD DownloadNewVersion(HWND owner, TSettingsComponent component, const wchar_t* url, const wchar_t* signer,
+                         CString& fname, CString& error);

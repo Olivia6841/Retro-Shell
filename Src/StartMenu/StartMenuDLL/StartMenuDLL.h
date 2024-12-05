@@ -13,41 +13,49 @@
 #endif
 
 // Find the taskbar window for the given process
-STARTMENUAPI HWND FindTaskBar( DWORD process );
+STARTMENUAPI HWND FindTaskBar(DWORD process);
 
 // WH_GETMESSAGE hook for the explorer's GUI thread. The start menu exe uses this hook to inject code into the explorer process
-STARTMENUAPI LRESULT CALLBACK HookInject( int code, WPARAM wParam, LPARAM lParam );
+STARTMENUAPI LRESULT CALLBACK HookInject(int code, WPARAM wParam, LPARAM lParam);
 
 // Toggle the start menu. bKeyboard - set to true to show the keyboard cues
-STARTMENUAPI HWND ToggleStartMenu( int taskbarId, bool bKeyboard );
+STARTMENUAPI HWND ToggleStartMenu(int taskbarId, bool bKeyboard);
 
-STARTMENUAPI void InitManagers( bool bNohook );
-STARTMENUAPI void CloseManagers( bool bNohook );
-STARTMENUAPI void WaitDllInitThread( void );
+STARTMENUAPI void InitManagers(bool bNohook);
+STARTMENUAPI void CloseManagers(bool bNohook);
+STARTMENUAPI void WaitDllInitThread(void);
 
-STARTMENUAPI bool DllGetSettingBool( const wchar_t *name );
-STARTMENUAPI int DllGetSettingInt( const wchar_t *name );
-STARTMENUAPI void DllUpdateSettings( void );
-STARTMENUAPI CString DllLoadStringEx( int stringID );
-STARTMENUAPI void DllLogToFile( const wchar_t *location, const wchar_t *message, ... );
+STARTMENUAPI bool DllGetSettingBool(const wchar_t* name);
+STARTMENUAPI int DllGetSettingInt(const wchar_t* name);
+STARTMENUAPI void DllUpdateSettings(void);
+STARTMENUAPI CString DllLoadStringEx(int stringID);
+STARTMENUAPI void DllLogToFile(const wchar_t* location, const wchar_t* message, ...);
 
 #ifndef _WIN64
 enum TSettingsComponent;
 STARTMENUAPI bool DllSaveAdmx( TSettingsComponent component, const char *admxFile, const char *admlFile, const char *docFile );
 STARTMENUAPI void DllLoadTranslationResources( HINSTANCE hLngInstance, int *pDialogs );
 #endif
-STARTMENUAPI bool DllExecuteNamedCommand( const wchar_t *command );
+STARTMENUAPI bool DllExecuteNamedCommand(const wchar_t* command);
 
 #ifdef TRACK_GDI_RESOURCES
 STARTMENUAPI void DllDumpResourceLeaks( void );
 #endif
 
 // Enable or disable the tooltip for the start button
-void EnableStartTooltip( bool bEnable );
+void EnableStartTooltip(bool bEnable);
 
 struct TaskbarInfo
 {
-	TaskbarInfo( void ) { taskbarId=pointerId=0; taskBar=startButton=oldButton=rebar=taskList=chevron=desktop=NULL; startButtonSize.cx=startButtonSize.cy=0; oldButtonSize.cx=oldButtonSize.cy=0; bTimer=bCustomLook=bReplaceButton=bHideButton=bRecreatingButton=bThemeChanging=false; }
+	TaskbarInfo(void)
+	{
+		taskbarId = pointerId = 0;
+		taskBar = startButton = oldButton = rebar = taskList = chevron = desktop = NULL;
+		startButtonSize.cx = startButtonSize.cy = 0;
+		oldButtonSize.cx = oldButtonSize.cy = 0;
+		bTimer = bCustomLook = bReplaceButton = bHideButton = bRecreatingButton = bThemeChanging = false;
+	}
+
 	int taskbarId;
 	HWND taskBar;
 	HWND startButton; // either own start button or the win7 start button (depending on bReplaceButton)
@@ -69,11 +77,11 @@ struct TaskbarInfo
 	std::vector<HWND> taskbarParts;
 	CComPtr<IDropTarget> pOriginalTarget;
 
-	bool HasPart( HWND part ) const;
+	bool HasPart(HWND part) const;
 };
 
-TaskbarInfo *GetTaskbarInfo( size_t taskbarId );
-UINT GetTaskbarPosition( HWND taskBar, MONITORINFO *pInfo, HMONITOR *pMonitor, RECT *pRc );
+TaskbarInfo* GetTaskbarInfo(size_t taskbarId);
+UINT GetTaskbarPosition(HWND taskBar, MONITORINFO* pInfo, HMONITOR* pMonitor, RECT* pRc);
 
 extern HWND STARTMENUAPI g_TaskBar, g_OwnerWindow;
 extern HWND g_TopWin7Menu, g_AllPrograms, g_ProgramsButton, g_UserPic; // from the Windows menu
@@ -102,7 +110,7 @@ enum TMenuMsgParam // wParam for the OpenShellMenu.StartMenuMsg message
 };
 
 STARTMENUAPI extern enum _MINIDUMP_TYPE MiniDumpType;
-STARTMENUAPI LONG _stdcall TopLevelFilter( _EXCEPTION_POINTERS *pExceptionInfo );
+STARTMENUAPI LONG _stdcall TopLevelFilter(_EXCEPTION_POINTERS* pExceptionInfo);
 
 enum THotkeys
 {
@@ -112,11 +120,11 @@ enum THotkeys
 };
 
 // Set the hotkeys and controls for the start menu
-void EnableHotkeys( THotkeys enable );
+void EnableHotkeys(THotkeys enable);
 
-bool PointAroundStartButton( size_t taskbarId, const CPoint &pt=CPoint(GetMessagePos()) );
-void ResetHotCorners( void );
-void RedrawTaskbars( void );
+bool PointAroundStartButton(size_t taskbarId, const CPoint& pt = CPoint(GetMessagePos()));
+void ResetHotCorners(void);
+void RedrawTaskbars(void);
 
 enum TUpdateTaskbar
 {
@@ -126,5 +134,5 @@ enum TUpdateTaskbar
 	TASKBAR_RECREATE_BUTTONS,
 };
 
-void UpdateTaskBars( TUpdateTaskbar update );
-HBITMAP GetStartScreenIcon( int size );
+void UpdateTaskBars(TUpdateTaskbar update);
+HBITMAP GetStartScreenIcon(int size);

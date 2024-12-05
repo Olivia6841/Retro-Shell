@@ -21,8 +21,8 @@ extern CItemManager g_ItemManager;
 class CItemManager
 {
 public:
-	CItemManager( void );
-	~CItemManager( void );
+	CItemManager(void);
+	~CItemManager(void);
 
 	static int SMALL_ICON_SIZE;
 	static int MEDIUM_ICON_SIZE;
@@ -30,15 +30,15 @@ public:
 	static int EXTRA_LARGE_ICON_SIZE;
 
 	// Initializes the manager. Called from DllMain
-	void Init( void );
-	void Close( void );
-	void ResetTempIcons( void );
-	void LoadCacheFile( void );
-	void SaveCacheFile( void );
-	void ClearCache( void );
+	void Init(void);
+	void Close(void);
+	void ResetTempIcons(void);
+	void LoadCacheFile(void);
+	void SaveCacheFile(void);
+	void ClearCache(void);
 
-	static int GetDPI( bool bOverride ) { return (bOverride && s_DPIOverride)?s_DPIOverride:s_DPI; }
-	static bool GetDPIOverride( void ) { return s_DPIOverride!=0; }
+	static int GetDPI(bool bOverride) { return (bOverride && s_DPIOverride) ? s_DPIOverride : s_DPI; }
+	static bool GetDPIOverride(void) { return s_DPIOverride != 0; }
 
 	enum TIconSizeType
 	{
@@ -64,11 +64,16 @@ public:
 		FILETIME timestamp;
 		HBITMAP bitmap; // bitmaps are guaranteed to be valid on the main thread (if the handle is read atomically)
 
-		void SetPath( const wchar_t *path );
-		const CString &GetPath( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ICONS)); return PATH; }
+		void SetPath(const wchar_t* path);
 
-		private:
-			CString PATH; // metro icon paths start with # and are not saved to cache file
+		const CString& GetPath(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ICONS));
+			return PATH;
+		}
+
+	private:
+		CString PATH; // metro icon paths start with # and are not saved to cache file
 
 		friend class CItemManager;
 	};
@@ -77,20 +82,21 @@ public:
 	{
 		INFO_LINK = 1, // bLink, appid, bNoPin, bNoNew, targetPidl, targetPath, arguments
 		INFO_METRO = 2, // bLink, bMetroLink, bMetroApp, appid, metroName, package, packagePath, iconPath, color
-		INFO_LINK_APPID = 4, // the appid is validated by the app resolver (for jumplists and UserAssist items). Can only be used from the main thread
+		INFO_LINK_APPID = 4,
+		// the appid is validated by the app resolver (for jumplists and UserAssist items). Can only be used from the main thread
 
 		INFO_SMALL_ICON = 16,
 		INFO_MEDIUM_ICON = 24,
 		INFO_LARGE_ICON = 32,
 		INFO_EXTRA_LARGE_ICON = 64,
 
-		INFO_NO_PATH=8192, // don't trust the parsing name
-		INFO_VALIDATE_FILE=16384, // if the path doesn't exist returns NULL
-		INFO_REFRESH_NOW=32768,
-		INFO_STARTSCREEN_ICON=65536,
+		INFO_NO_PATH = 8192, // don't trust the parsing name
+		INFO_VALIDATE_FILE = 16384, // if the path doesn't exist returns NULL
+		INFO_REFRESH_NOW = 32768,
+		INFO_STARTSCREEN_ICON = 65536,
 
-		INFO_DATA=INFO_LINK|INFO_METRO|INFO_LINK_APPID,
-		INFO_ICON=INFO_SMALL_ICON|INFO_MEDIUM_ICON|INFO_LARGE_ICON|INFO_EXTRA_LARGE_ICON,
+		INFO_DATA = INFO_LINK | INFO_METRO | INFO_LINK_APPID,
+		INFO_ICON = INFO_SMALL_ICON | INFO_MEDIUM_ICON | INFO_LARGE_ICON | INFO_EXTRA_LARGE_ICON,
 	};
 
 	enum TLocation
@@ -105,41 +111,121 @@ public:
 
 	struct ItemInfo
 	{
-		ItemInfo( void )
+		ItemInfo(void)
 		{
-			smallIcon=mediumIcon=largeIcon=extraLargeIcon=NULL;
-			validFlags=refreshFlags=0;
-			bIconOnly=bTemp=bLink=bExplicitAppId=bNoPin=bNoNew=bMetroLink=bMetroApp=bProtectedLink=false;
-			writestamp.dwHighDateTime=writestamp.dwLowDateTime=0;
-			createstamp.dwHighDateTime=createstamp.dwLowDateTime=0;
-			location=LOCATION_UNKNOWN;
+			smallIcon = mediumIcon = largeIcon = extraLargeIcon = NULL;
+			validFlags = refreshFlags = 0;
+			bIconOnly = bTemp = bLink = bExplicitAppId = bNoPin = bNoNew = bMetroLink = bMetroApp = bProtectedLink =
+				false;
+			writestamp.dwHighDateTime = writestamp.dwLowDateTime = 0;
+			createstamp.dwHighDateTime = createstamp.dwLowDateTime = 0;
+			location = LOCATION_UNKNOWN;
 		}
 
 		// PATH never changes after the item is created. it can be accessed without a lock
 		CString PATH;
 
 		// these are replaced atomically with pointers that are always valid
-		const IconInfo *smallIcon;
-		const IconInfo *mediumIcon;
-		const IconInfo *largeIcon;
-		const IconInfo *extraLargeIcon;
+		const IconInfo* smallIcon;
+		const IconInfo* mediumIcon;
+		const IconInfo* largeIcon;
+		const IconInfo* extraLargeIcon;
 
-		const CAbsolutePidl &GetPidl( void ) const { Assert(GetCurrentThreadId()==g_ItemManager.m_MainThreadId || RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return pidl; }
-		bool IsLink( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bLink; }
-		bool IsMetroLink( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bMetroLink; }
-		bool IsMetroApp( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bMetroApp; }
-		bool IsProtectedLink( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bProtectedLink; }
-		bool IsNoPin( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bNoPin; }
-		bool IsNoNew( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bNoNew; }
-		bool IsExplicitAppId( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return bExplicitAppId; }
-		const CString &GetPath( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return path; }
-		const CString &GetAppid( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return appid; }
-		const CString &GetTargetPATH( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return targetPATH; }
-		const CAbsolutePidl &GetTargetPidl( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return targetPidl; }
-		const CString &GetMetroName( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return metroName; }
-		const CString &GetIconPath( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return iconPath; }
-		const CString &GetPackagePath( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return packagePath; }
-		TLocation GetLocation( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return location; }
+		const CAbsolutePidl& GetPidl(void) const
+		{
+			Assert(GetCurrentThreadId()==g_ItemManager.m_MainThreadId || RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return pidl;
+		}
+
+		bool IsLink(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bLink;
+		}
+
+		bool IsMetroLink(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bMetroLink;
+		}
+
+		bool IsMetroApp(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bMetroApp;
+		}
+
+		bool IsProtectedLink(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bProtectedLink;
+		}
+
+		bool IsNoPin(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bNoPin;
+		}
+
+		bool IsNoNew(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bNoNew;
+		}
+
+		bool IsExplicitAppId(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return bExplicitAppId;
+		}
+
+		const CString& GetPath(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return path;
+		}
+
+		const CString& GetAppid(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return appid;
+		}
+
+		const CString& GetTargetPATH(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return targetPATH;
+		}
+
+		const CAbsolutePidl& GetTargetPidl(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return targetPidl;
+		}
+
+		const CString& GetMetroName(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return metroName;
+		}
+
+		const CString& GetIconPath(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return iconPath;
+		}
+
+		const CString& GetPackagePath(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return packagePath;
+		}
+
+		TLocation GetLocation(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return location;
+		}
 
 	private:
 		CAbsolutePidl pidl;
@@ -171,29 +257,34 @@ public:
 
 		int iconIndex; // used only if bIconOnly
 
-		const CAbsolutePidl &GetLatestPidl( void ) const { Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS)); return newPidl?newPidl:pidl; }
+		const CAbsolutePidl& GetLatestPidl(void) const
+		{
+			Assert(RWLock::ThreadHasReadLock(RWLOCK_ITEMS));
+			return newPidl ? newPidl : pidl;
+		}
 
 		friend class CItemManager;
 	};
 
-	const ItemInfo *GetItemInfo( IShellItem *pItem, PIDLIST_ABSOLUTE pidl, int refreshFlags, TLocation location=LOCATION_UNKNOWN );
-	const ItemInfo *GetItemInfo( CString path, int refreshFlags, TLocation location=LOCATION_UNKNOWN );
-	const ItemInfo *GetCustomIcon( const wchar_t *location, int index, TIconSizeType iconSizeType, bool bTemp );
-	const ItemInfo *GetCustomIcon( const wchar_t *path, TIconSizeType iconSizeType );
+	const ItemInfo* GetItemInfo(IShellItem* pItem, PIDLIST_ABSOLUTE pidl, int refreshFlags,
+	                            TLocation location = LOCATION_UNKNOWN);
+	const ItemInfo* GetItemInfo(CString path, int refreshFlags, TLocation location = LOCATION_UNKNOWN);
+	const ItemInfo* GetCustomIcon(const wchar_t* location, int index, TIconSizeType iconSizeType, bool bTemp);
+	const ItemInfo* GetCustomIcon(const wchar_t* path, TIconSizeType iconSizeType);
 	const ItemInfo* GetLinkIcon(IShellLink* link, TIconSizeType iconSizeType);
-	const ItemInfo *GetMetroAppInfo10( const wchar_t *appid );
-	void UpdateItemInfo( const ItemInfo *pInfo, int refreshFlags, bool bHasWriteLock=false );
-	void WaitForShortcuts( const POINT &balloonPos );
-	bool IsTaskbarPinned( const wchar_t *appid );
-	void UpdateNewPrograms( const POINT &balloonPos );
-	bool IsNewProgram( PIDLIST_ABSOLUTE pidl, bool bFolder, bool bMetroApp );
-	bool HasNewPrograms( bool bReal ) { return m_bHasNewPrograms[bReal?0:1]; }
-	bool HasNewApps( bool bReal ) { return m_bHasNewApps[bReal?0:1]; }
-	void RefreshInfos( void );
+	const ItemInfo* GetMetroAppInfo10(const wchar_t* appid);
+	void UpdateItemInfo(const ItemInfo* pInfo, int refreshFlags, bool bHasWriteLock = false);
+	void WaitForShortcuts(const POINT& balloonPos);
+	bool IsTaskbarPinned(const wchar_t* appid);
+	void UpdateNewPrograms(const POINT& balloonPos);
+	bool IsNewProgram(PIDLIST_ABSOLUTE pidl, bool bFolder, bool bMetroApp);
+	bool HasNewPrograms(bool bReal) { return m_bHasNewPrograms[bReal ? 0 : 1]; }
+	bool HasNewApps(bool bReal) { return m_bHasNewApps[bReal ? 0 : 1]; }
+	void RefreshInfos(void);
 
-	void RemoveNewItem( PIDLIST_ABSOLUTE pItem1, PIDLIST_ABSOLUTE pItem2, bool bFolder );
-	void RemoveNewItems( bool bPrograms, bool bMetro );
-	void SaveOldItems( void );
+	void RemoveNewItem(PIDLIST_ABSOLUTE pItem1, PIDLIST_ABSOLUTE pItem2, bool bFolder);
+	void RemoveNewItems(bool bPrograms, bool bMetro);
+	void SaveOldItems(void);
 
 	enum TRWLock
 	{
@@ -205,19 +296,19 @@ public:
 	class RWLock
 	{
 	public:
-		RWLock( CItemManager *pThis, bool bWrite, TRWLock index )
+		RWLock(CItemManager* pThis, bool bWrite, TRWLock index)
 		{
-			if (index==RWLOCK_COUNT)
+			if (index == RWLOCK_COUNT)
 			{
-				m_pLock=NULL;
+				m_pLock = NULL;
 				return;
 			}
 #ifdef _DEBUG
 			m_pState=&g_LockState[index];
 			Assert(*m_pState==0);
 #endif
-			m_pLock=&pThis->m_RWLocks[index];
-			m_bWrite=bWrite;
+			m_pLock = &pThis->m_RWLocks[index];
+			m_bWrite = bWrite;
 			if (bWrite)
 				AcquireSRWLockExclusive(m_pLock);
 			else
@@ -227,7 +318,7 @@ public:
 #endif
 		}
 
-		~RWLock( void )
+		~RWLock(void)
 		{
 			if (!m_pLock) return;
 #ifdef _DEBUG
@@ -246,7 +337,7 @@ public:
 #endif
 
 	private:
-		SRWLOCK *m_pLock;
+		SRWLOCK* m_pLock;
 		bool m_bWrite;
 
 #ifdef _DEBUG
@@ -285,84 +376,93 @@ private:
 		CComPtr<IImageList2> m_pTempLists[ICON_SIZE_COUNT];
 		CComPtr<IWICImagingFactory> m_pFactory;
 
-		void Init( void );
-		void Close( void );
+		void Init(void);
+		void Close(void);
 	};
 
 	LoadIconData m_LoadIconData[3]; // one for each thread (main, preload, refresh)
-	LoadIconData &GetLoadIconData( void );
+	LoadIconData& GetLoadIconData(void);
 
 	class Lock
 	{
 	public:
-		Lock( CItemManager *pThis, TLock index )
+		Lock(CItemManager* pThis, TLock index)
 		{
-			m_pSection=&pThis->m_CriticalSections[index];
+			m_pSection = &pThis->m_CriticalSections[index];
 			EnterCriticalSection(m_pSection);
-			m_pOwner=&pThis->m_CriticalSectionOwners[index];
+			m_pOwner = &pThis->m_CriticalSectionOwners[index];
 			if (!*m_pOwner)
-				*m_pOwner=GetCurrentThreadId();
+				*m_pOwner = GetCurrentThreadId();
 			else
-				m_pOwner=NULL;
+				m_pOwner = NULL;
 		}
 
-		~Lock( void )
+		~Lock(void)
 		{
-			if (m_pOwner) *m_pOwner=0;
+			if (m_pOwner) *m_pOwner = 0;
 			LeaveCriticalSection(m_pSection);
 		}
 
 	private:
-		CRITICAL_SECTION *m_pSection;
-		DWORD *m_pOwner;
+		CRITICAL_SECTION* m_pSection;
+		DWORD* m_pOwner;
 	};
 
-	bool ThreadHasLock( TLock index ) { return m_CriticalSectionOwners[index]==GetCurrentThreadId(); }
+	bool ThreadHasLock(TLock index) { return m_CriticalSectionOwners[index] == GetCurrentThreadId(); }
 
 	// requires LOCK_ITEMS to be held
-	void QueueItemInfo( ItemInfo *pInfo, int refreshFlags );
+	void QueueItemInfo(ItemInfo* pInfo, int refreshFlags);
 	// doesn't require a lock
-	void RefreshItemInfo( ItemInfo *pInfo, int refreshFlags, IShellItem *pItem, bool bHasWriteLock );
+	void RefreshItemInfo(ItemInfo* pInfo, int refreshFlags, IShellItem* pItem, bool bHasWriteLock);
 
-	void FindInCache( unsigned int hash, int &refreshFlags, const IconInfo *&smallIcon, const IconInfo *&mediumIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon );
+	void FindInCache(unsigned int hash, int& refreshFlags, const IconInfo*& smallIcon, const IconInfo*& mediumIcon,
+	                 const IconInfo*& largeIcon, const IconInfo*& extraLargeIcon);
 
-	void StoreInCache( unsigned int hash, const wchar_t *path, HBITMAP hSmallBitmap, HBITMAP hMediumBitmap, HBITMAP hLargeBitmap, HBITMAP hExtraLargeBitmap, int refreshFlags, const IconInfo *&smallIcon, const IconInfo *&mediumIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon, bool bTemp, bool bMetro );
+	void StoreInCache(unsigned int hash, const wchar_t* path, HBITMAP hSmallBitmap, HBITMAP hMediumBitmap,
+	                  HBITMAP hLargeBitmap, HBITMAP hExtraLargeBitmap, int refreshFlags, const IconInfo*& smallIcon,
+	                  const IconInfo*& mediumIcon, const IconInfo*& largeIcon, const IconInfo*& extraLargeIcon,
+	                  bool bTemp, bool bMetro);
 
-	void LoadShellIcon( IShellItem *pItem, int refreshFlags, const IconInfo *&smallIcon, const IconInfo *&mediumIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon, const DWORD *pMetroColor );
+	void LoadShellIcon(IShellItem* pItem, int refreshFlags, const IconInfo*& smallIcon, const IconInfo*& mediumIcon,
+	                   const IconInfo*& largeIcon, const IconInfo*& extraLargeIcon, const DWORD* pMetroColor);
 
-	void LoadMetroIcon( IShellItem *pItem, int &refreshFlags, const IconInfo *&smallIcon, const IconInfo *&mediumIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon, const DWORD *pMetroColor );
+	void LoadMetroIcon(IShellItem* pItem, int& refreshFlags, const IconInfo*& smallIcon, const IconInfo*& mediumIcon,
+	                   const IconInfo*& largeIcon, const IconInfo*& extraLargeIcon, const DWORD* pMetroColor);
 
-	void LoadCustomIcon( const wchar_t *iconPath, int iconIndex, int refreshFlags, const IconInfo *&smallIcon, const IconInfo *&mediumIcon, const IconInfo *&largeIcon, const IconInfo *&extraLargeIcon, bool bTemp );
+	void LoadCustomIcon(const wchar_t* iconPath, int iconIndex, int refreshFlags, const IconInfo*& smallIcon,
+	                    const IconInfo*& mediumIcon, const IconInfo*& largeIcon, const IconInfo*& extraLargeIcon,
+	                    bool bTemp);
 
-	HICON LoadShellIcon( int index, int iconSize );
+	HICON LoadShellIcon(int index, int iconSize);
 
-	HICON LoadShellIcon( int iconSize, IExtractIcon *pExtractW, const wchar_t *location, IExtractIconA *pExtractA, const char *locationA, int index );
+	HICON LoadShellIcon(int iconSize, IExtractIcon* pExtractW, const wchar_t* location, IExtractIconA* pExtractA,
+	                    const char* locationA, int index);
 
-	HBITMAP BitmapFromIcon( HICON hIcon, int iconSize, bool bDestroyIcon=true );
+	HBITMAP BitmapFromIcon(HICON hIcon, int iconSize, bool bDestroyIcon = true);
 
 	bool m_bInitialized;
 
 	// sizes for all shell image lists <size, list>
-	std::vector<std::pair<int,int>> m_ListSizes;
+	std::vector<std::pair<int, int>> m_ListSizes;
 
 	// the key is a hash of the path or the PIDL
-	std::multimap<unsigned int,ItemInfo> m_ItemInfos;
+	std::multimap<unsigned int, ItemInfo> m_ItemInfos;
 
 	// the key is a hash of the uppercase AppID (win10 only)
-	std::map<unsigned int,const ItemInfo*> m_MetroItemInfos10;
+	std::map<unsigned int, const ItemInfo*> m_MetroItemInfos10;
 	// hashes of AppIDs that are for sure not valid
 	std::set<unsigned int> m_BlackListInfos10;
 
 	// the key is a hash of the location and index
-	std::multimap<unsigned int,IconInfo> m_IconInfos;
+	std::multimap<unsigned int, IconInfo> m_IconInfos;
 
 	// bitmaps that were replaced but may still be used by the main thread
 	std::vector<HBITMAP> m_OldBitmaps;
 
-	const IconInfo *m_DefaultSmallIcon;
-	const IconInfo *m_DefaultMediumIcon;
-	const IconInfo *m_DefaultLargeIcon;
-	const IconInfo *m_DefaultExtraLargeIcon;
+	const IconInfo* m_DefaultSmallIcon;
+	const IconInfo* m_DefaultMediumIcon;
+	const IconInfo* m_DefaultLargeIcon;
+	const IconInfo* m_DefaultExtraLargeIcon;
 
 	// list of items to process in background
 	std::list<ItemInfo*> m_ItemQueue;
@@ -376,25 +476,27 @@ private:
 
 	bool m_bPreloadIcons;
 	bool m_bPreloadFavorites;
+
 	enum TLoadingStage
 	{
 		LOAD_STOPPED, // the loading threads are not running
 		LOAD_STOPPING, // the loading threads are stopping
 		LOAD_LOADING, // the loading threads are running
 	};
+
 	volatile TLoadingStage m_LoadingStage;
 	int m_LastCacheSave;
 	COLORREF m_OldSysAccentColor;
 	bool m_bOldInvertIcons;
 
-	void LoadFolderItems( IShellItem *pFolder, int refreshFlags, int levels, TLocation location );
-	void LoadMetroItems( int refreshFlags );
-	void PreloadItemsThread( void );
-	void CreateDefaultIcons( void );
-	static DWORD CALLBACK StaticPreloadItemsThread( void *param );
-	void RefreshInfoThread( void );
-	static DWORD CALLBACK StaticRefreshInfoThread( void *param );
-	static DWORD CALLBACK SaveCacheFileThread( void *param );
+	void LoadFolderItems(IShellItem* pFolder, int refreshFlags, int levels, TLocation location);
+	void LoadMetroItems(int refreshFlags);
+	void PreloadItemsThread(void);
+	void CreateDefaultIcons(void);
+	static DWORD CALLBACK StaticPreloadItemsThread(void* param);
+	void RefreshInfoThread(void);
+	static DWORD CALLBACK StaticRefreshInfoThread(void* param);
+	static DWORD CALLBACK SaveCacheFileThread(void* param);
 
 	// all paths are in caps and end with \ 
 	CString m_RootStartMenu1;
@@ -406,14 +508,16 @@ private:
 	CString m_RootTaskbar;
 	CString m_RootMetro;
 	// can be called from any thread
-	TLocation DetermineLocation( const wchar_t *PATH );
+	TLocation DetermineLocation(const wchar_t* PATH);
 
 	struct ModuleInfo
 	{
 		CString PATH;
 		FILETIME timestamp;
 	};
-	static bool CompareModuleTimeStamp( const CString &PATH, const FILETIME &timestamp, std::vector<ModuleInfo> &modules );
+
+	static bool CompareModuleTimeStamp(const CString& PATH, const FILETIME& timestamp,
+	                                   std::vector<ModuleInfo>& modules);
 
 	struct KnownPathGuid
 	{
@@ -427,24 +531,25 @@ private:
 		unsigned int hash;
 		FILETIME timestamp;
 
-		bool operator<( const OldItemInfo &x ) const { return hash<x.hash; }
+		bool operator<(const OldItemInfo& x) const { return hash < x.hash; }
 	};
 
 	std::vector<OldItemInfo> m_OldItemInfos;
 
-	void LoadOldItems( void );
-	bool IsPathUsed( CRegKey &regKey, const wchar_t *path, const FILETIME &createstamp, const KnownPathGuid *knownPaths, int knownPathsCount, bool bMetroApp );
-	void AddOldItems( const std::vector<unsigned> &hashes );
+	void LoadOldItems(void);
+	bool IsPathUsed(CRegKey& regKey, const wchar_t* path, const FILETIME& createstamp, const KnownPathGuid* knownPaths,
+	                int knownPathsCount, bool bMetroApp);
+	void AddOldItems(const std::vector<unsigned>& hashes);
 };
 
-CString GetPropertyStoreString( IPropertyStore *pStore, REFPROPERTYKEY key );
+CString GetPropertyStoreString(IPropertyStore* pStore, REFPROPERTYKEY key);
 
 class CShellItemEnumerator
 {
 public:
-	CShellItemEnumerator( IShellItem *pFolder );
-	bool IsValid( void ) const;
-	bool GetNext( CComPtr<IShellItem> &pChild, CAbsolutePidl &childPidl );
+	CShellItemEnumerator(IShellItem* pFolder);
+	bool IsValid(void) const;
+	bool GetNext(CComPtr<IShellItem>& pChild, CAbsolutePidl& childPidl);
 
 private:
 	CComPtr<IEnumIDList> m_pEnumPidls;
@@ -463,25 +568,25 @@ struct UserAssistData
 	int pad3;
 };
 
-void EncodeUserAssistPath( wchar_t *path );
-void EncodeRot13( wchar_t *text );
+void EncodeUserAssistPath(wchar_t* path);
+void EncodeRot13(wchar_t* text);
 
 enum TNetworkType
 {
 	NETWORK_NONE,
 	NETWORK_SERVER, // \\server
-	NETWORK_SHARE,  // \\server\share
-	NETWORK_DRIVE,  // Q:
+	NETWORK_SHARE, // \\server\share
+	NETWORK_DRIVE, // Q:
 	NETWORK_FOLDER, // either \\server\share\folder or Q:\folder
 	NETWORK_FILE, // something with extension
 };
 
-HRESULT MenuParseDisplayName( const wchar_t *path, PIDLIST_ABSOLUTE *pPidl, SFGAOF *pFlags, TNetworkType *pNetworkType );
-const wchar_t *GetDefaultNetworkIcon( TNetworkType networkType );
-bool MenuGetFileTimestamp( const wchar_t *path, FILETIME *pWriteTime, FILETIME *pCreateTime );
-STDAPI ShGetKnownFolderPath( REFKNOWNFOLDERID rfid, PWSTR *pPath );
-STDAPI ShGetKnownFolderIDList(REFKNOWNFOLDERID rfid, PIDLIST_ABSOLUTE *pPidl );
-STDAPI ShGetKnownFolderItem(REFKNOWNFOLDERID rfid, IShellItem **ppItem );
+HRESULT MenuParseDisplayName(const wchar_t* path, PIDLIST_ABSOLUTE* pPidl, SFGAOF* pFlags, TNetworkType* pNetworkType);
+const wchar_t* GetDefaultNetworkIcon(TNetworkType networkType);
+bool MenuGetFileTimestamp(const wchar_t* path, FILETIME* pWriteTime, FILETIME* pCreateTime);
+STDAPI ShGetKnownFolderPath(REFKNOWNFOLDERID rfid, PWSTR* pPath);
+STDAPI ShGetKnownFolderIDList(REFKNOWNFOLDERID rfid, PIDLIST_ABSOLUTE* pPidl);
+STDAPI ShGetKnownFolderItem(REFKNOWNFOLDERID rfid, IShellItem** ppItem);
 HBITMAP ColorizeMonochromeImage(HBITMAP bitmap, DWORD color);
 
 #define TASKBAR_PINNED_ROOT L"%APPDATA%\\Microsoft\\Internet Explorer\\Quick Launch\\User Pinned\\TaskBar"

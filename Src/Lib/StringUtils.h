@@ -55,45 +55,45 @@
 #endif
 
 // Returns 1 if the ANSI code page is single-byte, or 2 if it is double-byte (DBCS)
-int GetMaxCharSize( void );
+int GetMaxCharSize(void);
 
 // Returns the length of a string
-inline int Strlen( const char *str ) { return (int)strlen(str); }
-inline int Strlen( const wchar_t *str ) { return (int)wcslen(str); }
+inline int Strlen(const char* str) { return (int)strlen(str); }
+inline int Strlen(const wchar_t* str) { return (int)wcslen(str); }
 
 // Copies src to dst. size is the size of dst in characters, including the terminating 0.
 // Returns the number of characters copied, excluding the terminating 0.
 // The return value is <=size-1. If size is 0, returns 0 and does nothing.
 // The result in dst is always 0 terminated.
-int Strcpy( char *dst, int size, const char *src );
-int Strcpy( wchar_t *dst, int size, const wchar_t *src );
+int Strcpy(char* dst, int size, const char* src);
+int Strcpy(wchar_t* dst, int size, const wchar_t* src);
 
 // Copies src to dst. size is the size of dst in characters, including the terminating 0.
 // Copies up to len characters and always appends terminating 0.
-int Strncpy( char *dst, int size, const char *src, int len );
-int Strncpy( wchar_t *dst, int size, const wchar_t *src, int len );
+int Strncpy(char* dst, int size, const char* src, int len);
+int Strncpy(wchar_t* dst, int size, const wchar_t* src, int len);
 
 // Appends src to dst. size is the size of dst in bytes, including the terminating 0.
 // Returns the number of characters copied, excluding the terminating 0.
 // The return value is <=size-1-strlen(dst). If size>=strlen(dst), returns 0 and does nothing.
 // The result in dst is always 0 terminated.
-int Strcat( char *dst, int size, const char *src );
-int Strcat( wchar_t *dst, int size, const wchar_t *src );
+int Strcat(char* dst, int size, const char* src);
+int Strcat(wchar_t* dst, int size, const wchar_t* src);
 
 // Writes formatted string to dst. size is the size of dst in characters, including the terminating 0.
 // Returns the number of characters written, excluding the terminating 0.
 // The return value is <=size-1. If size is 0, returns 0 and does nothing.
 // The result in dst is always 0 terminated.
 
-int _cdecl Sprintf( char *dst, int size, const char *format, ... );
-int _cdecl Sprintf( wchar_t *dst, int size, const wchar_t *format, ... );
+int _cdecl Sprintf(char* dst, int size, const char* format, ...);
+int _cdecl Sprintf(wchar_t* dst, int size, const wchar_t* format, ...);
 
-int _cdecl Vsprintf( char *dst, int size, const char *format, va_list args );
-int _cdecl Vsprintf( wchar_t *dst, int size, const wchar_t *format, va_list args );
+int _cdecl Vsprintf(char* dst, int size, const char* format, va_list args);
+int _cdecl Vsprintf(wchar_t* dst, int size, const wchar_t* format, va_list args);
 
 // Outputs a formatted debug string
-void Trace( const char *format, ... );
-void Trace( const wchar_t *format, ... );
+void Trace(const char* format, ...);
+void Trace(const wchar_t* format, ...);
 
 // Converts between multi-byte and wide characters. size is the size of dst in characters, including the
 // terminating 0.
@@ -102,14 +102,14 @@ void Trace( const wchar_t *format, ... );
 // The result in dst is always 0 terminated.
 // If dst is NULL the size is ignored and the function just returns the number of characters (not counting the 0)
 #ifdef STR_USE_WIN32_CONV
-int MbsToWcs( wchar_t *dst, int size, const char *src, int codePage=CP_ACP );
-int WcsToMbs( char *dst, int size, const wchar_t *src, int codePage=CP_ACP );
+int MbsToWcs(wchar_t* dst, int size, const char* src, int codePage = CP_ACP);
+int WcsToMbs(char* dst, int size, const wchar_t* src, int codePage = CP_ACP);
 #else
 int MbsToWcs( wchar_t *dst, int size, const char *src );
 int WcsToMbs( char *dst, int size, const wchar_t *src );
 #endif
 
-const char *GetToken( const char *text, char *token, int size, const char *separators );
-const wchar_t *GetToken( const wchar_t *text, wchar_t *token, int size, const wchar_t *separators );
+const char* GetToken(const char* text, char* token, int size, const char* separators);
+const wchar_t* GetToken(const wchar_t* text, wchar_t* token, int size, const wchar_t* separators);
 
 #endif

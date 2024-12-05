@@ -13,32 +13,34 @@
 // CClassicCopyExt - this is a dummy drag and drop handler. Its purpose is to get Explorer to load the DLL when
 // a file is being copied or moved.
 
-void InitClassicCopyThread( void );
+void InitClassicCopyThread(void);
 
-STDMETHODIMP CClassicCopyExt::Initialize( PCIDLIST_ABSOLUTE pidlFolder, LPDATAOBJECT pDataObj, HKEY hProgID )
+STDMETHODIMP CClassicCopyExt::Initialize(PCIDLIST_ABSOLUTE pidlFolder, LPDATAOBJECT pDataObj, HKEY hProgID)
 {
 	InitClassicCopyThread();
 	return S_OK;
 }
 
-STDMETHODIMP CClassicCopyExt::QueryContextMenu( HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd, UINT uidLastCmd, UINT uFlags )
+STDMETHODIMP CClassicCopyExt::QueryContextMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd, UINT uidLastCmd,
+                                               UINT uFlags)
 {
-	return MAKE_HRESULT(SEVERITY_SUCCESS,FACILITY_NULL,0);
+	return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 }
 
-STDMETHODIMP CClassicCopyExt::GetCommandString( UINT_PTR idCmd, UINT uFlags, UINT* pwReserved, LPSTR pszName, UINT cchMax )
+STDMETHODIMP CClassicCopyExt::GetCommandString(UINT_PTR idCmd, UINT uFlags, UINT* pwReserved, LPSTR pszName,
+                                               UINT cchMax)
 {
 	return E_INVALIDARG;
 }
 
-STDMETHODIMP CClassicCopyExt::InvokeCommand( LPCMINVOKECOMMANDINFO pCmdInfo )
+STDMETHODIMP CClassicCopyExt::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 {
 	return E_INVALIDARG;
 }
 
-HRESULT WINAPI CClassicCopyExt::UpdateRegistry( BOOL bRegister )
+HRESULT WINAPI CClassicCopyExt::UpdateRegistry(BOOL bRegister)
 {
-	if (GetWinVersion()>=WIN_VER_WIN8)
+	if (GetWinVersion() >= WIN_VER_WIN8)
 		return S_OK;
-	return _AtlModule.UpdateRegistryFromResource(IDR_CLASSICCOPYEXT,bRegister);
+	return _AtlModule.UpdateRegistryFromResource(IDR_CLASSICCOPYEXT, bRegister);
 }

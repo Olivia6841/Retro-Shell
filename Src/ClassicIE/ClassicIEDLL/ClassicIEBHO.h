@@ -14,22 +14,22 @@ class ATL_NO_VTABLE CClassicIEBHO :
 	public CComObjectRootEx<CComSingleThreadModel>,
 	public CComCoClass<CClassicIEBHO, &CLSID_ClassicIEBHO>,
 	public IObjectWithSiteImpl<CClassicIEBHO>,
-	public IDispEventImpl<1,CClassicIEBHO,&DIID_DWebBrowserEvents2,&LIBID_SHDocVw,1,1>
+	public IDispEventImpl<1, CClassicIEBHO, &DIID_DWebBrowserEvents2, &LIBID_SHDocVw, 1, 1>
 {
 public:
 	CClassicIEBHO()
 	{
-		m_Settings=0;
-		m_StatusBar=NULL;
-		m_Tooltip=NULL;
-		m_ProgressBar=NULL;
-		m_TextWidth=0;
-		m_Progress=-1;
+		m_Settings = 0;
+		m_StatusBar = NULL;
+		m_Tooltip = NULL;
+		m_ProgressBar = NULL;
+		m_TextWidth = 0;
+		m_Progress = -1;
 	}
 
-	static HRESULT WINAPI UpdateRegistry( BOOL bRegister );
+	static HRESULT WINAPI UpdateRegistry(BOOL bRegister);
 
-	BEGIN_SINK_MAP( CClassicIEBHO )
+	BEGIN_SINK_MAP(CClassicIEBHO)
 		SINK_ENTRY_EX(1, DIID_DWebBrowserEvents2, DISPID_NAVIGATECOMPLETE2, OnNavigateComplete)
 		SINK_ENTRY_EX(1, DIID_DWebBrowserEvents2, DISPID_PROGRESSCHANGE, OnProgressChange)
 		SINK_ENTRY_EX(1, DIID_DWebBrowserEvents2, DISPID_ONQUIT, OnQuit)
@@ -40,7 +40,6 @@ public:
 	END_COM_MAP()
 
 
-
 	DECLARE_PROTECT_FINAL_CONSTRUCT()
 
 	HRESULT FinalConstruct()
@@ -49,12 +48,12 @@ public:
 	}
 
 	// IObjectWithSite
-	STDMETHOD(SetSite)(IUnknown *pUnkSite);
+	STDMETHOD(SetSite)(IUnknown* pUnkSite);
 
 	// DWebBrowserEvents2
-	STDMETHOD(OnNavigateComplete)( IDispatch *pDisp, VARIANT *URL );
-	STDMETHOD(OnProgressChange)( long progress, long progressMax );
-	STDMETHOD(OnQuit)( void );
+	STDMETHOD(OnNavigateComplete)(IDispatch* pDisp, VARIANT* URL);
+	STDMETHOD(OnProgressChange)(long progress, long progressMax);
+	STDMETHOD(OnQuit)(void);
 
 private:
 	enum
@@ -65,13 +64,13 @@ private:
 		PART_ZOOM,
 
 		PART_COUNT,
-		PART_OFFSET=100,
+		PART_OFFSET = 100,
 
-		PROGRESS_WIDTH=110,
-		MIN_TEXT_WIDTH=100,
+		PROGRESS_WIDTH = 110,
+		MIN_TEXT_WIDTH = 100,
 	};
 
-	CComPtr<IShellBrowser>m_pBrowser;
+	CComPtr<IShellBrowser> m_pBrowser;
 	CComPtr<IWebBrowser2> m_pWebBrowser;
 	CComPtr<IInternetZoneManager> m_pZoneManager;
 	CComPtr<IInternetSecurityManager> m_pSecurityManager;
@@ -83,11 +82,12 @@ private:
 	CString m_ProtectedMode;
 	int m_TextWidth;
 	int m_Progress;
-	std::map<unsigned int,HICON> m_IconCache;
+	std::map<unsigned int, HICON> m_IconCache;
 
-	static LRESULT CALLBACK SubclassStatusProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData );
+	static LRESULT CALLBACK SubclassStatusProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+	                                           DWORD_PTR dwRefData);
 
-	void ResetParts( void );
+	void ResetParts(void);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(ClassicIEBHO), CClassicIEBHO)

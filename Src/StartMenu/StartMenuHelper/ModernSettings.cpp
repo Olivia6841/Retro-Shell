@@ -42,14 +42,14 @@ struct FileHdr
 	bool operator==(const FileHdr& other) const
 	{
 		return (windowsVersion == other.windowsVersion) &&
-		       (openShellVersion == other.openShellVersion) &&
-		       (userLanguageId == other.userLanguageId);
+			(openShellVersion == other.openShellVersion) &&
+			(userLanguageId == other.userLanguageId);
 	}
 };
 
 struct ItemHdr
 {
-	Id       id;
+	Id id;
 	uint32_t size;
 
 	const uint8_t* data() const
@@ -86,7 +86,7 @@ public:
 
 	void addBlob(Id id, const void* data, size_t size)
 	{
-		ItemHdr hdr{ id, (uint32_t)size };
+		ItemHdr hdr{id, (uint32_t)size};
 		append(&hdr, sizeof(hdr));
 		append(data, size);
 	}
@@ -130,18 +130,21 @@ static void ProcessAttributes(const void* buffer, size_t size, std::function<voi
 
 static std::wstring GetPackageFullName(const wchar_t* packageFamily)
 {
-	static auto pGetPackagesByPackageFamily = static_cast<decltype(&GetPackagesByPackageFamily)>((void*)GetProcAddress(GetModuleHandle(L"kernel32.dll"), "GetPackagesByPackageFamily"));
+	static auto pGetPackagesByPackageFamily = static_cast<decltype(&GetPackagesByPackageFamily)>((void*)GetProcAddress(
+		GetModuleHandle(L"kernel32.dll"), "GetPackagesByPackageFamily"));
 	if (pGetPackagesByPackageFamily)
 	{
 		UINT32 count = 0;
 		UINT32 bufferLength = 0;
 
-		if (pGetPackagesByPackageFamily(packageFamily, &count, nullptr, &bufferLength, nullptr) == ERROR_INSUFFICIENT_BUFFER && count > 0)
+		if (pGetPackagesByPackageFamily(packageFamily, &count, nullptr, &bufferLength, nullptr) ==
+			ERROR_INSUFFICIENT_BUFFER && count > 0)
 		{
 			std::vector<PWSTR> names(count);
 			std::vector<WCHAR> buffer(bufferLength);
 
-			if (pGetPackagesByPackageFamily(packageFamily, &count, names.data(), &bufferLength, buffer.data()) == ERROR_SUCCESS && count > 0)
+			if (pGetPackagesByPackageFamily(packageFamily, &count, names.data(), &bufferLength, buffer.data()) ==
+				ERROR_SUCCESS && count > 0)
 				return names[0];
 		}
 	}
@@ -161,7 +164,7 @@ static std::pair<std::wstring_view, std::wstring_view> ParseResourceString(const
 
 		auto pos = str.find('?');
 		if (pos != str.npos)
-			return { str.substr(0, pos), str.substr(pos + 1) };
+			return {str.substr(0, pos), str.substr(pos + 1)};
 	}
 
 	return {};
@@ -327,7 +330,9 @@ static std::vector<std::vector<uint8_t>> ParseModernSettings()
 		doc->put_async(VARIANT_FALSE);
 
 		wchar_t path[MAX_PATH]{};
-		wcscpy_s(path, LR"(%windir%\ImmersiveControlPanel\Settings\AllSystemSettings_{253E530E-387D-4BC2-959D-E6F86122E5F2}.xml)");
+		wcscpy_s(
+			path,
+			LR"(%windir%\ImmersiveControlPanel\Settings\AllSystemSettings_{253E530E-387D-4BC2-959D-E6F86122E5F2}.xml)");
 		DoEnvironmentSubst(path, _countof(path));
 
 		VARIANT_BOOL loaded;
@@ -375,7 +380,8 @@ ModernSettings::ModernSettings(const wchar_t* fname) : m_storage(fname)
 	{
 		bool valid = false;
 		auto s = m_storage.get();
-		ProcessAttributes(s.data, s.size, [&](const ItemHdr& item) {
+		ProcessAttributes(s.data, s.size, [&](const ItemHdr& item)
+		{
 			switch (item.id)
 			{
 			case Id::Header:
@@ -389,7 +395,7 @@ ModernSettings::ModernSettings(const wchar_t* fname) : m_storage(fname)
 			case Id::Blob:
 				if (valid)
 				{
-					const Blob blob = { item.data(), item.size };
+					const Blob blob = {item.data(), item.size};
 					ModernSettings::Setting s(blob);
 					if (s)
 						m_settings.emplace(s.fileName, blob);
@@ -402,7 +408,8 @@ ModernSettings::ModernSettings(const wchar_t* fname) : m_storage(fname)
 
 ModernSettings::Setting::Setting(const Blob& blob)
 {
-	ProcessAttributes(blob.data, blob.size, [&](const ItemHdr& item) {
+	ProcessAttributes(blob.data, blob.size, [&](const ItemHdr& item)
+	{
 		switch (item.id)
 		{
 		case Id::FileName:
@@ -454,7 +461,7 @@ ModernSettings::Setting ModernSettings::get(const std::wstring_view& name) const
 {
 	auto it = m_settings.find(name);
 	if (it != m_settings.end())
-		return { (*it).second };
+		return {(*it).second};
 
 	return {};
 }
@@ -471,7 +478,7 @@ std::wstring GetLocalAppData()
 	// make sure directory exists
 	SHCreateDirectory(nullptr, path);
 
-	return { path };
+	return {path};
 }
 
 std::shared_ptr<ModernSettings> GetModernSettings()
@@ -496,18 +503,21 @@ std::shared_ptr<ModernSettings> GetModernSettings()
 			{
 				// sort by setting name (in reverse order)
 				// this way we will have newer settings (like SomeSetting-2) before older ones
-				std::stable_sort(settings.begin(), settings.end(), [](const auto& a, const auto& b) {
+				std::stable_sort(settings.begin(), settings.end(), [](const auto& a, const auto& b)
+				{
 					return ModernSettings::Setting(a).fileName > ModernSettings::Setting(b).fileName;
-					});
+				});
 
 				// now sort by description (strings presented to the user)
 				// and keep relative order of items with the same description
-				std::stable_sort(settings.begin(), settings.end(), [](const auto& a, const auto& b) {
+				std::stable_sort(settings.begin(), settings.end(), [](const auto& a, const auto& b)
+				{
 					return ModernSettings::Setting(a).description < ModernSettings::Setting(b).description;
 				});
 
 				// remove duplicates
-				settings.erase(std::unique(settings.begin(), settings.end(), [](const auto& a, const auto& b) {
+				settings.erase(std::unique(settings.begin(), settings.end(), [](const auto& a, const auto& b)
+				{
 					return ModernSettings::Setting(a).description == ModernSettings::Setting(b).description;
 				}), settings.end());
 

@@ -61,7 +61,8 @@ static DWORD g_AppManagerThread;
 static std::set<HWND> g_EdgeWindows;
 static bool g_bTrimHooks;
 static DWORD g_TaskbarThreadId;
-static HWND g_CurrentTaskList, g_CurrentTaskChevron, g_CurrentRebar, g_CurrentTaskbarPart, g_CurrentTaskbarButton, g_CurrentDesktopButton;
+static HWND g_CurrentTaskList, g_CurrentTaskChevron, g_CurrentRebar, g_CurrentTaskbarPart, g_CurrentTaskbarButton,
+            g_CurrentDesktopButton;
 static HBITMAP g_TaskbarTexture;
 static SIZE g_TaskbarTextureSize;
 static TTaskbarTile g_TaskbarTileH, g_TaskbarTileV;
@@ -101,11 +102,11 @@ static DWORD WINAPI SaveCrashDump(void* pExceptionInfo)
 
 		LPCTSTR szResult = NULL;
 
-		typedef BOOL(WINAPI* MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hFile, MINIDUMP_TYPE DumpType,
-			CONST PMINIDUMP_EXCEPTION_INFORMATION ExceptionParam,
-			CONST PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
-			CONST PMINIDUMP_CALLBACK_INFORMATION CallbackParam
-			);
+		typedef BOOL (WINAPI*MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hFile, MINIDUMP_TYPE DumpType,
+		                                        CONST PMINIDUMP_EXCEPTION_INFORMATION ExceptionParam,
+		                                        CONST PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam,
+		                                        CONST PMINIDUMP_CALLBACK_INFORMATION CallbackParam
+		);
 		MINIDUMPWRITEDUMP dump = NULL;
 		if (dbghelp)
 			dump = (MINIDUMPWRITEDUMP)GetProcAddress(dbghelp, "MiniDumpWriteDump");
@@ -150,7 +151,8 @@ LONG _stdcall TopLevelFilter(_EXCEPTION_POINTERS* pExceptionInfo)
 	return EXCEPTION_CONTINUE_SEARCH;
 }
 
-void InvalidParameterHandler(const wchar_t* expression, const wchar_t* function, const wchar_t* file, unsigned int line, uintptr_t pReserved)
+void InvalidParameterHandler(const wchar_t* expression, const wchar_t* function, const wchar_t* file, unsigned int line,
+                             uintptr_t pReserved)
 {
 	*(int*)0 = 0; // force a crash to generate a dump
 }
@@ -223,22 +225,44 @@ interface IImmersiveLauncher10RS : public IUnknown
 	STDMETHOD(GetMonitor)(IImmersiveMonitor**);
 };
 
-static const GUID SID_SwitchModeManager = { 0x085920a1,0x28d3,0x44c1,{0x89,0x7d,0x3b,0xe6,0xd0,0x4b,0x2e,0x07} };
-static const GUID IID_ISwitchModeManager = { 0x976c17be,0xe2d5,0x4f36,{0x93,0x4a,0x7e,0x82,0xf7,0x10,0xea,0xe1} };
+static const GUID SID_SwitchModeManager = {
+	0x085920a1, 0x28d3, 0x44c1, {0x89, 0x7d, 0x3b, 0xe6, 0xd0, 0x4b, 0x2e, 0x07}
+};
+static const GUID IID_ISwitchModeManager = {
+	0x976c17be, 0xe2d5, 0x4f36, {0x93, 0x4a, 0x7e, 0x82, 0xf7, 0x10, 0xea, 0xe1}
+};
 
-static const GUID SID_ImmersiveLauncherThumbnailProvider = { 0x66ce8036,0x400c,0x42f7,{0x99,0x34,0x02,0xf8,0x84,0xfe,0x27,0x4f} };
-static const GUID IID_IImmersiveLauncherThumbnailProvider = { 0x35c01454,0x53f4,0x4818,{0xba,0x8c,0x7a,0xba,0xdc,0x0f,0xfe,0xe6} };
+static const GUID SID_ImmersiveLauncherThumbnailProvider = {
+	0x66ce8036, 0x400c, 0x42f7, {0x99, 0x34, 0x02, 0xf8, 0x84, 0xfe, 0x27, 0x4f}
+};
+static const GUID IID_IImmersiveLauncherThumbnailProvider = {
+	0x35c01454, 0x53f4, 0x4818, {0xba, 0x8c, 0x7a, 0xba, 0xdc, 0x0f, 0xfe, 0xe6}
+};
 
-static const GUID SID_ImmersiveLauncher = { 0x6f86e01c,0xc649,0x4d61,{0xbe,0x23,0xf1,0x32,0x2d,0xde,0xca,0x9d} };
-static const GUID IID_IImmersiveLauncher80 = { 0xfd8b3e33,0xa1f7,0x4e9a,{0x80,0xad,0x80,0x02,0xc7,0x46,0xbe,0x37} };
-static const GUID IID_IImmersiveLauncher81 = { 0x93f91f5a,0xa4ca,0x4205,{0x9b,0xeb,0xce,0x4d,0x17,0xc7,0x08,0xf9} };
-static const GUID IID_IImmersiveLauncher10RS = { 0xd8d60399,0xa0f1,0xf987,{0x55,0x51,0x32,0x1f,0xd1,0xb4,0x98,0x64} }; // 14257
+static const GUID SID_ImmersiveLauncher = {
+	0x6f86e01c, 0xc649, 0x4d61, {0xbe, 0x23, 0xf1, 0x32, 0x2d, 0xde, 0xca, 0x9d}
+};
+static const GUID IID_IImmersiveLauncher80 = {
+	0xfd8b3e33, 0xa1f7, 0x4e9a, {0x80, 0xad, 0x80, 0x02, 0xc7, 0x46, 0xbe, 0x37}
+};
+static const GUID IID_IImmersiveLauncher81 = {
+	0x93f91f5a, 0xa4ca, 0x4205, {0x9b, 0xeb, 0xce, 0x4d, 0x17, 0xc7, 0x08, 0xf9}
+};
+static const GUID IID_IImmersiveLauncher10RS = {
+	0xd8d60399, 0xa0f1, 0xf987, {0x55, 0x51, 0x32, 0x1f, 0xd1, 0xb4, 0x98, 0x64}
+}; // 14257
 
-static const GUID IID_IImmersiveLauncherProvider = { 0x6d5140c1,0x7436,0x11ce,{0x80,0x34,0x00,0xaa,0x00,0x60,0x09,0xfa} };
+static const GUID IID_IImmersiveLauncherProvider = {
+	0x6d5140c1, 0x7436, 0x11ce, {0x80, 0x34, 0x00, 0xaa, 0x00, 0x60, 0x09, 0xfa}
+};
 
-static const CLSID CLSID_ImmersiveShell = { 0xc2f03a33, 0x21f5, 0x47fa, {0xb4, 0xbb, 0x15, 0x63, 0x62, 0xa2, 0xf2, 0x39} };
+static const CLSID CLSID_ImmersiveShell = {
+	0xc2f03a33, 0x21f5, 0x47fa, {0xb4, 0xbb, 0x15, 0x63, 0x62, 0xa2, 0xf2, 0x39}
+};
 
-static const GUID SID_LauncherTipContextMenu = { 0xb8c1db5f, 0xcbb3, 0x48bc, {0xaf, 0xd9, 0xce, 0x6b, 0x88, 0x0c, 0x79, 0xed} };
+static const GUID SID_LauncherTipContextMenu = {
+	0xb8c1db5f, 0xcbb3, 0x48bc, {0xaf, 0xd9, 0xce, 0x6b, 0x88, 0x0c, 0x79, 0xed}
+};
 
 interface ILauncherTipContextMenu : public IUnknown
 {
@@ -261,8 +285,12 @@ interface IImmersiveMonitorService : public IUnknown
 	STDMETHOD(SetImmersiveMonitor)(IUnknown*);
 };
 
-static const GUID SID_IImmersiveMonitorService = { 0x47094e3a,0x0cf2,0x430f,{0x80,0x6f,0xcf,0x9e,0x4f,0x0f,0x12,0xdd} };
-static const GUID IID_IImmersiveMonitorService = { 0x4d4c1e64,0xe410,0x4faa,{0xba,0xfa,0x59,0xca,0x06,0x9b,0xfe,0xc2} };
+static const GUID SID_IImmersiveMonitorService = {
+	0x47094e3a, 0x0cf2, 0x430f, {0x80, 0x6f, 0xcf, 0x9e, 0x4f, 0x0f, 0x12, 0xdd}
+};
+static const GUID IID_IImmersiveMonitorService = {
+	0x4d4c1e64, 0xe410, 0x4faa, {0xba, 0xfa, 0x59, 0xca, 0x06, 0x9b, 0xfe, 0xc2}
+};
 
 
 struct StartScreenThumbInfo
@@ -309,11 +337,13 @@ protected:
 
 		// check if another menu window is being activated
 		// if not, close all menus
-		for (std::vector<CMenuContainer*>::const_iterator it = CMenuContainer::s_Menus.begin(); it != CMenuContainer::s_Menus.end(); ++it)
+		for (std::vector<CMenuContainer*>::const_iterator it = CMenuContainer::s_Menus.begin(); it !=
+		     CMenuContainer::s_Menus.end(); ++it)
 			if ((*it)->m_hWnd == (HWND)lParam)
 				return 0;
 
-		for (std::vector<CMenuContainer*>::reverse_iterator it = CMenuContainer::s_Menus.rbegin(); it != CMenuContainer::s_Menus.rend(); ++it)
+		for (std::vector<CMenuContainer*>::reverse_iterator it = CMenuContainer::s_Menus.rbegin(); it !=
+		     CMenuContainer::s_Menus.rend(); ++it)
 			if (!(*it)->m_bDestroyed)
 				(*it)->PostMessage(WM_CLOSE);
 
@@ -364,7 +394,8 @@ static const TaskbarInfo* GetDefaultTaskbarInfo(void)
 	if (GetSettingBool(L"AllTaskbars"))
 	{
 		HMONITOR monitor = MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST);
-		for (std::map<size_t, TaskbarInfo>::const_iterator it = g_TaskbarInfos.begin(); it != g_TaskbarInfos.end(); ++it)
+		for (std::map<size_t, TaskbarInfo>::const_iterator it = g_TaskbarInfos.begin(); it != g_TaskbarInfos.end(); ++
+		     it)
 		{
 			MONITORINFO info;
 			HMONITOR monitor2 = NULL;
@@ -410,7 +441,7 @@ static BOOL CALLBACK FindTooltipEnum(HWND hwnd, LPARAM lParam)
 	wchar_t name[256];
 	GetClassName(hwnd, name, _countof(name));
 	if (_wcsicmp(name, TOOLTIPS_CLASS) != 0) return TRUE;
-	TOOLINFO info = { sizeof(info),0,g_TaskBar,(UINT_PTR)g_WinStartButton };
+	TOOLINFO info = {sizeof(info), 0, g_TaskBar, (UINT_PTR)g_WinStartButton};
 	if (SendMessage(hwnd, TTM_GETTOOLINFO, 0, (LPARAM)&info))
 	{
 		g_Tooltip = hwnd;
@@ -481,7 +512,12 @@ STARTMENUAPI HWND FindTaskBar(DWORD process)
 class CStartMenuTarget : public IDropTarget
 {
 public:
-	CStartMenuTarget(int taskbarId) { m_RefCount = 1; m_TaskbarId = taskbarId; }
+	CStartMenuTarget(int taskbarId)
+	{
+		m_RefCount = 1;
+		m_TaskbarId = taskbarId;
+	}
+
 	// IUnknown
 	virtual STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject)
 	{
@@ -510,8 +546,12 @@ public:
 	// IDropTarget
 	virtual HRESULT STDMETHODCALLTYPE DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
 	{
-		FORMATETC format1 = { (CLIPFORMAT)RegisterClipboardFormat(CFSTR_SHELLIDLIST),NULL,DVASPECT_CONTENT,-1,TYMED_HGLOBAL };
-		FORMATETC format2 = { (CLIPFORMAT)RegisterClipboardFormat(CFSTR_INETURL),NULL,DVASPECT_CONTENT,-1,TYMED_HGLOBAL };
+		FORMATETC format1 = {
+			(CLIPFORMAT)RegisterClipboardFormat(CFSTR_SHELLIDLIST),NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL
+		};
+		FORMATETC format2 = {
+			(CLIPFORMAT)RegisterClipboardFormat(CFSTR_INETURL),NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL
+		};
 		if (pDataObj->QueryGetData(&format1) == S_OK || pDataObj->QueryGetData(&format2) == S_OK)
 		{
 			PostMessage(g_TaskBar, g_StartMenuMsg, (grfKeyState & MK_SHIFT) ? MSG_SHIFTDRAG : MSG_DRAG, m_TaskbarId);
@@ -520,9 +560,19 @@ public:
 		return S_OK;
 	}
 
-	virtual HRESULT STDMETHODCALLTYPE DragOver(DWORD grfKeyState, POINTL pt, DWORD* pdwEffect) { return *pdwEffect = DROPEFFECT_NONE; return S_OK; }
+	virtual HRESULT STDMETHODCALLTYPE DragOver(DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
+	{
+		return *pdwEffect = DROPEFFECT_NONE;
+		return S_OK;
+	}
+
 	virtual HRESULT STDMETHODCALLTYPE DragLeave(void) { return S_OK; }
-	virtual HRESULT STDMETHODCALLTYPE Drop(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect) { return *pdwEffect = DROPEFFECT_NONE; return S_OK; }
+
+	virtual HRESULT STDMETHODCALLTYPE Drop(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
+	{
+		return *pdwEffect = DROPEFFECT_NONE;
+		return S_OK;
+	}
 
 private:
 	LONG m_RefCount;
@@ -599,7 +649,7 @@ UINT GetTaskbarPosition(HWND taskBar, MONITORINFO* pInfo, HMONITOR* pMonitor, RE
 		return 0xFFFFFFFF;
 	if (taskBar == g_TaskBar)
 	{
-		APPBARDATA appbar = { sizeof(appbar),taskBar };
+		APPBARDATA appbar = {sizeof(appbar), taskBar};
 		SHAppBarMessage(ABM_GETTASKBARPOS, &appbar);
 		if (pRc)
 		{
@@ -631,7 +681,7 @@ UINT GetTaskbarPosition(HWND taskBar, MONITORINFO* pInfo, HMONITOR* pMonitor, RE
 		MapWindowPoints(taskBar, NULL, (POINT*)&rc, 2);
 	else
 		GetWindowRect(taskBar, &rc);
-	MONITORINFO info = { sizeof(info) };
+	MONITORINFO info = {sizeof(info)};
 	HMONITOR monitor = MonitorFromRect(&rc, MONITOR_DEFAULTTONEAREST);
 	GetMonitorInfo(monitor, &info);
 	if (pMonitor) *pMonitor = monitor;
@@ -642,7 +692,7 @@ UINT GetTaskbarPosition(HWND taskBar, MONITORINFO* pInfo, HMONITOR* pMonitor, RE
 	if (pRc)
 	{
 		GetWindowRect(taskBar, pRc);
-		APPBARDATA appbar = { sizeof(appbar) };
+		APPBARDATA appbar = {sizeof(appbar)};
 		bAutoHide = (SHAppBarMessage(ABM_GETSTATE, &appbar) & ABS_AUTOHIDE) != 0;
 	}
 	if (dx < -abs(dy))
@@ -788,7 +838,9 @@ public:
 	}
 
 	// IAppVisibilityEvents
-	virtual HRESULT STDMETHODCALLTYPE AppVisibilityOnMonitorChanged(HMONITOR hMonitor, MONITOR_APP_VISIBILITY previousMode, MONITOR_APP_VISIBILITY currentMode)
+	virtual HRESULT STDMETHODCALLTYPE AppVisibilityOnMonitorChanged(HMONITOR hMonitor,
+	                                                                MONITOR_APP_VISIBILITY previousMode,
+	                                                                MONITOR_APP_VISIBILITY currentMode)
 	{
 		if (GetWinVersion() < WIN_VER_WIN10)
 		{
@@ -811,14 +863,16 @@ public:
 				CComPtr<IImmersiveMonitor> pMonitor;
 				{
 					CComPtr<IImmersiveLauncher81> pLauncher;
-					IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher81, (void**)&pLauncher);
+					IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher81,
+					                      (void**)&pLauncher);
 					if (pLauncher)
 						pLauncher->GetMonitor(&pMonitor);
 				}
 				if (!pMonitor)
 				{
 					CComPtr<IImmersiveLauncher10RS> pLauncher;
-					IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher10RS, (void**)&pLauncher);
+					IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher10RS,
+					                      (void**)&pLauncher);
 					if (pLauncher)
 						pLauncher->GetMonitor(&pMonitor);
 				}
@@ -827,7 +881,8 @@ public:
 					HMONITOR monitor;
 					if (SUCCEEDED(pMonitor->GetHandle(&monitor)))
 					{
-						for (id_taskbar_map::const_iterator it = g_TaskbarInfos.begin(); it != g_TaskbarInfos.end(); ++it)
+						for (id_taskbar_map::const_iterator it = g_TaskbarInfos.begin(); it != g_TaskbarInfos.end(); ++
+						     it)
 						{
 							if (monitor == MonitorFromWindow(it->second.taskBar, MONITOR_DEFAULTTONULL))
 							{
@@ -860,7 +915,7 @@ private:
 	LONG m_RefCount;
 };
 
-static const CLSID CLSID_MetroMode = { 0x7E5FE3D9,0x985F,0x4908,{0x91, 0xF9, 0xEE, 0x19, 0xF9, 0xFD, 0x15, 0x14} };
+static const CLSID CLSID_MetroMode = {0x7E5FE3D9, 0x985F, 0x4908, {0x91, 0xF9, 0xEE, 0x19, 0xF9, 0xFD, 0x15, 0x14}};
 
 BOOL CALLBACK AppVisibleProc(HMONITOR hMonitor, HDC hdcMonitor, LPRECT lprcMonitor, LPARAM dwData)
 {
@@ -909,7 +964,8 @@ static TMetroMode GetMetroMode(HMONITOR hMonitor)
 static bool GetWin10TabletMode(void)
 {
 	CRegKey regKey;
-	if (regKey.Open(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\ImmersiveShell", KEY_READ | KEY_WOW64_64KEY) == ERROR_SUCCESS)
+	if (regKey.Open(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\ImmersiveShell",
+	                KEY_READ | KEY_WOW64_64KEY) == ERROR_SUCCESS)
 	{
 		DWORD val;
 		return regKey.QueryDWORDValue(L"TabletMode", val) == ERROR_SUCCESS && val;
@@ -922,7 +978,8 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 	if (code == HC_ACTION && wParam)
 	{
 		MSG* msg = (MSG*)lParam;
-		if (msg->message == g_StartMenuMsg && (msg->wParam == MSG_WINXMENU || msg->wParam == MSG_METROTHUMBNAIL || msg->wParam == MSG_SHIFTWIN))
+		if (msg->message == g_StartMenuMsg && (msg->wParam == MSG_WINXMENU || msg->wParam == MSG_METROTHUMBNAIL || msg->
+			wParam == MSG_SHIFTWIN))
 		{
 			HWND hwnd = FindWindow(L"ModeInputWnd", NULL);
 			if (hwnd)
@@ -942,13 +999,15 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 							{
 								CPoint pt(msg->lParam);
 								CComPtr<ISwitchModeManager> pSwitchModeManager;
-								IUnknown_QueryService(pSite, SID_SwitchModeManager, IID_ISwitchModeManager, (void**)&pSwitchModeManager);
+								IUnknown_QueryService(pSite, SID_SwitchModeManager, IID_ISwitchModeManager,
+								                      (void**)&pSwitchModeManager);
 								if (pSwitchModeManager)
 								{
 									pSwitchModeManager->ShowLauncherTipContextMenu(&pt);
 									// set the current immersive monitor AFTER the menu returns (this way Search is shown in the correct monitor)
 									CComPtr<IImmersiveMonitorService> pMonitorService;
-									IUnknown_QueryService(pSite, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService, (void**)&pMonitorService);
+									IUnknown_QueryService(pSite, SID_IImmersiveMonitorService,
+									                      IID_IImmersiveMonitorService, (void**)&pMonitorService);
 									if (pMonitorService)
 									{
 										HMONITOR monitor = MonitorFromPoint(pt, MONITOR_DEFAULTTONEAREST);
@@ -967,7 +1026,8 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 											if (pMonitor)
 											{
 												CComPtr<IImmersiveLauncher81> pLauncher;
-												IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncher81, (void**)&pLauncher);
+												IUnknown_QueryService(pSite, SID_ImmersiveLauncher,
+												                      IID_IImmersiveLauncher81, (void**)&pLauncher);
 												if (pLauncher)
 													pLauncher->ConnectToMonitor(pMonitor);
 											}
@@ -979,11 +1039,13 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 							{
 								StartScreenThumbInfo& info = *(StartScreenThumbInfo*)msg->lParam;
 								CComPtr<IUnknown> pLauncher;
-								IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncherProvider, (void**)&pLauncher);
+								IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncherProvider,
+								                      (void**)&pLauncher);
 								if (pLauncher)
 								{
 									CComPtr<IImmersiveLauncherThumbnailProvider> pProvider;
-									IUnknown_QueryService(pLauncher, SID_ImmersiveLauncherThumbnailProvider, IID_IImmersiveLauncherThumbnailProvider, (void**)&pProvider);
+									IUnknown_QueryService(pLauncher, SID_ImmersiveLauncherThumbnailProvider,
+									                      IID_IImmersiveLauncherThumbnailProvider, (void**)&pProvider);
 									if (pProvider)
 									{
 										CComPtr<ISharedBitmap> pBitmap;
@@ -1002,7 +1064,8 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 									if (monitor)
 									{
 										CComPtr<IImmersiveMonitorService> pMonitorService;
-										IUnknown_QueryService(pSite, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService, (void**)&pMonitorService);
+										IUnknown_QueryService(pSite, SID_IImmersiveMonitorService,
+										                      IID_IImmersiveMonitorService, (void**)&pMonitorService);
 										if (pMonitorService)
 										{
 											CComPtr<IUnknown> pMonitor;
@@ -1012,7 +1075,8 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 										}
 									}
 									CComPtr<IImmersiveLauncher80> pLauncher;
-									IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncher80, (void**)&pLauncher);
+									IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncher80,
+									                      (void**)&pLauncher);
 									if (pLauncher)
 										pLauncher->ShowStartView(5);
 								}
@@ -1029,11 +1093,12 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 			}
 		}
 		int corner;
-		if ((msg->message == WM_MOUSEMOVE || msg->message == WM_LBUTTONDOWN) && (corner = GetSettingInt(L"DisableHotCorner")) > 0)
+		if ((msg->message == WM_MOUSEMOVE || msg->message == WM_LBUTTONDOWN) && (corner = GetSettingInt(
+			L"DisableHotCorner")) > 0)
 		{
 			{
 				// ignore the mouse messages if there is a menu
-				GUITHREADINFO info = { sizeof(info) };
+				GUITHREADINFO info = {sizeof(info)};
 				if (GetGUIThreadInfo(GetCurrentThreadId(), &info) && (info.flags & GUI_INMENUMODE))
 					return CallNextHookEx(NULL, code, wParam, lParam);
 			}
@@ -1043,8 +1108,9 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 			{
 				if (!IsWin81Update1())
 					return CallNextHookEx(NULL, code, wParam, lParam);
-				typedef BOOL(WINAPI* tGetWindowBand)(HWND, DWORD*);
-				static tGetWindowBand GetWindowBand = (tGetWindowBand)GetProcAddress(GetModuleHandle(L"user32.dll"), "GetWindowBand");
+				typedef BOOL (WINAPI*tGetWindowBand)(HWND, DWORD*);
+				static tGetWindowBand GetWindowBand = (tGetWindowBand)GetProcAddress(
+					GetModuleHandle(L"user32.dll"), "GetWindowBand");
 				for (id_taskbar_map::const_iterator it = g_TaskbarInfos.begin(); it != g_TaskbarInfos.end(); ++it)
 				{
 					DWORD band;
@@ -1069,7 +1135,7 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 								PostMessage(it->second.taskBar, WM_NCLBUTTONDOWN, MK_LBUTTON, MAKELONG(pt.x, pt.y));
 								msg->message = WM_NULL;
 							}
-							wchar_t className[256] = { 0 };
+							wchar_t className[256] = {0};
 							GetClassName(msg->hwnd, className, _countof(className));
 							if (wcscmp(className, L"ImmersiveSwitchList") == 0)
 							{
@@ -1111,7 +1177,7 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 									PostMessage(it->second.taskBar, WM_NCLBUTTONDOWN, MK_LBUTTON, MAKELONG(pt.x, pt.y));
 									msg->message = WM_NULL;
 								}
-								wchar_t className[256] = { 0 };
+								wchar_t className[256] = {0};
 								GetClassName(msg->hwnd, className, _countof(className));
 								if (wcscmp(className, L"ImmersiveSwitchList") == 0)
 								{
@@ -1127,7 +1193,7 @@ static LRESULT CALLBACK HookAppManager(int code, WPARAM wParam, LPARAM lParam)
 			}
 			if (corner == 2)
 			{
-				wchar_t className[256] = { 0 };
+				wchar_t className[256] = {0};
 				GetClassName(msg->hwnd, className, _countof(className));
 				if (wcscmp(className, L"EdgeUiInputWndClass") == 0)
 				{
@@ -1147,8 +1213,11 @@ static LRESULT CALLBACK HookNewWindow(int code, WPARAM wParam, LPARAM lParam)
 	if (code == HCBT_CREATEWND)
 	{
 		CBT_CREATEWND* pCreate = (CBT_CREATEWND*)lParam;
-		if (pCreate->lpcs->lpszClass > (LPTSTR)0xFFFF && (_wcsicmp(pCreate->lpcs->lpszClass, L"Shell_SecondaryTrayWnd") == 0 ||
-			_wcsicmp(pCreate->lpcs->lpszClass, L"ToolbarWindow32") == 0 || _wcsicmp(pCreate->lpcs->lpszClass, L"TrayClockWClass") == 0 || _wcsicmp(pCreate->lpcs->lpszClass, L"ClockButton") == 0))
+		if (pCreate->lpcs->lpszClass > (LPTSTR)0xFFFF && (_wcsicmp(pCreate->lpcs->lpszClass, L"Shell_SecondaryTrayWnd")
+			== 0 ||
+			_wcsicmp(pCreate->lpcs->lpszClass, L"ToolbarWindow32") == 0 ||
+			_wcsicmp(pCreate->lpcs->lpszClass, L"TrayClockWClass") == 0 || _wcsicmp(
+				pCreate->lpcs->lpszClass, L"ClockButton") == 0))
 			PostMessage(g_TaskBar, g_StartMenuMsg, MSG_NEWTASKBAR, wParam);
 	}
 	return CallNextHookEx(NULL, code, wParam, lParam);
@@ -1226,7 +1295,7 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 	else
 		buttonFlags |= SWP_HIDEWINDOW;
 
-	APPBARDATA appbar = { sizeof(appbar) };
+	APPBARDATA appbar = {sizeof(appbar)};
 	if (SHAppBarMessage(ABM_GETSTATE, &appbar) & ABS_AUTOHIDE)
 	{
 		bool bHide = false;
@@ -1283,8 +1352,9 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 			bClassic = !IsAppThemed();
 		else
 		{
-			HIGHCONTRAST contrast = { sizeof(contrast) };
-			bClassic = (SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(contrast), &contrast, 0) && (contrast.dwFlags & HCF_HIGHCONTRASTON));
+			HIGHCONTRAST contrast = {sizeof(contrast)};
+			bClassic = (SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(contrast), &contrast, 0) && (contrast.dwFlags &
+				HCF_HIGHCONTRASTON));
 		}
 		if (!bClassic)
 		{
@@ -1355,7 +1425,7 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 			x += ScaleForDpi(taskBar->taskBar, 6);
 	}
 
-	RECT rcButton = { x, y, x + taskBar->startButtonSize.cx, y + taskBar->startButtonSize.cy };
+	RECT rcButton = {x, y, x + taskBar->startButtonSize.cx, y + taskBar->startButtonSize.cy};
 	RECT rc;
 	IntersectRect(&rc, &rcButton, &info.rcMonitor);
 	HRGN rgn = CreateRectRgn(rc.left - x, rc.top - y, rc.right - x, rc.bottom - y);
@@ -1371,7 +1441,8 @@ static void UpdateStartButtonPosition(const TaskbarInfo* taskBar, const WINDOWPO
 		UpdateStartButton(taskBar->taskbarId);
 }
 
-static LRESULT CALLBACK SubclassWin81StartButton(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassWin81StartButton(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
+                                                 UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	TaskbarInfo* taskBar = GetTaskbarInfo((int)dwRefData);
 
@@ -1402,7 +1473,8 @@ static LRESULT CALLBACK SubclassWin81StartButton(HWND hWnd, UINT uMsg, WPARAM wP
 			taskBar->oldButtonSize.cy = rc.bottom;
 			RECT rcTask;
 			GetWindowRect(taskBar->taskBar, &rcTask);
-			PostMessage(taskBar->taskBar, WM_SIZE, SIZE_RESTORED, MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
+			PostMessage(taskBar->taskBar, WM_SIZE, SIZE_RESTORED,
+			            MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
 		}
 	}
 	if (uMsg == WM_POINTERACTIVATE && CMenuContainer::IsMenuOpened())
@@ -1430,7 +1502,8 @@ static LRESULT CALLBACK SubclassWin81StartButton(HWND hWnd, UINT uMsg, WPARAM wP
 
 static bool g_bSuppressMessage243;
 
-static LRESULT CALLBACK SubclassWin7StartButton(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassWin7StartButton(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
+                                                UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	if (uMsg == 243 && g_bSuppressMessage243)
 	{
@@ -1446,7 +1519,8 @@ static LRESULT CALLBACK SubclassWin7StartButton(HWND hWnd, UINT uMsg, WPARAM wPa
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassUserPicProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassUserPicProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                            DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_WINDOWPOSCHANGING && !(((WINDOWPOS*)lParam)->flags & SWP_NOMOVE))
 	{
@@ -1459,7 +1533,8 @@ static LRESULT CALLBACK SubclassUserPicProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassTopMenuProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassTopMenuProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                            DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_ACTIVATE && GetSettingBool(L"CascadeAll"))
 	{
@@ -1468,7 +1543,8 @@ static LRESULT CALLBACK SubclassTopMenuProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 			if (CMenuContainer::s_bPreventClosing) return 0;
 			// check if another menu window is being activated
 			// if not, close all menus
-			for (std::vector<CMenuContainer*>::const_iterator it = CMenuContainer::s_Menus.begin(); it != CMenuContainer::s_Menus.end(); ++it)
+			for (std::vector<CMenuContainer*>::const_iterator it = CMenuContainer::s_Menus.begin(); it !=
+			     CMenuContainer::s_Menus.end(); ++it)
 				if ((*it)->m_hWnd == (HWND)lParam)
 					return 0;
 		}
@@ -1514,7 +1590,8 @@ static LRESULT CALLBACK SubclassTopMenuProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassProgramsProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassProgramsProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                             DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_COMMAND && wParam == IDOK && GetSettingBool(L"CascadeAll"))
 	{
@@ -1526,7 +1603,9 @@ static LRESULT CALLBACK SubclassProgramsProc(HWND hWnd, UINT uMsg, WPARAM wParam
 		else
 		{
 			if (!CMenuContainer::IsMenuOpened())
-				CMenuContainer::ToggleStartMenu(MAIN_TASK_BAR, GetKeyState(VK_SPACE) < 0 || GetKeyState(VK_RETURN) < 0 || GetKeyState(VK_LEFT) < 0 || GetKeyState(VK_RIGHT) < 0, true);
+				CMenuContainer::ToggleStartMenu(MAIN_TASK_BAR,
+				                                GetKeyState(VK_SPACE) < 0 || GetKeyState(VK_RETURN) < 0 ||
+				                                GetKeyState(VK_LEFT) < 0 || GetKeyState(VK_RIGHT) < 0, true);
 			return 0;
 		}
 	}
@@ -1601,7 +1680,7 @@ static void PrintTaskbarBackground(HDC hdc, const RECT& rcClient, const RECT& rc
 
 	for (int y = 0; y < countV; y++)
 	{
-		RECT rSrc = { 0,0,g_TaskbarTextureSize.cx,g_TaskbarTextureSize.cy };
+		RECT rSrc = {0, 0, g_TaskbarTextureSize.cx, g_TaskbarTextureSize.cy};
 		RECT rDst = rcClient;
 		if (g_TaskbarTileV == TILE_TILE)
 		{
@@ -1631,7 +1710,8 @@ static void ComputeTaskbarColors(int* data)
 {
 	bool bDefLook;
 	int look = GetSettingInt(L"TaskbarLook", bDefLook);
-	if (GetWinVersion() < WIN_VER_WIN10 || look == TASKBAR_AEROGLASS || (look == TASKBAR_TRANSPARENT && g_TaskbarTexture))
+	if (GetWinVersion() < WIN_VER_WIN10 || look == TASKBAR_AEROGLASS || (look == TASKBAR_TRANSPARENT &&
+		g_TaskbarTexture))
 	{
 		memset(data, 0, 16);
 	}
@@ -1674,7 +1754,8 @@ static void ShowWinX(void)
 		if (CreateImmersiveShell(pImmersiveShell))
 		{
 			CComPtr<IImmersiveMonitorService> pMonitorService;
-			IUnknown_QueryService(pImmersiveShell, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService, (void**)&pMonitorService);
+			IUnknown_QueryService(pImmersiveShell, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService,
+			                      (void**)&pMonitorService);
 			if (pMonitorService)
 			{
 				CPoint pt(GetMessagePos());
@@ -1684,7 +1765,8 @@ static void ShowWinX(void)
 				if (pMonitorService)
 				{
 					CComPtr<ILauncherTipContextMenu> pMenu;
-					IUnknown_QueryService(pMonitor, SID_LauncherTipContextMenu, SID_LauncherTipContextMenu, (void**)&pMenu);
+					IUnknown_QueryService(pMonitor, SID_LauncherTipContextMenu, SID_LauncherTipContextMenu,
+					                      (void**)&pMenu);
 					if (pMenu)
 						pMenu->ShowLauncherTipContextMenu(&pt);
 				}
@@ -1695,7 +1777,8 @@ static void ShowWinX(void)
 		PostThreadMessage(g_AppManagerThread, g_StartMenuMsg, MSG_WINXMENU, GetMessagePos());
 }
 
-static LRESULT CALLBACK SubclassTrayButtonProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassTrayButtonProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                               DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_WINDOWPOSCHANGING)
 	{
@@ -1743,11 +1826,13 @@ static LRESULT CALLBACK SubclassTrayButtonProc(HWND hWnd, UINT uMsg, WPARAM wPar
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                            DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_MOUSEACTIVATE && (HIWORD(lParam) == WM_MBUTTONDOWN || GetWinVersion() >= WIN_VER_WIN10))
 	{
-		if (GetWinVersion() >= WIN_VER_WIN10 && CMenuContainer::IsMenuOpened() && CMenuContainer::HasInputHandler() && GetFocus())
+		if (GetWinVersion() >= WIN_VER_WIN10 && CMenuContainer::IsMenuOpened() && CMenuContainer::HasInputHandler() &&
+			GetFocus())
 		{
 			// Win10: if the taskbar is clicked while the menu is opened, check if the touch keyboard button was clicked and ignore the activation
 			// Otherwise the click on the touch keyboard button will deactivate the menu (possibly because both run on the same thread)
@@ -1775,7 +1860,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 		return MA_NOACTIVATE;
 	static int touchTime;
 #ifdef START_TOUCH
-	if (taskBar && (uMsg == WM_NCPOINTERDOWN || (uMsg == WM_POINTERDOWN && IS_POINTER_INCONTACT_WPARAM(wParam) && IS_POINTER_PRIMARY_WPARAM(wParam) && IS_POINTER_FIRSTBUTTON_WPARAM(wParam))))
+	if (taskBar && (uMsg == WM_NCPOINTERDOWN || (uMsg == WM_POINTERDOWN && IS_POINTER_INCONTACT_WPARAM(wParam) &&
+		IS_POINTER_PRIMARY_WPARAM(wParam) && IS_POINTER_FIRSTBUTTON_WPARAM(wParam))))
 	{
 		POINTER_INPUT_TYPE type;
 		GetPointerType2(GET_POINTERID_WPARAM(wParam), &type);
@@ -1789,7 +1875,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 			}
 		}
 	}
-	if (taskBar && (uMsg == WM_NCPOINTERUPDATE || uMsg == WM_POINTERUPDATE) && taskBar->pointerId == GET_POINTERID_WPARAM(wParam))
+	if (taskBar && (uMsg == WM_NCPOINTERUPDATE || uMsg == WM_POINTERUPDATE) && taskBar->pointerId ==
+		GET_POINTERID_WPARAM(wParam))
 	{
 		if (uMsg == WM_NCPOINTERUPDATE)
 		{
@@ -1818,7 +1905,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 		else
 			uMsg = WM_POINTERUP;
 	}
-	if (taskBar && (uMsg == WM_POINTERUP || uMsg == WM_NCPOINTERUP) && taskBar->pointerId == GET_POINTERID_WPARAM(wParam))
+	if (taskBar && (uMsg == WM_POINTERUP || uMsg == WM_NCPOINTERUP) && taskBar->pointerId ==
+		GET_POINTERID_WPARAM(wParam))
 	{
 		if (PointAroundStartButton((int)dwRefData, CPoint(lParam)))
 		{
@@ -1844,7 +1932,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 		WINDOWPOS* pPos = (WINDOWPOS*)lParam;
 		if (!(pPos->flags & SWP_NOZORDER) && pPos->hwndInsertAfter == HWND_BOTTOM)
 		{
-			SetWindowPos(taskBar->startButton, HWND_BOTTOM, 0, 0, 0, 0, SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_NOSIZE | SWP_NOMOVE);
+			SetWindowPos(taskBar->startButton, HWND_BOTTOM, 0, 0, 0, 0,
+			             SWP_NOACTIVATE | SWP_NOOWNERZORDER | SWP_NOSIZE | SWP_NOMOVE);
 			pPos->hwndInsertAfter = taskBar->startButton;
 		}
 	}
@@ -1872,17 +1961,19 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 		taskBar->bThemeChanging = false;
 		return res;
 	}
-	if ((uMsg == WM_DWMCOLORIZATIONCOLORCHANGED || uMsg == WM_SETTINGCHANGE || uMsg == 0x5CB || uMsg == 0x5BB) && taskBar && taskBar->bCustomLook && SetWindowCompositionAttribute && GetWinVersion() >= WIN_VER_WIN10)
+	if ((uMsg == WM_DWMCOLORIZATIONCOLORCHANGED || uMsg == WM_SETTINGCHANGE || uMsg == 0x5CB || uMsg == 0x5BB) &&
+		taskBar && taskBar->bCustomLook && SetWindowCompositionAttribute && GetWinVersion() >= WIN_VER_WIN10)
 	{
 		LRESULT res = DefSubclassProc(hWnd, uMsg, wParam, lParam);
 		int data[4];
 		ComputeTaskbarColors(data);
-		WINCOMPATTRDATA attrData = { 0x13,&data,sizeof(data) };
+		WINCOMPATTRDATA attrData = {0x13, &data, sizeof(data)};
 		SetWindowCompositionAttribute(hWnd, &attrData);
 		UpdateTaskBars(TASKBAR_UPDATE_TEXTURE);
 		return res;
 	}
-	if ((uMsg == WM_DWMCOLORIZATIONCOLORCHANGED || uMsg == WM_SETTINGCHANGE) && taskBar && taskBar->bCustomLook && SetWindowCompositionAttribute && GetWinVersion() < WIN_VER_WIN10)
+	if ((uMsg == WM_DWMCOLORIZATIONCOLORCHANGED || uMsg == WM_SETTINGCHANGE) && taskBar && taskBar->bCustomLook &&
+		SetWindowCompositionAttribute && GetWinVersion() < WIN_VER_WIN10)
 	{
 		LRESULT res = DefSubclassProc(hWnd, uMsg, wParam, lParam);
 		UpdateTaskBars(TASKBAR_UPDATE_TEXTURE);
@@ -1908,7 +1999,9 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 			{
 				blurBehind = look == TASKBAR_OPAQUE;
 				margin = look == TASKBAR_OPAQUE ? 0 : -1;
-				flags = FLAG_BLUR | FLAG_MARGIN | ((look == TASKBAR_TRANSPARENT && g_TaskbarTexture) ? FLAG_ATTRIBUTE : 0);
+				flags = FLAG_BLUR | FLAG_MARGIN | ((look == TASKBAR_TRANSPARENT && g_TaskbarTexture)
+					                                   ? FLAG_ATTRIBUTE
+					                                   : 0);
 			}
 			else if (winVer == WIN_VER_WIN81)
 			{
@@ -1918,26 +2011,26 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 			}
 			//else if (winVer>=WIN_VER_WIN10)
 			//{
-				//blurBehind=TRUE;
-				//margin=look==TASKBAR_OPAQUE?0:-1;
-				//flags=(look==TASKBAR_AEROGLASS?FLAG_BLUR:0)|(look!=TASKBAR_GLASS?FLAG_MARGIN:0)|FLAG_ATTRIBUTE;
+			//blurBehind=TRUE;
+			//margin=look==TASKBAR_OPAQUE?0:-1;
+			//flags=(look==TASKBAR_AEROGLASS?FLAG_BLUR:0)|(look!=TASKBAR_GLASS?FLAG_MARGIN:0)|FLAG_ATTRIBUTE;
 			//}
 
 			if (flags & FLAG_BLUR)
 			{
-				DWM_BLURBEHIND blur = { DWM_BB_ENABLE,blurBehind };
+				DWM_BLURBEHIND blur = {DWM_BB_ENABLE, blurBehind};
 				DwmEnableBlurBehindWindow(hWnd, &blur);
 			}
 			if (flags & FLAG_MARGIN)
 			{
-				MARGINS margins = { margin };
+				MARGINS margins = {margin};
 				DwmExtendFrameIntoClientArea(hWnd, &margins);
 			}
 			if (SetWindowCompositionAttribute && (flags & FLAG_ATTRIBUTE))
 			{
 				int data[4];
 				ComputeTaskbarColors(data);
-				WINCOMPATTRDATA attrData = { 0x13,&data,sizeof(data) };
+				WINCOMPATTRDATA attrData = {0x13, &data, sizeof(data)};
 				SetWindowCompositionAttribute(hWnd, &attrData);
 			}
 			if (g_TaskbarTexture && (!IsAppThemed() || GetSettingBool(L"ForceClassicTaskbar")))
@@ -1972,7 +2065,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 		PrintTaskbarBackground(hdc, rc, rc, uEdge);
 		return 0;
 	}
-	if (uMsg == 0x5C5 && taskBar && taskBar->bCustomLook && IsWin81Update1()) // some secret message when the taskbar is raised to the top
+	if (uMsg == 0x5C5 && taskBar && taskBar->bCustomLook && IsWin81Update1())
+	// some secret message when the taskbar is raised to the top
 	{
 		// reset the opaqueness
 		PostMessage(g_TaskBar, g_StartMenuMsg, MSG_REDRAWTASKBAR, (LPARAM)hWnd);
@@ -2025,7 +2119,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 						if (pSite)
 						{
 							CComPtr<IImmersiveLauncher80> pLauncher;
-							IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncher80, (void**)&pLauncher);
+							IUnknown_QueryService(pSite, SID_ImmersiveLauncher, IID_IImmersiveLauncher80,
+							                      (void**)&pLauncher);
 							if (pLauncher)
 								pLauncher->Dismiss(5);
 						}
@@ -2057,7 +2152,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 		if (_wcsicmp(name, L"TrayButton") == 0 && GetParent(child) == hWnd)
 		{
 			bool bFound = false;
-			for (std::vector<HWND>::const_iterator it = taskBar->trayButtons.begin(); it != taskBar->trayButtons.end(); ++it)
+			for (std::vector<HWND>::const_iterator it = taskBar->trayButtons.begin(); it != taskBar->trayButtons.end();
+			     ++it)
 				if (*it == child)
 				{
 					bFound = true;
@@ -2073,7 +2169,8 @@ static LRESULT CALLBACK SubclassTaskBarProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassTaskListProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassTaskListProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                             DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_PAINT && g_TaskbarTexture)
 	{
@@ -2100,7 +2197,8 @@ static LRESULT CALLBACK SubclassTaskListProc(HWND hWnd, UINT uMsg, WPARAM wParam
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassTrayChevronProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassTrayChevronProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
+                                                UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_PAINT || uMsg == WM_PRINT || uMsg == WM_PRINTCLIENT)
 	{
@@ -2112,7 +2210,8 @@ static LRESULT CALLBACK SubclassTrayChevronProc(HWND hWnd, UINT uMsg, WPARAM wPa
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassDesktopButtonProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassDesktopButtonProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
+                                                  UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_PAINT || uMsg == WM_PRINT || uMsg == WM_PRINTCLIENT)
 	{
@@ -2124,7 +2223,8 @@ static LRESULT CALLBACK SubclassDesktopButtonProc(HWND hWnd, UINT uMsg, WPARAM w
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassRebarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassRebarProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass,
+                                          DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_WINDOWPOSCHANGING)
 	{
@@ -2203,7 +2303,8 @@ static LRESULT CALLBACK SubclassRebarProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
 	return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
 
-static LRESULT CALLBACK SubclassTaskbarPartProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+static LRESULT CALLBACK SubclassTaskbarPartProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
+                                                UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
 {
 	if (uMsg == WM_PAINT || uMsg == WM_PRINT || uMsg == WM_PRINTCLIENT)
 	{
@@ -2217,7 +2318,8 @@ static LRESULT CALLBACK SubclassTaskbarPartProc(HWND hWnd, UINT uMsg, WPARAM wPa
 		TaskbarInfo* info = GetTaskbarInfo((int)dwRefData);
 		if (info)
 		{
-			for (std::vector<HWND>::const_iterator it = info->taskbarParts.begin(); it != info->taskbarParts.end(); ++it)
+			for (std::vector<HWND>::const_iterator it = info->taskbarParts.begin(); it != info->taskbarParts.end(); ++
+			     it)
 				if (*it == hWnd)
 				{
 					info->taskbarParts.erase(it);
@@ -2235,7 +2337,7 @@ static void HandleTaskbarParts(TaskbarInfo& taskBar, bool bPrimary)
 		int count = (int)SendMessage(taskBar.rebar, RB_GETBANDCOUNT, 0, 0);
 		for (int i = 0; i < count; i++)
 		{
-			REBARBANDINFO info = { sizeof(info),RBBIM_CHILD };
+			REBARBANDINFO info = {sizeof(info),RBBIM_CHILD};
 			if (SendMessage(taskBar.rebar, RB_GETBANDINFO, i, (LPARAM)&info))
 			{
 				wchar_t name[100];
@@ -2315,7 +2417,8 @@ static void HandleSecondaryTaskbar(HWND hwnd)
 	}
 	if (GetWinVersion() >= WIN_VER_WIN10)
 	{
-		for (HWND button = FindWindowEx(taskBar.taskBar, NULL, L"TrayButton", NULL); button; button = FindWindowEx(taskBar.taskBar, button, L"TrayButton", NULL))
+		for (HWND button = FindWindowEx(taskBar.taskBar, NULL, L"TrayButton", NULL); button; button = FindWindowEx(
+			     taskBar.taskBar, button, L"TrayButton", NULL))
 		{
 			taskBar.trayButtons.push_back(button);
 			SetWindowSubclass(button, SubclassTrayButtonProc, 'CLSH', taskBar.taskbarId);
@@ -2408,13 +2511,14 @@ void UpdateTaskBars(TUpdateTaskbar update)
 				}
 				else if (GetWinVersion() < WIN_VER_WIN10 && (!bDefColor || !bDefOpacity))
 				{
-					if (bDefColor && GetWinVersion() > WIN_VER_WIN7) {
+					if (bDefColor && GetWinVersion() > WIN_VER_WIN7)
+					{
 						color = GetSystemGlassColor8();
 						color = ((color & 0xFF) << 16) | (color & 0xFF00) | ((color >> 16) & 0xFF);
 					}
 				}
 
-				BITMAPINFO bi = { 0 };
+				BITMAPINFO bi = {0};
 				bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 				bi.bmiHeader.biWidth = bi.bmiHeader.biHeight = 32;
 				bi.bmiHeader.biPlanes = 1;
@@ -2425,7 +2529,8 @@ void UpdateTaskBars(TUpdateTaskbar update)
 				g_TaskbarTexture = CreateDIBSection(hdc, &bi, DIB_RGB_COLORS, (void**)&bits, NULL, 0);
 				if (g_TaskbarTexture)
 				{
-					unsigned int val = ((color & 0xFF) << 16) | (color & 0x00FF00) | ((color >> 16) & 0xFF) | 0xFF000000;
+					unsigned int val = ((color & 0xFF) << 16) | (color & 0x00FF00) | ((color >> 16) & 0xFF) |
+						0xFF000000;
 					int count = bi.bmiHeader.biWidth * bi.bmiHeader.biHeight;
 					for (int i = 0; i < count; i++)
 						bits[i] = val;
@@ -2455,7 +2560,7 @@ void UpdateTaskBars(TUpdateTaskbar update)
 				if (countH > 1 || countV > 1)
 				{
 					// pretile texture
-					BITMAPINFO bi = { 0 };
+					BITMAPINFO bi = {0};
 					bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 					bi.bmiHeader.biWidth = countH * info.bmWidth;
 					bi.bmiHeader.biHeight = countV * info.bmHeight;
@@ -2472,7 +2577,8 @@ void UpdateTaskBars(TUpdateTaskbar update)
 						HGDIOBJ bmp02 = SelectObject(hsrc, g_TaskbarTexture);
 						for (int y = 0; y < countV; y++)
 							for (int x = 0; x < countH; x++)
-								BitBlt(hdc, x * info.bmWidth, y * info.bmHeight, info.bmWidth, info.bmHeight, hsrc, 0, 0, SRCCOPY);
+								BitBlt(hdc, x * info.bmWidth, y * info.bmHeight, info.bmWidth, info.bmHeight, hsrc, 0,
+								       0, SRCCOPY);
 						SelectObject(hsrc, bmp02);
 						SelectObject(hdc, bmp01);
 						DeleteObject(g_TaskbarTexture);
@@ -2523,7 +2629,8 @@ void UpdateTaskBars(TUpdateTaskbar update)
 				}
 				RECT rcTask;
 				GetWindowRect(taskBar.taskBar, &rcTask);
-				PostMessage(taskBar.taskBar, WM_SIZE, SIZE_RESTORED, MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
+				PostMessage(taskBar.taskBar, WM_SIZE, SIZE_RESTORED,
+				            MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
 			}
 			if (taskBar.bHideButton != bHideButton2)
 			{
@@ -2558,7 +2665,8 @@ void UpdateTaskBars(TUpdateTaskbar update)
 						HMODULE hExplorer = GetModuleHandle(NULL);
 						for (int res = 0; res < _countof(g_StartButtonOldSizes); res++)
 						{
-							HRSRC hrSrc = FindResource(hExplorer, MAKEINTRESOURCE(res + FIRST_BUTTON_BITMAP), RT_BITMAP);
+							HRSRC hrSrc = FindResource(hExplorer, MAKEINTRESOURCE(res + FIRST_BUTTON_BITMAP),
+							                           RT_BITMAP);
 							if (hrSrc)
 							{
 								HGLOBAL hRes = LoadResource(hExplorer, hrSrc);
@@ -2638,11 +2746,11 @@ void UpdateTaskBars(TUpdateTaskbar update)
 
 			if (!bCustomLook && GetWinVersion() < WIN_VER_WIN10)
 			{
-				DWM_BLURBEHIND blur = { DWM_BB_ENABLE,GetWinVersion() < WIN_VER_WIN8 };
+				DWM_BLURBEHIND blur = {DWM_BB_ENABLE, GetWinVersion() < WIN_VER_WIN8};
 				DwmEnableBlurBehindWindow(taskBar.taskBar, &blur);
 				if (GetWinVersion() == WIN_VER_WIN7)
 				{
-					MARGINS margins = { 0 };
+					MARGINS margins = {0};
 					DwmExtendFrameIntoClientArea(taskBar.taskBar, &margins);
 				}
 			}
@@ -2660,11 +2768,11 @@ void UpdateTaskBars(TUpdateTaskbar update)
 ///////////////////////////////////////////////////////////////////////////////
 // hooks for animating the start button
 
-typedef void (WINAPI* tDwmpBeginTransitionRequest)(int param);
-typedef void (WINAPI* tDwmpTransitionWindowWithRects)(HWND, int, RECT*, RECT*, RECT*, RECT*, RECT*);
-typedef void (WINAPI* tDwmpEndTransitionRequest)(int param);
+typedef void (WINAPI*tDwmpBeginTransitionRequest)(int param);
+typedef void (WINAPI*tDwmpTransitionWindowWithRects)(HWND, int, RECT*, RECT*, RECT*, RECT*, RECT*);
+typedef void (WINAPI*tDwmpEndTransitionRequest)(int param);
 
-static IatHookData* g_DwmpBTRHook, * g_DwmpTWWRHook, * g_DwmpETRHook;
+static IatHookData *g_DwmpBTRHook, *g_DwmpTWWRHook, *g_DwmpETRHook;
 
 static tDwmpBeginTransitionRequest g_DwmpBeginTransitionRequest;
 static tDwmpTransitionWindowWithRects g_DwmpTransitionWindowWithRects;
@@ -2682,7 +2790,8 @@ void WINAPI DwmpBeginTransitionRequest2(int param)
 	((tDwmpBeginTransitionRequest)g_DwmpBTRHook->oldProc)(param);
 }
 
-void WINAPI DwmpTransitionWindowWithRects2(HWND hWnd, int flags, RECT* prcClient1, RECT* prcStart, RECT* prcClient2, RECT* prcEnd, RECT* prcClip)
+void WINAPI DwmpTransitionWindowWithRects2(HWND hWnd, int flags, RECT* prcClient1, RECT* prcStart, RECT* prcClient2,
+                                           RECT* prcEnd, RECT* prcClip)
 {
 	g_TransitionButton = NULL;
 	const TaskbarInfo* taskBar = FindTaskBarInfoBar(hWnd);
@@ -2690,11 +2799,11 @@ void WINAPI DwmpTransitionWindowWithRects2(HWND hWnd, int flags, RECT* prcClient
 	{
 		g_TransitionBar = hWnd;
 		TTaskbarLook look = (TTaskbarLook)GetSettingInt(L"TaskbarLook");
-		DWM_BLURBEHIND blur = { DWM_BB_ENABLE,look == TASKBAR_OPAQUE };
+		DWM_BLURBEHIND blur = {DWM_BB_ENABLE, look == TASKBAR_OPAQUE};
 		DwmEnableBlurBehindWindow(hWnd, &blur);
 		int data[4];
 		ComputeTaskbarColors(data);
-		WINCOMPATTRDATA attrData = { 0x13,&data,sizeof(data) };
+		WINCOMPATTRDATA attrData = {0x13, &data, sizeof(data)};
 		SetWindowCompositionAttribute(hWnd, &attrData);
 	}
 	if (taskBar && taskBar->startButton && prcStart && prcEnd && prcClip)
@@ -2719,7 +2828,8 @@ void WINAPI DwmpTransitionWindowWithRects2(HWND hWnd, int flags, RECT* prcClient
 			g_bTransitionIn = g_TransitionVector.y < 0;
 		}
 	}
-	((tDwmpTransitionWindowWithRects)g_DwmpTWWRHook->oldProc)(hWnd, flags, prcClient1, prcStart, prcClient2, prcEnd, prcClip);
+	((tDwmpTransitionWindowWithRects)g_DwmpTWWRHook->oldProc)(hWnd, flags, prcClient1, prcStart, prcClient2, prcEnd,
+	                                                          prcClip);
 }
 
 void WINAPI DwmpEndTransitionRequest2(int param)
@@ -2728,11 +2838,11 @@ void WINAPI DwmpEndTransitionRequest2(int param)
 	if (g_TransitionBar)
 	{
 		TTaskbarLook look = (TTaskbarLook)GetSettingInt(L"TaskbarLook");
-		DWM_BLURBEHIND blur = { DWM_BB_ENABLE,look == TASKBAR_OPAQUE };
+		DWM_BLURBEHIND blur = {DWM_BB_ENABLE, look == TASKBAR_OPAQUE};
 		DwmEnableBlurBehindWindow(g_TransitionBar, &blur);
 		int data[4];
 		ComputeTaskbarColors(data);
-		WINCOMPATTRDATA attrData = { 0x13,&data,sizeof(data) };
+		WINCOMPATTRDATA attrData = {0x13, &data, sizeof(data)};
 		SetWindowCompositionAttribute(g_TransitionBar, &attrData);
 		g_TransitionBar = NULL;
 	}
@@ -2785,10 +2895,11 @@ void WINAPI DwmpEndTransitionRequest2(int param)
 ///////////////////////////////////////////////////////////////////////////////
 // hooks for skinning the taskbar
 
-typedef void (WINAPI* tSHFillRectClr)(HDC hdc, const RECT* pRect, COLORREF color);
+typedef void (WINAPI*tSHFillRectClr)(HDC hdc, const RECT* pRect, COLORREF color);
 
-static IatHookData* g_SHFillRectClrHook, * g_StretchDIBitsHook;
-static IatHookData* g_DrawThemeBackgroundHook, * g_DrawThemeTextHook, * g_DrawThemeTextExHook, * g_DrawThemeTextCtlHook, * g_SetWindowCompositionAttributeHook;
+static IatHookData *g_SHFillRectClrHook, *g_StretchDIBitsHook;
+static IatHookData *g_DrawThemeBackgroundHook, *g_DrawThemeTextHook, *g_DrawThemeTextExHook, *g_DrawThemeTextCtlHook, *
+                   g_SetWindowCompositionAttributeHook;
 
 static tSHFillRectClr g_SHFillRectClr;
 
@@ -2798,9 +2909,11 @@ static void WINAPI SHFillRectClr2(HDC hdc, const RECT* pRect, COLORREF color)
 		g_SHFillRectClr(hdc, pRect, color);
 }
 
-static HRESULT STDAPICALLTYPE DrawThemeBackground2(HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pRect, LPCRECT pClipRect)
+static HRESULT STDAPICALLTYPE DrawThemeBackground2(HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pRect,
+                                                   LPCRECT pClipRect)
 {
-	if (g_CurrentTaskList && g_TaskbarTexture && iPartId == 1 && iStateId == 0 && GetCurrentThreadId() == g_TaskbarThreadId)
+	if (g_CurrentTaskList && g_TaskbarTexture && iPartId == 1 && iStateId == 0 && GetCurrentThreadId() ==
+		g_TaskbarThreadId)
 	{
 		HWND taskbar = GetAncestor(g_CurrentTaskList, GA_ROOT);
 		RECT rcClient;
@@ -2809,7 +2922,8 @@ static HRESULT STDAPICALLTYPE DrawThemeBackground2(HTHEME hTheme, HDC hdc, int i
 		PrintTaskbarBackground(hdc, rcClient, *pRect, 0);
 		return S_OK;
 	}
-	if (g_CurrentDesktopButton && g_TaskbarTexture && GetCurrentThreadId() == g_TaskbarThreadId && hTheme == GetWindowTheme(g_CurrentDesktopButton))
+	if (g_CurrentDesktopButton && g_TaskbarTexture && GetCurrentThreadId() == g_TaskbarThreadId && hTheme ==
+		GetWindowTheme(g_CurrentDesktopButton))
 	{
 		HWND taskbar = GetAncestor(g_CurrentDesktopButton, GA_ROOT);
 		RECT rcClient;
@@ -2823,27 +2937,32 @@ static HRESULT STDAPICALLTYPE DrawThemeBackground2(HTHEME hTheme, HDC hdc, int i
 }
 
 // toolbar text, rebar band titles, clock
-static HRESULT STDAPICALLTYPE DrawThemeText2(HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, DWORD dwTextFlags, DWORD dwTextFlags2, LPCRECT pRect)
+static HRESULT STDAPICALLTYPE DrawThemeText2(HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText,
+                                             int iCharCount, DWORD dwTextFlags, DWORD dwTextFlags2, LPCRECT pRect)
 {
-	if ((g_CurrentRebar || g_CurrentTaskbarPart) && GetCurrentThreadId() == g_TaskbarThreadId && GetSettingBool(L"CustomTaskbar"))
+	if ((g_CurrentRebar || g_CurrentTaskbarPart) && GetCurrentThreadId() == g_TaskbarThreadId && GetSettingBool(
+		L"CustomTaskbar"))
 	{
 		bool bDef;
 		COLORREF color = GetSettingInt(L"TaskbarTextColor", bDef) & 0xFFFFFF;
 		if (!bDef)
 		{
 			// change the color for the toolbar titles, the toolbar buttons and the clock
-			DTTOPTS options = { sizeof(options),DTT_TEXTCOLOR };
+			DTTOPTS options = {sizeof(options),DTT_TEXTCOLOR};
 			options.crText = color;
-			return DrawThemeTextEx(hTheme, hdc, iPartId, iStateId, pszText, iCharCount, dwTextFlags, (RECT*)pRect, &options);
+			return DrawThemeTextEx(hTheme, hdc, iPartId, iStateId, pszText, iCharCount, dwTextFlags, (RECT*)pRect,
+			                       &options);
 		}
 	}
 	return DrawThemeText(hTheme, hdc, iPartId, iStateId, pszText, iCharCount, dwTextFlags, dwTextFlags2, pRect);
 }
 
 // taskbar text
-static HRESULT STDAPICALLTYPE DrawThemeTextEx2(HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, DWORD dwFlags, LPRECT pRect, const DTTOPTS* pOptions)
+static HRESULT STDAPICALLTYPE DrawThemeTextEx2(HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText,
+                                               int iCharCount, DWORD dwFlags, LPRECT pRect, const DTTOPTS* pOptions)
 {
-	if ((g_CurrentTaskList || g_CurrentTaskbarPart) && GetCurrentThreadId() == g_TaskbarThreadId && GetSettingBool(L"CustomTaskbar"))
+	if ((g_CurrentTaskList || g_CurrentTaskbarPart) && GetCurrentThreadId() == g_TaskbarThreadId && GetSettingBool(
+		L"CustomTaskbar"))
 	{
 		bool bDef;
 		COLORREF color = GetSettingInt(L"TaskbarTextColor", bDef) & 0xFFFFFF;
@@ -2859,14 +2978,17 @@ static HRESULT STDAPICALLTYPE DrawThemeTextEx2(HTHEME hTheme, HDC hdc, int iPart
 	return DrawThemeTextEx(hTheme, hdc, iPartId, iStateId, pszText, iCharCount, dwFlags, pRect, pOptions);
 }
 
-static BLENDFUNCTION g_AlphaFunc = { AC_SRC_OVER,0,255,AC_SRC_ALPHA };
+static BLENDFUNCTION g_AlphaFunc = {AC_SRC_OVER, 0, 255,AC_SRC_ALPHA};
 
-static int WINAPI StretchDIBits2(HDC hdc, int xDest, int yDest, int DestWidth, int DestHeight, int xSrc, int ySrc, int SrcWidth, int SrcHeight, CONST VOID* lpBits, CONST BITMAPINFO* lpbmi, UINT iUsage, DWORD rop)
+static int WINAPI StretchDIBits2(HDC hdc, int xDest, int yDest, int DestWidth, int DestHeight, int xSrc, int ySrc,
+                                 int SrcWidth, int SrcHeight, CONST VOID* lpBits, CONST BITMAPINFO* lpbmi, UINT iUsage,
+                                 DWORD rop)
 {
-	if ((g_CurrentTaskChevron || g_CurrentTaskbarButton) && g_TaskbarTexture && GetCurrentThreadId() == g_TaskbarThreadId)
+	if ((g_CurrentTaskChevron || g_CurrentTaskbarButton) && g_TaskbarTexture && GetCurrentThreadId() ==
+		g_TaskbarThreadId)
 	{
 		HDC hsrc = CreateCompatibleDC(hdc);
-		BITMAPINFO bi = { 0 };
+		BITMAPINFO bi = {0};
 		bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 		bi.bmiHeader.biWidth = DestWidth;
 		bi.bmiHeader.biHeight = DestHeight;
@@ -2874,14 +2996,16 @@ static int WINAPI StretchDIBits2(HDC hdc, int xDest, int yDest, int DestWidth, i
 		bi.bmiHeader.biBitCount = 32;
 		HBITMAP bitmap = CreateDIBSection(hsrc, &bi, DIB_RGB_COLORS, NULL, NULL, 0);
 		HGDIOBJ bmp0 = SelectObject(hsrc, bitmap);
-		int res = StretchDIBits(hsrc, 0, 0, DestWidth, DestHeight, xSrc, ySrc, SrcWidth, SrcHeight, lpBits, lpbmi, iUsage, SRCCOPY);
+		int res = StretchDIBits(hsrc, 0, 0, DestWidth, DestHeight, xSrc, ySrc, SrcWidth, SrcHeight, lpBits, lpbmi,
+		                        iUsage, SRCCOPY);
 		AlphaBlend(hdc, xDest, yDest, DestWidth, DestHeight, hsrc, 0, 0, DestWidth, DestHeight, g_AlphaFunc);
 		SelectObject(hsrc, bmp0);
 		DeleteObject(bitmap);
 		DeleteDC(hsrc);
 		return res;
 	}
-	return StretchDIBits(hdc, xDest, yDest, DestWidth, DestHeight, xSrc, ySrc, SrcWidth, SrcHeight, lpBits, lpbmi, iUsage, rop);
+	return StretchDIBits(hdc, xDest, yDest, DestWidth, DestHeight, xSrc, ySrc, SrcWidth, SrcHeight, lpBits, lpbmi,
+	                     iUsage, rop);
 }
 
 static BOOL WINAPI SetWindowCompositionAttribute2(HWND hwnd, WINCOMPATTRDATA* pAttrData)
@@ -2893,7 +3017,7 @@ static BOOL WINAPI SetWindowCompositionAttribute2(HWND hwnd, WINCOMPATTRDATA* pA
 		{
 			int data[4];
 			ComputeTaskbarColors(data);
-			WINCOMPATTRDATA attrData = { 0x13,&data,sizeof(data) };
+			WINCOMPATTRDATA attrData = {0x13, &data, sizeof(data)};
 			if (data[0] == 3 && taskBar->bThemeChanging)
 			{
 				// send extra attribute when dealing with glass. without it the image behind the glass may not update when the taskbar is resized
@@ -2953,13 +3077,17 @@ static void InitStartMenuDLL(void)
 		if (dwm)
 		{
 			g_DwmpBeginTransitionRequest = (tDwmpBeginTransitionRequest)GetProcAddress(dwm, MAKEINTRESOURCEA(138));
-			g_DwmpTransitionWindowWithRects = (tDwmpTransitionWindowWithRects)GetProcAddress(dwm, MAKEINTRESOURCEA(141));
+			g_DwmpTransitionWindowWithRects = (tDwmpTransitionWindowWithRects)
+				GetProcAddress(dwm, MAKEINTRESOURCEA(141));
 			g_DwmpEndTransitionRequest = (tDwmpEndTransitionRequest)GetProcAddress(dwm, MAKEINTRESOURCEA(140));
 			if (g_DwmpBeginTransitionRequest && g_DwmpTransitionWindowWithRects && g_DwmpEndTransitionRequest)
 			{
-				g_DwmpBTRHook = SetIatHook(GetModuleHandle(NULL), "dwmapi.dll", MAKEINTRESOURCEA(138), DwmpBeginTransitionRequest2);
-				g_DwmpTWWRHook = SetIatHook(GetModuleHandle(NULL), "dwmapi.dll", MAKEINTRESOURCEA(141), DwmpTransitionWindowWithRects2);
-				g_DwmpETRHook = SetIatHook(GetModuleHandle(NULL), "dwmapi.dll", MAKEINTRESOURCEA(140), DwmpEndTransitionRequest2);
+				g_DwmpBTRHook = SetIatHook(GetModuleHandle(NULL), "dwmapi.dll", MAKEINTRESOURCEA(138),
+				                           DwmpBeginTransitionRequest2);
+				g_DwmpTWWRHook = SetIatHook(GetModuleHandle(NULL), "dwmapi.dll", MAKEINTRESOURCEA(141),
+				                            DwmpTransitionWindowWithRects2);
+				g_DwmpETRHook = SetIatHook(GetModuleHandle(NULL), "dwmapi.dll", MAKEINTRESOURCEA(140),
+				                           DwmpEndTransitionRequest2);
 				if (!g_DwmpBTRHook || !g_DwmpTWWRHook || !g_DwmpETRHook)
 				{
 					ClearIatHook(g_DwmpBTRHook);
@@ -2989,12 +3117,14 @@ static void InitStartMenuDLL(void)
 				{
 					g_SHFillRectClrHook = SetIatHook(module, "shlwapi.dll", MAKEINTRESOURCEA(197), SHFillRectClr2);
 					if (!g_SHFillRectClrHook)
-						g_SHFillRectClrHook = SetIatHook(module, "api-ms-win-shlwapi-winrt-storage-l1-1-1.dll", MAKEINTRESOURCEA(197), SHFillRectClr2);
+						g_SHFillRectClrHook = SetIatHook(module, "api-ms-win-shlwapi-winrt-storage-l1-1-1.dll",
+						                                 MAKEINTRESOURCEA(197), SHFillRectClr2);
 				}
 			}
 			g_StretchDIBitsHook = SetIatHook(module, "gdi32.dll", "StretchDIBits", StretchDIBits2);
 			if (!g_StretchDIBitsHook)
-				g_StretchDIBitsHook = SetIatHook(module, "ext-ms-win-gdi-draw-l1-1-0.dll", "StretchDIBits", StretchDIBits2);
+				g_StretchDIBitsHook = SetIatHook(module, "ext-ms-win-gdi-draw-l1-1-0.dll", "StretchDIBits",
+				                                 StretchDIBits2);
 		}
 
 		{
@@ -3007,9 +3137,11 @@ static void InitStartMenuDLL(void)
 			g_DrawThemeBackgroundHook = SetIatHook(module, "uxtheme.dll", "DrawThemeBackground", DrawThemeBackground2);
 		g_DrawThemeTextHook = SetIatHook(module, "uxtheme.dll", "DrawThemeText", DrawThemeText2);
 		//g_DrawThemeTextExHook=SetIatHook(module,"uxtheme.dll","DrawThemeTextEx",DrawThemeTextEx2);
-		g_DrawThemeTextCtlHook = SetIatHook(GetModuleHandle(L"comctl32.dll"), "uxtheme.dll", "DrawThemeText", DrawThemeText2);
+		g_DrawThemeTextCtlHook = SetIatHook(GetModuleHandle(L"comctl32.dll"), "uxtheme.dll", "DrawThemeText",
+		                                    DrawThemeText2);
 		if (GetWinVersion() >= WIN_VER_WIN10)
-			g_SetWindowCompositionAttributeHook = SetIatHook(module, "user32.dll", "SetWindowCompositionAttribute", SetWindowCompositionAttribute2);
+			g_SetWindowCompositionAttributeHook = SetIatHook(module, "user32.dll", "SetWindowCompositionAttribute",
+			                                                 SetWindowCompositionAttribute2);
 	}
 
 	g_TaskbarThreadId = GetCurrentThreadId();
@@ -3036,12 +3168,14 @@ static void InitStartMenuDLL(void)
 
 		// hook ShellRegisterHotKey to prevent twinui.dll to install shell hotkeys (Win, Ctrl+Esc)
 		// without these hotkeys there is standard WM_SYSCOMMAND+SC_TASKLIST sent when start menu is invoked by keyboard shortcut
-		g_ShellRegisterHotKey = (ShellRegisterHotKey_t)GetProcAddress(GetModuleHandle(L"user32.dll"), MAKEINTRESOURCEA(2671));
+		g_ShellRegisterHotKey = (ShellRegisterHotKey_t)GetProcAddress(
+			GetModuleHandle(L"user32.dll"), MAKEINTRESOURCEA(2671));
 		auto twinui = GetModuleHandle(L"twinui.dll");
 
 		if (g_ShellRegisterHotKey && twinui)
 		{
-			g_ShellRegisterHotKeyHook = SetIatHook(twinui, "user32.dll", MAKEINTRESOURCEA(2671), ShellRegisterHotKeyHook);
+			g_ShellRegisterHotKeyHook = SetIatHook(twinui, "user32.dll", MAKEINTRESOURCEA(2671),
+			                                       ShellRegisterHotKeyHook);
 
 			// unregister shell hotkeys as they may be registered already
 			// this has to be done from context of thread that registered them
@@ -3060,10 +3194,12 @@ static void InitStartMenuDLL(void)
 
 	HWND hwnd = FindWindow(L"OpenShellMenu.CStartHookWindow", L"StartHookWindow");
 	LoadLibrary(L"StartMenuDLL.dll"); // keep the DLL from unloading
-	if (hwnd) PostMessage(hwnd, WM_CLEAR, 0, 0); // tell the exe to unhook this hook
+	if (hwnd)
+		PostMessage(hwnd, WM_CLEAR, 0, 0); // tell the exe to unhook this hook
 	if (GetWinVersion() >= WIN_VER_WIN8)
 	{
-		SetWindowCompositionAttribute = (tSetWindowCompositionAttribute)GetProcAddress(GetModuleHandle(L"user32.dll"), "SetWindowCompositionAttribute");
+		SetWindowCompositionAttribute = (tSetWindowCompositionAttribute)GetProcAddress(
+			GetModuleHandle(L"user32.dll"), "SetWindowCompositionAttribute");
 	}
 	int taskbarId = g_NextTaskbar++;
 	TaskbarInfo& taskBar = g_TaskbarInfos[taskbarId];
@@ -3110,7 +3246,8 @@ static void InitStartMenuDLL(void)
 	}
 	if (GetWinVersion() >= WIN_VER_WIN10)
 	{
-		for (HWND button = FindWindowEx(g_TaskBar, NULL, L"TrayButton", NULL); button; button = FindWindowEx(g_TaskBar, button, L"TrayButton", NULL))
+		for (HWND button = FindWindowEx(g_TaskBar, NULL, L"TrayButton", NULL); button; button = FindWindowEx(
+			     g_TaskBar, button, L"TrayButton", NULL))
 		{
 			taskBar.trayButtons.push_back(button);
 			SetWindowSubclass(button, SubclassTrayButtonProc, 'CLSH', taskBar.taskbarId);
@@ -3214,7 +3351,8 @@ static void RecreateStartButton(size_t taskbarId)
 
 		RECT rcTask;
 		GetWindowRect(taskBar.taskBar, &rcTask);
-		PostMessage(taskBar.taskBar, WM_SIZE, SIZE_RESTORED, MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
+		PostMessage(taskBar.taskBar, WM_SIZE, SIZE_RESTORED,
+		            MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
 		for (auto btn : taskBar.trayButtons)
 		{
 			RECT rc;
@@ -3226,9 +3364,11 @@ static void RecreateStartButton(size_t taskbarId)
 
 static DWORD WINAPI ExitThreadProc(void* param)
 {
-	Sleep(1000); // wait a second! hopefully by then the hooks will be finished and no more of our code will be executing
+	Sleep(1000);
+	// wait a second! hopefully by then the hooks will be finished and no more of our code will be executing
 	// send WM_CLOSE to the window in StartMenu.exe to close that process
-	if (param) PostMessage((HWND)param, WM_CLOSE, 0, 0);
+	if (param)
+		PostMessage((HWND)param, WM_CLOSE, 0, 0);
 	FreeLibraryAndExitThread(g_Instance, 0);
 }
 
@@ -3294,7 +3434,8 @@ static void CleanStartMenuDLL(void)
 		if (it->second.oldButton)
 		{
 			RemoveWindowSubclass(it->second.oldButton, SubclassWin81StartButton, 'CLSH');
-			if (GetWinVersion() < WIN_VER_WIN10 && GetTaskbarPosition(it->second.taskBar, NULL, NULL, NULL) == ABE_BOTTOM)
+			if (GetWinVersion() < WIN_VER_WIN10 && GetTaskbarPosition(it->second.taskBar, NULL, NULL, NULL) ==
+				ABE_BOTTOM)
 				SetWindowPos(it->second.oldButton, NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 			RevokeDragDrop(it->second.oldButton);
 			if (it->second.pOriginalTarget)
@@ -3302,11 +3443,13 @@ static void CleanStartMenuDLL(void)
 		}
 		if (!g_bTrimHooks)
 			RemoveWindowSubclass(it->second.taskBar, SubclassTaskBarProc, 'CLSH');
-		for (std::vector<HWND>::const_iterator it2 = it->second.trayButtons.begin(); it2 != it->second.trayButtons.end(); ++it2)
+		for (std::vector<HWND>::const_iterator it2 = it->second.trayButtons.begin(); it2 != it->second.trayButtons.end()
+		     ; ++it2)
 		{
 			RemoveWindowSubclass(*it2, SubclassTrayButtonProc, 'CLSH');
 		}
-		for (std::vector<HWND>::const_iterator it2 = it->second.taskbarParts.begin(); it2 != it->second.taskbarParts.end(); ++it2)
+		for (std::vector<HWND>::const_iterator it2 = it->second.taskbarParts.begin(); it2 != it->second.taskbarParts.
+		     end(); ++it2)
 		{
 			RemoveWindowSubclass(*it2, SubclassTaskbarPartProc, 'CLSH');
 		}
@@ -3318,7 +3461,8 @@ static void CleanStartMenuDLL(void)
 			KillTimer(it->second.startButton, 'CLSM');
 		RECT rcTask;
 		GetWindowRect(it->second.taskBar, &rcTask);
-		PostMessage(it->second.taskBar, WM_SIZE, SIZE_RESTORED, MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
+		PostMessage(it->second.taskBar, WM_SIZE, SIZE_RESTORED,
+		            MAKELONG(rcTask.right - rcTask.left, rcTask.bottom - rcTask.top));
 		PostMessage(it->second.taskBar, WM_THEMECHANGED, 0, 0);
 	}
 	g_TaskbarInfos.clear();
@@ -3370,7 +3514,8 @@ static bool WindowsMenuOpened(void)
 		}
 		{
 			CComPtr<IImmersiveLauncher10RS> pLauncher;
-			IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher10RS, (void**)&pLauncher);
+			IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher10RS,
+			                      (void**)&pLauncher);
 			BOOL bIsVisible;
 			if (pLauncher && SUCCEEDED(pLauncher->IsVisible(&bIsVisible)))
 				return bIsVisible != 0;
@@ -3397,7 +3542,8 @@ static void OpenStartScreen(HMONITOR monitor)
 			if (monitor)
 			{
 				CComPtr<IImmersiveMonitorService> pMonitorService;
-				IUnknown_QueryService(pImmersiveShell, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService, (void**)&pMonitorService);
+				IUnknown_QueryService(pImmersiveShell, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService,
+				                      (void**)&pMonitorService);
 				if (pMonitorService)
 				{
 					CComPtr<IUnknown> pMonitor;
@@ -3415,7 +3561,8 @@ static void OpenStartScreen(HMONITOR monitor)
 		if (monitor)
 		{
 			CComPtr<IImmersiveMonitorService> pMonitorService;
-			IUnknown_QueryService(pImmersiveShell, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService, (void**)&pMonitorService);
+			IUnknown_QueryService(pImmersiveShell, SID_IImmersiveMonitorService, IID_IImmersiveMonitorService,
+			                      (void**)&pMonitorService);
 			if (pMonitorService)
 				pMonitorService->GetFromHandle(monitor, &pMonitor);
 		}
@@ -3432,7 +3579,8 @@ static void OpenStartScreen(HMONITOR monitor)
 		}
 		{
 			CComPtr<IImmersiveLauncher10RS> pLauncher;
-			IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher10RS, (void**)&pLauncher);
+			IUnknown_QueryService(pImmersiveShell, SID_ImmersiveLauncher, IID_IImmersiveLauncher10RS,
+			                      (void**)&pLauncher);
 			if (pLauncher)
 			{
 				if (pMonitor)
@@ -3459,11 +3607,14 @@ static LRESULT CALLBACK HookProgManThread(int code, WPARAM wParam, LPARAM lParam
 			// Win button pressed
 			if (msg->lParam == 'WSMK' || msg->lParam == 'WSMM' || msg->lParam == 'WSMH')
 			{
-				if ((g_AppManagerThread || GetWinVersion() >= WIN_VER_WIN10) && (msg->lParam == 'WSMM' || msg->lParam == 'WSMH' || (g_TaskbarInfos.size() > 1 && GetSettingBool(L"OpenMouseMonitor"))))
+				if ((g_AppManagerThread || GetWinVersion() >= WIN_VER_WIN10) && (msg->lParam == 'WSMM' || msg->lParam ==
+					'WSMH' || (g_TaskbarInfos.size() > 1 && GetSettingBool(L"OpenMouseMonitor"))))
 				{
 					if (!WindowsMenuOpened())
 					{
-						HMONITOR monitor = msg->lParam == 'WSMH' ? g_WSMHMonitor : MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONULL);
+						HMONITOR monitor = msg->lParam == 'WSMH'
+							                   ? g_WSMHMonitor
+							                   : MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONULL);
 						OpenStartScreen(monitor);
 						msg->message = WM_NULL;
 					}
@@ -3483,11 +3634,14 @@ static LRESULT CALLBACK HookProgManThread(int code, WPARAM wParam, LPARAM lParam
 					if (GetWinVersion() >= WIN_VER_WIN10)
 						control = GetWin10TabletMode() ? OPEN_WINDOWS : OPEN_CLASSIC;
 					else
-						control = GetMetroMode(MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST)) ? OPEN_WINDOWS : OPEN_CLASSIC;
+						control = GetMetroMode(MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST))
+							          ? OPEN_WINDOWS
+							          : OPEN_CLASSIC;
 				}
 				if (control == OPEN_DESKTOP)
 				{
-					TMetroMode metro = GetMetroMode(MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST));
+					TMetroMode metro =
+						GetMetroMode(MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST));
 					if (metro == METRO_NONE)
 						control = OPEN_CLASSIC;
 					else if (metro == METRO_APP)
@@ -3508,7 +3662,8 @@ static LRESULT CALLBACK HookProgManThread(int code, WPARAM wParam, LPARAM lParam
 						SetForegroundWindow(taskBar->startButton ? taskBar->startButton : taskBar->taskBar);
 						msg->message = WM_NULL;
 					}
-					else if (GetWinVersion() >= WIN_VER_WIN8 && g_TaskbarInfos.size() > 1 && GetSettingBool(L"OpenMouseMonitor") && !WindowsMenuOpened())
+					else if (GetWinVersion() >= WIN_VER_WIN8 && g_TaskbarInfos.size() > 1 &&
+						GetSettingBool(L"OpenMouseMonitor") && !WindowsMenuOpened())
 					{
 						HMONITOR monitor = MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONULL);
 						OpenStartScreen(monitor);
@@ -3537,7 +3692,8 @@ static LRESULT CALLBACK HookProgManThread(int code, WPARAM wParam, LPARAM lParam
 				}
 			}
 		}
-		if ((msg->message == WM_MOUSEMOVE || msg->message == WM_LBUTTONDOWN) && GetWinVersion() >= WIN_VER_WIN8 && HIWORD(msg->lParam) < 10 && GetSettingInt(L"DisableHotCorner") == 2)
+		if ((msg->message == WM_MOUSEMOVE || msg->message == WM_LBUTTONDOWN) && GetWinVersion() >= WIN_VER_WIN8 &&
+			HIWORD(msg->lParam) < 10 && GetSettingInt(L"DisableHotCorner") == 2)
 		{
 			if (msg->hwnd != g_TopDesktopBar || !g_TopDesktopBar || !IsWindow(g_TopDesktopBar))
 			{
@@ -3601,7 +3757,9 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 		}
 		if (!g_bTrimHooks)
 		{
-			if (((msg->message >= WM_MOUSEFIRST && msg->message <= WM_MOUSELAST) || msg->message == WM_MOUSEHOVER || msg->message == WM_MOUSELEAVE) && GetWinVersion() <= WIN_VER_WIN7 && CMenuContainer::ProcessMouseMessage(msg->hwnd, msg->message, msg->wParam, msg->lParam))
+			if (((msg->message >= WM_MOUSEFIRST && msg->message <= WM_MOUSELAST) || msg->message == WM_MOUSEHOVER || msg
+				->message == WM_MOUSELEAVE) && GetWinVersion() <= WIN_VER_WIN7 && CMenuContainer::ProcessMouseMessage(
+				msg->hwnd, msg->message, msg->wParam, msg->lParam))
 			{
 				msg->message = WM_NULL;
 				return 0;
@@ -3638,7 +3796,9 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 						if (GetWinVersion() >= WIN_VER_WIN10)
 							control = GetWin10TabletMode() ? OPEN_WINDOWS : OPEN_CLASSIC;
 						else
-							control = GetMetroMode(MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST)) ? OPEN_WINDOWS : OPEN_CLASSIC;
+							control = GetMetroMode(MonitorFromPoint(CPoint(GetMessagePos()), MONITOR_DEFAULTTONEAREST))
+								          ? OPEN_WINDOWS
+								          : OPEN_CLASSIC;
 					}
 					if (control == OPEN_CLASSIC)
 						ToggleStartMenu(taskBar->taskbarId, true);
@@ -3700,7 +3860,8 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 								info->taskbarParts.push_back(child);
 							}
 						}
-						else if (_wcsicmp(className, L"TrayClockWClass") == 0 || _wcsicmp(className, L"ClockButton") == 0)
+						else if (_wcsicmp(className, L"TrayClockWClass") == 0 || _wcsicmp(className, L"ClockButton") ==
+							0)
 						{
 							HWND taskbar = GetAncestor(child, GA_ROOT);
 							TaskbarInfo* info = FindTaskBarInfoBar(taskbar);
@@ -3748,9 +3909,10 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 					PostMessage(g_ProgWin, WM_SYSCOMMAND, SC_TASKLIST, 'WSMK');
 			}
 
-			if (msg->message == WM_KEYDOWN && msg->hwnd == g_TaskBar && (msg->wParam == VK_SPACE || msg->wParam == VK_RETURN))
+			if (msg->message == WM_KEYDOWN && msg->hwnd == g_TaskBar && (msg->wParam == VK_SPACE || msg->wParam ==
+				VK_RETURN))
 			{
-				GUITHREADINFO info = { sizeof(info) };
+				GUITHREADINFO info = {sizeof(info)};
 				if (!GetGUIThreadInfo(GetCurrentThreadId(), &info) || !(info.flags & GUI_INMENUMODE))
 				{
 					FindWindowsMenu();
@@ -3760,7 +3922,9 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 						if (GetWinVersion() >= WIN_VER_WIN10)
 							control = GetWin10TabletMode() ? OPEN_WINDOWS : OPEN_CLASSIC;
 						else
-							control = GetMetroMode(MonitorFromWindow(g_TaskBar, MONITOR_DEFAULTTONEAREST)) ? OPEN_WINDOWS : OPEN_CLASSIC;
+							control = GetMetroMode(MonitorFromWindow(g_TaskBar, MONITOR_DEFAULTTONEAREST))
+								          ? OPEN_WINDOWS
+								          : OPEN_CLASSIC;
 					}
 					if (control == OPEN_CLASSIC)
 					{
@@ -3787,9 +3951,12 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 				msg->message = WM_NULL;
 			}
 		}
-		bool bClick = (msg->message == WM_LBUTTONDOWN || msg->message == WM_LBUTTONDBLCLK || msg->message == WM_MBUTTONDOWN || msg->message == WM_MBUTTONDBLCLK);
-		bool bNcClick = (msg->message == WM_NCLBUTTONDOWN || msg->message == WM_NCLBUTTONDBLCLK || msg->message == WM_NCMBUTTONDOWN || msg->message == WM_NCMBUTTONDBLCLK);
-		bool bMiddle = (msg->message == WM_NCMBUTTONDOWN || msg->message == WM_MBUTTONDOWN || msg->message == WM_NCMBUTTONDBLCLK || msg->message == WM_MBUTTONDBLCLK);
+		bool bClick = (msg->message == WM_LBUTTONDOWN || msg->message == WM_LBUTTONDBLCLK || msg->message ==
+			WM_MBUTTONDOWN || msg->message == WM_MBUTTONDBLCLK);
+		bool bNcClick = (msg->message == WM_NCLBUTTONDOWN || msg->message == WM_NCLBUTTONDBLCLK || msg->message ==
+			WM_NCMBUTTONDOWN || msg->message == WM_NCMBUTTONDBLCLK);
+		bool bMiddle = (msg->message == WM_NCMBUTTONDOWN || msg->message == WM_MBUTTONDOWN || msg->message ==
+			WM_NCMBUTTONDBLCLK || msg->message == WM_MBUTTONDBLCLK);
 		if (bClick || bNcClick)
 		{
 			const TaskbarInfo* taskBar = NULL;
@@ -3803,7 +3970,8 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 			}
 			if (taskBar)
 			{
-				if (msg->message == WM_LBUTTONDOWN && GetWinVersion() == WIN_VER_WIN7 && msg->hwnd == taskBar->startButton)
+				if (msg->message == WM_LBUTTONDOWN && GetWinVersion() == WIN_VER_WIN7 && msg->hwnd == taskBar->
+					startButton)
 				{
 					// on Win7 ignore the click if the mouse is not over the start button (clicks on the context menu are sent to the start button)
 					CPoint pt(GetMessagePos());
@@ -3875,7 +4043,8 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 				msg->message = WM_NULL;
 			}
 
-			if (msg->message == WM_MOUSEMOVE && g_ProgramsButton && msg->hwnd == g_ProgramsButton && GetSettingBool(L"CascadeAll") && !(msg->wParam & MK_SHIFT))
+			if (msg->message == WM_MOUSEMOVE && g_ProgramsButton && msg->hwnd == g_ProgramsButton &&
+				GetSettingBool(L"CascadeAll") && !(msg->wParam & MK_SHIFT))
 			{
 				DWORD pos = GetMessagePos();
 				if (pos != g_LastHoverPos && !g_bAllProgramsTimer)
@@ -3918,7 +4087,7 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 					}
 					if (msg->hwnd == taskBar->oldButton)
 					{
-						APPBARDATA appbar = { sizeof(appbar) };
+						APPBARDATA appbar = {sizeof(appbar)};
 						if (SHAppBarMessage(ABM_GETSTATE, &appbar) & ABS_AUTOHIDE)
 							SendMessage(taskBar->taskBar, WM_NCHITTEST, 0, GetMessagePos());
 					}
@@ -3938,24 +4107,28 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 						CPoint pt(GetMessagePos());
 						if (PtInRect(&rc, pt))
 						{
-							wchar_t className[256] = { 0 };
+							wchar_t className[256] = {0};
 							GetClassName(WindowFromPoint(pt), className, _countof(className));
-							if (wcscmp(className, L"ImmersiveSwitchList") == 0 || wcscmp(className, L"EdgeUiInputWndClass") == 0)
+							if (wcscmp(className, L"ImmersiveSwitchList") == 0 || wcscmp(
+								className, L"EdgeUiInputWndClass") == 0)
 							{
 								msg->message = WM_NULL;
-								TRACKMOUSEEVENT track = { sizeof(track),TME_LEAVE,msg->hwnd,0 };
+								TRACKMOUSEEVENT track = {sizeof(track),TME_LEAVE, msg->hwnd, 0};
 								TrackMouseEvent(&track);
 							}
 						}
 					}
 				}
 			}
-			if ((msg->message == WM_NCMOUSEMOVE || msg->message == WM_NCMOUSELEAVE) && (msg->wParam == HTCAPTION || !IsAppThemed()) && GetSettingInt(L"Hover")) // HACK: in Classic mode the start menu can show up even if wParam is not HTCAPTION (most likely a bug in Windows)
+			if ((msg->message == WM_NCMOUSEMOVE || msg->message == WM_NCMOUSELEAVE) && (msg->wParam == HTCAPTION || !
+				IsAppThemed()) && GetSettingInt(L"Hover"))
+			// HACK: in Classic mode the start menu can show up even if wParam is not HTCAPTION (most likely a bug in Windows)
 			{
 				TaskbarInfo* taskBar = FindTaskBarInfoBar(msg->hwnd);
 				if (taskBar)
 				{
-					if (!CMenuContainer::IsMenuOpened() && !WindowsMenuOpened() && PointAroundStartButton(taskBar->taskbarId))
+					if (!CMenuContainer::IsMenuOpened() && !WindowsMenuOpened() && PointAroundStartButton(
+						taskBar->taskbarId))
 					{
 						if (!taskBar->bTimer)
 						{
@@ -4026,7 +4199,8 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 			if (taskBar)
 			{
 				CPoint pt0(GetMessagePos());
-				if (msg->message == WM_RBUTTONUP && msg->hwnd == taskBar->startButton && msg->lParam == MAKELPARAM(-1, -1))
+				if (msg->message == WM_RBUTTONUP && msg->hwnd == taskBar->startButton && msg->lParam ==
+					MAKELPARAM(-1, -1))
 				{
 					RECT rc;
 					GetWindowRect(msg->hwnd, &rc);
@@ -4081,12 +4255,15 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 					if (GetSettingBool(L"EnableExplorer"))
 					{
 						if (!GetSettingString(L"ExplorerPath").IsEmpty())
-							AppendMenu(menu, MF_STRING, CMD_EXPLORER, FindTranslation(L"Menu.Explorer", L"Windows Explorer"));
+							AppendMenu(menu, MF_STRING, CMD_EXPLORER,
+							           FindTranslation(L"Menu.Explorer", L"Windows Explorer"));
 						AppendMenu(menu, MF_STRING, CMD_OPEN, FindTranslation(L"Menu.Open", L"&Open"));
 						if (!SHRestricted(REST_NOCOMMONGROUPS))
-							AppendMenu(menu, MF_STRING, CMD_OPEN_ALL, FindTranslation(L"Menu.OpenAll", L"O&pen All Users"));
+							AppendMenu(menu, MF_STRING, CMD_OPEN_ALL,
+							           FindTranslation(L"Menu.OpenAll", L"O&pen All Users"));
 						if (GetSettingInt(L"PinnedPrograms") == PINNED_PROGRAMS_PINNED)
-							AppendMenu(menu, MF_STRING, CMD_OPEN_PINNED, FindTranslation(L"Menu.OpenPinned", L"O&pen Pinned"));
+							AppendMenu(menu, MF_STRING, CMD_OPEN_PINNED,
+							           FindTranslation(L"Menu.OpenPinned", L"O&pen Pinned"));
 						AppendMenu(menu, MF_SEPARATOR, 0, 0);
 					}
 					if (GetSettingBool(L"EnableSettings"))
@@ -4101,15 +4278,17 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 					}
 					if (GetMenuItemCount(menu) > count0)
 					{
-						MENUITEMINFO mii = { sizeof(mii) };
+						MENUITEMINFO mii = {sizeof(mii)};
 						mii.fMask = MIIM_BITMAP;
 						mii.hbmpItem = HBMMENU_POPUP_CLOSE;
 						SetMenuItemInfo(menu, CMD_EXIT, FALSE, &mii);
-						MENUINFO info = { sizeof(info),MIM_STYLE,MNS_CHECKORBMP };
+						MENUINFO info = {sizeof(info),MIM_STYLE,MNS_CHECKORBMP};
 						SetMenuInfo(menu, &info);
 						g_bInMenu = true;
 						SetForegroundWindow(msg->hwnd);
-						int res = TrackPopupMenu(menu, TPM_RIGHTBUTTON | TPM_RETURNCMD | (IsLanguageRTL() ? TPM_LAYOUTRTL : 0), pt0.x, pt0.y, 0, msg->hwnd, NULL);
+						int res = TrackPopupMenu(
+							menu, TPM_RIGHTBUTTON | TPM_RETURNCMD | (IsLanguageRTL() ? TPM_LAYOUTRTL : 0), pt0.x, pt0.y,
+							0, msg->hwnd, NULL);
 						DestroyMenu(menu);
 						g_bInMenu = false;
 						if (res == CMD_SETTINGS)
@@ -4130,12 +4309,14 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 						if (res == CMD_OPEN || res == CMD_OPEN_ALL)
 						{
 							CComString pPath;
-							if (SUCCEEDED(ShGetKnownFolderPath((res == CMD_OPEN) ? FOLDERID_StartMenu : FOLDERID_CommonStartMenu, &pPath)))
+							if (SUCCEEDED(
+								ShGetKnownFolderPath((res == CMD_OPEN) ? FOLDERID_StartMenu : FOLDERID_CommonStartMenu,
+									&pPath)))
 								ShellExecute(NULL, L"open", pPath, NULL, NULL, SW_SHOWNORMAL);
 						}
 						if (res == CMD_OPEN_PINNED) // open pinned folder
 						{
-							SHELLEXECUTEINFO execute = { sizeof(execute) };
+							SHELLEXECUTEINFO execute = {sizeof(execute)};
 							CString path = GetSettingString(L"PinnedItemsPath");
 							execute.lpVerb = L"open";
 							execute.lpFile = path;
@@ -4146,8 +4327,8 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 						if (res == CMD_EXPLORER)
 						{
 							CString path = GetSettingString(L"ExplorerPath");
-							ITEMIDLIST blank = { 0 };
-							SHELLEXECUTEINFO execute = { sizeof(execute) };
+							ITEMIDLIST blank = {0};
+							SHELLEXECUTEINFO execute = {sizeof(execute)};
 							execute.lpVerb = L"open";
 							execute.lpFile = path;
 							execute.nShow = SW_SHOWNORMAL;
@@ -4181,7 +4362,6 @@ static LRESULT CALLBACK HookDesktopThread(int code, WPARAM wParam, LPARAM lParam
 				}
 			}
 		}
-
 	}
 	return CallNextHookEx(NULL, code, wParam, lParam);
 }
@@ -4191,7 +4371,7 @@ HBITMAP GetStartScreenIcon(int size)
 	// for sizes >=64, use image directly
 	// for sizes>=32, get 64x64 and scale down
 	// for sizes<32 use the system background color
-	StartScreenThumbInfo info = { {size < 64 ? 64 : size} };
+	StartScreenThumbInfo info = {{size < 64 ? 64 : size}};
 	info.size.cy = info.size.cx;
 	if (size >= 32 && g_AppManagerThread && GetWinVersion() == WIN_VER_WIN8)
 	{
@@ -4202,7 +4382,7 @@ HBITMAP GetStartScreenIcon(int size)
 	}
 	info.size.cy = info.size.cx * 3 / 4;
 
-	BITMAPINFO bi = { 0 };
+	BITMAPINFO bi = {0};
 	bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 	bi.bmiHeader.biWidth = bi.bmiHeader.biHeight = size;
 	bi.bmiHeader.biPlanes = 1;
@@ -4212,30 +4392,35 @@ HBITMAP GetStartScreenIcon(int size)
 	unsigned int* bits;
 	HBITMAP bitmap = CreateDIBSection(hDst, &bi, DIB_RGB_COLORS, (void**)&bits, NULL, 0);
 	HGDIOBJ bmp0 = SelectObject(hDst, bitmap);
-	RECT rc = { 0,size / 8,size,size * 7 / 8 };
+	RECT rc = {0, size / 8, size, size * 7 / 8};
 
 	if (info.bitmap)
 	{
 		HDC hSrc = CreateCompatibleDC(hDst);
 		HGDIOBJ bmp02 = SelectObject(hSrc, info.bitmap);
 		SetStretchBltMode(hDst, HALFTONE);
-		StretchBlt(hDst, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, hSrc, 0, 0, info.size.cx, info.size.cy, SRCCOPY);
+		StretchBlt(hDst, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, hSrc, 0, 0, info.size.cx,
+		           info.size.cy, SRCCOPY);
 		SelectObject(hSrc, bmp02);
 		DeleteDC(hSrc);
 		DeleteObject(info.bitmap);
 	}
 	else
 	{
-		typedef int (WINAPI* TGetImmersiveUserColorSetPreference)(bool bForceCheckRegistry, bool bSkipCheckOnFail);
-		typedef DWORD(WINAPI* TGetImmersiveColorFromColorSetEx)(UINT dwImmersiveColorSet, UINT dwImmersiveColorType, bool bIgnoreHighContrast, UINT dwHighContrastCacheMode);
-		typedef int (WINAPI* TGetImmersiveColorTypeFromName)(const wchar_t* name);
+		typedef int (WINAPI*TGetImmersiveUserColorSetPreference)(bool bForceCheckRegistry, bool bSkipCheckOnFail);
+		typedef DWORD (WINAPI*TGetImmersiveColorFromColorSetEx)(UINT dwImmersiveColorSet, UINT dwImmersiveColorType,
+		                                                        bool bIgnoreHighContrast, UINT dwHighContrastCacheMode);
+		typedef int (WINAPI*TGetImmersiveColorTypeFromName)(const wchar_t* name);
 		COLORREF color = 0;
 		HMODULE hUxTheme = GetModuleHandle(L"uxtheme.dll");
 		if (hUxTheme)
 		{
-			TGetImmersiveUserColorSetPreference GetImmersiveUserColorSetPreference = (TGetImmersiveUserColorSetPreference)GetProcAddress(hUxTheme, MAKEINTRESOURCEA(98));
-			TGetImmersiveColorFromColorSetEx GetImmersiveColorFromColorSetEx = (TGetImmersiveColorFromColorSetEx)GetProcAddress(hUxTheme, MAKEINTRESOURCEA(95));
-			TGetImmersiveColorTypeFromName GetImmersiveColorTypeFromName = (TGetImmersiveColorTypeFromName)GetProcAddress(hUxTheme, MAKEINTRESOURCEA(96));
+			TGetImmersiveUserColorSetPreference GetImmersiveUserColorSetPreference = (
+				TGetImmersiveUserColorSetPreference)GetProcAddress(hUxTheme, MAKEINTRESOURCEA(98));
+			TGetImmersiveColorFromColorSetEx GetImmersiveColorFromColorSetEx = (TGetImmersiveColorFromColorSetEx)
+				GetProcAddress(hUxTheme, MAKEINTRESOURCEA(95));
+			TGetImmersiveColorTypeFromName GetImmersiveColorTypeFromName = (TGetImmersiveColorTypeFromName)
+				GetProcAddress(hUxTheme, MAKEINTRESOURCEA(96));
 			if (GetImmersiveUserColorSetPreference && GetImmersiveColorFromColorSetEx && GetImmersiveColorTypeFromName)
 			{
 				int type = GetImmersiveColorTypeFromName(L"ImmersiveStartBackground");
@@ -4245,7 +4430,9 @@ HBITMAP GetStartScreenIcon(int size)
 		}
 		SetDCBrushColor(hDst, color);
 		FillRect(hDst, &rc, (HBRUSH)GetStockObject(DC_BRUSH));
-		HICON hIcon = (HICON)LoadImage(g_Instance, MAKEINTRESOURCE(GetWinVersion() >= WIN_VER_WIN10 ? IDI_START10 : IDI_START), IMAGE_ICON, size, size, LR_DEFAULTCOLOR);
+		HICON hIcon = (HICON)LoadImage(
+			g_Instance, MAKEINTRESOURCE(GetWinVersion() >= WIN_VER_WIN10 ? IDI_START10 : IDI_START), IMAGE_ICON, size,
+			size, LR_DEFAULTCOLOR);
 		DrawIconEx(hDst, 0, 0, hIcon, size, size, 0, NULL, DI_NORMAL);
 		DestroyIcon(hIcon);
 	}

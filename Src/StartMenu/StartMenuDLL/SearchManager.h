@@ -9,15 +9,15 @@
 #include <vector>
 #include <list>
 
-const int MAX_SEARCH_RESULTS=100; // per category
+const int MAX_SEARCH_RESULTS = 100; // per category
 
 class CSearchManager
 {
 public:
-	CSearchManager( void );
-	~CSearchManager( void );
-	void Init( void );
-	void Close( void );
+	CSearchManager(void);
+	~CSearchManager(void);
+	void Init(void);
+	void Close(void);
 
 
 	enum TItemCategory
@@ -31,27 +31,31 @@ public:
 		CATEGORY_INTERNET,
 		CATEGORY_AUTOCOMPLETE,
 
-		CATEGORY_MASK=15
+		CATEGORY_MASK = 15
 	};
 
 	struct SearchCategory
 	{
-		SearchCategory( void ) = default;
-		SearchCategory( const SearchCategory &cat )
+		SearchCategory(void) = default;
+
+		SearchCategory(const SearchCategory& cat)
 		{
 			search.Clone(cat.search);
-			categoryHash=cat.categoryHash;
-			name=cat.name;
-			items=cat.items;
+			categoryHash = cat.categoryHash;
+			name = cat.name;
+			items = cat.items;
 		}
+
 		CAbsolutePidl search;
 		unsigned int categoryHash;
 		CString name;
+
 		struct Item
 		{
 			CString name;
 			CAbsolutePidl pidl;
 		};
+
 		std::vector<Item> items;
 	};
 
@@ -68,13 +72,13 @@ public:
 		std::list<SearchCategory> indexed;
 	};
 
-	void BeginSearch( const CString &searchText );
-	void GetSearchResults( SearchResults &results );
-	void AddItemRank( unsigned int hash );
-	void CloseMenu( void );
+	void BeginSearch(const CString& searchText);
+	void GetSearchResults(SearchResults& results);
+	void AddItemRank(unsigned int hash);
+	void CloseMenu(void);
 
-	void LaunchExternalSearch( PIDLIST_ABSOLUTE root, unsigned int categoryHash, const CString &searchText );
-	void LaunchInternetSearch( const CString &searchText );
+	void LaunchExternalSearch(PIDLIST_ABSOLUTE root, unsigned int categoryHash, const CString& searchText);
+	void LaunchInternetSearch(const CString& searchText);
 
 private:
 	struct ItemRank
@@ -83,8 +87,14 @@ private:
 		int rank; // number of times it was used
 		int lastTime; // the last time it was updated (hi dword of FILETIME)
 
-		ItemRank( unsigned int _hash=0, int _rank=0, int _lastTime=0 ) { hash=_hash; rank=_rank; lastTime=_lastTime; }
-		bool operator<( const ItemRank &rank ) const { return hash<rank.hash; }
+		ItemRank(unsigned int _hash = 0, int _rank = 0, int _lastTime = 0)
+		{
+			hash = _hash;
+			rank = _rank;
+			lastTime = _lastTime;
+		}
+
+		bool operator<(const ItemRank& rank) const { return hash < rank.hash; }
 	};
 
 	bool m_bRanksLoaded;
@@ -94,18 +104,33 @@ private:
 		TItemCategory category;
 		CString name; // uppercase
 		CString keywords; // uppercase
-		const CItemManager::ItemInfo *pInfo;
+		const CItemManager::ItemInfo* pInfo;
 		int rank; // ignore the item if rank<0
 		bool bMetroLink;
 
-		SearchItem( void ) { category=CATEGORY_INVALID; pInfo=NULL; rank=0; bMetroLink=false; }
+		SearchItem(void)
+		{
+			category = CATEGORY_INVALID;
+			pInfo = NULL;
+			rank = 0;
+			bMetroLink = false;
+		}
 
 		// 0 - no match, 1 - match name, 2 - match keywords
-		int MatchText( const wchar_t *search, bool bSearchSubWord ) const { return MatchTextInt(search,name,bSearchSubWord)?2:(MatchTextInt(search,keywords,bSearchSubWord)?1:0); }
-		bool operator<( const SearchItem &item ) const { return rank>item.rank || (rank==item.rank && wcscmp(name,item.name)<0); }
+		int MatchText(const wchar_t* search, bool bSearchSubWord) const
+		{
+			return MatchTextInt(search, name, bSearchSubWord)
+				       ? 2
+				       : (MatchTextInt(search, keywords, bSearchSubWord) ? 1 : 0);
+		}
+
+		bool operator<(const SearchItem& item) const
+		{
+			return rank > item.rank || (rank == item.rank && wcscmp(name, item.name) < 0);
+		}
 
 	private:
-		static bool MatchTextInt( const wchar_t *search, const CString &text, bool bSearchSubWord );
+		static bool MatchTextInt(const wchar_t* search, const CString& text, bool bSearchSubWord);
 	};
 
 	bool m_bInitialized;
@@ -158,21 +183,22 @@ private:
 
 	enum
 	{
-		COLLECT_RECURSIVE  =0x01, // go into subfolders
-		COLLECT_PROGRAMS   =0x02, // only collect programs (.exe, .com, etc)
-		COLLECT_FOLDERS    =0x04, // include folder items
-		COLLECT_METRO      =0x08, // check for metro links (non-recursive)
-		COLLECT_ONLY_METRO =0x10, // collect only metro links
-		COLLECT_KEYWORDS   =0x20, // include the keywords
-		COLLECT_LIBRARY    =0x40, // the folder is a library
-		COLLECT_NOREFRESH  =0x80, // suppress the refresh message
+		COLLECT_RECURSIVE = 0x01, // go into subfolders
+		COLLECT_PROGRAMS = 0x02, // only collect programs (.exe, .com, etc)
+		COLLECT_FOLDERS = 0x04, // include folder items
+		COLLECT_METRO = 0x08, // check for metro links (non-recursive)
+		COLLECT_ONLY_METRO = 0x10, // collect only metro links
+		COLLECT_KEYWORDS = 0x20, // include the keywords
+		COLLECT_LIBRARY = 0x40, // the folder is a library
+		COLLECT_NOREFRESH = 0x80, // suppress the refresh message
 
-		COLLECT_IS_FOLDER =0x8000
+		COLLECT_IS_FOLDER = 0x8000
 	};
 
-	bool AddSearchItem( IShellItem *pItem, const wchar_t *name, int flags, TItemCategory category, SearchRequest &searchRequest );
-	void CollectSearchItems( IShellItem *pFolder, int flags, TItemCategory category, SearchRequest &searchRequest );
-	void CollectIndexItems( IShellItem *pFolder, int flags, TItemCategory category, const wchar_t *groupName );
+	bool AddSearchItem(IShellItem* pItem, const wchar_t* name, int flags, TItemCategory category,
+	                   SearchRequest& searchRequest);
+	void CollectSearchItems(IShellItem* pFolder, int flags, TItemCategory category, SearchRequest& searchRequest);
+	void CollectIndexItems(IShellItem* pFolder, int flags, TItemCategory category, const wchar_t* groupName);
 
 	enum TLock
 	{
@@ -188,29 +214,29 @@ private:
 	class Lock
 	{
 	public:
-		Lock( CSearchManager *pThis, TLock index )
+		Lock(CSearchManager* pThis, TLock index)
 		{
-			m_pSection=&pThis->m_CriticalSections[index];
+			m_pSection = &pThis->m_CriticalSections[index];
 			EnterCriticalSection(m_pSection);
-			m_pOwner=&pThis->m_CriticalSectionOwners[index];
+			m_pOwner = &pThis->m_CriticalSectionOwners[index];
 			if (!*m_pOwner)
-				*m_pOwner=GetCurrentThreadId();
+				*m_pOwner = GetCurrentThreadId();
 			else
-				m_pOwner=NULL;
+				m_pOwner = NULL;
 		}
 
-		~Lock( void )
+		~Lock(void)
 		{
-			if (m_pOwner) *m_pOwner=0;
+			if (m_pOwner) *m_pOwner = 0;
 			LeaveCriticalSection(m_pSection);
 		}
 
 	private:
-		CRITICAL_SECTION *m_pSection;
-		DWORD *m_pOwner;
+		CRITICAL_SECTION* m_pSection;
+		DWORD* m_pOwner;
 	};
 
-	bool ThreadHasLock( TLock index ) { return m_CriticalSectionOwners[index]==GetCurrentThreadId(); }
+	bool ThreadHasLock(TLock index) { return m_CriticalSectionOwners[index] == GetCurrentThreadId(); }
 
 	HANDLE m_SearchEvent;
 	HANDLE m_ExitEvent;
@@ -218,16 +244,23 @@ private:
 	volatile long m_SearchThreadCount;
 	DWORD m_MainThreadId;
 
-	void LoadItemRanks( void );
-	void SearchThread( void );
-	static DWORD CALLBACK StaticSearchThread( void *param );
+	void LoadItemRanks(void);
+	void SearchThread(void);
+	static DWORD CALLBACK StaticSearchThread(void* param);
 
-	static bool CmpRankTime( const CSearchManager::ItemRank &rank1, const CSearchManager::ItemRank &rank2 );
-	static unsigned int CalcItemsHash( const std::vector<SearchItem> &items );
+	static bool CmpRankTime(const CSearchManager::ItemRank& rank1, const CSearchManager::ItemRank& rank2);
+	static unsigned int CalcItemsHash(const std::vector<SearchItem>& items);
 
 	struct SearchScope
 	{
-		SearchScope( void ) { resultCount=0; categoryHash=0; bFiles=true; bCommunications=false; }
+		SearchScope(void)
+		{
+			resultCount = 0;
+			categoryHash = 0;
+			bFiles = true;
+			bCommunications = false;
+		}
+
 		CAbsolutePidl search;
 		unsigned int categoryHash;
 		CString name;
@@ -237,7 +270,7 @@ private:
 		std::vector<CString> roots;
 		int resultCount;
 
-		bool ParseSearchConnector( const wchar_t *fname );
+		bool ParseSearchConnector(const wchar_t* fname);
 	};
 
 	class CDataAccessor
@@ -249,17 +282,17 @@ private:
 		wchar_t displayPath[_MAX_PATH];
 		wchar_t displayName[_MAX_PATH];
 
-	//Output Accessor
-	BEGIN_COLUMN_MAP(CDataAccessor)
-		COLUMN_ENTRY(1, itemUrl)
-		COLUMN_ENTRY(2, itemType)
-		COLUMN_ENTRY(3, parsingPath)
-		COLUMN_ENTRY(4, displayPath)
-		COLUMN_ENTRY(5, displayName)
-	END_COLUMN_MAP()
+		//Output Accessor
+		BEGIN_COLUMN_MAP(CDataAccessor)
+			COLUMN_ENTRY(1, itemUrl)
+			COLUMN_ENTRY(2, itemType)
+			COLUMN_ENTRY(3, parsingPath)
+			COLUMN_ENTRY(4, displayPath)
+			COLUMN_ENTRY(5, displayName)
+		END_COLUMN_MAP()
 	};
 };
 
 extern CSearchManager g_SearchManager;
 
-bool HasSearchService( void );
+bool HasSearchService(void);
