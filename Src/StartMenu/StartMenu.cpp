@@ -510,7 +510,7 @@ int WINAPI wWinMain(
 	}
 
 #ifndef _WIN64
-	const wchar_t *pSaveAdmx=wcsstr(lpstrCmdLine,L"-saveadmx ");
+	const wchar_t *pSaveAdmx=wcsstr(lpCmdLine,L"-saveadmx ");
 	if (pSaveAdmx)
 	{
 		WaitDllInitThread();
